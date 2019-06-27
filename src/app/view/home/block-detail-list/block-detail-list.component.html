@@ -1,0 +1,52 @@
+<!-- <div class="row">
+  <div class="col-md-3">
+    <div class="text-center detail_div">
+      <p class="count mb-0">74,913</p>
+      <p class="mb-0 desc">Blockchain Height</p>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="text-center detail_div">
+      <p class="count mb-0">99 <span class="">seconds ago</span></p>
+      <p class="mb-0 desc">Latest Block</p>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="text-center detail_div">
+      <p class="count mb-0">99 / 43</p>
+      <p class="mb-0 desc">Latest Block Difficulty</p>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="text-center detail_div">
+      <p class="count mb-0">374,3913 <span class="">Epic</span></p>
+      <p class="mb-0 desc">Coin in Existence</p>
+    </div>
+  </div>
+</div> -->
+<div class="row" *ngIf="latestblockdetail">
+  <div class="col-md-3">
+    <div class="text-center detail_div">
+      <p class="count mb-0">{{ latestblockdetail.block_height | number }}</p>
+      <p class="mb-0 desc">Blockchain Height</p>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="text-center detail_div">
+      <p class="count mb-0">{{latestblockdetail.letest_block_num}} <span class="">{{latestblockdetail.letest_block_duration}}</span></p>
+      <p class="mb-0 desc">Latest Block</p>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="text-center detail_div">
+      <p class="count mb-0">{{latestblockdetail.difficulty | number}} / {{latestblockdetail.targetdifficulty | number}}</p>
+      <p class="mb-0 desc">Latest Block Difficulty</p>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="text-center detail_div">
+      <p class="count mb-0">{{latestblockdetail.coin_existence | number}} <span class="">Epic</span></p>
+      <p class="mb-0 desc">Coins in Existence</p>
+    </div>
+  </div>
+</div>

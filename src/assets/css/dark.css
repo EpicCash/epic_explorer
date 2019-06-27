@@ -1,0 +1,22 @@
+body{background-color: #27314b;}
+.light_theme_display{display: none;}
+.dark_theme_display{display: block;}
+.body_bg{background: url(../img/dark_bg.jpg) no-repeat center / cover;}
+.logo_txt, .ip_filter a{color: #ffffff;}
+.search_input{background-color: #27314b;}
+.blocks, .explore_all{background-color: #27314b;}
+.day_filter, .detail_div{background-color: #384566; border-color: #1c2437;}
+.detail_div .count span{color: #ffffff;}
+.detail_div .desc{color: #c0d2ff;}
+.day_filter a, .table th{color: #ffffff;}
+.table td{color: #c0d2ff;}
+.day_filter a.active{background-color: #27314b;}
+.chart_heading{color: #ffffff;}
+.latest_table { background-color: #1c2437;border-color: #1c2437;}
+.latest_blocks .explore_all{background-color: #384566;border-color: #1c2437;}
+.table td, .table th, .table thead th{border-color: #384566;}
+.footer_div  .chart_heading .txt_secondary{color: #ffffff !important; color: #c0d2ff;}
+.ftr_services a, .ftr_services{color: #c0d2ff;}
+.ftr_services .gray_txt{color: #3b4e7c;}
+.dropdown.bg-white, .dropdown-menu, .theme_switch, .footer_div .theme_switch, .ftr_dropdown{background-color: #1c2437 !important; color: #ffffff !important;}
+.dropdown a{color: #ffffff !important;}

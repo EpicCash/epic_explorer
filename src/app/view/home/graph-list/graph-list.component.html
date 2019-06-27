@@ -1,0 +1,394 @@
+<div class="row">
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="box_shadow">
+      <div class="blocks">
+        <h2 class="chart_heading d-inline-block">Total Difficulty</h2>
+        <span class="txn_count" *ngIf="this.lg_last">{{
+          this.lg_last | number
+        }}</span>
+        <div class="chart_show">
+          <epic-explorer-plotly *ngIf="linearGraphData.data" [data]="linearGraphData.data" [layout]="linearGraphData.layout">
+          </epic-explorer-plotly>
+          <div *ngIf="!linearGraphData.data" class="feedback_div news_desc text-center">
+            <div class="graph_img background_loading mx-auto mb-3"></div>
+            <div class=" p-3 bg-white">
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day_filter">
+        <a href="JavaScript:void(0);" (click)="
+            Difficultyreq('', '', '1 week', true, false); selectedItem = 1
+          " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 week</a>
+        <a href="JavaScript:void(0);" (click)="
+            Difficultyreq('', '', '15 days', true, false); selectedItem = 2
+          " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 days</a>
+        <a href="JavaScript:void(0);" (click)="
+            Difficultyreq('', '', '30 days', true, false); selectedItem = 3
+          " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 days</a>
+        <a href="JavaScript:void(0);" (click)="
+            Difficultyreq('', '', '60 days', true, false); selectedItem = 4
+          " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 days</a>
+        <a href="JavaScript:void(0);" (click)="
+            Difficultyreq('', '', '3 months', true, false); selectedItem = 5
+          " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 months</a>
+      </div>
+      <div class="explore_all text-right">
+        <a routerLink="/chart/difficulty"><span class="text-uppercase d-block">explore all <i
+          class="fa fa-long-arrow-right"></i></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="box_shadow">
+      <div class="blocks">
+        <h2 class="chart_heading d-inline-block">Transactions By Time</h2>
+        <div class="chart_show heatmapshow">
+          <epic-explorer-plotly *ngIf="heatMapGrowthData.data" [data]="heatMapGrowthData.data"
+            [layout]="heatMapGrowthData.layout"></epic-explorer-plotly>
+          <div *ngIf="!heatMapGrowthData.data" class="feedback_div news_desc text-center">
+            <div class="graph_img background_loading mx-auto mb-3"></div>
+            <div class=" p-3 bg-white">
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <div class="day_filter">
+      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tInput,'Input'); selectedItem8 = 1" id="1" #item1
+        [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">Input</a>
+      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tKernal,'Kernal'); selectedItem8 = 2" id="2" #item2
+        [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">Kernel</a>
+      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tOutput,'Output'); selectedItem8 = 3" id="3" #item3
+        [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">Output</a>
+    </div>
+    <div class="explore_all text-right">
+      <a routerLink="/chart/transactionsbytime"><span class="text-uppercase d-block">explore all <i
+            class="fa fa-long-arrow-right"></i></span></a>
+    </div>
+  </div>
+</div>
+<div class="col-md-6 col-lg-4 mb-4">
+  <div class="box_shadow">
+    <div class="blocks">
+      <h2 class="chart_heading d-inline-block">Blocks</h2>
+      <span class="txn_count" *ngIf="this.brg_last">{{
+          this.brg_last | number
+        }}</span>
+      <div class="chart_show">
+        <epic-explorer-plotly *ngIf="barGraphData.data" [data]="barGraphData.data" [layout]="barGraphData.layout"></epic-explorer-plotly>
+        <div *ngIf="!barGraphData.data" class="feedback_div news_desc text-center">
+          <div class="graph_img background_loading mx-auto mb-3"></div>
+          <div class=" p-3 bg-white">
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="day_filter">
+      <a href="JavaScript:void(0);" (click)="
+            Difficultyreq('', '', '1 week', false, true); selectedItem3 = 1
+          " id="1" #item31 [ngClass]="{ active: selectedItem3 == item1.id, txt_primay: true }">1 week</a>
+      <a href="JavaScript:void(0);" (click)="
+            Difficultyreq('', '', '15 days', false, true); selectedItem3 = 2
+          " id="2" #item32 [ngClass]="{ active: selectedItem3 == item2.id, day15_txt: true }">15 days</a>
+      <a href="JavaScript:void(0);" (click)="
+            Difficultyreq('', '', '30 days', false, true); selectedItem3 = 3
+          " id="3" #item33 [ngClass]="{ active: selectedItem3 == item3.id, day30_txt: true }">30 days</a>
+      <a href="JavaScript:void(0);" (click)="
+            Difficultyreq('', '', '60 days', false, true); selectedItem3 = 4
+          " id="4" #item34 [ngClass]="{ active: selectedItem3 == item4.id, day60_txt: true }">60 days</a>
+      <a href="JavaScript:void(0);" (click)="
+            Difficultyreq('', '', '3 months', false, true); selectedItem3 = 5
+          " id="5" #item35 [ngClass]="{ active: selectedItem3 == item5.id, day3m_txt: true }">3 months</a>
+    </div>
+    <div class="explore_all text-right">
+      <a routerLink="/chart/block"><span class="text-uppercase d-block">explore all <i class="fa fa-long-arrow-right"></i></span></a>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="col-md-6 col-lg-4 mb-4">
+  <div class="box_shadow">
+    <div class="blocks">
+      <h2 class="chart_heading d-inline-block">Transactions Fee</h2>
+      <span class="txn_count" *ngIf="this.fg_last">{{this.fg_last |number}}</span>
+
+      <div class="chart_show">
+        <epic-explorer-plotly *ngIf="transcationGraphData.data" [data]="transcationGraphData.data"
+          [layout]="transcationGraphData.layout">
+        </epic-explorer-plotly>
+        <div *ngIf="!transcationGraphData.data" class="feedback_div news_desc text-center">
+          <div class="graph_img background_loading mx-auto mb-3"></div>
+          <div class=" p-3 bg-white">
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="day_filter">
+  <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '1 week'); selectedItem4 = 1" id="1" #item1
+    [ngClass]="{ active: selectedItem4 == item1.id, txt_primay: true }">1 week</a>
+  <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '15 days'); selectedItem4 = 2" id="2" #item2
+    [ngClass]="{ active: selectedItem4 == item2.id, day15_txt: true }">15 days</a>
+  <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '30 days'); selectedItem4 = 3" id="3" #item3
+    [ngClass]="{ active: selectedItem4 == item3.id, day30_txt: true }">30 days</a>
+  <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '60 days'); selectedItem4 = 4" id="4" #item4
+    [ngClass]="{ active: selectedItem4 == item4.id, day60_txt: true }">60 days</a>
+  <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '3 months'); selectedItem4 = 5" id="5" #item5
+    [ngClass]="{ active: selectedItem4 == item5.id, day3m_txt: true }">3 months</a>
+</div>
+<div class="explore_all text-right">
+  <a routerLink="/chart/transactionsfee"><span class="text-uppercase d-block">explore all <i class="fa fa-long-arrow-right"></i></span></a>
+</div>
+</div>
+</div>
+<div class="col-md-6 col-lg-4 mb-4">
+  <div class="box_shadow">
+    <div class="blocks">
+      <h2 class="chart_heading d-inline-block">Supply Growth</h2>
+      <span class="txn_count" *ngIf="this.gg_last">{{
+          this.gg_last | number
+        }}</span>
+      <div class="chart_show">
+        <epic-explorer-plotly *ngIf="growthGraphData.data" [data]="growthGraphData.data" [layout]="growthGraphData.layout">
+        </epic-explorer-plotly>
+        <div *ngIf="!growthGraphData.data" class="feedback_div news_desc text-center">
+          <div class="graph_img background_loading mx-auto mb-3"></div>
+          <div class=" p-3 bg-white">
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="day_filter">
+      <a href="JavaScript:void(0);" (click)="Growthreq('', '', '1 week'); selectedItem5 = 1" id="1" #item1
+        [ngClass]="{ active: selectedItem5 == item1.id, txt_primay: true }">1 week</a>
+      <a href="JavaScript:void(0);" (click)="Growthreq('', '', '15 days'); selectedItem5 = 2" id="2" #item2
+        [ngClass]="{ active: selectedItem5 == item2.id, day15_txt: true }">15 days</a>
+      <a href="JavaScript:void(0);" (click)="Growthreq('', '', '30 days'); selectedItem5 = 3" id="3" #item3
+        [ngClass]="{ active: selectedItem5 == item3.id, day30_txt: true }">30 days</a>
+      <a href="JavaScript:void(0);" (click)="Growthreq('', '', '60 days'); selectedItem5 = 4" id="4" #item4
+        [ngClass]="{ active: selectedItem5 == item4.id, day60_txt: true }">60 days</a>
+      <a href="JavaScript:void(0);" (click)="Growthreq('', '', '3 months'); selectedItem5 = 5" id="5" #item5
+        [ngClass]="{ active: selectedItem5 == item5.id, day3m_txt: true }">3 months</a>
+    </div>
+    <div class="explore_all text-right">
+      <a  routerLink="/chart/supplygrowth"><span class="text-uppercase d-block">explore all <i
+            class="fa fa-long-arrow-right"></i></span></a>
+    </div>
+  </div>
+</div>
+<div class="col-md-6 col-lg-4 mb-4">
+  <div class="box_shadow">
+    <div class="blocks">
+      <h2 class="chart_heading d-inline-block">Blocks Mined</h2>
+      <span class="txn_count" *ngIf="this.dg_last">{{
+          this.dg_last | number
+        }}</span>
+
+      <div class="chart_show">
+        <epic-explorer-plotly *ngIf="doubleareaGraphData.data" [data]="doubleareaGraphData.data"
+          [layout]="doubleareaGraphData.layout">
+        </epic-explorer-plotly>
+        <div *ngIf="!doubleareaGraphData.data" class="feedback_div news_desc text-center">
+          <div class="graph_img background_loading mx-auto mb-3"></div>
+          <div class=" p-3 bg-white">
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+            <p class="mb-2 background_loading para_load"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="day_filter">
+      <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '1 week'); selectedItem7 = 1" id="1" #item1
+        [ngClass]="{ active: selectedItem7 == item1.id, txt_primay: true }">1 week</a>
+      <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '15 days'); selectedItem7 = 2" id="2" #item2
+        [ngClass]="{ active: selectedItem7 == item2.id, day15_txt: true }">15 days</a>
+      <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '30 days'); selectedItem7 = 3" id="3" #item3
+        [ngClass]="{ active: selectedItem7 == item3.id, day30_txt: true }">30 days</a>
+      <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '60 days'); selectedItem7 = 4" id="4" #item4
+        [ngClass]="{ active: selectedItem7 == item4.id, day60_txt: true }">60 days</a>
+      <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '3 months'); selectedItem7 = 5" id="5" #item5
+        [ngClass]="{ active: selectedItem7 == item5.id, day3m_txt: true }">3 months</a>
+    </div>
+    <div class="explore_all text-right">
+      <a routerLink="/chart/blocksmined"><span class="text-uppercase d-block">explore all <i
+            class="fa fa-long-arrow-right"></i></span></a>
+    </div>
+  </div>
+
+</div>
+
+  <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+    <div class="box_shadow">
+      <div class="blocks">
+        <h2 class="chart_heading d-inline-block">HashRate Growth Chart</h2>
+        <span class="txn_count" *ngIf="this.hg_last">{{
+          this.hg_last | number
+        }}</span>
+        <div class="chart_show">
+          <epic-explorer-plotly *ngIf="blockGraphData.data" [data]="blockGraphData.data" [layout]="blockGraphData.layout">
+          </epic-explorer-plotly>
+          <div *ngIf="!blockGraphData.data" class="feedback_div news_desc text-center">
+            <div class="graph_img background_loading mx-auto mb-3"></div>
+            <div class=" p-3 bg-white">
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day_filter">
+          <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '1 week'); selectedItem9 = 1" id="1" #item1
+          [ngClass]="{ active: selectedItem9 == item1.id, txt_primay: true }">1 week</a>
+        <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '15 days'); selectedItem9 = 2" id="2" #item2
+          [ngClass]="{ active: selectedItem9 == item2.id, day15_txt: true }">15 days</a>
+        <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '30 days'); selectedItem9 = 3" id="3" #item3
+          [ngClass]="{ active: selectedItem9 == item3.id, day30_txt: true }">30 days</a>
+        <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '60 days'); selectedItem9 = 4" id="4" #item4
+          [ngClass]="{ active: selectedItem9 == item4.id, day60_txt: true }">60 days</a>
+        <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '3 months'); selectedItem9 = 5" id="5" #item5
+          [ngClass]="{ active: selectedItem9 == item5.id, day3m_txt: true }">3 months</a>
+      </div>
+      <div class="explore_all text-right">
+        <a routerLink="/chart/hashrategrowth"><span class="text-uppercase d-block">explore all <i
+              class="fa fa-long-arrow-right"></i></span></a>
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+    <div class="box_shadow">
+      <div class="blocks">
+        <h2 class="chart_heading d-inline-block">Block Interval</h2>
+        <span class="txn_count" *ngIf="this.ag_last">{{ this.ag_last | number }} sec</span>
+
+        <div class="chart_show">
+          <epic-explorer-plotly *ngIf="areaGraphData.data" [data]="areaGraphData.data" [layout]="areaGraphData.layout">
+          </epic-explorer-plotly>
+          <div *ngIf="!areaGraphData.data" class="feedback_div news_desc text-center">
+            <div class="graph_img background_loading mx-auto mb-3"></div>
+            <div class=" p-3 bg-white">
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day_filter">
+        <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '1 week'); selectedItem2 = 1" id="1" #item1
+          [ngClass]="{ active: selectedItem2 == item1.id, txt_primay: true }">1 week</a>
+        <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '15 days'); selectedItem2 = 2" id="2" #item2
+          [ngClass]="{ active: selectedItem2 == item2.id, day15_txt: true }">15 days</a>
+        <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '30 days'); selectedItem2 = 3" id="3" #item3
+          [ngClass]="{ active: selectedItem2 == item3.id, day30_txt: true }">30 days</a>
+        <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '60 days'); selectedItem2 = 4" id="4" #item4
+          [ngClass]="{ active: selectedItem2 == item4.id, day60_txt: true }">60 days</a>
+        <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '3 months'); selectedItem2 = 5" id="5" #item5
+          [ngClass]="{ active: selectedItem2 == item5.id, day3m_txt: true }">3 months</a>
+      </div>
+      <div class="explore_all text-right">
+        <a routerLink="/chart/blockinterval"><span class="text-uppercase d-block">explore all <i
+              class="fa fa-long-arrow-right"></i></span></a>
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+    <div class="box_shadow">
+      <div class="blocks">
+        <h2 class="chart_heading d-inline-block">Transactions vs Date</h2>
+        <span class="txn_count" *ngIf="this.tg_last">{{
+          this.tg_last | number
+        }}</span>
+
+        <div class="chart_show">
+          <epic-explorer-plotly *ngIf="feeGraphData.data" [data]="feeGraphData.data" [layout]="feeGraphData.layout">
+          </epic-explorer-plotly>
+          <div *ngIf="!feeGraphData.data" class="feedback_div news_desc text-center">
+            <div class="graph_img background_loading mx-auto mb-3"></div>
+            <div class=" p-3 bg-white">
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day_filter">
+        <a href="JavaScript:void(0);" (click)="Transactionlinechartreq('', '', '1 week'); selectedItem8 = 1" id="1"
+          #item1 [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">1 week</a>
+        <a href="JavaScript:void(0);" (click)="
+            Transactionlinechartreq('', '', '15 days'); selectedItem8 = 2
+          " id="2" #item2 [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">15 days</a>
+        <a href="JavaScript:void(0);" (click)="
+            Transactionlinechartreq('', '', '30 days'); selectedItem8 = 3
+          " id="3" #item3 [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">30 days</a>
+        <a href="JavaScript:void(0);" (click)="
+            Transactionlinechartreq('', '', '60 days'); selectedItem8 = 4
+          " id="4" #item4 [ngClass]="{ active: selectedItem8 == item4.id, day60_txt: true }">60 days</a>
+        <a href="JavaScript:void(0);" (click)="
+            Transactionlinechartreq('', '', '3 months'); selectedItem8 = 5
+          " id="5" #item5 [ngClass]="{ active: selectedItem8 == item5.id, day3m_txt: true }">3 months</a>
+      </div>
+      <div class="explore_all text-right">
+        <a routerLink="/chart/transactionsdate"><span class="text-uppercase d-block">explore all <i
+              class="fa fa-long-arrow-right"></i></span></a>
+      </div>
+    </div>
+  </div>
+</div>

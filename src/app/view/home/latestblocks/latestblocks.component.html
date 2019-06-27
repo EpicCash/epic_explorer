@@ -1,0 +1,142 @@
+<div class="latest_table">
+  <h2 class="mb-3 chart_heading px-0">Latest Blocks</h2>
+  <div class="mobile_table web_hdng">
+     
+      <div class="row">
+        <div class="col-6 col-md-4 tble_col">
+         <div class="block_div"> <h5 class="mb-0">Height</h5></div>
+        </div>
+        <div class="col-6 col-md-4 tble_col">
+          <div class="block_div"><h5 class="mb-0">Hash</h5></div>
+        </div>
+        <div class="col-6 col-md-4 tble_col">
+          <div class="block_div"><h5 class="mb-0" >Age</h5></div>
+        </div>
+        <div class="col-6 col-md-4 tble_col">
+          <div class="block_div"><h5 class="mb-0">Difficulty</h5></div>
+        </div>
+        <div class="col-7 col-sm-6 col-md-4 tble_col">
+          <div class="block_div"><h5 class="mb-0">Pow Algo</h5></div>
+        </div>
+        <div class="col-5 col-sm-6 col-md-4 tble_col">
+          <div class="block_div"><h5 class="mb-0">#Inputs</h5></div>
+        </div>
+        <div class="col-6 col-md-4 tble_col">
+          <div class="block_div"><h5  class="mb-0">#Outputs</h5></div>
+        </div>
+        <div class="col-6 col-md-4 tble_col">
+          <div class="block_div" ><h5 class="mb-0">#Kernels</h5></div>
+        </div>
+      </div>
+    </div>
+  <div [ngClass]="{mobile_table : true, hght_40: item.id != clickValue }"  id="hash_{{hashvalue.blockchain_block_height}}" #item *ngFor="let hashvalue of hashvalues">
+     
+    <div class="row">
+      <div class="col-6 col-md-3 tble_col">
+       <div class="block_div">  <span *ngIf="item.id != clickValue" (click)="onClickPlus(hashvalue.blockchain_block_height);" class="expnd_blck"><i class="fa fa-plus"></i></span>
+        <span  *ngIf="item.id == clickValue" (click)="onClickMinus(hashvalue.blockchain_block_height);" class="expnd_blck"><i class="fa fa-minus"></i></span><h6>Height</h6><span class="blck_value link_to_detail" routerLink="/blockdetail/{{ hashvalue.blockchain_block_height }}">{{ hashvalue.blockchain_block_height }}</span></div>
+      </div>
+      <div class="col-6 col-md-3 tble_col">
+        <div [title]="hashvalue.blockchain_block_hash" routerLink="/blockdetail/{{ hashvalue.blockchain_block_hash }}" class="block_div"><h6>Hash</h6><span class="blck_value">{{ hashvalue.hashstart
+        }}<span
+          *ngFor="let color of hashvalue.hasharray"
+          class="hash"
+          [ngStyle]="{ 'background-color': color }"
+        ></span
+        >{{ hashvalue.hashend }}</span></div>
+      </div>
+      <div class="col-6 col-md-3 tble_col">
+        <div class="block_div"><h6 >Age</h6><span class="blck_value">{{ hashvalue.age }}</span></div>
+      </div>
+      <div class="col-6 col-md-3 tble_col">
+        <div class="block_div"><h6>Difficulty</h6><span class="blck_value">{{ hashvalue.target_difficulty | number }}</span></div>
+      </div>
+      <div class="col-6 col-sm-6 col-md-3 tble_col">
+        <div class="block_div"><h6 class="mb-0">Pow Algo</h6><span class="blck_value">{{ hashvalue.PoWAlgo }}</span></div>
+      </div>
+      <div class="col-6 col-sm-6 col-md-3 tble_col">
+        <div class="block_div"><h6>#Inputs</h6><span class="blck_value">{{ hashvalue.input_count }}</span></div>
+      </div>
+      <div class="col-6 col-md-3 tble_col">
+        <div class="block_div"><h6 >#Outputs</h6><span class="blck_value">{{ hashvalue.output_count }}</span></div>
+      </div>
+      <div class="col-6 col-md-3 tble_col">
+        <div class="block_div" ><h6>#Kernels</h6><span class="blck_value">{{ hashvalue.kernal_count }}</span></div>
+      </div>
+      <!-- <div class="col-6 col-md-4">
+          <a class="txt_secondary" href="JavaScript:Void(0);"
+            ><i class="fa fa-eye"></i
+          ></a>
+            </div> -->
+    </div>
+  </div>
+  
+  
+</div>
+
+<div class="explore_all text-right">
+  <form [formGroup]="paginationForm">
+    <div class="d-inline-block float-left mt-2">
+      <span>Items Per Page:</span>&nbsp;&nbsp;
+      <div class="item_select d-inline-block position-relative">
+        <select
+          class=""
+          formControlName="pagesize"
+          (change)="gettinghashList(pagedata.currentPage, $event.target.value)"
+        >
+          <option value="20">20</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="250">250</option>
+          <option value="500">500</option>
+          <option value="1000">1000</option>
+        </select>
+      </div>
+    </div>
+    <ul class="pagination justify-content-end m-0 d-inline-flex">
+      <li
+        class="page-item d-none d-md-inline-flex"
+        (click)="
+          gettinghashList(pagedata.startPage, paginationForm.value.pagesize)
+        "
+      >
+        <a class="page-link"><i class="fa fa-angle-double-left"></i></a>
+      </li>
+      <li
+        class="page-item"
+        (click)="
+          gettinghashList(
+            pagedata.currentPage - 1,
+            paginationForm.value.pagesize
+          )
+        "
+      >
+        <a class="page-link"><i class="fa fa-angle-left"></i></a>
+      </li>
+      <li class="page-item d-none d-md-inline-flex">
+        <a class="page-link"
+          >{{ pagedata.currentPage }} / {{ pagedata.totalPages }}</a
+        >
+      </li>
+      <li
+        class="page-item"
+        (click)="
+          gettinghashList(
+            pagedata.currentPage + 1,
+            paginationForm.value.pagesize
+          )
+        "
+      >
+        <a class="page-link"><i class="fa fa-angle-right"></i></a>
+      </li>
+      <li
+        class="page-item d-none d-md-inline-flex"
+        (click)="
+          gettinghashList(pagedata.totalPages, paginationForm.value.pagesize)
+        "
+      >
+        <a class="page-link"><i class="fa fa-angle-double-right"></i></a>
+      </li>
+    </ul>
+  </form>
+</div>

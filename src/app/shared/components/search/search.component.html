@@ -1,0 +1,2 @@
+<input type="text" [(ngModel)]="search" #ctrl="ngModel" class="form-control search_input mb-1" (keyup.enter)="ctrl.value ? onSearch(ctrl.value) : ''" placeholder="Search by hash or height">
+<button (click)="ctrl.value ? onSearch(ctrl.value) : ''" class="btn search_btn"><i class="fa fa-search"></i></button>

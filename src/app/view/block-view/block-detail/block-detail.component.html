@@ -1,0 +1,265 @@
+<div class="view_content py-4">
+  <div *ngIf="hasdata" class="container">
+    <div *ngIf="hashdata?.BlockchainBlockFetchQuery" class="box_shadow_large bg-white p-3 mb-4">
+      <h3 class="mb-0">
+        <img src="assets/img/block.png" height="30" class="block_rotate float-left mr-2" />
+        Block {{ hashdata.BlockchainBlockFetchQuery.Height }}
+      </h3>
+      <div class="row mb-3">
+        <div class="col-sm-6 col-md-4 mt-4">
+          <div class="d-inline-block align-middle">
+            <img src="assets/img/fee.png" height="60" />
+          </div>
+          <div class="d-inline-block align-middle ml-2">
+            <span class="">Fee</span>
+            <h6 class="view_txt">{{ hashdata.BlockchainBlockFetchQuery.Fee }} Epic</h6>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 mt-4">
+          <div class="d-inline-block align-middle">
+            <img src="assets/img/hash.png" height="60" />
+          </div>
+          <div [title]="hashdata.BlockchainBlockFetchQuery.Hash" class="d-inline-block align-middle ml-2">
+            <span class="">Hash</span>
+            <h6 *ngIf="hashdata?.BlockchainBlockFetchQuery" class="view_txt">
+              <!-- {{ hashdata.BlockchainBlockFetchQuery.Hash }} -->
+              <span class="blck_value">{{ hashdata.BlockchainBlockFetchQuery.hashstart
+              }}<span
+                *ngFor="let color of hashdata.BlockchainBlockFetchQuery.hasharray"
+                class="hash"
+                [ngStyle]="{ 'background-color': color }"
+              ></span
+              >{{ hashdata.BlockchainBlockFetchQuery.hashend }}</span>
+            </h6>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 mt-4">
+          <div class="d-inline-block align-middle">
+            <img src="assets/img/difficulty.png" height="60" />
+          </div>
+          <div class="d-inline-block align-middle ml-2">
+            <span class="">Difficulty</span>
+            <h6 class="view_txt">{{ hashdata.BlockchainBlockFetchQuery.TotalDifficulty }}</h6>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 mt-4 pt-2">
+          <div class="d-inline-block align-middle">
+            <img src="assets/img/block_reward.png" height="60" />
+          </div>
+          <div class="d-inline-block align-middle ml-2">
+            <span class="">Block Reward</span>
+            <h6 class="view_txt">{{ hashdata.BlockchainBlockFetchQuery.BlockReward }} Epic</h6>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 mt-4 pt-2">
+          <div class="d-inline-block align-middle">
+            <img src="assets/img/age.png" height="60" />
+          </div>
+          <div class="d-inline-block align-middle ml-2">
+            <span class="">Age</span>
+            <h6 class="view_txt">{{ hashdata.BlockchainBlockFetchQuery.Timestamp }}</h6>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 mt-4 pt-2">
+          <div class="d-inline-block align-middle">
+            <img src="assets/img/algorithm.png" height="60" />
+          </div>
+          <div class="d-inline-block align-middle ml-2">
+            <span class="">Pow Algorithm</span>
+            <h6 class="view_txt">{{ hashdata.BlockchainBlockFetchQuery.PoWAlgorithm }}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box_shadow_large bg-white p-3 mb-4">
+      <div id="accordion">
+        <div class="card mb-3">
+          <div class="card-header" id="heading-1">
+            <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
+              <h5 class="mb-0 tab_hdng">
+                Input ({{hashdata?.BlockchainBlockInputFetchQuery.length ? hashdata.BlockchainBlockInputFetchQuery.length : 0}})
+
+              </h5>
+            </a>
+          </div>
+          <!-- *ngIf="hashdata?.BlockchainBlockInputFetchQuery.length" -->
+          <div id="collapse-1" class="collapse" data-parent="#accordion" aria-labelledby="heading-1">
+            <div class="card-body">
+                <div class="view_moble_tble web_hdng">
+                    <div class="row">
+                        <div class="col-lg-2">
+                         <div class="block_div"><h5 class="mb-0">Commit</h5></div>
+                        </div>
+
+
+
+                      </div>
+                </div>
+                  <div class="view_moble_tble" *ngFor="let hashinput of hashdata.BlockchainBlockInputFetchQuery">
+                      <div class="row">
+                        <div class="col-12">
+                         <div class="block_div"><h6>Commit</h6><span class="blck_value">{{ hashinput.Data }}</span></div>
+                        </div>
+
+
+
+                      </div>
+                    </div>
+              <!-- <div class="table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                    <tr>
+                      <td>Commit</td>
+                    </tr>
+                    <tr>
+                      <td class="word_break">
+                        <p *ngFor="let hashinput of hashdata.BlockchainBlockInputFetchQuery">{{ hashinput.Data }}</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header" id="heading-2">
+
+            <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false"
+              aria-controls="collapse-2">
+              <h5 class="mb-0 tab_hdng">Output ({{hashdata?.BlockchainBlockOutputFetchQuery.length ? hashdata.BlockchainBlockOutputFetchQuery.length : 0}}) </h5>
+            </a>
+
+          </div>
+
+          <div id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
+            <div class="card-body">
+              <div class="view_moble_tble web_hdng">
+                  <div class="row">
+                      <div class="col-lg-2">
+                       <div class="block_div"><h5 class="mb-0">Output Type</h5></div>
+                      </div>
+                      <div class="col-lg-2 order-3">
+                          <div class="block_div"><h5 class="mb-0">Spent</h5></div>
+                        </div>
+                      <div class="col-lg-8 order-2">
+                        <div class="block_div"><h5 class="mb-0">Commit</h5></div>
+                      </div>
+
+
+                    </div>
+              </div>
+                <div class="view_moble_tble"  *ngFor="let hashoutput of hashdata.BlockchainBlockOutputFetchQuery">
+                    <div class="row">
+                      <div class="col-12 col-sm-4 col-md-4 col-lg-2">
+                       <div class="block_div"><h6>Output Type</h6><span class="blck_value">{{ hashoutput.OutputType }}</span></div>
+                      </div>
+                      <div class="col-12 col-sm-4 col-md-4 col-lg-2 order-lg-3">
+                          <div class="block_div"><h6>Spent</h6><span class="blck_value">{{ hashoutput.Spent }}</span></div>
+                        </div>
+                      <div class="col-12 col-sm-4 col-md-4 col-lg-8 order-lg-2">
+                        <div class="block_div"><h6>Commit</h6><span class="blck_value">{{ hashoutput.Commit }}</span></div>
+                      </div>
+
+
+                    </div>
+                  </div>
+              <!-- <div class="table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                    <tr>
+                      <td>Output Type</td>
+                      <td>Commit</td>
+                      <td>Spent</td>
+                    </tr>
+                    <tr *ngFor="let hashoutput of hashdata.BlockchainBlockOutputFetchQuery">
+                      <td>{{ hashoutput.OutputType }}</td>
+                      <td>
+                        {{ hashoutput.Commit }}
+                      </td>
+                      <td>{{ hashoutput.Spent }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="heading-3">
+
+            <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false"
+              aria-controls="collapse-3">
+              <h5 class="mb-0 tab_hdng">Kernals ({{hashdata?.BlockchainBlockKernalFetchQuery.length ? hashdata.BlockchainBlockKernalFetchQuery.length : 0}})</h5>
+            </a>
+
+          </div>
+          <div id="collapse-3" class="collapse" data-parent="#accordion" aria-labelledby="heading-3">
+            <div class="card-body">
+                <div class="view_moble_tble web_hdng">
+                    <div class="row">
+                        <div class="col-lg-4">
+                         <div class="block_div"><h5 class="mb-0">Features</h5></div>
+                        </div>
+                        <div class="col-lg-4 ">
+                          <div class="block_div"><h5 class="mb-0">Lock Height</h5></div>
+                        </div>
+                        <div class="col-lg-4 ">
+                            <div class="block_div"><h5 class="mb-0">Fee</h5></div>
+                          </div>
+
+                      </div>
+                </div>
+                  <div class="view_moble_tble"  *ngFor="let hashkernel of hashdata.BlockchainBlockKernalFetchQuery">
+                      <div class="row">
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                         <div class="block_div"><h6>Features</h6><span class="blck_value">{{ hashkernel.Features }}</span></div>
+                        </div>
+
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                          <div class="block_div"><h6>Lock Height</h6><span class="blck_value">{{ hashkernel.LockHeight }}</span></div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                            <div class="block_div"><h6>Fee</h6><span class="blck_value">{{ hashkernel.Fee }} Epic</span></div>
+                          </div>
+
+
+                      </div>
+                    </div>
+              <!-- <div class="table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                    <tr>
+                      <td>Features</td>
+                      <td>Fee</td>
+                      <td>Lock Height</td>
+                    </tr>
+                    <tr *ngFor="let hashkernel of hashdata.BlockchainBlockKernalFetchQuery">
+                      <td>{{ hashkernel.Features }}</td>
+                      <td>
+                        {{ hashkernel.Fee }}
+                      </td>
+                      <td>{{ hashkernel.LockHeight }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+  <div *ngIf="!hasdata" class="container">
+
+    <div class="box_shadow_large bg-white p-3 mb-4 text-center">
+      <h4>Search Results for <span class="txt_primary">"{{params}}"</span></h4>
+      <p>Your search term {{params}} is too short, please enter at least six characters if searching by hash.</p>
+    </div>
+  </div>
+</div>

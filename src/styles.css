@@ -1,0 +1,43 @@
+.background_loading {
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: placeHolderShimmer;
+    -webkit-animation-timing-function: linear;
+    background: #f6f7f9;
+    background-image: linear-gradient(
+      to right,
+      #f6f7f9 0%,
+      #e9ebee 20%,
+      #f6f7f9 40%,
+      #f6f7f9 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 800px 104px;
+    position: relative;
+  }
+  .para_load {
+    height: 20px;
+  }
+  .graph_load {
+    height: 384px;
+  }
+  .graph.background_loading {
+    height: 252px;
+    background-size: cover;
+    background-image: linear-gradient(
+      to right,
+      #f6f7f9 0%,
+      #ffffff 20%,
+      #f6f7f9 40%,
+      #f6f7f9 100%
+    );
+  }
+  @keyframes placeHolderShimmer {
+    0% {
+      background-position: -468px 0;
+    }
+    100% {
+      background-position: 468px 0;
+    }
+  }

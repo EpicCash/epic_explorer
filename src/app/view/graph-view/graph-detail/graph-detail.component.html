@@ -1,0 +1,33 @@
+<div class="view_content py-4">
+  <div class="col-md-12">
+      <div class="box_shadow">
+        <div class="blocks">
+
+    <h2 class="chart_heading text-uppercase d-inline-block">{{this.title}}</h2>
+
+  <epic-explorer-plotly *ngIf="hashdata.data" [data]="hashdata.data" [layout]="hashdata.layout">
+  </epic-explorer-plotly>
+  <div class="day_filter">
+    <a href="JavaScript:void(0);" (click)="
+    ChartFromView('', '', '1 week', true, false); selectedItem = 1
+      " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 week</a>
+    <a href="JavaScript:void(0);" (click)="
+    ChartFromView('', '', '15 days', true, false); selectedItem = 2
+      " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 days</a>
+    <a href="JavaScript:void(0);" (click)="
+    ChartFromView('', '', '30 days', true, false); selectedItem = 3
+      " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 days</a>
+    <a href="JavaScript:void(0);" (click)="
+    ChartFromView('', '', '60 days', true, false); selectedItem = 4
+      " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 days</a>
+    <a href="JavaScript:void(0);" (click)="
+    ChartFromView('', '', '3 months', true, false); selectedItem = 5
+      " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 months</a>
+  </div>
+
+
+  </div>
+
+</div>
+</div>
+</div>
