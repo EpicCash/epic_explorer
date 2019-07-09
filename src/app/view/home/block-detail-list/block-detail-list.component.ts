@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartService } from '../../../shared/services/chart.service';
 import { HttpParams } from '@angular/common/http';
-
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 @Component({
   selector: 'app-block-detail-list',
   templateUrl: './block-detail-list.component.html',
@@ -10,10 +14,18 @@ import { HttpParams } from '@angular/common/http';
 export class BlockDetailListComponent implements OnInit {
   public latestblockdetail: any = [];
 
-  constructor(private chartService: ChartService) {}
+  constructor(private chartService: ChartService, private http: HttpClient) {}
 
   ngOnInit() {
     this.gettinglatesthashList();
+
+    this.http
+    .get('http://localhost:4000/api/test/ok')
+    // .get('/api/courses/01.json')
+      .subscribe(data => {
+        console.log(data);
+      });
+
   }
 
   public gettinglatesthashList() {

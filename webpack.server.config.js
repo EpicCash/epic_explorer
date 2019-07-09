@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 module.exports = {
   mode: 'none',
@@ -21,7 +22,9 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.ts$/, loader: 'ts-loader' },
+      { test: /\.ts$/,
+        exclude: [ /node_modules/,],
+         loader: 'ts-loader' },
       {
         // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
         // Removing this will cause deprecation warnings to appear.
@@ -42,6 +45,9 @@ module.exports = {
       /(.+)?express(\\|\/)(.+)?/,
       path.join(__dirname, 'src'),
       {}
-    )
+    ),
+    new FilterWarningsPlugin({
+           exclude: [/mongodb/, /mssql/, /mysql/, /mysql2/, /react-native-sqlite-storage/, /sql/, /oracledb/, /pg/, /pg-native/, /pg-query-stream/, /redis/, /sqlite3/]
+       })
   ]
 };
