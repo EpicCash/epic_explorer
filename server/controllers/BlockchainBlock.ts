@@ -549,7 +549,12 @@ export class BlockchainBlockController {
         where: { Hash: request.params.hash },
       });
       let paramVal = request.params.hash;
-      if (!BlockchainBlockFetchQuery && !isNaN(paramVal)) {
+      if (
+        !BlockchainBlockFetchQuery &&
+        !isNaN(paramVal) &&
+        paramVal.length <= 10 &&
+        paramVal <= 2147483647
+      ) {
         var BlockchainBlockFetchQuery = await getRepository(
           BlockchainBlock,
         ).findOne({
@@ -591,9 +596,9 @@ export class BlockchainBlockController {
       });
 
       if (BlockchainBlockFetchQuery.EdgeBits == 29) {
-        BlockchainBlockFetchQuery['PoWAlgorithm'] = 'cuckARoo29';
+        BlockchainBlockFetchQuery['PoWAlgorithm'] = 'CuckARoo29';
       } else {
-        BlockchainBlockFetchQuery['PoWAlgorithm'] = 'cuckAToo31';
+        BlockchainBlockFetchQuery['PoWAlgorithm'] = 'CuckAToo31';
       }
 
       if (BlockchainBlockFetchQuery.Height <= 1440) {
@@ -771,8 +776,8 @@ export class BlockchainBlockController {
             ])
             .addSelect(
               `CASE
-                        WHEN blockchain_block.EdgeBits = 29 THEN 'cuckARoo29'
-                        WHEN blockchain_block.EdgeBits = 31 THEN 'cuckARoo31'
+                        WHEN blockchain_block.EdgeBits = 29 THEN 'CuckARoo29'
+                        WHEN blockchain_block.EdgeBits = 31 THEN 'CuckAToo31'
                     END`,
               'PoWAlgo',
             )

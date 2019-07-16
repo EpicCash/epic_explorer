@@ -18,8 +18,13 @@ import {
     private _layout: any;
     private _options: any;
     private _plotlyJs: any;
-    constructor() {  }
-
+    constructor() {
+      import('plotly.js/dist/plotly-cartesian.js').then(Plotly => {
+        //stringHelpers.reverse('Hello World');
+        this._plotlyJs=Plotly;
+        this.showChart();
+      });
+    }
     @Input() set data(data: any) {
       this._data = data;
       if(this._plotlyJs){
@@ -54,11 +59,9 @@ import {
       );
     }
     ngAfterViewInit() {
-      import('plotly.js/dist/plotly-cartesian.js').then(Plotly => {
-        //stringHelpers.reverse('Hello World');
-        this._plotlyJs=Plotly;
+      if(this._plotlyJs){
         this.showChart();
-      });
+      }
 
     }
   }

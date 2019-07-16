@@ -1,6 +1,7 @@
 import { ConnectionOptions } from 'typeorm';
 import { resolve } from 'path';
 import { config } from 'dotenv';
+
 config({ path: resolve('.env') });
 
 export const dbConfig: ConnectionOptions = {
