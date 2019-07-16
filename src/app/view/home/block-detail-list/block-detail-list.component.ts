@@ -19,12 +19,12 @@ export class BlockDetailListComponent implements OnInit {
   ngOnInit() {
     this.gettinglatesthashList();
 
-    this.http
-    .get('http://localhost:4000/api/test/ok')
-    // .get('/api/courses/01.json')
-      .subscribe(data => {
-        console.log(data);
-      });
+    // this.http
+    // .get('http://localhost:4000/api/test/ok')
+    // // .get('/api/courses/01.json')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
 
   }
 
