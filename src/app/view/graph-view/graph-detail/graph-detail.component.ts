@@ -24,11 +24,12 @@ export class GraphDetailComponent implements OnInit {
   public GraphtKernal: any;
   public GraphtDate: any;
   public GraphtHour: any;
-  
+
   constructor(
     private route: ActivatedRoute,
     private chartService: ChartService,
     private comp: GraphListComponent,
+    private titleService: Title,
   ) {}
   ngOnInit() {
     var self = this;
