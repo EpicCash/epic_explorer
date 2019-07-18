@@ -1,33 +1,75 @@
-<div class="view_content py-4">
-  <div class="col-md-12">
-      <div class="box_shadow">
-        <div class="blocks">
+<div class="view_content detail_graph py-4">
+    <div class="container">
 
-    <h2 class="chart_heading text-uppercase d-inline-block">{{this.title}}</h2>
+        <div class="row">
 
+          <div class="col-md-9">
+              <div class="box_shadow_large bg-white p-3">
+              <div class="overflow-hidden">
+                <div class="blocks detail_graph">
+
+            <h2 class="chart_heading text-uppercase d-inline-block">{{this.title}}</h2>
   <epic-explorer-plotly *ngIf="hashdata.data" [data]="hashdata.data" [layout]="hashdata.layout">
   </epic-explorer-plotly>
-  <div class="day_filter">
-    <a href="JavaScript:void(0);" (click)="
-    ChartFromView('', '', '1 week', true, false); selectedItem = 1
-      " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 week</a>
-    <a href="JavaScript:void(0);" (click)="
-    ChartFromView('', '', '15 days', true, false); selectedItem = 2
-      " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 days</a>
-    <a href="JavaScript:void(0);" (click)="
-    ChartFromView('', '', '30 days', true, false); selectedItem = 3
-      " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 days</a>
-    <a href="JavaScript:void(0);" (click)="
-    ChartFromView('', '', '60 days', true, false); selectedItem = 4
-      " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 days</a>
-    <a href="JavaScript:void(0);" (click)="
-    ChartFromView('', '', '3 months', true, false); selectedItem = 5
-      " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 months</a>
-  </div>
+   <div class="day_filter" *ngIf="this.title!='Transactions by time'">
+            <a href="JavaScript:void(0);" (click)="
+            ChartFromView('', '', '1 week', true, false); selectedItem = 1
+              " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 week</a>
+            <a href="JavaScript:void(0);" (click)="
+            ChartFromView('', '', '15 days', true, false); selectedItem = 2
+              " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 days</a>
+            <a href="JavaScript:void(0);" (click)="
+            ChartFromView('', '', '30 days', true, false); selectedItem = 3
+              " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 days</a>
+            <a href="JavaScript:void(0);" (click)="
+            ChartFromView('', '', '60 days', true, false); selectedItem = 4
+              " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 days</a>
+            <a href="JavaScript:void(0);" (click)="
+            ChartFromView('', '', '3 months', true, false); selectedItem = 5
+              " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 months</a>
+          </div>
+          <div class="day_filter" *ngIf="this.title=='Transactions by time'">
+              <a href="JavaScript:void(0);" (click)="ChartFromView(GraphtDate, GraphtHour, GraphtInput,'Input'); selectedItem8 = 1" id="1" #item1
+              [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">Input</a>
+            <a href="JavaScript:void(0);" (click)="ChartFromView(GraphtDate, GraphtHour, GraphtKernal,'Kernal'); selectedItem8 = 2" id="2" #item2
+              [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">Kernel</a>
+            <a href="JavaScript:void(0);" (click)="ChartFromView(GraphtDate, GraphtHour, GraphtOutput,'Output'); selectedItem8 = 3" id="3" #item3
+              [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">Output</a>
+            </div>
 
+          </div>
 
-  </div>
+      </div>
+      </div>
+    </div>
+      <div class="col-md-3">
+          <div *ngIf="TimeArr" class="box_shadow_large detail_div p-3 mb-4">
+              <h1 class="test_msg align-middle mr-3 pl-3">You are on Testnet</h1>
+              <h1 class="test_msg align-middle mb-0 pl-3">Mainnet Countdown
+                  <ul class="list-unstyled mt-2  mb-0 txt_primary">
+                    <li class="d-inline-block"><span id="days">{{TimeArr.d}}d:</span></li>
+                    <li class="d-inline-block"><span id="hours">{{TimeArr.h}}h:</span></li>
+                    <li class="d-inline-block"><span id="minutes">{{TimeArr.m}}m:</span></li>
+                    <li class="d-inline-block"><span id="seconds">{{TimeArr.s}}s</span></li>
+                    </ul>
+              </h1>
+          </div>
+       <div class="box_shadow_large bg-white p-3">
+        <h2 class="chart_heading mb-2 d-inline-block">Explore</h2>
+        <ul class="list-unstyled pl-3">
+          <li class="mb-1" *ngIf="this.title!='Total Difficulty'"><a routerLink="/chart/total-difficulty">Total Difficulty</a></li>
+          <li class="mb-1" *ngIf="this.title!='Transactions by time'"><a routerLink="/chart/transactions-by-time">Transactions by time</a></li>
+          <li class="mb-1" *ngIf="this.title!='Blocks'"><a routerLink="/chart/blocks">Blocks</a></li>
+          <li class="mb-1" *ngIf="this.title!='Blocks Mined'"><a routerLink="/chart/blocks-mined">Blocks Mined</a></li>
+          <li class="mb-1" *ngIf="this.title!='Transaction Fees'"><a routerLink="/chart/transaction-fees">Transaction Fees</a></li>
+          <li class="mb-1" *ngIf="this.title!='Supply Growth'"><a routerLink="/chart/supply-growth">Supply Growth</a></li>
+          <li class="mb-1" *ngIf="this.title!='HashRate Growth Chart'"><a routerLink="/chart/hashrate-growth-chart">HashRate Growth Chart</a></li>
+          <li class="mb-1" *ngIf="this.title!='Transactions by time'"><a routerLink="/chart/block-interval">Block Interval</a></li>
+          <li class="mb-1" *ngIf="this.title!='Transactions Vs Date'"><a routerLink="/chart/transactions-vs-date">Transactions Vs Date</a></li>
+        </ul>
+       </div>
+      </div>
 
-</div>
-</div>
+      </div>
+    </div>
 </div>

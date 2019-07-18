@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light view_page_header">
   <div class="container">
     <a class="navbar-brand chart_heading d-sm-block d-none" routerLink="/"><span
-        class="txt_primary">Coin</span><span>Data</span></a>
+        class="txt_primary">Epic </span><span>Explorer</span></a>
 
 
     <div class="ml-auto">
-      <a class="chart_heading d-sm-none" routerLink="/"><span class="txt_primary">Coin</span><span>Data</span></a>
+      <a class="chart_heading d-sm-none" routerLink="/"><span class="txt_primary">Epic</span><span>Explorer</span></a>
       <div class="position-relative d-none d-sm-inline-block">
         <input type="text" [(ngModel)]="search" #ctrl="ngModel" class="form-control search_input"
           (keyup.enter)="ctrl.value ? onSearch(ctrl.value) : ''" placeholder="Search by hash or height">
