@@ -2,6 +2,7 @@ import express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import { getRepository, getConnection } from 'typeorm';
 import { validationMiddleware } from '../middlewares';
+import * as path from 'path';
 import {
   InternalServerErrorException,
   NoDataFoundException,
@@ -455,19 +456,20 @@ export class BlockchainKernelController {
     next: NextFunction,
   ) => {
     try {
-      const lang = request.querylang;
+      const lang = request.query.lang;
       
-      response.status(200).json({
+    /*  response.status(200).json({
         status: 200,
         timestamp: Date.now(),
         message: 'Transaction fee chart fetched successfully',
         response: {
           lang: lang
         },
-      });
-
-       // res.header("Content-Type",'application/json');
-       // res.sendFile(path.join(__dirname + '/../i18n/'+req.query.lang+'.json'));
+      }); */
+        console.log(path.resolve(__dirname + '/../i18n/'+request.query.lang+'.json'));
+        console.log("Without :",path.resolve('/../i18n/'+request.query.lang+'.json'));
+      response.header("Content-Type",'application/json');
+      response.sendFile(path.resolve(__dirname + '/../i18n/'+request.query.lang+'.json'));
       
     } catch (error) {
       next(new InternalServerErrorException(error));

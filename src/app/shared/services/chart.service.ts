@@ -16,7 +16,7 @@ export class ChartService {
 private server = environment.domain;
   private socket;
   
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
 public createSocketConnection() {
     this.socket = io.connect(this.server);
