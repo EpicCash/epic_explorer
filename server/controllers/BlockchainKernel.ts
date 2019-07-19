@@ -112,6 +112,29 @@ export class BlockchainKernelController {
 
     /**
      * @swagger
+     * /epic_explorer/v1/translator:
+     *   get:
+     *     tags:
+     *       - name: Translator | Translator CONTROLLER
+     *     summary: create a translator
+     *     description: create a translator
+     *     consumes:
+     *       - application/json
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: lang
+     *     responses:
+     *       200:
+     *         description: Transaction fee chart fetched successfully
+     */
+    this.router.get(
+      `${this.path}/translator`,
+      this.Translator,
+    );
+
+    /**
+     * @swagger
      * /epic_explorer/v1/blockchain_kernel/transactionheatmap:
      *   get:
      *     tags:
@@ -420,6 +443,32 @@ export class BlockchainKernelController {
       } else {
         next(new NoDataFoundException());
       }
+    } catch (error) {
+      next(new InternalServerErrorException(error));
+    }
+  };
+  
+
+  private Translator = async (
+    request: Request,
+    response: Response,
+    next: NextFunction,
+  ) => {
+    try {
+      const lang = request.querylang;
+      
+      response.status(200).json({
+        status: 200,
+        timestamp: Date.now(),
+        message: 'Transaction fee chart fetched successfully',
+        response: {
+          lang: lang
+        },
+      });
+
+       // res.header("Content-Type",'application/json');
+       // res.sendFile(path.join(__dirname + '/../i18n/'+req.query.lang+'.json'));
+      
     } catch (error) {
       next(new InternalServerErrorException(error));
     }

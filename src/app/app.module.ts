@@ -3,9 +3,33 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import { TransServiceService } from './shared/services/trans-service.service';
 import { NotFoundComponent } from './view/home/not-found/not-found.component';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+
+export class CustomLoader implements TranslateLoader {
+  apiHost: string;
+  
+  constructor(private http: HttpClient ) {
+  }
+  
+  public getTranslation(lang: String): Observable<any> {
+    
+    return this.http.get(this.apiHost+'/Translation?lang='+lang).pipe(
+      map((res: any) => {
+        console.log("Data got: ");
+        console.log(res);
+        return res;
+      })
+    );
+    
+  }
+}
+
 @NgModule({
   declarations: [
     AppComponent,NotFoundComponent
@@ -15,9 +39,17 @@ import { NotFoundComponent } from './view/home/not-found/not-found.component';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
+    
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useClass: CustomLoader,
+          // useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    })
   ],
-  providers: [],
+  providers: [TransServiceService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
