@@ -1,5 +1,16 @@
 <div class="view_content py-4">
   <div *ngIf="hasdata" class="container">
+	  <div *ngIf="TimeArr" class="box_shadow_large detail_div p-3 mb-4">
+            <h1 class="test_msg align-middle mb-0 d-inline-block mr-3 pl-3">You are on Testnet</h1>
+            <h1 class="test_msg align-middle mb-0 float-right d-inline-block pl-3">Mainnet Countdown
+                <ul class="list-unstyled d-inline-block  mb-0 txt_primary timer">
+                  <li class="d-inline-block"><span id="days">{{TimeArr.d}}d:</span></li>
+                  <li class="d-inline-block"><span id="hours">{{TimeArr.h}}h:</span></li>
+                  <li class="d-inline-block"><span id="minutes">{{TimeArr.m}}m:</span></li>
+                  <li class="d-inline-block"><span id="seconds">{{TimeArr.s}}s</span></li>
+                  </ul>
+            </h1>
+        </div>
     <div *ngIf="hashdata?.BlockchainBlockFetchQuery" class="box_shadow_large bg-white p-3 mb-4">
       <h3 class="mb-0">
         <img src="assets/img/block.png" height="30" class="block_rotate float-left mr-2" />
@@ -84,7 +95,7 @@
             </a>
           </div>
           <!-- *ngIf="hashdata?.BlockchainBlockInputFetchQuery.length" -->
-          <div id="collapse-1" class="collapse" data-parent="#accordion" aria-labelledby="heading-1">
+          <div *ngIf="hashdata?.BlockchainBlockInputFetchQuery" id="collapse-1" class="collapse" data-parent="#accordion" aria-labelledby="heading-1">
             <div class="card-body">
                 <div class="view_moble_tble web_hdng">
                     <div class="row">
@@ -133,7 +144,7 @@
 
           </div>
 
-          <div id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
+          <div *ngIf="hashdata?.BlockchainBlockOutputFetchQuery" id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
             <div class="card-body">
               <div class="view_moble_tble web_hdng">
                   <div class="row">
@@ -195,7 +206,7 @@
             </a>
 
           </div>
-          <div id="collapse-3" class="collapse" data-parent="#accordion" aria-labelledby="heading-3">
+          <div *ngIf="hashdata?.BlockchainBlockKernalFetchQuery" id="collapse-3" class="collapse" data-parent="#accordion" aria-labelledby="heading-3">
             <div class="card-body">
                 <div class="view_moble_tble web_hdng">
                     <div class="row">

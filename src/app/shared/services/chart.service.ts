@@ -7,13 +7,24 @@ import {
 import { environment } from '../../../environments/environment';
 import { throwError, Observable, BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import * as io from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChartService {
+private server = environment.domain;
+  private socket;
+  
   constructor(private http: HttpClient) {}
 
+public createSocketConnection() {
+    this.socket = io.connect(this.server);
+    this.socket.on('connect', function(socket) {
+      console.log('Connected!');
+    });
+  }
+  
   public apiGetRequest(request: any, reqUrl): Observable<any> {
     return this.http
       .get(`${environment.apiUrl}` + reqUrl, {
@@ -25,6 +36,14 @@ export class ChartService {
         }),
         catchError((error: HttpErrorResponse): any => throwError(error)),
       );
+  }
+  
+  public getLatestblockdetails() {
+    return Observable.create(observer => {
+      this.socket.on('latestblockdetail', response => {
+        observer.next(response);
+      });
+    });
   }
   
    public GetTimer() {

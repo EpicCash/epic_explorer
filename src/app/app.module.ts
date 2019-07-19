@@ -18,6 +18,6 @@ import { NotFoundComponent } from './view/home/not-found/not-found.component';
 
   ],
   providers: [],
-  bootstrap: [AppComponent,NotFoundComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
