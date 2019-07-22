@@ -5,6 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 import { GraphListComponent } from '../../home/graph-list/graph-list.component';
 import { Title } from '@angular/platform-browser';
 
+import { TransServiceService } from '../../../shared/services/trans-service.service';
+
+
+
 @Component({
   providers: [GraphListComponent],
   selector: 'app-graph-detail',
@@ -12,6 +16,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./graph-detail.component.css'],
 })
 export class GraphDetailComponent implements OnInit {
+
   TimeArr: any;
   public hashdata: any = [];
   public title: any;
@@ -30,6 +35,7 @@ export class GraphDetailComponent implements OnInit {
     private chartService: ChartService,
     private comp: GraphListComponent,
     private titleService: Title,
+    public translate: TransServiceService
   ) {}
   ngOnInit() {
     var self = this;

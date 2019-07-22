@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartService } from '../../../shared/services/chart.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { TransServiceService } from '../../../shared/services/trans-service.service';
 
 @Component({
   selector: 'epic-explorer-graph-list',
@@ -47,7 +48,7 @@ export class GraphListComponent implements OnInit {
   public tDate: any;
   public tHour: any;
 
-  constructor(private chartService: ChartService, private http: HttpClient) {}
+  constructor(private chartService: ChartService, private http: HttpClient,public translate: TransServiceService) {}
 
   ngOnInit() {
     /* Total Difficulty and blocks chart fetching */

@@ -2,7 +2,7 @@
     "home": {
         "HEADER_TEXT": "Sie befinden sich in Testnet",
         "COUNTDOWN": "Mainnet-Countdown",
-        "EXPLORE_IT": ", Entdecke es",
+        "EXPLORE_IT": "Entdecke es",
         "VIEWALL": "Alle Diagramme anzeigen",
         "BLOCKCHAIN_HEIGHT": "Blockchain Höhe",
         "LATEST_BLOCK": "Letzter Block",
@@ -15,7 +15,9 @@
         "DIFFICULTY" : "Schwierigkeit",
         "POW_ALGO" : "Pow Algo",
         "INPUTS" : "Eingänge",
+        "INPUT" : "Eingang",
         "OUTPUTS" : "Ausgänge",
+        "OUTPUT" : "Ausgabe",
         "KERNELS" : "Kernel",
         "EPIC" : "Epos",
         "EXPLORE" : "Erkunden",
@@ -29,13 +31,25 @@
         "TRANSACTION_FEES" : "Transkationsgebühren",
         "SUPPLY_GROWTH" : "Angebotswachstum",
         "HASHRATE_GROWTH_CHART" : "HashRate-Wachstumstabelle",
-        "BLOCK INTERVAL" : "Sperrintervall",
+        "BLOCK_INTERVAL" : "Sperrintervall",
         "TRANSACTIONS_VS_DATE" : "Transaktionen gegen Datum",
         "DAYS" : "Tage",
         "MONTHS" : "Monate",
         "WEEK" : "Woche",
         "SEARCH_TEXT" : "Suche nach Hash oder Höhe",
-        "BLOCK_REWARD" : "Block Belohnung"
-        
+        "BLOCK_REWARD" : "Block Belohnung",
+        "NOT_FOUND" : "Seite nicht gefunden",
+        "NOT_FOUND1" : "Die von Ihnen gesuchte Seite wurde nicht gefunden",
+        "NOT_FOUND2" : "Gehe zum Explorer",
+        "COMMIT" : "verpflichten",
+        "ALGORITHM" : "Pow-Algorithmus",
+        "TYPE" : "Art",
+        "SPEND" : "Verbringen",
+        "FEATURES" : "Eigenschaften",
+        "LOCK" : "Sperren",
+        "SEARCH_RESULT" : "Suchergebnisse für",
+        "SEARCH_RESULT1" : "Ihr Suchbegriff",
+        "SEARCH_RESULT2" : "ist zu kurz",
+        "SEARCH_RESULT3" : "Bitte geben Sie mindestens sechs Zeichen ein, wenn Sie nach Hash suchen"
     }
 }

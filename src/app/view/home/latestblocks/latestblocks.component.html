@@ -1,31 +1,31 @@
 <div class="latest_table">
-  <h2 class="mb-3 chart_heading px-0">Latest Blocks</h2>
+  <h2 class="mb-3 chart_heading px-0">{{'home.LATEST_BLOCK' | translate}}</h2>
   <div class="mobile_table web_hdng">
      
       <div class="row">
         <div class="col-6 col-md-4 tble_col">
-         <div class="block_div"> <h5 class="mb-0">Height</h5></div>
+         <div class="block_div"> <h5 class="mb-0">{{'home.HEIGHT' | translate}}</h5></div>
         </div>
         <div class="col-6 col-md-4 tble_col">
-          <div class="block_div"><h5 class="mb-0">Hash</h5></div>
+          <div class="block_div"><h5 class="mb-0">{{'home.HASH' | translate}}</h5></div>
         </div>
         <div class="col-6 col-md-4 tble_col">
-          <div class="block_div"><h5 class="mb-0" >Age</h5></div>
+          <div class="block_div"><h5 class="mb-0" >{{'home.AGE' | translate}}</h5></div>
         </div>
         <div class="col-6 col-md-4 tble_col">
-          <div class="block_div"><h5 class="mb-0">Difficulty</h5></div>
+          <div class="block_div"><h5 class="mb-0">{{'home.DIFFICULTY' | translate}}</h5></div>
         </div>
         <div class="col-7 col-sm-6 col-md-4 tble_col">
-          <div class="block_div"><h5 class="mb-0">Pow Algo</h5></div>
+          <div class="block_div"><h5 class="mb-0">{{'home.POW_ALGO' | translate}}</h5></div>
         </div>
         <div class="col-5 col-sm-6 col-md-4 tble_col">
-          <div class="block_div"><h5 class="mb-0">#Inputs</h5></div>
+          <div class="block_div"><h5 class="mb-0">#{{'home.INPUTS' | translate}}</h5></div>
         </div>
         <div class="col-6 col-md-4 tble_col">
-          <div class="block_div"><h5  class="mb-0">#Outputs</h5></div>
+          <div class="block_div"><h5  class="mb-0">#{{'home.OUTPUTS' | translate}}</h5></div>
         </div>
         <div class="col-6 col-md-4 tble_col">
-          <div class="block_div" ><h5 class="mb-0">#Kernels</h5></div>
+          <div class="block_div" ><h5 class="mb-0">#{{'home.KERNALS' | translate}}</h5></div>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
     <div class="row">
       <div class="col-6 col-md-3 tble_col">
        <div class="block_div">  <span *ngIf="item.id != clickValue" (click)="onClickPlus(hashvalue.blockchain_block_height);" class="expnd_blck"><i class="fa fa-plus"></i></span>
-        <span  *ngIf="item.id == clickValue" (click)="onClickMinus(hashvalue.blockchain_block_height);" class="expnd_blck"><i class="fa fa-minus"></i></span><h6>Height</h6><span class="blck_value link_to_detail" routerLink="/blockdetail/{{ hashvalue.blockchain_block_height }}">{{ hashvalue.blockchain_block_height }}</span></div>
+        <span  *ngIf="item.id == clickValue" (click)="onClickMinus(hashvalue.blockchain_block_height);" class="expnd_blck"><i class="fa fa-minus"></i></span><h6>{{'home.HEIGHT' | translate}}</h6><span class="blck_value link_to_detail" routerLink="/blockdetail/{{ hashvalue.blockchain_block_height }}">{{ hashvalue.blockchain_block_height }}</span></div>
       </div>
       <div class="col-6 col-md-3 tble_col">
         <div [title]="hashvalue.blockchain_block_hash" routerLink="/blockdetail/{{ hashvalue.blockchain_block_hash }}" class="block_div"><h6>Hash</h6><span class="blck_value">{{ hashvalue.hashstart
@@ -55,13 +55,13 @@
         <div class="block_div"><h6 class="mb-0">Pow Algo</h6><span class="blck_value">{{ hashvalue.PoWAlgo }}</span></div>
       </div>
       <div class="col-6 col-sm-6 col-md-3 tble_col">
-        <div class="block_div"><h6>#Inputs</h6><span class="blck_value">{{ hashvalue.input_count }}</span></div>
+        <div class="block_div"><h6>#{{'home.INPUTS' | translate}}</h6><span class="blck_value">{{ hashvalue.input_count }}</span></div>
       </div>
       <div class="col-6 col-md-3 tble_col">
-        <div class="block_div"><h6 >#Outputs</h6><span class="blck_value">{{ hashvalue.output_count }}</span></div>
+        <div class="block_div"><h6 >#{{'home.OUTPUTS' | translate}}</h6><span class="blck_value">{{ hashvalue.output_count }}</span></div>
       </div>
       <div class="col-6 col-md-3 tble_col">
-        <div class="block_div" ><h6>#Kernels</h6><span class="blck_value">{{ hashvalue.kernal_count }}</span></div>
+        <div class="block_div" ><h6>#{{'home.KERNELS' | translate}}</h6><span class="blck_value">{{ hashvalue.kernal_count }}</span></div>
       </div>
       <!-- <div class="col-6 col-md-4">
           <a class="txt_secondary" href="JavaScript:Void(0);"

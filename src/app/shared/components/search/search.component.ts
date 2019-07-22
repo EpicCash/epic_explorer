@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TransServiceService } from '../../services/trans-service.service';
 
 @Component({
   selector: 'epic-explorer-search',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
   search: string = '';
-  constructor(private router: Router) {}
+  constructor(private router: Router,public translate: TransServiceService) {}
 
   ngOnInit() {}
 

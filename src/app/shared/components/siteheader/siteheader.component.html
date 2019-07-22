@@ -21,13 +21,9 @@
             aria-haspopup="true" aria-expanded="false">
             <span class="flag" style="background-image: url('assets/img/uk.jpg')"></span>English
           </a>
-          <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-            <a class="dropdown-item p-2" href="#"><span class="flag"
-                style="background-image: url('assets/img/uk.jpg')"></span>English</a>
-            <a class="dropdown-item p-2" href="#"><span class="flag"
-                style="background-image: url('assets/img/german.jpg')"></span>German</a>
-
-          </div>
+          <select class="btn btn-outline-primary btn-rounded text-white py-2 ml-2" #langSelect (change)="translate.changeLang(langSelect.value)">
+            <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}} ({{ lang }})</option>
+          </select>
         </div>
         <button (click)="ChangeTheme()" class="theme_switch mr-2 btn order-2 order-sm-3"><img
             src="assets/img/dark_theme.png" height="20" class="light_theme_display"><img
@@ -36,7 +32,7 @@
     </div>
     <div class="position-relative d-block d-sm-none w-100 mt-3">
       <input type="text" [(ngModel)]="search" #ctrl="ngModel" class="form-control search_input"
-        (keyup.enter)="ctrl.value ? onSearch(ctrl.value) : ''" placeholder="Search by hash or height">
+        (keyup.enter)="ctrl.value ? onSearch(ctrl.value) : ''" placeholder="{{'home.SEARCH_TEXT' | translate}}">
       <button class="btn search_btn" (click)="ctrl.value ? onSearch(ctrl.value) : ''">
         <!-- <a href="/blockdetail/{{ ctrl.value }}"  > -->
         <i class="fa fa-search"></i>

@@ -2,7 +2,7 @@
   <div class="col-md-6 col-lg-4 mb-4">
     <div class="box_shadow">
       <div class="blocks">
-        <h2 class="chart_heading d-inline-block">Total Difficulty</h2>
+        <h2 class="chart_heading d-inline-block">{{'home.TOTAL_DIFFICULTY' | translate}}</h2>
         <span class="txn_count" *ngIf="this.lg_last">{{
           this.lg_last | number
         }}</span>
@@ -26,22 +26,22 @@
       <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="
             Difficultyreq('', '', '1 week', true, false); selectedItem = 1
-          " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 week</a>
+          " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
             Difficultyreq('', '', '15 days', true, false); selectedItem = 2
-          " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 days</a>
+          " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
             Difficultyreq('', '', '30 days', true, false); selectedItem = 3
-          " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 days</a>
+          " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
             Difficultyreq('', '', '60 days', true, false); selectedItem = 4
-          " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 days</a>
+          " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
             Difficultyreq('', '', '3 months', true, false); selectedItem = 5
-          " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 months</a>
+          " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
       </div>
       <div class="explore_all text-right">
-        <a routerLink="/chart/total-difficulty"><span class="text-uppercase d-block">explore it <i
+        <a routerLink="/chart/total-difficulty"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
           class="fa fa-long-arrow-right"></i></span></a>
       </div>
     </div>
@@ -49,7 +49,7 @@
   <div class="col-md-6 col-lg-4 mb-4">
     <div class="box_shadow">
       <div class="blocks">
-        <h2 class="chart_heading d-inline-block">Transactions By Time</h2>
+        <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_BY_TIME' | translate}}</h2>
         <div class="chart_show heatmapshow">
           <epic-explorer-plotly *ngIf="heatMapGrowthData.data" [data]="heatMapGrowthData.data"
             [layout]="heatMapGrowthData.layout"></epic-explorer-plotly>
@@ -71,14 +71,14 @@
 
     <div class="day_filter">
       <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tInput,'Input'); selectedItem8 = 1" id="1" #item1
-        [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">Input</a>
+        [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">{{'home.INPUT' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tKernal,'Kernal'); selectedItem8 = 2" id="2" #item2
-        [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">Kernel</a>
+        [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">{{'home.KERNELS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tOutput,'Output'); selectedItem8 = 3" id="3" #item3
-        [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">Output</a>
+        [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">{{'home.OUTPUT' | translate}}</a>
     </div>
     <div class="explore_all text-right">
-      <a routerLink="/chart/transactions-by-time"><span class="text-uppercase d-block">explore it <i
+      <a routerLink="/chart/transactions-by-time"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
             class="fa fa-long-arrow-right"></i></span></a>
     </div>
   </div>
@@ -86,7 +86,7 @@
 <div class="col-md-6 col-lg-4 mb-4">
   <div class="box_shadow">
     <div class="blocks">
-      <h2 class="chart_heading d-inline-block">Blocks</h2>
+      <h2 class="chart_heading d-inline-block">{{'home.BLOCKS' | translate}}</h2>
       <span class="txn_count" *ngIf="this.brg_last">{{
           this.brg_last | number
         }}</span>
@@ -109,22 +109,22 @@
     <div class="day_filter">
       <a href="JavaScript:void(0);" (click)="
             Difficultyreq('', '', '1 week', false, true); selectedItem3 = 1
-          " id="1" #item31 [ngClass]="{ active: selectedItem3 == item1.id, txt_primay: true }">1 week</a>
+          " id="1" #item31 [ngClass]="{ active: selectedItem3 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
             Difficultyreq('', '', '15 days', false, true); selectedItem3 = 2
-          " id="2" #item32 [ngClass]="{ active: selectedItem3 == item2.id, day15_txt: true }">15 days</a>
+          " id="2" #item32 [ngClass]="{ active: selectedItem3 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
             Difficultyreq('', '', '30 days', false, true); selectedItem3 = 3
-          " id="3" #item33 [ngClass]="{ active: selectedItem3 == item3.id, day30_txt: true }">30 days</a>
+          " id="3" #item33 [ngClass]="{ active: selectedItem3 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
             Difficultyreq('', '', '60 days', false, true); selectedItem3 = 4
-          " id="4" #item34 [ngClass]="{ active: selectedItem3 == item4.id, day60_txt: true }">60 days</a>
+          " id="4" #item34 [ngClass]="{ active: selectedItem3 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
             Difficultyreq('', '', '3 months', false, true); selectedItem3 = 5
-          " id="5" #item35 [ngClass]="{ active: selectedItem3 == item5.id, day3m_txt: true }">3 months</a>
+          " id="5" #item35 [ngClass]="{ active: selectedItem3 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
     </div>
     <div class="explore_all text-right">
-      <a routerLink="/chart/blocks"><span class="text-uppercase d-block">explore it <i class="fa fa-long-arrow-right"></i></span></a>
+      <a routerLink="/chart/blocks"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
     </div>
   </div>
 </div>
@@ -134,7 +134,7 @@
 <div class="col-md-6 col-lg-4 mb-4">
   <div class="box_shadow">
     <div class="blocks">
-      <h2 class="chart_heading d-inline-block">Transactions Fee</h2>
+      <h2 class="chart_heading d-inline-block">{{'home.TRANSACTION_FEES' | translate}}</h2>
       <span class="txn_count" *ngIf="this.fg_last">{{this.fg_last |number}}</span>
 
       <div class="chart_show">
@@ -158,25 +158,25 @@
 
 <div class="day_filter">
   <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '1 week'); selectedItem4 = 1" id="1" #item1
-    [ngClass]="{ active: selectedItem4 == item1.id, txt_primay: true }">1 week</a>
+    [ngClass]="{ active: selectedItem4 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
   <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '15 days'); selectedItem4 = 2" id="2" #item2
-    [ngClass]="{ active: selectedItem4 == item2.id, day15_txt: true }">15 days</a>
+    [ngClass]="{ active: selectedItem4 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
   <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '30 days'); selectedItem4 = 3" id="3" #item3
-    [ngClass]="{ active: selectedItem4 == item3.id, day30_txt: true }">30 days</a>
+    [ngClass]="{ active: selectedItem4 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
   <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '60 days'); selectedItem4 = 4" id="4" #item4
-    [ngClass]="{ active: selectedItem4 == item4.id, day60_txt: true }">60 days</a>
+    [ngClass]="{ active: selectedItem4 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
   <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '3 months'); selectedItem4 = 5" id="5" #item5
-    [ngClass]="{ active: selectedItem4 == item5.id, day3m_txt: true }">3 months</a>
+    [ngClass]="{ active: selectedItem4 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
 </div>
 <div class="explore_all text-right">
-  <a routerLink="/chart/transaction-fees"><span class="text-uppercase d-block">explore it <i class="fa fa-long-arrow-right"></i></span></a>
+  <a routerLink="/chart/transaction-fees"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
 </div>
 </div>
 </div>
 <div class="col-md-6 col-lg-4 mb-4">
   <div class="box_shadow">
     <div class="blocks">
-      <h2 class="chart_heading d-inline-block">Supply Growth</h2>
+      <h2 class="chart_heading d-inline-block">{{'home.SUPPLY_GROWTH' | translate}}</h2>
       <span class="txn_count" *ngIf="this.gg_last">{{
           this.gg_last | number
         }}</span>
@@ -199,18 +199,18 @@
     </div>
     <div class="day_filter">
       <a href="JavaScript:void(0);" (click)="Growthreq('', '', '1 week'); selectedItem5 = 1" id="1" #item1
-        [ngClass]="{ active: selectedItem5 == item1.id, txt_primay: true }">1 week</a>
+        [ngClass]="{ active: selectedItem5 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Growthreq('', '', '15 days'); selectedItem5 = 2" id="2" #item2
-        [ngClass]="{ active: selectedItem5 == item2.id, day15_txt: true }">15 days</a>
+        [ngClass]="{ active: selectedItem5 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Growthreq('', '', '30 days'); selectedItem5 = 3" id="3" #item3
-        [ngClass]="{ active: selectedItem5 == item3.id, day30_txt: true }">30 days</a>
+        [ngClass]="{ active: selectedItem5 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Growthreq('', '', '60 days'); selectedItem5 = 4" id="4" #item4
-        [ngClass]="{ active: selectedItem5 == item4.id, day60_txt: true }">60 days</a>
+        [ngClass]="{ active: selectedItem5 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Growthreq('', '', '3 months'); selectedItem5 = 5" id="5" #item5
-        [ngClass]="{ active: selectedItem5 == item5.id, day3m_txt: true }">3 months</a>
+        [ngClass]="{ active: selectedItem5 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
     </div>
     <div class="explore_all text-right">
-      <a  routerLink="/chart/supply-growth"><span class="text-uppercase d-block">explore it <i
+      <a  routerLink="/chart/supply-growth"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
             class="fa fa-long-arrow-right"></i></span></a>
     </div>
   </div>
@@ -218,7 +218,7 @@
 <div class="col-md-6 col-lg-4 mb-4">
   <div class="box_shadow">
     <div class="blocks">
-      <h2 class="chart_heading d-inline-block">Blocks Mined</h2>
+      <h2 class="chart_heading d-inline-block">{{'home.BLOCKS_MINED' | translate}}</h2>
       <span class="txn_count" *ngIf="this.dg_last">{{
           this.dg_last | number
         }}</span>
@@ -243,18 +243,18 @@
     </div>
     <div class="day_filter">
       <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '1 week'); selectedItem7 = 1" id="1" #item1
-        [ngClass]="{ active: selectedItem7 == item1.id, txt_primay: true }">1 week</a>
+        [ngClass]="{ active: selectedItem7 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '15 days'); selectedItem7 = 2" id="2" #item2
-        [ngClass]="{ active: selectedItem7 == item2.id, day15_txt: true }">15 days</a>
+        [ngClass]="{ active: selectedItem7 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '30 days'); selectedItem7 = 3" id="3" #item3
-        [ngClass]="{ active: selectedItem7 == item3.id, day30_txt: true }">30 days</a>
+        [ngClass]="{ active: selectedItem7 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '60 days'); selectedItem7 = 4" id="4" #item4
-        [ngClass]="{ active: selectedItem7 == item4.id, day60_txt: true }">60 days</a>
+        [ngClass]="{ active: selectedItem7 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '3 months'); selectedItem7 = 5" id="5" #item5
-        [ngClass]="{ active: selectedItem7 == item5.id, day3m_txt: true }">3 months</a>
+        [ngClass]="{ active: selectedItem7 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
     </div>
     <div class="explore_all text-right">
-       <a routerLink="/chart/blocks-mined"><span class="text-uppercase d-block">explore it <i
+       <a routerLink="/chart/blocks-mined"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
             class="fa fa-long-arrow-right"></i></span></a>
     </div>
   </div>
@@ -264,7 +264,7 @@
   <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
     <div class="box_shadow">
       <div class="blocks">
-        <h2 class="chart_heading d-inline-block">HashRate Growth Chart</h2>
+        <h2 class="chart_heading d-inline-block">{{'home.HASHRATE_GROWTH_CHART' | translate}}</h2>
         <span class="txn_count" *ngIf="this.hg_last">{{
           this.hg_last | number
         }}</span>
@@ -287,18 +287,18 @@
       </div>
       <div class="day_filter">
           <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '1 week'); selectedItem9 = 1" id="1" #item1
-          [ngClass]="{ active: selectedItem9 == item1.id, txt_primay: true }">1 week</a>
+          [ngClass]="{ active: selectedItem9 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '15 days'); selectedItem9 = 2" id="2" #item2
-          [ngClass]="{ active: selectedItem9 == item2.id, day15_txt: true }">15 days</a>
+          [ngClass]="{ active: selectedItem9 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '30 days'); selectedItem9 = 3" id="3" #item3
-          [ngClass]="{ active: selectedItem9 == item3.id, day30_txt: true }">30 days</a>
+          [ngClass]="{ active: selectedItem9 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '60 days'); selectedItem9 = 4" id="4" #item4
-          [ngClass]="{ active: selectedItem9 == item4.id, day60_txt: true }">60 days</a>
+          [ngClass]="{ active: selectedItem9 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '3 months'); selectedItem9 = 5" id="5" #item5
-          [ngClass]="{ active: selectedItem9 == item5.id, day3m_txt: true }">3 months</a>
+          [ngClass]="{ active: selectedItem9 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
       </div>
       <div class="explore_all text-right">
-        <a routerLink="/chart/hashrate-growth-chart"><span class="text-uppercase d-block">explore it <i
+        <a routerLink="/chart/hashrate-growth-chart"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
               class="fa fa-long-arrow-right"></i></span></a>
       </div>
     </div>
@@ -306,7 +306,7 @@
   <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
     <div class="box_shadow">
       <div class="blocks">
-        <h2 class="chart_heading d-inline-block">Block Interval</h2>
+        <h2 class="chart_heading d-inline-block">{{'home.BLOCK_INTERVAL' | translate}}</h2>
         <span class="txn_count" *ngIf="this.ag_last">{{ this.ag_last | number }} sec</span>
 
         <div class="chart_show">
@@ -328,18 +328,18 @@
       </div>
       <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '1 week'); selectedItem2 = 1" id="1" #item1
-          [ngClass]="{ active: selectedItem2 == item1.id, txt_primay: true }">1 week</a>
+          [ngClass]="{ active: selectedItem2 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '15 days'); selectedItem2 = 2" id="2" #item2
-          [ngClass]="{ active: selectedItem2 == item2.id, day15_txt: true }">15 days</a>
+          [ngClass]="{ active: selectedItem2 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '30 days'); selectedItem2 = 3" id="3" #item3
-          [ngClass]="{ active: selectedItem2 == item3.id, day30_txt: true }">30 days</a>
+          [ngClass]="{ active: selectedItem2 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '60 days'); selectedItem2 = 4" id="4" #item4
-          [ngClass]="{ active: selectedItem2 == item4.id, day60_txt: true }">60 days</a>
+          [ngClass]="{ active: selectedItem2 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '3 months'); selectedItem2 = 5" id="5" #item5
-          [ngClass]="{ active: selectedItem2 == item5.id, day3m_txt: true }">3 months</a>
+          [ngClass]="{ active: selectedItem2 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
       </div>
       <div class="explore_all text-right">
-        <a routerLink="/chart/block-interval"><span class="text-uppercase d-block">explore it <i
+        <a routerLink="/chart/block-interval"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
               class="fa fa-long-arrow-right"></i></span></a>
       </div>
     </div>
@@ -347,7 +347,7 @@
   <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
     <div class="box_shadow">
       <div class="blocks">
-        <h2 class="chart_heading d-inline-block">Transactions vs Date</h2>
+        <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_VS_DATE' | translate}}</h2>
         <span class="txn_count" *ngIf="this.tg_last">{{
           this.tg_last | number
         }}</span>
@@ -371,22 +371,22 @@
       </div>
       <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="Transactionlinechartreq('', '', '1 week'); selectedItem8 = 1" id="1"
-          #item1 [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">1 week</a>
+          #item1 [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
             Transactionlinechartreq('', '', '15 days'); selectedItem8 = 2
-          " id="2" #item2 [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">15 days</a>
+          " id="2" #item2 [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
             Transactionlinechartreq('', '', '30 days'); selectedItem8 = 3
-          " id="3" #item3 [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">30 days</a>
+          " id="3" #item3 [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
             Transactionlinechartreq('', '', '60 days'); selectedItem8 = 4
-          " id="4" #item4 [ngClass]="{ active: selectedItem8 == item4.id, day60_txt: true }">60 days</a>
+          " id="4" #item4 [ngClass]="{ active: selectedItem8 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
             Transactionlinechartreq('', '', '3 months'); selectedItem8 = 5
-          " id="5" #item5 [ngClass]="{ active: selectedItem8 == item5.id, day3m_txt: true }">3 months</a>
+          " id="5" #item5 [ngClass]="{ active: selectedItem8 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
       </div>
       <div class="explore_all text-right">
-        <a routerLink="/chart/transactions-vs-date"><span class="text-uppercase d-block">explore it <i
+        <a routerLink="/chart/transactions-vs-date"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
               class="fa fa-long-arrow-right"></i></span></a>
       </div>
     </div>

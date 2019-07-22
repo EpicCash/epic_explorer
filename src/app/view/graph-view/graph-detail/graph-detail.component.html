@@ -8,33 +8,33 @@
               <div class="overflow-hidden">
                 <div class="blocks detail_graph">
 
-            <h2 class="chart_heading text-uppercase d-inline-block">{{this.title}}</h2>
+            <h2 class="chart_heading text-uppercase d-inline-block">{{'home.HEADER_TEXT' | translate}}</h2>
   <epic-explorer-plotly *ngIf="hashdata.data" [data]="hashdata.data" [layout]="hashdata.layout">
   </epic-explorer-plotly>
    <div class="day_filter" *ngIf="this.title!='Transactions by time'">
             <a href="JavaScript:void(0);" (click)="
             ChartFromView('', '', '1 week', true, false); selectedItem = 1
-              " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 week</a>
+              " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="
             ChartFromView('', '', '15 days', true, false); selectedItem = 2
-              " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 days</a>
+              " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="
             ChartFromView('', '', '30 days', true, false); selectedItem = 3
-              " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 days</a>
+              " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="
             ChartFromView('', '', '60 days', true, false); selectedItem = 4
-              " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 days</a>
+              " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="
             ChartFromView('', '', '3 months', true, false); selectedItem = 5
-              " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 months</a>
+              " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
           </div>
           <div class="day_filter" *ngIf="this.title=='Transactions by time'">
               <a href="JavaScript:void(0);" (click)="ChartFromView(GraphtDate, GraphtHour, GraphtInput,'Input'); selectedItem8 = 1" id="1" #item1
-              [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">Input</a>
+              [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">{{'home.INPUT' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="ChartFromView(GraphtDate, GraphtHour, GraphtKernal,'Kernal'); selectedItem8 = 2" id="2" #item2
-              [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">Kernel</a>
+              [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">{{'home.KERNEL' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="ChartFromView(GraphtDate, GraphtHour, GraphtOutput,'Output'); selectedItem8 = 3" id="3" #item3
-              [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">Output</a>
+              [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">{{'home.OUTPUT' | translate}}</a>
             </div>
 
           </div>
@@ -44,8 +44,8 @@
     </div>
       <div class="col-md-3">
           <div *ngIf="TimeArr" class="box_shadow_large detail_div p-3 mb-4">
-              <h1 class="test_msg align-middle mr-3 pl-3">You are on Testnet</h1>
-              <h1 class="test_msg align-middle mb-0 pl-3">Mainnet Countdown
+              <h1 class="test_msg align-middle mr-3 pl-3">{{'home.HEADER_TEXT' | translate}}</h1>
+              <h1 class="test_msg align-middle mb-0 pl-3">{{'home.COUNTDOWN' | translate}}
                   <ul class="list-unstyled mt-2  mb-0 txt_primary">
                     <li class="d-inline-block"><span id="days">{{TimeArr.d}}d:</span></li>
                     <li class="d-inline-block"><span id="hours">{{TimeArr.h}}h:</span></li>
@@ -55,17 +55,17 @@
               </h1>
           </div>
        <div class="box_shadow_large bg-white p-3">
-        <h2 class="chart_heading mb-2 d-inline-block">Explore</h2>
+        <h2 class="chart_heading mb-2 d-inline-block">{{'home.EXPLORE' | translate}}</h2>
         <ul class="list-unstyled pl-3">
-          <li class="mb-1" *ngIf="this.title!='Total Difficulty'"><a routerLink="/chart/total-difficulty">Total Difficulty</a></li>
-          <li class="mb-1" *ngIf="this.title!='Transactions by time'"><a routerLink="/chart/transactions-by-time">Transactions by time</a></li>
-          <li class="mb-1" *ngIf="this.title!='Blocks'"><a routerLink="/chart/blocks">Blocks</a></li>
-          <li class="mb-1" *ngIf="this.title!='Blocks Mined'"><a routerLink="/chart/blocks-mined">Blocks Mined</a></li>
-          <li class="mb-1" *ngIf="this.title!='Transaction Fees'"><a routerLink="/chart/transaction-fees">Transaction Fees</a></li>
-          <li class="mb-1" *ngIf="this.title!='Supply Growth'"><a routerLink="/chart/supply-growth">Supply Growth</a></li>
-          <li class="mb-1" *ngIf="this.title!='HashRate Growth Chart'"><a routerLink="/chart/hashrate-growth-chart">HashRate Growth Chart</a></li>
-          <li class="mb-1" *ngIf="this.title!='Transactions by time'"><a routerLink="/chart/block-interval">Block Interval</a></li>
-          <li class="mb-1" *ngIf="this.title!='Transactions Vs Date'"><a routerLink="/chart/transactions-vs-date">Transactions Vs Date</a></li>
+          <li class="mb-1" *ngIf="this.title!='Total Difficulty'"><a routerLink="/chart/total-difficulty">{{'home.TOTAL_DIFFICULTY' | translate}}</a></li>
+          <li class="mb-1" *ngIf="this.title!='Transactions by time'"><a routerLink="/chart/transactions-by-time">{{'home.TRANSACTIONS_BY_TIME' | translate}}</a></li>
+          <li class="mb-1" *ngIf="this.title!='Blocks'"><a routerLink="/chart/blocks">{{'home.BLOCKS' | translate}}</a></li>
+          <li class="mb-1" *ngIf="this.title!='Blocks Mined'"><a routerLink="/chart/blocks-mined">{{'home.BLOCKS_MINED' | translate}}</a></li>
+          <li class="mb-1" *ngIf="this.title!='Transaction Fees'"><a routerLink="/chart/transaction-fees">{{'home.TRANSACTION_FEES' | translate}}</a></li>
+          <li class="mb-1" *ngIf="this.title!='Supply Growth'"><a routerLink="/chart/supply-growth">{{'home.SUPPLY_GROWTH' | translate}}</a></li>
+          <li class="mb-1" *ngIf="this.title!='HashRate Growth Chart'"><a routerLink="/chart/hashrate-growth-chart">{{'home.HASHRATE_GROWTH_CHART' | translate}}</a></li>
+          <li class="mb-1" *ngIf="this.title!='Transactions by time'"><a routerLink="/chart/block-interval">{{'home.BLOCK_INTERVAL' | translate}}</a></li>
+          <li class="mb-1" *ngIf="this.title!='Transactions Vs Date'"><a routerLink="/chart/transactions-vs-date">{{'home.TRANSACTIONS_VS_DATE' | translate}}</a></li>
         </ul>
        </div>
       </div>

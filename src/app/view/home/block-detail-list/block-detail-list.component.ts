@@ -4,6 +4,7 @@ import { HttpParams } from '@angular/common/http';
 import * as io from 'socket.io-client';
 import { environment } from '../../../../environments/environment';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { TransServiceService } from '../../../shared/services/trans-service.service';
 
 @Component({
   selector: 'app-block-detail-list',
@@ -17,7 +18,7 @@ export class BlockDetailListComponent implements OnInit {
   private server = environment.domain;
   private socket;
   
-  constructor(private chartService: ChartService) {
+  constructor(private chartService: ChartService,public translate: TransServiceService) {
     this.chartService.createSocketConnection();
   }
   

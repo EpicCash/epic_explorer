@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ChartService } from '../../services/chart.service';
+import { TransServiceService } from '../../services/trans-service.service';
 
 @Component({
   selector: 'epic-explorer-header',
@@ -12,6 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private chartService: ChartService,
+    public translate: TransServiceService
   ) {}
 
   ngOnInit() {

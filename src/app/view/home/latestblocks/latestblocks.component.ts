@@ -3,6 +3,8 @@ import { HttpParams } from '@angular/common/http';
 import { ChartService } from '../../../shared/services/chart.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
+import { TransServiceService } from '../../../shared/services/trans-service.service';
+
 @Component({
   selector: 'epic-explorer-latestblocks',
   templateUrl: './latestblocks.component.html',
@@ -18,7 +20,7 @@ export class LatestblocksComponent implements OnInit {
     pagesize: new FormControl(20),
   });
 
-  constructor(private chartService: ChartService) {}
+  constructor(private chartService: ChartService,public translate: TransServiceService) {}
 
   ngOnInit() {
     this.gettinghashList(1, 20);

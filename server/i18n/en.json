@@ -15,7 +15,9 @@
         "DIFFICULTY" : "Difficulty",
         "POW_ALGO" : "Pow Algo",
         "INPUTS" : "Inputs",
+        "INPUT" : "Input",
         "OUTPUTS" : "Outputs",
+        "OUTPUT" : "Output",
         "KERNELS" : "Kernels",
         "EPIC" : "Epic",
         "EXPLORE" : "Explore",
@@ -29,13 +31,25 @@
         "TRANSACTION_FEES" : "Transcation Fees",
         "SUPPLY_GROWTH" : "Supply Growth",
         "HASHRATE_GROWTH_CHART" : "HashRate Growth Chart",
-        "BLOCK INTERVAL" : "Block Interval",
+        "BLOCK_INTERVAL" : "Block Interval",
         "TRANSACTIONS_VS_DATE" : "Transcations Vs Date",
         "DAYS" : "days",
         "MONTHS" : "months",
         "WEEK" : "week",
         "SEARCH_TEXT" : "Search by hash or height",
-        "BLOCK_REWARD" : "Block Reward"
-        
+        "BLOCK_REWARD" : "Block Reward",
+        "NOT_FOUND" : "Page Not Found",
+        "NOT_FOUND1" : "Page you are looking for is not found",
+        "NOT_FOUND2" : "Go to Explorer",
+        "ALGORITHM" : "Pow Algorithm",
+        "COMMIT" : "commit",
+        "TYPE" : "Type",
+        "SPEND" : "Spend",
+        "FEATURES" : "Features",
+        "LOCK" : "Lock",
+        "SEARCH_RESULT" : "Search Results for",
+        "SEARCH_RESULT1" : "Your search term",
+        "SEARCH_RESULT2" : "is too short",
+        "SEARCH_RESULT3" : "please enter at least six characters if searching by hash"
     }
 }

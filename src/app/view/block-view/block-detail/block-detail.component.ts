@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { BlockDetailListComponent } from '../../home/block-detail-list/block-detail-list.component';
 
+import { TransServiceService } from '../../../shared/services/trans-service.service';
+
 @Component({
   providers: [BlockDetailListComponent],
   selector: 'app-block-detail',
@@ -24,6 +26,7 @@ export class BlockDetailComponent implements OnInit {
     activate_route: ActivatedRoute,
      private titleService: Title,
     private latestcomp: BlockDetailListComponent,
+    public translate: TransServiceService
   ) {
     activate_route.params.subscribe(val => {
       this.params = this.route.snapshot.params.hash;

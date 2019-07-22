@@ -1,8 +1,8 @@
 <div class="view_content py-4">
   <div *ngIf="hasdata" class="container">
 	  <div *ngIf="TimeArr" class="box_shadow_large detail_div p-3 mb-4">
-            <h1 class="test_msg align-middle mb-0 d-inline-block mr-3 pl-3">You are on Testnet</h1>
-            <h1 class="test_msg align-middle mb-0 float-right d-inline-block pl-3">Mainnet Countdown
+            <h1 class="test_msg align-middle mb-0 d-inline-block mr-3 pl-3">{{'home.HEADER_TEXT' | translate}}</h1>
+            <h1 class="test_msg align-middle mb-0 float-right d-inline-block pl-3">{{'home.COUNTDOWN' | translate}}
                 <ul class="list-unstyled d-inline-block  mb-0 txt_primary timer">
                   <li class="d-inline-block"><span id="days">{{TimeArr.d}}d:</span></li>
                   <li class="d-inline-block"><span id="hours">{{TimeArr.h}}h:</span></li>
@@ -23,7 +23,7 @@
           </div>
           <div class="d-inline-block align-middle ml-2">
             <span class="">Fee</span>
-            <h6 class="view_txt">{{ hashdata.BlockchainBlockFetchQuery.Fee }} Epic</h6>
+            <h6 class="view_txt">{{ hashdata.BlockchainBlockFetchQuery.Fee }} {{'home.EPIC' | translate}}</h6>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 mt-4">
@@ -49,7 +49,7 @@
             <img src="assets/img/difficulty.png" height="60" />
           </div>
           <div class="d-inline-block align-middle ml-2">
-            <span class="">Difficulty</span>
+            <span class="">{{'home.DIFFICULTY' | translate}}</span>
             <h6 class="view_txt">{{ hashdata.BlockchainBlockFetchQuery.TotalDifficulty }}</h6>
           </div>
         </div>
@@ -58,7 +58,7 @@
             <img src="assets/img/block_reward.png" height="60" />
           </div>
           <div class="d-inline-block align-middle ml-2">
-            <span class="">Block Reward</span>
+            <span class="">{{'home.BLOCK_REWARD' | translate}}</span>
             <h6 class="view_txt">{{ hashdata.BlockchainBlockFetchQuery.BlockReward }} Epic</h6>
           </div>
         </div>
@@ -67,7 +67,7 @@
             <img src="assets/img/age.png" height="60" />
           </div>
           <div class="d-inline-block align-middle ml-2">
-            <span class="">Age</span>
+            <span class="">{{'home.AGE' | translate}}</span>
             <h6 class="view_txt">{{ hashdata.BlockchainBlockFetchQuery.Timestamp }}</h6>
           </div>
         </div>
@@ -76,7 +76,7 @@
             <img src="assets/img/algorithm.png" height="60" />
           </div>
           <div class="d-inline-block align-middle ml-2">
-            <span class="">Pow Algorithm</span>
+            <span class="">{{'home.ALGORITHM' | translate}}</span>
             <h6 class="view_txt">{{ hashdata.BlockchainBlockFetchQuery.PoWAlgorithm }}</h6>
           </div>
         </div>
@@ -100,7 +100,7 @@
                 <div class="view_moble_tble web_hdng">
                     <div class="row">
                         <div class="col-lg-2">
-                         <div class="block_div"><h5 class="mb-0">Commit</h5></div>
+                         <div class="block_div"><h5 class="mb-0">{{'home.COMMIT' | translate}}</h5></div>
                         </div>
 
 
@@ -110,7 +110,7 @@
                   <div class="view_moble_tble" *ngFor="let hashinput of hashdata.BlockchainBlockInputFetchQuery">
                       <div class="row">
                         <div class="col-12">
-                         <div class="block_div"><h6>Commit</h6><span class="blck_value">{{ hashinput.Data }}</span></div>
+                         <div class="block_div"><h6>{{'home.COMMIT' | translate}}</h6><span class="blck_value">{{ hashinput.Data }}</span></div>
                         </div>
 
 
@@ -139,7 +139,7 @@
 
             <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false"
               aria-controls="collapse-2">
-              <h5 class="mb-0 tab_hdng">Output ({{hashdata?.BlockchainBlockOutputFetchQuery.length ? hashdata.BlockchainBlockOutputFetchQuery.length : 0}}) </h5>
+              <h5 class="mb-0 tab_hdng">{{'home.OUTPUT' | translate}} ({{hashdata?.BlockchainBlockOutputFetchQuery.length ? hashdata.BlockchainBlockOutputFetchQuery.length : 0}}) </h5>
             </a>
 
           </div>
@@ -149,13 +149,13 @@
               <div class="view_moble_tble web_hdng">
                   <div class="row">
                       <div class="col-lg-2">
-                       <div class="block_div"><h5 class="mb-0">Output Type</h5></div>
+                       <div class="block_div"><h5 class="mb-0">{{'home.OUTPUT' | translate}} {{'home.TYPE' | translate}}</h5></div>
                       </div>
                       <div class="col-lg-2 order-3">
-                          <div class="block_div"><h5 class="mb-0">Spent</h5></div>
+                          <div class="block_div"><h5 class="mb-0">{{'home.SPENT' | translate}}</h5></div>
                         </div>
                       <div class="col-lg-8 order-2">
-                        <div class="block_div"><h5 class="mb-0">Commit</h5></div>
+                        <div class="block_div"><h5 class="mb-0">{{'home.COMMIT' | translate}}</h5></div>
                       </div>
 
 
@@ -164,13 +164,13 @@
                 <div class="view_moble_tble"  *ngFor="let hashoutput of hashdata.BlockchainBlockOutputFetchQuery">
                     <div class="row">
                       <div class="col-12 col-sm-4 col-md-4 col-lg-2">
-                       <div class="block_div"><h6>Output Type</h6><span class="blck_value">{{ hashoutput.OutputType }}</span></div>
+                       <div class="block_div"><h6>{{'home.OUTPUT' | translate}} {{'home.TYPE' | translate}}</h6><span class="blck_value">{{ hashoutput.OutputType }}</span></div>
                       </div>
                       <div class="col-12 col-sm-4 col-md-4 col-lg-2 order-lg-3">
-                          <div class="block_div"><h6>Spent</h6><span class="blck_value">{{ hashoutput.Spent }}</span></div>
+                          <div class="block_div"><h6>{{'home.SPENT' | translate}}</h6><span class="blck_value">{{ hashoutput.Spent }}</span></div>
                         </div>
                       <div class="col-12 col-sm-4 col-md-4 col-lg-8 order-lg-2">
-                        <div class="block_div"><h6>Commit</h6><span class="blck_value">{{ hashoutput.Commit }}</span></div>
+                        <div class="block_div"><h6>{{'home.COMMIT' | translate}}</h6><span class="blck_value">{{ hashoutput.Commit }}</span></div>
                       </div>
 
 
@@ -202,7 +202,7 @@
 
             <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false"
               aria-controls="collapse-3">
-              <h5 class="mb-0 tab_hdng">Kernals ({{hashdata?.BlockchainBlockKernalFetchQuery.length ? hashdata.BlockchainBlockKernalFetchQuery.length : 0}})</h5>
+              <h5 class="mb-0 tab_hdng">{{'home.KERNELS' | translate}} ({{hashdata?.BlockchainBlockKernalFetchQuery.length ? hashdata.BlockchainBlockKernalFetchQuery.length : 0}})</h5>
             </a>
 
           </div>
@@ -211,13 +211,13 @@
                 <div class="view_moble_tble web_hdng">
                     <div class="row">
                         <div class="col-lg-4">
-                         <div class="block_div"><h5 class="mb-0">Features</h5></div>
+                         <div class="block_div"><h5 class="mb-0">{{'home.FEATURES' | translate}}</h5></div>
                         </div>
                         <div class="col-lg-4 ">
-                          <div class="block_div"><h5 class="mb-0">Lock Height</h5></div>
+                          <div class="block_div"><h5 class="mb-0">{{'home.LOCK' | translate}} {{'home.HEIGHT' | translate}}</h5></div>
                         </div>
                         <div class="col-lg-4 ">
-                            <div class="block_div"><h5 class="mb-0">Fee</h5></div>
+                            <div class="block_div"><h5 class="mb-0">{{'home.FEE' | translate}}</h5></div>
                           </div>
 
                       </div>
@@ -225,14 +225,14 @@
                   <div class="view_moble_tble"  *ngFor="let hashkernel of hashdata.BlockchainBlockKernalFetchQuery">
                       <div class="row">
                         <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                         <div class="block_div"><h6>Features</h6><span class="blck_value">{{ hashkernel.Features }}</span></div>
+                         <div class="block_div"><h6>{{'home.FEATURES' | translate}}</h6><span class="blck_value">{{ hashkernel.Features }}</span></div>
                         </div>
 
                         <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                          <div class="block_div"><h6>Lock Height</h6><span class="blck_value">{{ hashkernel.LockHeight }}</span></div>
+                          <div class="block_div"><h6>{{'home.LOCK' | translate}} {{'home.HEIGHT' | translate}}</h6><span class="blck_value">{{ hashkernel.LockHeight }}</span></div>
                         </div>
                         <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                            <div class="block_div"><h6>Fee</h6><span class="blck_value">{{ hashkernel.Fee }} Epic</span></div>
+                            <div class="block_div"><h6>{{'home.FEE' | translate}}</h6><span class="blck_value">{{ hashkernel.Fee }} Epic</span></div>
                           </div>
 
 
@@ -269,8 +269,8 @@
   <div *ngIf="!hasdata" class="container">
 
     <div class="box_shadow_large bg-white p-3 mb-4 text-center">
-      <h4>Search Results for <span class="txt_primary">"{{params}}"</span></h4>
-      <p>Your search term {{params}} is too short, please enter at least six characters if searching by hash.</p>
+      <h4>{{'home.SEARCH_RESULT' | translate}} <span class="txt_primary">"{{params}}"</span></h4>
+      <p>{{'home.SEARCH_RESULT1' | translate}} {{params}} {{'home.SEARCH_RESULT2' | translate}}, {{'home.SEARCH_RESULT3' | translate}}.</p>
     </div>
   </div>
 </div>

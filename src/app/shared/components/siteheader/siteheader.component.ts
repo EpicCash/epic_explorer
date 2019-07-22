@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
+import { TransServiceService } from '../../services/trans-service.service';
 
 @Component({
   selector: 'epic-explorer-siteheader',
@@ -13,6 +14,7 @@ export class SiteheaderComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private router: Router,
+    public translate: TransServiceService
   ) {}
 
   ngOnInit() {}
