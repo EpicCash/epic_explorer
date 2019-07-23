@@ -1,18 +1,15 @@
 import "zone.js/dist/zone-node";
 import "reflect-metadata";
-const domino = require("domino");
 const fs = require("fs");
 const path = require("path");
 const template = fs
   .readFileSync(path.join(__dirname, ".", "browser", "index.html"))
   .toString();
-const win = domino.createWindow(template);
-// const styleFiles = files.filter(file => file.startsWith('styles'));
-// const hashStyle = styleFiles[0].split('.')[1];
-// const style = fs.readFileSync(path.join(__dirname, '.', 'dist-server', `styles.${hashStyle}.bundle.css`)).toString();
-
-global["window"] = win;
-Object.defineProperty(win.document.body.style, "transform", {
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM(template);
+global["window"] = window;
+Object.defineProperty(window.document.body.style, "transform", {
   value: () => {
     return {
       enumerable: true,
@@ -20,10 +17,7 @@ Object.defineProperty(win.document.body.style, "transform", {
     };
   }
 });
-global["document"] = win.document;
-// global["CSS"] = win;
-// global['XMLHttpRequest'] = require('xmlhttprequest').XMLHttpRequest;
-// global["Prism"] = null;
+global["document"] = window.document;
 
 import { enableProdMode } from "@angular/core";
 
@@ -80,7 +74,10 @@ const controllers = [
 app.use(errorMiddleware);
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/api-docs/**", express.static(path.join(__dirname, "./server/swagger")));
+app.use(
+  "/api-docs/**",
+  express.static(path.join(__dirname, "./server/swagger"))
+);
 app.get("/swagger.json", function(req, res) {
   res.setHeader("Content-Type", "application/json");
   res.send(
@@ -95,8 +92,9 @@ controllers.forEach(controller => {
   app.use("/epic_explorer/v1", controller.router);
 });
 // Example Express Rest API endpoints
- app.get('/epic_explorer/v1/**', (req, res) => { res.send({'msg':'Api works.'})});
-
+app.get("/epic_explorer/v1/**", (req, res) => {
+  res.send({ msg: "Api works." });
+});
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require("./server/main");
@@ -110,10 +108,8 @@ app.engine(
   })
 );
 
-app.set("view engine", "html");
 app.set("views", join(DIST_FOLDER, "browser"));
-
-
+app.set("view engine", "html");
 // Server static files from /browser
 app.get(
   "*.*",
@@ -124,7 +120,7 @@ app.get(
 
 // All regular routes use the Universal engine
 app.get("*", (req, res) => {
-  res.render("index", { req });
+  res.sendFile(join(DIST_FOLDER, "browser") + "/index.html", { req });
 });
 
 // Start up the Node server
