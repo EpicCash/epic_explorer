@@ -1,4 +1,13 @@
 {
+	"total-difficulty" : "Gesamtschwierigkeit",
+	"transactions-by-time" : "Transkationen nach Zeit",
+	"blocks" : "Blöcke",
+	"transaction-fees" : "Transkationsgebühren",
+	"supply-growth" : "Angebotswachstum",
+	"blocks-mined" : "Blöcke abgebaut",
+	"hashrate-growth-chart" : "HashRate-Wachstumstabelle",
+	"block-interval" : "Sperrintervall",
+	"transactions-vs-date" : "Transaktionen gegen Datum",
     "home": {
         "HEADER_TEXT": "Sie befinden sich in Testnet",
         "COUNTDOWN": "Mainnet-Countdown",
@@ -50,6 +59,7 @@
         "SEARCH_RESULT" : "Suchergebnisse für",
         "SEARCH_RESULT1" : "Ihr Suchbegriff",
         "SEARCH_RESULT2" : "ist zu kurz",
-        "SEARCH_RESULT3" : "Bitte geben Sie mindestens sechs Zeichen ein, wenn Sie nach Hash suchen"
+        "SEARCH_RESULT3" : "Bitte geben Sie mindestens sechs Zeichen ein, wenn Sie nach Hash suchen",
+        "total-difficulty" : "Gesamtschwierigkeit"
     }
 }

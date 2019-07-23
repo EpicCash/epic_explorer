@@ -8,7 +8,7 @@
               <div class="overflow-hidden">
                 <div class="blocks detail_graph">
 
-            <h2 class="chart_heading text-uppercase d-inline-block">{{'home.HEADER_TEXT' | translate}}</h2>
+            <h2 class="chart_heading text-uppercase d-inline-block">{{this.chartType | translate}}</h2>
   <epic-explorer-plotly *ngIf="hashdata.data" [data]="hashdata.data" [layout]="hashdata.layout">
   </epic-explorer-plotly>
    <div class="day_filter" *ngIf="this.title!='Transactions by time'">

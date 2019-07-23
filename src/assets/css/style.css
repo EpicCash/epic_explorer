@@ -181,7 +181,7 @@ a:focus {
   background-position: center;
   background-size: cover;
   vertical-align: middle;
-  margin-right: 5px;
+  /* margin-right: 5px; */
 }
 .headerbg {
   background: url(/assets/img/body_bg.jpg);
@@ -285,6 +285,7 @@ a:focus {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: 0.3s linear all;
+  min-height: 169px;
 }
 .detail_div .count {
   font-size: 25px;
@@ -603,7 +604,23 @@ body.dark_theme {
   min-width: 140px;
 margin-right: 10px;
 }
-.langbut.btn-outline-primary{
+.langbut{
   border:none !important;
   color:rgba(0,0,0,.5);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #ffffff;
 }
+.langbut.ftr_lang{background: #ecf2ff;}
+.arrow_drpdwn{
+  border: solid rgba(0,0,0,.5);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  vertical-align: middle;
+  margin-top: -4px;
+}
+.langbut:focus{outline: none;}

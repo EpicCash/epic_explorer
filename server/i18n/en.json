@@ -1,4 +1,13 @@
 {
+	"total-difficulty" : "Total Difficulty",
+	"transactions-by-time" : "Transactions By Time",
+	"blocks" : "Blocks",
+	"transaction-fees" : "Transaction Fees",
+	"supply-growth" : "Supply Growth",
+	"blocks-mined" : "Blocks Mined",
+	"hashrate-growth-chart" : "HashRate Growth Chart",
+	"block-interval" : "Block Interval",
+	"transactions-vs-date" : "Transcations Vs Date",
     "home": {
         "HEADER_TEXT": "You are on Testnet",
         "COUNTDOWN": "Mainnet Countdown",
