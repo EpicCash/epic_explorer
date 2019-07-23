@@ -20,18 +20,11 @@
             <!-- <div class="col-md-3 col-lg-4 text-right"> -->
                 <div class="col-sm-6 text-right ftr_lng">
               <div class="dropdown ftr_dropdown d-inline-block py-2">
-
-                <a class="dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <span class="flag" style="background-image: url('assets/img/uk.jpg')"></span>English
-                </a>
-                <div class="dropdown-menu " aria-labelledby="navbarDropdown1">
-                  <a class="dropdown-item p-2" href="#"><span class="flag"
-                      style="background-image: url('assets/img/uk.jpg')"></span>English</a>
-                  <a class="dropdown-item p-2" href="#"><span class="flag"
-                      style="background-image: url('assets/img/german.jpg')"></span>German</a>
-
-                </div>
+                <span class="flag" [ngStyle]="{ 'background-image': 'url(assets/img/' + translate.getCurrentLang() + '.jpg)'}"></span> 
+                <!--<span class="flag"  ngIf="translate.getCurrentLang() =='de'" style="background-image: url('assets/img/german.jpg')"></span>-->
+                <select class="langbut btn btn-outline-primary btn-rounded py-2 ml-2" #langSelect (change)="translate.changeLang(langSelect.value)">
+                  <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}}</option>
+                </select>
 
               </div>
               <button (click)="ChangeTheme()" class="theme_switch btn"><img src="assets/img/dark_theme.webp" height="20" class="light_theme_display"><img src="assets/img/light_theme.webp" height="19"  class="dark_theme_display"></button>

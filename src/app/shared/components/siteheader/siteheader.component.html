@@ -17,13 +17,11 @@
       </div>
       <div class="mble_view_hdr">
         <div class="nav-item dropdown bg-white d-inline-block ml-2 order-1 order-sm-2">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <span class="flag" style="background-image: url('assets/img/uk.jpg')"></span>English
-          </a>
-          <select class="btn btn-outline-primary btn-rounded text-white py-2 ml-2" #langSelect (change)="translate.changeLang(langSelect.value)">
-            <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}} ({{ lang }})</option>
-          </select>
+          <span class="flag" [ngStyle]="{ 'background-image': 'url(assets/img/' + translate.getCurrentLang() + '.jpg)'}"></span> 
+            <!--<span class="flag"  ngIf="translate.getCurrentLang() =='de'" style="background-image: url('assets/img/german.jpg')"></span>-->
+            <select class="langbut btn btn-outline-primary btn-rounded py-2 ml-2" #langSelect (change)="translate.changeLang(langSelect.value)">
+              <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}}</option>
+            </select>
         </div>
         <button (click)="ChangeTheme()" class="theme_switch mr-2 btn order-2 order-sm-3"><img
             src="assets/img/dark_theme.png" height="20" class="light_theme_display"><img

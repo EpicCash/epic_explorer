@@ -603,3 +603,7 @@ body.dark_theme {
   min-width: 140px;
 margin-right: 10px;
 }
+.langbut.btn-outline-primary{
+  border:none !important;
+  color:rgba(0,0,0,.5);
+}

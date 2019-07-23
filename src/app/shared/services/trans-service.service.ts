@@ -11,7 +11,7 @@ export class TransServiceService{
   constructor(public translate : TranslateService,private cookie: CookieService) { 
     translate.addLangs(['en', 'de']);
     translate.setDefaultLang('en');
-    this.langLabel = {en: 'English', es: 'German'};
+    this.langLabel = {en: 'English', de: 'German'};
     // console.log('this.getCookie() ifconf',this.getCookie() != 'undefined' ? 1: 2);
    // console.log("(this.getCookie() && this.getCookie() != null) ? this.getCookie() : (this.getCurrentLang() && this.getCurrentLang() != null) ? this.getCurrentLang() : 'en'",(this.getCookie() && this.getCookie() != 'undefined') ? this.getCookie() : (this.getCurrentLang() && this.getCurrentLang() != 'undefined') ? this.getCurrentLang() : 'en');
     translate.use((this.getCookie() && this.getCookie() != 'undefined') ? this.getCookie() : (this.getCurrentLang() && this.getCurrentLang() != 'undefined') ? this.getCurrentLang() : 'en');

@@ -14,9 +14,13 @@
 
           </li>
           <li class="nav-item dropdown bg-white">
-            <select class="btn btn-outline-primary btn-rounded text-white py-2 ml-2" #langSelect (change)="translate.changeLang(langSelect.value)">
-              <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}} ({{ lang }})</option>
+            
+            <span class="flag " [ngStyle]="{ 'background-image': 'url(assets/img/' + translate.getCurrentLang() + '.jpg)'}"></span> 
+            <!--<span class="flag"  ngIf="translate.getCurrentLang() =='de'" style="background-image: url('assets/img/german.jpg')"></span>-->
+            <select class="langbut btn btn-outline-primary btn-rounded py-2 ml-2" #langSelect (change)="translate.changeLang(langSelect.value)">
+              <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}}</option>
             </select>
+            
           </li>
           <button (click)="ChangeTheme()" class="theme_switch btn">
             <img
