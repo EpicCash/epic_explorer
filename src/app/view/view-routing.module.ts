@@ -5,7 +5,7 @@ import { SiteLayoutComponent } from '../shared/components/layouts/site-layout/si
 
 const viewRoutes: Routes = [
   {
-    path: 'home',
+    path: '',
     loadChildren: './home/home.module#HomeModule',
   },
 ];

@@ -51,12 +51,21 @@ import {
       return this._options;
     }
     showChart(){
-      this._plotlyJs.newPlot(
-        this.plotly.nativeElement,
-        this._data,
-        this._layout,
-        this._options,
-      );
+      try {
+        if (typeof this._plotlyJs.newPlot === "function") {
+          this._plotlyJs.newPlot(
+            this.plotly.nativeElement,
+            this._data,
+            this._layout,
+            this._options,
+          );
+      }
+
+      }
+      catch (error) {
+        console.error('Log error', error);
+      }
+
     }
     ngAfterViewInit() {
       if(this._plotlyJs){
