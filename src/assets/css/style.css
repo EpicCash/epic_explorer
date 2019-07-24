@@ -285,8 +285,8 @@ a:focus {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: 0.3s linear all;
-  min-height: 169px;
 }
+.minhgt{  min-height: 169px; }
 .detail_div .count {
   font-size: 25px;
   color: #0091ff;
