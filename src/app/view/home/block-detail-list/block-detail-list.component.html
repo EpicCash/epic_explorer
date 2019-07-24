@@ -26,25 +26,25 @@
 </div> -->
 <div class="row" *ngIf="latestblockdetail">
   <div class="col-md-3">
-    <div class="text-center detail_div">
+    <div class="text-center detail_div minhgt">
       <p class="count mb-0">{{ latestblockdetail.block_height | number }}</p>
       <p class="mb-0 desc">{{'home.BLOCKCHAIN_HEIGHT' | translate}}</p>
     </div>
   </div>
   <div class="col-md-3">
-    <div class="text-center detail_div">
+    <div class="text-center detail_div minhgt">
       <p class="count mb-0">{{latestblockdetail.letest_block_num}} <span class="">{{latestblockdetail.letest_block_duration}}</span></p>
       <p class="mb-0 desc">{{'home.LATEST_BLOCK' | translate}}</p>
     </div>
   </div>
   <div class="col-md-3">
-    <div class="text-center detail_div">
+    <div class="text-center detail_div minhgt">
       <p class="count mb-0">{{latestblockdetail.difficulty | number}} / {{latestblockdetail.targetdifficulty | number}}</p>
       <p class="mb-0 desc">{{'home.LATEST_BLOCK1' | translate}}</p>
     </div>
   </div>
   <div class="col-md-3">
-    <div class="text-center detail_div">
+    <div class="text-center detail_div minhgt">
       <p class="count mb-0">{{latestblockdetail.coin_existence | number}} <span class="">Epic</span></p>
       <p class="mb-0 desc">{{'home.COIN_IN' | translate}}</p>
     </div>

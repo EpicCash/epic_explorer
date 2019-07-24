@@ -16,6 +16,25 @@
         <img src="assets/img/block.png" height="30" class="block_rotate float-left mr-2" />
         Block {{ hashdata.BlockchainBlockFetchQuery.Height }}
       </h3>
+      <ul class="pagination justify-content-end m-0 d-inline-flex float-right">
+
+        <li
+          class="page-item" *ngIf="hashdata.BlockchainBlockFetchQuery.PreviousId"
+        >
+          <a class="page-link" routerLink="/blockdetail/{{ hashdata.BlockchainBlockFetchQuery.Height - 1 }}" ><i class="fa fa-angle-left"></i></a>
+        </li>
+        <li class="page-item d-none d-md-inline-flex">
+          <a class="page-link"
+            >{{ hashdata.BlockchainBlockFetchQuery.Height }}</a
+          >
+        </li>
+        <li
+          class="page-item"  *ngIf="latestblockHeight!=hashdata.BlockchainBlockFetchQuery.Height"
+        >
+          <a class="page-link" routerLink="/blockdetail/{{ hashdata.BlockchainBlockFetchQuery.Height + 1 }}" ><i class="fa fa-angle-right"></i></a>
+        </li>
+
+      </ul>
       <div class="row mb-3">
         <div class="col-sm-6 col-md-4 mt-4">
           <div class="d-inline-block align-middle">
