@@ -61,9 +61,27 @@ export class BlockchainBlock {
 
   @Column('bigint', {
     nullable: false,
-    name: 'total_difficulty',
+    name: 'total_difficulty_cuckaroo',
   })
-  TotalDifficulty: string;
+  TotalDifficultyCuckaroo: string;
+
+  @Column('bigint', {
+    nullable: false,
+    name: 'total_difficulty_cuckatoo',
+  })
+  TotalDifficultyCuckatoo: string;
+
+  @Column('bigint', {
+    nullable: false,
+    name: 'total_difficulty_progpow',
+  })
+  TotalDifficultyProgpow: string;
+
+  @Column('bigint', {
+    nullable: false,
+    name: 'total_difficulty_randomx',
+  })
+  TotalDifficultyRandomx: string;
 
   @Column('character varying', {
     nullable: false,
@@ -91,13 +109,6 @@ export class BlockchainBlock {
     name: 'proof',
   })
   Proof: string;
-
-  @Column('int4', {
-    nullable: false,
-    array: true,
-    name: 'cuckoo_solution',
-  })
-  CuckooSolution: number[];
 
   @Column('character varying', {
     nullable: false,

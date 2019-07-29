@@ -540,11 +540,14 @@ export class BlockchainBlockController {
           'Hash',
           'Height',
           'Timestamp',
-          'TotalDifficulty',
+          'TotalDifficultyCuckaroo',
+          'TotalDifficultyCuckatoo',
+          'TotalDifficultyProgpow',
+          'TotalDifficultyRandomx',
           'PreviousId',
           'EdgeBits',
           'SecondaryScaling',
-          'CuckooSolution',
+          'Proof',
         ],
         where: { Hash: request.params.hash },
       });
@@ -562,11 +565,14 @@ export class BlockchainBlockController {
             'Hash',
             'Height',
             'Timestamp',
-            'TotalDifficulty',
+            'TotalDifficultyCuckaroo',
+            'TotalDifficultyCuckatoo',
+            'TotalDifficultyProgpow',
+            'TotalDifficultyRandomx',
             'PreviousId',
             'EdgeBits',
             'SecondaryScaling',
-            'CuckooSolution',
+            'Proof',
           ],
           where: { Height: paramVal },
         });
@@ -595,11 +601,11 @@ export class BlockchainBlockController {
         where: { BlockId: BlockchainBlockFetchQuery.Hash },
       });
 
-      if (BlockchainBlockFetchQuery.EdgeBits == 29) {
-        BlockchainBlockFetchQuery['PoWAlgorithm'] = 'CuckARoo29';
-      } else {
-        BlockchainBlockFetchQuery['PoWAlgorithm'] = 'CuckAToo31';
-      }
+      // if (BlockchainBlockFetchQuery.EdgeBits == 29) {
+      //   BlockchainBlockFetchQuery['PoWAlgorithm'] = 'CuckARoo29';
+      // } else {
+      //   BlockchainBlockFetchQuery['PoWAlgorithm'] = 'CuckAToo31';
+      // }
 
       if (BlockchainBlockFetchQuery.Height <= 1440) {
         BlockchainBlockFetchQuery['BlockReward'] = 200;
@@ -627,14 +633,26 @@ export class BlockchainBlockController {
         const BlockchainPreviousBlockFetchQuery = await getRepository(
           BlockchainBlock,
         ).findOne({
-          select: ['TotalDifficulty'],
+          select: ['TotalDifficultyCuckaroo','TotalDifficultyCuckatoo','TotalDifficultyProgpow','TotalDifficultyRandomx'],
           where: { Hash: BlockchainBlockFetchQuery.PreviousId },
         });
-        BlockchainBlockFetchQuery['TargetDifficulty'] =
-          parseInt(BlockchainBlockFetchQuery.TotalDifficulty) -
-          parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficulty);
+        BlockchainBlockFetchQuery['TargetDifficultyCuckaroo'] =
+          parseInt(BlockchainBlockFetchQuery.TotalDifficultyCuckaroo) -
+          parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyCuckaroo);
+          BlockchainBlockFetchQuery['TargetDifficultyCuckatoo'] =
+          parseInt(BlockchainBlockFetchQuery.TotalDifficultyCuckatoo) -
+          parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyCuckatoo);
+          BlockchainBlockFetchQuery['TargetDifficultyProgpow'] =
+          parseInt(BlockchainBlockFetchQuery.TotalDifficultyProgpow) -
+          parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyProgpow);
+          BlockchainBlockFetchQuery['TargetDifficultyRandomx'] =
+          parseInt(BlockchainBlockFetchQuery.TotalDifficultyRandomx) -
+          parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyRandomx);
       } else {
-        BlockchainBlockFetchQuery['TargetDifficulty'] = 'NULL';
+        BlockchainBlockFetchQuery['TargetDifficultyCuckaroo'] = 'NULL';
+        BlockchainBlockFetchQuery['TargetDifficultyCuckatoo'] = 'NULL';
+        BlockchainBlockFetchQuery['TargetDifficultyProgpow'] = 'NULL';
+        BlockchainBlockFetchQuery['TargetDifficultyRandomx'] = 'NULL';
       }
       var Epicfee = 0;
       BlockchainBlockKernalFetchQuery.forEach(e => {
@@ -672,6 +690,7 @@ export class BlockchainBlockController {
           })
         : next(new NoDataFoundException());
     } catch (error) {
+      console.log('error',error);
       next(new InternalServerErrorException(error));
     }
   };
@@ -765,22 +784,29 @@ export class BlockchainBlockController {
             .select([
               'blockchain_block.Hash',
               'blockchain_block.Timestamp',
-              'blockchain_block.TotalDifficulty',
+              'blockchain_block.TotalDifficultyCuckaroo',
+              'blockchain_block.TotalDifficultyCuckatoo',
+              'blockchain_block.TotalDifficultyProgpow',
+              'blockchain_block.TotalDifficultyRandomx',
               'blockchain_block.previous_id',
-              'blockchain_block.total_difficulty - LAG(blockchain_block.total_difficulty) OVER (ORDER BY blockchain_block.total_difficulty) AS target_difficulty',
+              'blockchain_block.total_difficulty_cuckaroo - LAG(blockchain_block.total_difficulty_cuckaroo) OVER (ORDER BY blockchain_block.total_difficulty_cuckaroo) AS target_difficulty_cuckaroo',
+              'blockchain_block.total_difficulty_cuckatoo - LAG(blockchain_block.total_difficulty_cuckatoo) OVER (ORDER BY blockchain_block.total_difficulty_cuckatoo) AS target_difficulty_cuckatoo',
+              'blockchain_block.total_difficulty_progpow - LAG(blockchain_block.total_difficulty_progpow) OVER (ORDER BY blockchain_block.total_difficulty_progpow) AS target_difficulty_progpow',
+              'blockchain_block.total_difficulty_randomx - LAG(blockchain_block.total_difficulty_randomx) OVER (ORDER BY blockchain_block.total_difficulty_randomx) AS target_difficulty_randomx',
               'blockchain_block.Height',
               'blockchain_block.EdgeBits',
               'COUNT(DISTINCT(blockchain_input.block_id)) AS input_count',
               'COUNT(DISTINCT(blockchain_kernel.block_id)) AS kernal_count',
               'COUNT(DISTINCT(blockchain_output.block_id)) AS output_count',
+              'blockchain_block.Proof As PoWAlgo',
             ])
-            .addSelect(
-              `CASE
-                        WHEN blockchain_block.EdgeBits = 29 THEN 'CuckARoo29'
-                        WHEN blockchain_block.EdgeBits = 31 THEN 'CuckAToo31'
-                    END`,
-              'PoWAlgo',
-            )
+            // .addSelect(
+            //   `CASE
+            //             WHEN blockchain_block.EdgeBits = 29 THEN 'CuckARoo29'
+            //             WHEN blockchain_block.EdgeBits = 31 THEN 'CuckAToo31'
+            //         END`,
+            //   'PoWAlgo',
+            // )
             .leftJoin('blockchain_block.BlockchainInputs', 'blockchain_input')
             .leftJoin('blockchain_block.BlockchainKernels', 'blockchain_kernel')
             .leftJoin('blockchain_block.BlockchainOutputs', 'blockchain_output')
@@ -798,17 +824,41 @@ export class BlockchainBlockController {
           const BlockchainPreviousBlockFetchQuery = await getRepository(
             BlockchainBlock,
           ).findOne({
-            select: ['TotalDifficulty'],
+            select: ['TotalDifficultyCuckaroo','TotalDifficultyCuckatoo','TotalDifficultyProgpow','TotalDifficultyRandomx'],
             where: { Hash: lastElemt.previous_id },
           });
 
           BlockchainBlockResult[BlockchainBlockResult.length - 1][
-            'target_difficulty'
+            'target_difficulty_cuckaroo'
           ] =
-            (parseInt(lastElemt.blockchain_block_total_difficulty)
-              ? parseInt(lastElemt.blockchain_block_total_difficulty)
+            (parseInt(lastElemt.blockchain_block_total_difficulty_cuckaroo)
+              ? parseInt(lastElemt.blockchain_block_total_difficulty_cuckaroo)
               : 0) -
-            parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficulty);
+            parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyCuckaroo);
+
+            BlockchainBlockResult[BlockchainBlockResult.length - 1][
+              'target_difficulty_cuckatoo'
+            ] =
+              (parseInt(lastElemt.blockchain_block_total_difficulty_cuckatoo)
+                ? parseInt(lastElemt.blockchain_block_total_difficulty_cuckatoo)
+                : 0) -
+              parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyCuckatoo);
+
+              BlockchainBlockResult[BlockchainBlockResult.length - 1][
+                'target_difficulty_progpow'
+              ] =
+                (parseInt(lastElemt.blockchain_block_total_difficulty_progpow)
+                  ? parseInt(lastElemt.blockchain_block_total_difficulty_progpow)
+                  : 0) -
+                parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyProgpow);
+          
+                BlockchainBlockResult[BlockchainBlockResult.length - 1][
+                  'target_difficulty_randomx'
+                ] =
+                  (parseInt(lastElemt.blockchain_block_total_difficulty_randomx)
+                    ? parseInt(lastElemt.blockchain_block_total_difficulty_randomx)
+                    : 0) -
+                  parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyRandomx);
 
           BlockchainBlockResult.forEach(e => {
             var latest_block = this.dateDiff(e.blockchain_block_timestamp);
@@ -836,6 +886,7 @@ export class BlockchainBlockController {
         }
       }
     } catch (error) {
+      console.log('error',error);
       next(new InternalServerErrorException(error));
     }
   };
@@ -1352,14 +1403,15 @@ export class BlockchainBlockController {
       }
       const BlockMineChartQuery = await getConnection()
       .query(
-        "SELECT hash, date , total_edge_bits, RandomX, Cuckoo, ProgPow, Round(RandomX * 100.0 / total_edge_bits,2) AS RandomXper,  Round(Cuckoo * 100.0 / total_edge_bits,2) AS Cuckooper,Round(ProgPow * 100.0 / total_edge_bits,2) AS ProgPowper \
+        "SELECT hash, date , total_edge_bits, RandomX, Cuckaroo, Cuckatoo, ProgPow, Round(RandomX * 100.0 / total_edge_bits,2) AS RandomXper,  Round(Cuckaroo * 100.0 / total_edge_bits,2) AS Cuckarooper, Round(Cuckatoo * 100.0 / total_edge_bits,2) AS Cuckatooper, Round(ProgPow * 100.0 / total_edge_bits,2) AS ProgPowper \
         FROM   (SELECT    1 as hash, \
                           date(DATE_TRUNC('day', timestamp at time zone '" +
           process.env.TIME_ZONE +
           "')) as date, \
                           COUNT(edge_bits) AS total_edge_bits, \
                           Count( CASE WHEN proof = 'RandomX' THEN 1 ELSE NULL END) AS RandomX, \
-                          Count( CASE  WHEN proof = 'Cuckoo' THEN 1 ELSE NULL END) AS Cuckoo,\
+                          Count( CASE  WHEN proof = 'Cuckaroo' THEN 1 ELSE NULL END) AS Cuckaroo,\
+                          Count( CASE  WHEN proof = 'Cuckatoo' THEN 1 ELSE NULL END) AS Cuckatoo,\
                           Count( CASE WHEN proof = 'ProgPow' THEN 1 ELSE NULL END) AS ProgPow \
                  FROM     blockchain_block \
                  where " +
@@ -1373,20 +1425,23 @@ export class BlockchainBlockController {
       });
     let date = [],
       RandomXper = [],
-      Cuckooper = [],
+      Cuckarooper = [],
+      Cuckatooper = [],
       ProgPowper = [],
       RandomX = [],
-      Cuckoo = [],
+      Cuckatoo = [],
+      Cuckaroo = [],
       ProgPow = [];
 
     BlockMineChartQuery.forEach(e => {
-      console.log('e', e);
       date.push(moment(e.date).format('YYYY-MM-DD'));
       RandomXper.push(parseFloat(e.randomxper));
-      Cuckooper.push(parseFloat(e.cuckooper));
+      Cuckarooper.push(parseFloat(e.cuckarooper));
+      Cuckatooper.push(parseFloat(e.cuckatooper));
       ProgPowper.push(parseFloat(e.progpowper));
       RandomX.push(parseInt(e.randomx));
-      Cuckoo.push(parseInt(e.cuckoo));
+      Cuckatoo.push(parseInt(e.cuckatoo));
+      Cuckaroo.push(parseInt(e.cuckaroo));
       ProgPow.push(parseInt(e.progpow));
     });
 
@@ -1397,9 +1452,12 @@ export class BlockchainBlockController {
       response: {
         date,
         RandomXper,
+        Cuckarooper,
+        Cuckatooper,
         ProgPowper,
         RandomX,
-        Cuckoo,
+        Cuckatoo,
+        Cuckaroo,
         ProgPow,
       },
     });
