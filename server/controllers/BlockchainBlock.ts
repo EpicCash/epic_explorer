@@ -1351,52 +1351,60 @@ export class BlockchainBlockController {
           "' > current_date - interval '30 days'";
       }
       const BlockMineChartQuery = await getConnection()
-        .query(
-          "SELECT hash, date , total_edge_bits, cuckARoo29, cuckAToo31, ROUND(cuckARoo29 * 100.0 / total_edge_bits,2) as cuckARoo29per, ROUND(cuckAToo31 * 100.0 / total_edge_bits,2) as cuckAToo31per \
-          FROM   (SELECT    1 as hash, \
-                            date(DATE_TRUNC('day', timestamp at time zone '" +
-            process.env.TIME_ZONE +
-            "')) as date, \
-                            COUNT(edge_bits) AS total_edge_bits, \
-                            COUNT(CASE WHEN edge_bits = 29 THEN 1 ELSE NULL END) AS cuckARoo29, \
-                            COUNT(CASE WHEN edge_bits = 31 THEN 1 ELSE NULL END) AS cuckAToo31 \
-                   FROM     blockchain_block \
-                   where " +
-            timeIntervalQry +
-            "GROUP BY DATE_TRUNC('day', timestamp at time zone '" +
-            process.env.TIME_ZONE +
-            "')) t order by date",
-        )
-        .catch(err_msg => {
-          next(err_msg);
-        });
-      let date = [],
-        cuckARoo29per = [],
-        cuckAToo31per = [],
-        cuckARoo29Val = [],
-        cuckAToo31Val = [];
+      .query(
+        "SELECT hash, date , total_edge_bits, RandomX, Cuckoo, ProgPow, Round(RandomX * 100.0 / total_edge_bits,2) AS RandomXper,  Round(Cuckoo * 100.0 / total_edge_bits,2) AS Cuckooper,Round(ProgPow * 100.0 / total_edge_bits,2) AS ProgPowper \
+        FROM   (SELECT    1 as hash, \
+                          date(DATE_TRUNC('day', timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "')) as date, \
+                          COUNT(edge_bits) AS total_edge_bits, \
+                          Count( CASE WHEN proof = 'RandomX' THEN 1 ELSE NULL END) AS RandomX, \
+                          Count( CASE  WHEN proof = 'Cuckoo' THEN 1 ELSE NULL END) AS Cuckoo,\
+                          Count( CASE WHEN proof = 'ProgPow' THEN 1 ELSE NULL END) AS ProgPow \
+                 FROM     blockchain_block \
+                 where " +
+          timeIntervalQry +
+          "GROUP BY DATE_TRUNC('day', timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "')) t order by date",
+      )
+      .catch(err_msg => {
+        next(err_msg);
+      });
+    let date = [],
+      RandomXper = [],
+      Cuckooper = [],
+      ProgPowper = [],
+      RandomX = [],
+      Cuckoo = [],
+      ProgPow = [];
 
-      BlockMineChartQuery.forEach(e => {
-        date.push(moment(e.date).format('YYYY-MM-DD'));
-        cuckARoo29per.push(parseFloat(e.cuckaroo29per));
-        cuckAToo31per.push(parseFloat(e.cuckatoo31per));
-        cuckARoo29Val.push(parseInt(e.cuckaroo29));
-        cuckAToo31Val.push(parseInt(e.cuckatoo31));
-      });
-      response.status(200).json({
-        status: 200,
-        timestamp: Date.now(),
-        message: 'period of blocks generation per second fetched Successfully',
-        response: {
-          date,
-          cuckARoo29per,
-          cuckAToo31per,
-          cuckARoo29Val,
-          cuckAToo31Val,
-        },
-      });
-    } catch (error) {
-      next(new InternalServerErrorException(error));
-    }
-  };
+    BlockMineChartQuery.forEach(e => {
+      console.log('e', e);
+      date.push(moment(e.date).format('YYYY-MM-DD'));
+      RandomXper.push(parseFloat(e.randomxper));
+      Cuckooper.push(parseFloat(e.cuckooper));
+      ProgPowper.push(parseFloat(e.progpowper));
+      RandomX.push(parseInt(e.randomx));
+      Cuckoo.push(parseInt(e.cuckoo));
+      ProgPow.push(parseInt(e.progpow));
+    });
+
+    response.status(200).json({
+      status: 200,
+      timestamp: Date.now(),
+      message: 'period of blocks generation per second fetched Successfully',
+      response: {
+        date,
+        RandomXper,
+        ProgPowper,
+        RandomX,
+        Cuckoo,
+        ProgPow,
+      },
+    });
+  } catch (error) {
+    next(new InternalServerErrorException(error));
+  }
+};
 }

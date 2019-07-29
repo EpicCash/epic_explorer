@@ -85,6 +85,13 @@ export class BlockchainBlock {
   })
   EdgeBits: number;
 
+  @Column('character varying', {
+    nullable: false,
+    length: 64,
+    name: 'proof',
+  })
+  Proof: string;
+
   @Column('int4', {
     nullable: false,
     array: true,

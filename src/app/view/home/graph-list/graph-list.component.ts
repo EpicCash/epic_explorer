@@ -186,17 +186,23 @@ export class GraphListComponent implements OnInit {
           res => {
             if (res['status'] == 200) {
               let mDate = res.response.date;
-              let mcuck29 = res.response.cuckARoo29per;
-              let mcuck31 = res.response.cuckAToo31per;
-              let mcuck29val = res.response.cuckARoo29Val;
-              let mcuck31val = res.response.cuckAToo31Val;
-              this.dg_last = mcuck29val[mcuck29val.length - 1];
+              let ProgPow = res.response.ProgPow;
+              let Cuckoo = res.response.Cuckoo;
+              let RandomX = res.response.RandomX;
+              
+              let ProgPowper = res.response.ProgPowper;
+              let Cuckooper = res.response.Cuckooper;
+              let RandomXper = res.response.RandomXper;
+
+              this.dg_last = RandomXper[RandomXper.length - 1];
               this.blockminedFunc(
                 mDate,
-                mcuck29,
-                mcuck31,
-                mcuck29val,
-                mcuck31val,
+                ProgPow,
+                Cuckoo,
+                RandomX,
+                ProgPowper,
+                Cuckooper,
+                RandomXper,
               );
               resolve();
             }
@@ -506,14 +512,14 @@ export class GraphListComponent implements OnInit {
     };
   }
 
-  blockminedFunc(mDate, mcuck29, mcuck31, mcuck29val, mcuck31val) {
+  blockminedFunc(mDate,ProgPow, Cuckoo, RandomX, ProgPowper, Cuckooper, RandomXper) {
     this.doubleareaGraphData = {
       data: [
         {
           x: mDate,
-          y: mcuck29,
-          text: mcuck29val,
-          hovertemplate: 'cuckARoo29 :%{y} % ( %{text:,} )',
+          y: Cuckooper,
+          text: Cuckoo,
+          hovertemplate: 'Cuckoo :%{y} % ( %{text:,} )',
           name: '',
           fill: 'tozeroy',
           type: 'line',
@@ -523,14 +529,26 @@ export class GraphListComponent implements OnInit {
         },
         {
           x: mDate,
-          y: mcuck31,
-          text: mcuck31val,
-          hovertemplate: 'cuckAToo31 :%{y} % ( %{text:,} )',
+          y: RandomXper,
+          text: RandomX,
+          hovertemplate: 'RandomX :%{y} % ( %{text:,} )',
           fill: 'tozeroy',
           type: 'line',
           name: '',
           line: {
             color: '#1ad5e9',
+          },
+        },
+        {
+          x: mDate,
+          y: ProgPowper,
+          text: ProgPow,
+          hovertemplate: 'ProgPow :%{y} % ( %{text:,} )',
+          fill: 'tozeroy',
+          type: 'line',
+          name: '',
+          line: {
+            color: '#f74f4f',
           },
         },
       ],
@@ -542,9 +560,15 @@ export class GraphListComponent implements OnInit {
         xaxis: {
           tickformat: '%m-%d',
           tickangle: -45,
+          rangemode: 'nonnegative',
+          fixedrange: true,
+          showgrid: true,
         },
         yaxis: {
           title: 'Percentage(%)',
+          rangemode: 'nonnegative',
+          fixedrange: true,
+          showgrid: true,
         },
         margin: {
           l: 50,
