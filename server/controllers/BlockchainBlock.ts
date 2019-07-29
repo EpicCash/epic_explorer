@@ -227,6 +227,41 @@ export class BlockchainBlockController {
 
     /**
      * @swagger
+     * /epic_explorer/v1/blockchain_block/stackblock:
+     *   get:
+     *     tags:
+     *       - name: STACK_BLOCK | STACK_BLOCK CONTROLLER
+     *     description: To get Total Difficulty and Number of Blocks
+     *     summary: To get Total Difficulty and Number of Blocks
+     *     consumes:
+     *       - application/json
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: FromDate
+     *         description: Enter the From date
+     *         in: query
+     *         type: string
+     *       - name: ToDate
+     *         description: Enter the To date
+     *         in: query
+     *         type: string
+     *       - name: Interval
+     *         description: Try to give Intevals such as 1 week/ 15 days/ 30 days/ 60 days/ 3 months
+     *         in: query
+     *         type: string
+     *     responses:
+     *       200:
+     *         description: Total Difficulty and No. of blocks   fetched successfully
+     */
+    this.router.get(
+      `${this.path}/stackblock`,
+      validationMiddleware(TotalDifficultyNBlockDto, true),
+      this.StackBlock,
+    );
+
+    /**
+     * @swagger
      * /epic_explorer/v1/blockchain_block/hashrate:
      *   get:
      *     tags:
@@ -898,6 +933,85 @@ export class BlockchainBlockController {
         Difficulty = [],
         blocks = [];
       TotalDifficultyNBlockQuery.forEach(e => {
+        date.push(moment(e.date).format('YYYY-MM-DD'));
+        Difficulty.push(parseInt(e.total_difficulty));
+        blocks.push(parseInt(e.blocks));
+      });
+      response.status(200).json({
+        status: 200,
+        timestamp: Date.now(),
+        message: 'Total Difficulty and Blocks Data fetched Successfully',
+        response: {
+          Date: date,
+          Blocks: blocks,
+          TotalDifficulty: Difficulty,
+        },
+      });
+    } catch (error) {
+      next(new InternalServerErrorException(error));
+    }
+  };
+
+  private StackBlock = async (
+    request: Request,
+    response: Response,
+    next: NextFunction,
+  ) => {
+    try {
+      const TotalDifficultyNBlockRequestData: TotalDifficultyNBlockDto =
+        request.query;
+      if (TotalDifficultyNBlockRequestData.Interval) {
+        var timeIntervalQry =
+          "timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "' > current_date - interval '" +
+          TotalDifficultyNBlockRequestData.Interval +
+          "'";
+      } else if (
+        TotalDifficultyNBlockRequestData.FromDate ||
+        TotalDifficultyNBlockRequestData.ToDate
+      ) {
+        let fromdate = moment(TotalDifficultyNBlockRequestData.FromDate)
+          .utc()
+          .format('YYYY-MM-DD');
+        let todate = moment(TotalDifficultyNBlockRequestData.ToDate)
+          .utc()
+          .format('YYYY-MM-DD');
+
+        var timeIntervalQry =
+          "timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "'  BETWEEN SYMMETRIC '" +
+          fromdate +
+          "' AND '" +
+          todate +
+          "'";
+      } else {
+        var timeIntervalQry =
+          "timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "' > current_date - interval '30 days'";
+      }
+      const stackNBlockQuery = await getConnection()
+        .query(
+          "select 1 as hash, max(total_difficulty_cuckaroo) as total_difficulty_cuckaroo, max(total_difficulty_cuckatoo) as total_difficulty_cuckatoo, max(total_difficulty_progpow) as total_difficulty_progpow, max(total_difficulty_randomx) as total_difficulty_randomx, date(DATE_TRUNC('day', timestamp at time zone '" +
+            process.env.TIME_ZONE +
+            "')) as date, Count( CASE WHEN proof = 'RandomX' THEN 1 ELSE NULL END) AS RandomX, \
+                          Count( CASE  WHEN proof = 'Cuckoo' THEN 1 ELSE NULL END) AS Cuckoo,\
+                          Count( CASE WHEN proof = 'ProgPow' THEN 1 ELSE NULL END) AS ProgPow \
+            from blockchain_block where " +
+            timeIntervalQry +
+            "group by DATE_TRUNC('day', timestamp at time zone '" +
+            process.env.TIME_ZONE +
+            "') order by date",
+        )
+        .catch(err_msg => {
+          next(err_msg);
+        });
+      let date = [],
+        Difficulty = [],
+        blocks = [];
+        stackNBlockQuery.forEach(e => {
         date.push(moment(e.date).format('YYYY-MM-DD'));
         Difficulty.push(parseInt(e.total_difficulty));
         blocks.push(parseInt(e.blocks));

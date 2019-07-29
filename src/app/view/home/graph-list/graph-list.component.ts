@@ -21,6 +21,7 @@ export class GraphListComponent implements OnInit {
   public growthGraphData: any = [];
   public heatMapGrowthData: any = [];
   public transcationGraphData: any = [];
+  public stackGraphData: any = [];
 
   public lg_last: any = '';
   public ag_last: any = '';
@@ -32,6 +33,7 @@ export class GraphListComponent implements OnInit {
   public gg_last: any = '';
   public tg_last: any = '';
   public hg_last: any = '';
+  public sg_last: any = '';
 
   public selectedItem: Number = 3;
   public selectedItem3: Number = 3;
@@ -41,6 +43,7 @@ export class GraphListComponent implements OnInit {
   public selectedItem7: Number = 3;
   public selectedItem8: Number = 1;
   public selectedItem9: Number = 3;
+  public selectedItem10: Number = 3;
 
   public tInput: any;
   public tOutput: any;
@@ -75,9 +78,42 @@ export class GraphListComponent implements OnInit {
     /* Transaction2line chart fetching */
     this.Transactiondoublelinechartreq();
 
-    this.bubbleGraphdData = {};
+    /* Stack chart fetching */
+    this.stackchartreq();
+
   }
 
+  stackchartreq(
+    fromDate = '',
+    ToDate = '',
+    interval = '',
+  ) {
+    return new Promise((resolve, reject) => {
+      let params = new HttpParams();
+      params = params.append('FromDate', fromDate);
+      params = params.append('ToDate', ToDate);
+      params = params.append('Interval', interval);
+      this.chartService
+        .apiGetRequest(params, '/blockchain_block/stackblock')
+        .subscribe(
+          res => {
+            if (res['status'] == 200) {
+              let DifficultychartDate = res.response.Date;
+              let Difficultychartval = res.response.TotalDifficulty;
+                this.lg_last =
+                  Difficultychartval[Difficultychartval.length - 1];
+                this.stackchartFunc(
+                  DifficultychartDate,
+                  Difficultychartval,
+                );
+              resolve();
+            }
+          },
+          error => {},
+        );
+    });
+  }
+  
   Transactiondoublelinechartreq(fromDate = '', ToDate = '', interval = '') {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
@@ -357,6 +393,56 @@ export class GraphListComponent implements OnInit {
       },
     };
   }
+
+  stackchartFunc(DifficultychartDate, Blockval) {
+    this.stackGraphData = {
+      data: [
+        {
+          x: ['giraffes', 'orangutans', 'monkeys'],
+          y: [20, 14, 23],
+          name: 'SF Zoo',
+          type: 'bar',
+          marker: {
+            color: Blockval,
+            colorscale: 'Viridis',
+          },
+        },
+        {
+          x: ['giraffes', 'orangutans', 'monkeys'],
+          y: [12, 18, 29],
+          name: 'LA Zoo',
+          type: 'bar',
+          marker: {
+            color: Blockval,
+            colorscale: 'Viridis',
+          },
+        }
+
+      ],
+      layout: {
+        hovermode: 'closest',
+        height: 250,
+        autosize: true,
+        showlegend: false,
+        barmode: 'stack',
+        xaxis: {
+          tickangle: -45,
+          tickformat: '%m-%d',
+        },
+        yaxis: {
+          title: 'Block',
+        },
+        margin: {
+          l: 50,
+          r: 50,
+          b: 50,
+          t: 50,
+        },
+      },
+      options: null,
+    };
+  }
+
 
   totalBlocksFunc(DifficultychartDate, Blockval) {
     this.barGraphData = {
