@@ -145,6 +145,26 @@ export class GraphDetailComponent implements OnInit {
             );
           });
           break;
+        case 'stackchart':
+        this.comp.stackchartreq().then(res => {
+          this.hashdata = this.comp.stackGraphData;
+          this.hashdata.layout.height = 500;
+          this.title = 'Stackbar Chart';
+          this.titleService.setTitle(
+            this.route.snapshot.data.title + ' - ' + this.title,
+          );
+        });
+        break;
+        case 'piechart':
+        this.comp.piechartreq().then(res => {
+          this.hashdata = this.comp.pieGraphData;
+          this.hashdata.layout.height = 500;
+          this.title = 'Pie Chart';
+          this.titleService.setTitle(
+            this.route.snapshot.data.title + ' - ' + this.title,
+          );
+        });
+        break;
         case 'transactions-vs-date':
           this.comp.Transactionlinechartreq().then(res => {
             this.hashdata = this.comp.feeGraphData;
@@ -233,6 +253,24 @@ export class GraphDetailComponent implements OnInit {
           // this.hashdata.layout.width =
           //   window.innerWidth - window.innerWidth / 2.8;
           this.title = 'Block Interval';
+        });
+        break;
+      case 'stackchart':
+        this.comp.stackchartreq(p1, p2, p3).then(res => {
+          this.hashdata = this.comp.stackGraphData;
+          this.hashdata.layout.height = 500;
+          // this.hashdata.layout.width =
+          //   window.innerWidth - window.innerWidth / 2.8;
+          this.title = 'Stackbar Chart';
+        });
+        break;
+      case 'piechart':
+        this.comp.piechartreq(p1, p2, p3).then(res => {
+          this.hashdata = this.comp.pieGraphData;
+          this.hashdata.layout.height = 500;
+          // this.hashdata.layout.width =
+          //   window.innerWidth - window.innerWidth / 2.8;
+          this.title = 'Pie Chart';
         });
         break;
       case 'transactions-vs-date':
