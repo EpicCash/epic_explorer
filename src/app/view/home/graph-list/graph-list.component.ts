@@ -105,7 +105,7 @@ export class GraphListComponent implements OnInit {
           res => {
             if (res['status'] == 200) {
               let plabel = res.response.label;
-              let pvalues = res.response.values;
+              let pvalues = res.response.value;
                 this.pg_last =
                   pvalues[pvalues.length - 1];
                 this.piechartFunc(
