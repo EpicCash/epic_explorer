@@ -976,7 +976,10 @@ export class BlockchainBlockController {
       }
       const TotalDifficultyNBlockQuery = await getConnection()
         .query(
-          "select 1 as hash, max(total_difficulty) as total_difficulty, date(DATE_TRUNC('day', timestamp at time zone '" +
+          "select 1 as hash, max(total_difficulty_cuckaroo) as total_difficulty_cuckaroo, \
+          max(total_difficulty_cuckatoo) as total_difficulty_cuckatoo, \
+          max(total_difficulty_progpow) as total_difficulty_progpow, \
+          max(total_difficulty_randomx) as total_difficulty_randomx, date(DATE_TRUNC('day', timestamp at time zone '" +
           process.env.TIME_ZONE +
           "')) as date, count(hash) as blocks \
         from blockchain_block where " +
@@ -989,11 +992,17 @@ export class BlockchainBlockController {
           next(err_msg);
         });
       let date = [],
-        Difficulty = [],
+        DifficultyCuckaroo = [],
+        DifficultyCuckatoo = [],
+        DifficultyProgpow = [],
+        DifficultyRandomx = [],
         blocks = [];
       TotalDifficultyNBlockQuery.forEach(e => {
         date.push(moment(e.date).format('YYYY-MM-DD'));
-        Difficulty.push(parseInt(e.total_difficulty));
+        DifficultyCuckaroo.push(parseInt(e.total_difficulty_cuckaroo));
+        DifficultyCuckatoo.push(parseInt(e.total_difficulty_cuckatoo));
+        DifficultyProgpow.push(parseInt(e.total_difficulty_progpow));
+        DifficultyRandomx.push(parseInt(e.total_difficulty_randomx));
         blocks.push(parseInt(e.blocks));
       });
       response.status(200).json({
@@ -1003,7 +1012,10 @@ export class BlockchainBlockController {
         response: {
           Date: date,
           Blocks: blocks,
-          TotalDifficulty: Difficulty,
+          DifficultyCuckaroo: DifficultyCuckaroo,
+          DifficultyCuckatoo: DifficultyCuckatoo,
+          DifficultyProgpow: DifficultyProgpow,
+          DifficultyRandomx: DifficultyRandomx
         },
       });
     } catch (error) {
@@ -1053,10 +1065,11 @@ export class BlockchainBlockController {
       }
       const stackNBlockQuery = await getConnection()
         .query(
-          "select 1 as hash, max(total_difficulty_cuckaroo) as total_difficulty_cuckaroo, max(total_difficulty_cuckatoo) as total_difficulty_cuckatoo, max(total_difficulty_progpow) as total_difficulty_progpow, max(total_difficulty_randomx) as total_difficulty_randomx, date(DATE_TRUNC('day', timestamp at time zone '" +
+          "select 1 as hash, date(DATE_TRUNC('day', timestamp at time zone '" +
           process.env.TIME_ZONE +
           "')) as date, Count( CASE WHEN proof = 'RandomX' THEN 1 ELSE NULL END) AS RandomX, \
-                          Count( CASE  WHEN proof = 'Cuckoo' THEN 1 ELSE NULL END) AS Cuckoo,\
+                          Count( CASE  WHEN proof = 'Cuckaroo' THEN 1 ELSE NULL END) AS Cuckaroo,\
+                          Count( CASE  WHEN proof = 'Cuckatoo' THEN 1 ELSE NULL END) AS Cuckatoo,\
                           Count( CASE WHEN proof = 'ProgPow' THEN 1 ELSE NULL END) AS ProgPow \
             from blockchain_block where " +
           timeIntervalQry +
@@ -1068,12 +1081,18 @@ export class BlockchainBlockController {
           next(err_msg);
         });
       let date = [],
-        Difficulty = [],
-        blocks = [];
+      Blocks = [],
+        Cuckaroo = [],
+        Cuckatoo = [],
+        ProgPow = [],
+        RandomX = [];
       stackNBlockQuery.forEach(e => {
         date.push(moment(e.date).format('YYYY-MM-DD'));
-        Difficulty.push(parseInt(e.total_difficulty));
-        blocks.push(parseInt(e.blocks));
+        Blocks.push({Cuckaroo: parseInt(e.cuckaroo), Cuckatoo : parseInt(e.cuckatoo), ProgPow : parseInt(e.progpow), RandomX : parseInt(e.randomx)})
+        Cuckaroo.push(parseInt(e.cuckaroo));
+        Cuckatoo.push(parseInt(e.cuckatoo));
+        ProgPow.push(parseInt(e.progpow));
+        RandomX.push(parseInt(e.randomx));
       });
       response.status(200).json({
         status: 200,
@@ -1081,8 +1100,7 @@ export class BlockchainBlockController {
         message: 'Total Difficulty and Blocks Data fetched Successfully',
         response: {
           Date: date,
-          Blocks: blocks,
-          TotalDifficulty: Difficulty,
+          Blocks
         },
       });
     } catch (error) {
