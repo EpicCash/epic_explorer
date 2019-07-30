@@ -528,9 +528,9 @@ export class GraphListComponent implements OnInit {
       ],
       layout: {
         hovermode: 'closest',
-        width: 350,
+        //width: 350,
         height: 250,
-        autosize: true,
+        autosize: false,
         showlegend: false,
         barmode: 'relative',
         xaxis: {
@@ -564,9 +564,9 @@ export class GraphListComponent implements OnInit {
       ],
       layout: {
         hovermode: 'closest',
-        width: 350,
+        //width: 350,
         height: 250,
-        autosize: true,
+        autosize: false,
         showlegend: false,
        xaxis: {
           tickangle: -45,
@@ -720,7 +720,7 @@ export class GraphListComponent implements OnInit {
       ],
       layout: {
         hovermode: 'closest',
-        width: 350,
+       // width: 350,
         height: 250,
         autosize: false,
         xaxis: {
@@ -844,8 +844,8 @@ export class GraphListComponent implements OnInit {
       layout: {
         hovermode: 'closest',
         height: 250,
-        width: 365,
-        autosize: true,
+        //width: 365,
+        autosize: false,
         annotations: [],
         font: {
           size: 8.5,
@@ -912,8 +912,8 @@ export class GraphListComponent implements OnInit {
         },
       ],
       layout: {
-        autosize: true,
-        width: 350,
+        autosize: false,
+       // width: 350,
         height: 250,
         xaxis: {
           showgrid: false,
@@ -960,8 +960,8 @@ export class GraphListComponent implements OnInit {
         },
       ],
       layout: {
-        autosize: true,
-        width: 350,
+        autosize: false,
+        //width: 350,
         height: 250,
         xaxis: {
           showgrid: false,
