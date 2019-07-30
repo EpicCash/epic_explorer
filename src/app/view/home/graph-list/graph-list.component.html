@@ -395,7 +395,7 @@
   <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
     <div class="box_shadow">
       <div class="blocks">
-        <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_VS_DATE' | translate}}</h2>
+        <h2 class="chart_heading d-inline-block">Stackbar Chart</h2>
         <span class="txn_count" *ngIf="this.sg_last">{{
           this.sg_last | number
         }}</span>
@@ -443,7 +443,7 @@
   <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
     <div class="box_shadow">
       <div class="blocks">
-        <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_VS_DATE' | translate}}</h2>
+        <h2 class="chart_heading d-inline-block">Pie Chart</h2>
         <span class="txn_count" *ngIf="this.pg_last">{{
           this.pg_last | number
         }}</span>
