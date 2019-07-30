@@ -1123,7 +1123,7 @@ export class BlockchainBlockController {
         RandomX = [];
       stackNBlockQuery.forEach(e => {
         date.push(moment(e.date).format('YYYY-MM-DD'));
-        Blocks.push({Cuckaroo: parseInt(e.cuckaroo), Cuckatoo : parseInt(e.cuckatoo), ProgPow : parseInt(e.progpow), RandomX : parseInt(e.randomx)})
+        // Blocks.push({Cuckaroo: parseInt(e.cuckaroo), Cuckatoo : parseInt(e.cuckatoo), ProgPow : parseInt(e.progpow), RandomX : parseInt(e.randomx)})
         Cuckaroo.push(parseInt(e.cuckaroo));
         Cuckatoo.push(parseInt(e.cuckatoo));
         ProgPow.push(parseInt(e.progpow));
@@ -1132,10 +1132,13 @@ export class BlockchainBlockController {
       response.status(200).json({
         status: 200,
         timestamp: Date.now(),
-        message: 'Total Difficulty and Blocks Data fetched Successfully',
+        message: 'Stack Data fetched Successfully',
         response: {
           Date: date,
-          Blocks
+          Cuckaroo:Cuckaroo,
+          Cuckatoo:Cuckatoo,
+          ProgPow:ProgPow,
+          RandomX:RandomX
         },
       });
     } catch (error) {
@@ -1197,26 +1200,20 @@ export class BlockchainBlockController {
         .catch(err_msg => {
           next(err_msg);
         });
-      // let date = [],
-      // Blocks = [],
-      //   Cuckaroo = [],
-      //   Cuckatoo = [],
-      //   ProgPow = [],
-      //   RandomX = [];
-      // stackNBlockQuery.forEach(e => {
-      //   date.push(moment(e.date).format('YYYY-MM-DD'));
-      //   Blocks.push({Cuckaroo: parseInt(e.cuckaroo), Cuckatoo : parseInt(e.cuckatoo), ProgPow : parseInt(e.progpow), RandomX : parseInt(e.randomx)})
-      //   Cuckaroo.push(parseInt(e.cuckaroo));
-      //   Cuckatoo.push(parseInt(e.cuckatoo));
-      //   ProgPow.push(parseInt(e.progpow));
-      //   RandomX.push(parseInt(e.randomx));
-      // });
+      let label = [],
+      value = [];
+
+      stackNBlockQuery.forEach(e => {
+        label.push("Cuckaroo","Cuckatoo","ProgPow","RandomX");
+        value.push(parseInt(e.cuckaroo),parseInt(e.cuckatoo),parseInt(e.progpow),parseInt(e.randomx));
+      });
       response.status(200).json({
         status: 200,
         timestamp: Date.now(),
         message: 'Piechart for block is fetched Successfully',
         response: {
-          ...stackNBlockQuery
+          label,
+          value
         },
       });
     } catch (error) {

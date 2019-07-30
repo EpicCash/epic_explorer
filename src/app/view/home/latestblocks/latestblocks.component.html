@@ -49,7 +49,7 @@
         <div class="block_div"><h6 >Age</h6><span class="blck_value">{{ hashvalue.age }}</span></div>
       </div>
       <div class="col-6 col-md-3 tble_col">
-        <div class="block_div"><h6>Difficulty</h6><span class="blck_value">{{ hashvalue.target_difficulty | number }}</span></div>
+        <div class="block_div"><h6>Difficulty</h6><span class="blck_value" title="Cuckaroo : {{ hashvalue.target_difficulty_cuckaroo | number }}, Cuckatoo :  {{ hashvalue.target_difficulty_cuckatoo | number }}, Progpow : {{ hashvalue.target_difficulty_progpow | number }}, Randomx : {{ hashvalue.target_difficulty_randomx | number }}">{{ hashvalue.target_difficulty_cuckaroo | number }}, {{ hashvalue.target_difficulty_cuckatoo | number }}, {{ hashvalue.target_difficulty_progpow | number }}, {{ hashvalue.target_difficulty_randomx | number }}</span></div>
       </div>
       <div class="col-6 col-sm-6 col-md-3 tble_col">
         <div class="block_div"><h6 class="mb-0">Pow Algo</h6><span class="blck_value">{{ hashvalue.powalgo }}</span></div>
