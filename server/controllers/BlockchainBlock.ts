@@ -260,6 +260,41 @@ export class BlockchainBlockController {
       this.StackBlock,
     );
 
+        /**
+     * @swagger
+     * /epic_explorer/v1/blockchain_block/blockpiechart:
+     *   get:
+     *     tags:
+     *       - name: STACK_BLOCK | STACK_BLOCK CONTROLLER
+     *     description: To get Total Difficulty and Number of Blocks
+     *     summary: To get Total Difficulty and Number of Blocks
+     *     consumes:
+     *       - application/json
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: FromDate
+     *         description: Enter the From date
+     *         in: query
+     *         type: string
+     *       - name: ToDate
+     *         description: Enter the To date
+     *         in: query
+     *         type: string
+     *       - name: Interval
+     *         description: Try to give Intevals such as 1 week/ 15 days/ 30 days/ 60 days/ 3 months
+     *         in: query
+     *         type: string
+     *     responses:
+     *       200:
+     *         description: Total Difficulty and No. of blocks   fetched successfully
+     */
+    this.router.get(
+      `${this.path}/blockpiechart`,
+      validationMiddleware(TotalDifficultyNBlockDto, true),
+      this.BlockPieChart,
+    );
+    
     /**
      * @swagger
      * /epic_explorer/v1/blockchain_block/hashrate:
@@ -1101,6 +1136,87 @@ export class BlockchainBlockController {
         response: {
           Date: date,
           Blocks
+        },
+      });
+    } catch (error) {
+      next(new InternalServerErrorException(error));
+    }
+  };
+
+  private BlockPieChart = async (
+    request: Request,
+    response: Response,
+    next: NextFunction,
+  ) => {
+    try {
+      const TotalDifficultyNBlockRequestData: TotalDifficultyNBlockDto =
+        request.query;
+      if (TotalDifficultyNBlockRequestData.Interval) {
+        var timeIntervalQry =
+          "timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "' > current_date - interval '" +
+          TotalDifficultyNBlockRequestData.Interval +
+          "'";
+      } else if (
+        TotalDifficultyNBlockRequestData.FromDate ||
+        TotalDifficultyNBlockRequestData.ToDate
+      ) {
+        let fromdate = moment(TotalDifficultyNBlockRequestData.FromDate)
+          .utc()
+          .format('YYYY-MM-DD');
+        let todate = moment(TotalDifficultyNBlockRequestData.ToDate)
+          .utc()
+          .format('YYYY-MM-DD');
+
+        var timeIntervalQry =
+          "timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "'  BETWEEN SYMMETRIC '" +
+          fromdate +
+          "' AND '" +
+          todate +
+          "'";
+      } else {
+        var timeIntervalQry =
+          "timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "' > current_date - interval '30 days'";
+      }
+      const stackNBlockQuery = await getConnection()
+        .query(
+          "SELECT hash,total_edge_bits, RandomX, Cuckaroo, Cuckatoo, ProgPow, Round(RandomX * 100.0 / total_edge_bits,2) AS RandomXper,  Round(Cuckaroo * 100.0 / total_edge_bits,2) AS Cuckarooper, Round(Cuckatoo * 100.0 / total_edge_bits,2) AS Cuckatooper, Round(ProgPow * 100.0 / total_edge_bits,2) AS ProgPowper from (select 1 as hash, COUNT(edge_bits) AS total_edge_bits, \
+          Count( CASE WHEN proof = 'RandomX' THEN 1 ELSE NULL END) AS RandomX,\
+           Count( CASE  WHEN proof = 'Cuckaroo' THEN 1 ELSE NULL END) AS Cuckaroo,\
+           Count( CASE  WHEN proof = 'Cuckatoo' THEN 1 ELSE NULL END) AS Cuckatoo,\
+            Count( CASE WHEN proof = 'ProgPow' THEN 1 ELSE NULL END) AS ProgPow \
+          from blockchain_block  where " +
+          timeIntervalQry +
+          ")t"
+        )
+        .catch(err_msg => {
+          next(err_msg);
+        });
+      // let date = [],
+      // Blocks = [],
+      //   Cuckaroo = [],
+      //   Cuckatoo = [],
+      //   ProgPow = [],
+      //   RandomX = [];
+      // stackNBlockQuery.forEach(e => {
+      //   date.push(moment(e.date).format('YYYY-MM-DD'));
+      //   Blocks.push({Cuckaroo: parseInt(e.cuckaroo), Cuckatoo : parseInt(e.cuckatoo), ProgPow : parseInt(e.progpow), RandomX : parseInt(e.randomx)})
+      //   Cuckaroo.push(parseInt(e.cuckaroo));
+      //   Cuckatoo.push(parseInt(e.cuckatoo));
+      //   ProgPow.push(parseInt(e.progpow));
+      //   RandomX.push(parseInt(e.randomx));
+      // });
+      response.status(200).json({
+        status: 200,
+        timestamp: Date.now(),
+        message: 'Piechart for block is fetched Successfully',
+        response: {
+          ...stackNBlockQuery
         },
       });
     } catch (error) {
