@@ -22,6 +22,7 @@ export class GraphListComponent implements OnInit {
   public heatMapGrowthData: any = [];
   public transcationGraphData: any = [];
   public stackGraphData: any = [];
+  public pieGraphData: any = [];
 
   public lg_last: any = '';
   public ag_last: any = '';
@@ -34,6 +35,7 @@ export class GraphListComponent implements OnInit {
   public tg_last: any = '';
   public hg_last: any = '';
   public sg_last: any = '';
+  public pg_last: any = '';
 
   public selectedItem: Number = 3;
   public selectedItem3: Number = 3;
@@ -44,6 +46,7 @@ export class GraphListComponent implements OnInit {
   public selectedItem8: Number = 1;
   public selectedItem9: Number = 3;
   public selectedItem10: Number = 3;
+  public selectedItem11: Number = 3;
 
   public tInput: any;
   public tOutput: any;
@@ -81,6 +84,40 @@ export class GraphListComponent implements OnInit {
     /* Stack chart fetching */
     this.stackchartreq();
 
+    /* Pie chart fetching */
+    this.piechartreq();
+
+  }
+
+  piechartreq(
+    fromDate = '',
+    ToDate = '',
+    interval = '',
+  ) {
+    return new Promise((resolve, reject) => {
+      let params = new HttpParams();
+      params = params.append('FromDate', fromDate);
+      params = params.append('ToDate', ToDate);
+      params = params.append('Interval', interval);
+      this.chartService
+        .apiGetRequest(params, '/blockchain_block/blockpiechart')
+        .subscribe(
+          res => {
+            if (res['status'] == 200) {
+              let plabel = res.response.label;
+              let pvalues = res.response.values;
+                this.pg_last =
+                  pvalues[pvalues.length - 1];
+                this.piechartFunc(
+                  plabel,
+                  pvalues,
+                );
+              resolve();
+            }
+          },
+          error => {},
+        );
+    });
   }
 
   stackchartreq(
@@ -98,13 +135,19 @@ export class GraphListComponent implements OnInit {
         .subscribe(
           res => {
             if (res['status'] == 200) {
-              let DifficultychartDate = res.response.Date;
-              let Difficultychartval = res.response.TotalDifficulty;
-                this.lg_last =
-                  Difficultychartval[Difficultychartval.length - 1];
+              let sDate = res.response.Date;
+              let Cuckaroo = res.response.Cuckaroo;
+              let Cuckatoo = res.response.Cuckatoo;
+              let ProgPow = res.response.ProgPow;
+              let RandomX = res.response.RandomX;
+                this.sg_last =
+                RandomX[RandomX.length - 1];
                 this.stackchartFunc(
-                  DifficultychartDate,
-                  Difficultychartval,
+                  sDate,
+                  Cuckaroo,
+                  Cuckatoo,
+                  ProgPow,
+                  RandomX
                 );
               resolve();
             }
@@ -223,21 +266,25 @@ export class GraphListComponent implements OnInit {
             if (res['status'] == 200) {
               let mDate = res.response.date;
               let ProgPow = res.response.ProgPow;
-              let Cuckoo = res.response.Cuckoo;
+              let Cuckaroo = res.response.Cuckaroo;
+              let Cuckatoo = res.response.Cuckatoo;
               let RandomX = res.response.RandomX;
               
               let ProgPowper = res.response.ProgPowper;
-              let Cuckooper = res.response.Cuckooper;
+              let Cuckarooper = res.response.Cuckarooper;
+              let Cuckatooper = res.response.Cuckatooper;
               let RandomXper = res.response.RandomXper;
 
               this.dg_last = RandomXper[RandomXper.length - 1];
               this.blockminedFunc(
                 mDate,
                 ProgPow,
-                Cuckoo,
+                Cuckaroo,
+                Cuckatoo,
                 RandomX,
                 ProgPowper,
-                Cuckooper,
+                Cuckarooper,
+                Cuckatooper,
                 RandomXper,
               );
               resolve();
@@ -337,12 +384,18 @@ export class GraphListComponent implements OnInit {
             if (res['status'] == 200) {
               let DifficultychartDate = res.response.Date;
               if (fordifficult) {
-                let Difficultychartval = res.response.TotalDifficulty;
+                let DifficultyCuckaroo = res.response.DifficultyCuckaroo;
+                let DifficultyCuckatoo = res.response.DifficultyCuckatoo;
+                let DifficultyProgpow = res.response.DifficultyProgpow;
+                let DifficultyRandomx = res.response.DifficultyRandomx;
                 this.lg_last =
-                  Difficultychartval[Difficultychartval.length - 1];
+                DifficultyCuckaroo[DifficultyCuckaroo.length - 1];
                 this.difficultyChartFunc(
                   DifficultychartDate,
-                  Difficultychartval,
+                  DifficultyCuckaroo,
+                  DifficultyCuckatoo,
+                  DifficultyProgpow,
+                  DifficultyRandomx
                 );
               }
               if (forblocks) {
@@ -358,18 +411,48 @@ export class GraphListComponent implements OnInit {
     });
   }
 
-  difficultyChartFunc(DifficultychartDate, Difficultychartval) {
+  difficultyChartFunc(DifficultychartDate, DifficultyCuckaroo, DifficultyCuckatoo, DifficultyProgpow, DifficultyRandomx) {
     this.linearGraphData = {
       data: [
         {
           x: DifficultychartDate,
-          y: Difficultychartval,
-          text: Difficultychartval,
+          y: DifficultyCuckaroo,
+          text: DifficultyCuckaroo,
           mode: 'lines+markers',
           type: 'scatter',
           name: '',
           line: { color: '#ac3333' },
-          hovertemplate: '%{x}<br> Total Difficulty : %{text:,}',
+          hovertemplate: '%{x}<br> Cuckaroo : %{text:,}',
+        },
+        {
+          x: DifficultychartDate,
+          y: DifficultyCuckatoo,
+          text: DifficultyCuckatoo,
+          mode: 'lines+markers',
+          type: 'scatter',
+          name: '',
+          line: { color: '#A876C6' },
+          hovertemplate: '%{x}<br> Cuckatoo : %{text:,}',
+        },
+        {
+          x: DifficultychartDate,
+          y: DifficultyProgpow,
+          text: DifficultyProgpow,
+          mode: 'lines+markers',
+          type: 'scatter',
+          name: '',
+          line: { color: '#54CFDC' },
+          hovertemplate: '%{x}<br> Progpow : %{text:,}',
+        },
+        {
+          x: DifficultychartDate,
+          y: DifficultyRandomx,
+          text: DifficultyRandomx,
+          mode: 'lines+markers',
+          type: 'scatter',
+          name: '',
+          line: { color: '#77817C' },
+          hovertemplate: '%{x}<br> Randomx : %{text:,}',
         },
       ],
       layout: {
@@ -394,38 +477,98 @@ export class GraphListComponent implements OnInit {
     };
   }
 
-  stackchartFunc(DifficultychartDate, Blockval) {
+  stackchartFunc(sDate, Cuckaroo, Cuckatoo, ProgPow, RandomX) {
     this.stackGraphData = {
       data: [
         {
-          x: ['giraffes', 'orangutans', 'monkeys'],
-          y: [20, 14, 23],
-          name: 'SF Zoo',
+          x: sDate,
+          y: Cuckaroo,
+          name: '',
           type: 'bar',
+          text: Cuckaroo,
+          hovertemplate: '%{x}<br> Cuckatoo : %{text:,}',
           marker: {
-            color: Blockval,
-            colorscale: 'Viridis',
+            color: '#77817C',
           },
         },
         {
-          x: ['giraffes', 'orangutans', 'monkeys'],
-          y: [12, 18, 29],
-          name: 'LA Zoo',
+          x: sDate,
+          y: Cuckatoo,
+          name: '',
           type: 'bar',
+          text: Cuckatoo,
+          hovertemplate: '%{x}<br> Cuckaroo : %{text:,}',
           marker: {
-            color: Blockval,
-            colorscale: 'Viridis',
+            color: '#54CFDC',
+          },
+        },
+        {
+          x: sDate,
+          y: ProgPow,
+          name: '',
+          type: 'bar',
+          text: ProgPow,
+          hovertemplate: '%{x}<br> ProgPow : %{text:,}',
+          marker: {
+            color: '#825f5f',
+          },
+        },
+        {
+          x: sDate,
+          y: RandomX,
+          name: '',
+          type: 'bar',
+          text: RandomX,
+          hovertemplate: '%{x}<br> RandomX : %{text:,}',
+          marker: {
+            color: '#a9df5f',
           },
         }
 
       ],
       layout: {
         hovermode: 'closest',
+        width: 350,
         height: 250,
         autosize: true,
         showlegend: false,
-        barmode: 'stack',
+        barmode: 'relative',
         xaxis: {
+          tickangle: -45,
+          tickformat: '%m-%d',
+        },
+        yaxis: {
+          title: 'Block',
+        },
+        margin: {
+          l: 50,
+          r: 50,
+          b: 50,
+          t: 50,
+        },
+      },
+      options: null,
+    };
+  }
+
+
+  piechartFunc(plabel, pvalues) {
+     this.pieGraphData = {
+      data: [
+        {
+          values: pvalues,
+          labels: plabel,
+          type: 'pie'
+        }
+
+      ],
+      layout: {
+        hovermode: 'closest',
+        width: 350,
+        height: 250,
+        autosize: true,
+        showlegend: false,
+       xaxis: {
           tickangle: -45,
           tickformat: '%m-%d',
         },
@@ -598,19 +741,31 @@ export class GraphListComponent implements OnInit {
     };
   }
 
-  blockminedFunc(mDate,ProgPow, Cuckoo, RandomX, ProgPowper, Cuckooper, RandomXper) {
+  blockminedFunc(mDate,ProgPow, Cuckaroo, Cuckatoo, RandomX, ProgPowper, Cuckarooper, Cuckatooper, RandomXper) {
     this.doubleareaGraphData = {
       data: [
         {
           x: mDate,
-          y: Cuckooper,
-          text: Cuckoo,
-          hovertemplate: 'Cuckoo :%{y} % ( %{text:,} )',
+          y: Cuckarooper,
+          text: Cuckaroo,
+          hovertemplate: 'Cuckaroo :%{y} % ( %{text:,} )',
           name: '',
           fill: 'tozeroy',
           type: 'line',
           line: {
             color: '#f5ca19',
+          },
+        },
+        {
+          x: mDate,
+          y: Cuckatooper,
+          text: Cuckatoo,
+          hovertemplate: 'Cuckatoo :%{y} % ( %{text:,} )',
+          name: '',
+          fill: 'tozeroy',
+          type: 'line',
+          line: {
+            color: '#f5c1a9',
           },
         },
         {

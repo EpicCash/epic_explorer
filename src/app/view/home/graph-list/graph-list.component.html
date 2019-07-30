@@ -396,8 +396,8 @@
     <div class="box_shadow">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_VS_DATE' | translate}}</h2>
-        <span class="txn_count" *ngIf="this.tg_last">{{
-          this.tg_last | number
+        <span class="txn_count" *ngIf="this.sg_last">{{
+          this.sg_last | number
         }}</span>
 
         <div class="chart_show">
@@ -435,6 +435,54 @@
       </div>
       <div class="explore_all text-right">
         <a routerLink="/chart/stackchart"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
+              class="fa fa-long-arrow-right"></i></span></a>
+      </div>
+    </div>
+  </div>
+
+  <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+    <div class="box_shadow">
+      <div class="blocks">
+        <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_VS_DATE' | translate}}</h2>
+        <span class="txn_count" *ngIf="this.pg_last">{{
+          this.pg_last | number
+        }}</span>
+
+        <div class="chart_show">
+          <epic-explorer-plotly *ngIf="pieGraphData.data" [data]="pieGraphData.data" [layout]="pieGraphData.layout">
+          </epic-explorer-plotly>
+          <div *ngIf="!pieGraphData.data" class="feedback_div news_desc text-center">
+            <div class="graph_img background_loading mx-auto mb-3"></div>
+            <div class=" p-3 bg-white">
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day_filter">
+        <a href="JavaScript:void(0);" (click)="piechartreq('', '', '1 week'); selectedItem10 = 1" id="1"
+          #item1 [ngClass]="{ active: selectedItem11 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+        <a href="JavaScript:void(0);" (click)="
+        piechartreq('', '', '15 days'); selectedItem11 = 2
+          " id="2" #item2 [ngClass]="{ active: selectedItem11 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
+        <a href="JavaScript:void(0);" (click)="
+        piechartreq('', '', '30 days'); selectedItem10 = 3
+          " id="3" #item3 [ngClass]="{ active: selectedItem11 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
+        <a href="JavaScript:void(0);" (click)="
+        piechartreq('', '', '60 days'); selectedItem10 = 4
+          " id="4" #item4 [ngClass]="{ active: selectedItem11 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
+        <a href="JavaScript:void(0);" (click)="
+        piechartreq('', '', '3 months'); selectedItem10 = 5
+          " id="5" #item5 [ngClass]="{ active: selectedItem11 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+      </div>
+      <div class="explore_all text-right">
+        <a routerLink="/chart/piechart"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
               class="fa fa-long-arrow-right"></i></span></a>
       </div>
     </div>
