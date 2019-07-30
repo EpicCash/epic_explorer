@@ -1327,14 +1327,14 @@ export class BlockchainBlockController {
 
       const BlockchainLatestBlockQuery = await getConnection()
         .query(
-          'SELECT timestamp,height,edge_bits,hash,secondary_scaling, previous_id, total_difficulty FROM blockchain_block ORDER BY timestamp DESC LIMIT 1',
+          'SELECT timestamp,height,edge_bits,hash,secondary_scaling, previous_id, total_difficulty_cuckaroo, total_difficulty_cuckatoo, total_difficulty_progpow, total_difficulty_randomx FROM blockchain_block ORDER BY timestamp DESC LIMIT 1',
         )
         .catch(err_msg => {
           next(err_msg);
         });
       const BlockchainPreviousBlockQuery = await getConnection()
         .query(
-          'SELECT total_difficulty FROM blockchain_block WHERE hash=' +
+          'SELECT total_difficulty_cuckaroo, total_difficulty_cuckatoo, total_difficulty_progpow, total_difficulty_randomx FROM blockchain_block WHERE hash=' +
           "'" +
           BlockchainLatestBlockQuery[0].previous_id +
           "'",
@@ -1450,9 +1450,18 @@ export class BlockchainBlockController {
       }
 
       if (BlockchainLatestBlockQuery[0].previous_id) {
-        var targetdifficulty =
-          BlockchainLatestBlockQuery[0].total_difficulty -
-          BlockchainPreviousBlockQuery[0].total_difficulty;
+        var targetdifficultycuckaroo =
+          BlockchainLatestBlockQuery[0].total_difficulty_cuckaroo -
+          BlockchainPreviousBlockQuery[0].total_difficulty_cuckaroo;
+        var targetdifficultycuckatoo =
+          BlockchainLatestBlockQuery[0].total_difficulty_cuckatoo -
+          BlockchainPreviousBlockQuery[0].total_difficulty_cuckatoo;
+        var targetdifficultyprogpow =
+          BlockchainLatestBlockQuery[0].total_difficulty_progpow -
+          BlockchainPreviousBlockQuery[0].total_difficulty_progpow;
+        var targetdifficultyrandomx =
+          BlockchainLatestBlockQuery[0].total_difficulty_randomx -
+          BlockchainPreviousBlockQuery[0].total_difficulty_randomx;
       }
 
       block_height = BlockchainLatestBlockQuery[0].height;
@@ -1467,7 +1476,10 @@ export class BlockchainBlockController {
           letest_block_duration,
           coin_existence,
           difficulty,
-          targetdifficulty,
+          targetdifficultycuckaroo,
+          targetdifficultycuckatoo,
+          targetdifficultyprogpow,
+          targetdifficultyrandomx
         },
       });
     } catch (error) {
