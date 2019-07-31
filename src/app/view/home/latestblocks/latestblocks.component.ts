@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { ChartService } from '../../../shared/services/chart.service';
 import { FormGroup, FormControl } from '@angular/forms';
-
 import { TransServiceService } from '../../../shared/services/trans-service.service';
+import { map, catchError } from 'rxjs/operators';
+import { throwError} from 'rxjs';
 
 @Component({
   selector: 'epic-explorer-latestblocks',
@@ -20,9 +21,10 @@ export class LatestblocksComponent implements OnInit {
     pagesize: new FormControl(20),
   });
 
-  constructor(private chartService: ChartService,public translate: TransServiceService) {}
+  constructor(private chartService: ChartService,public translate: TransServiceService,public http: HttpClient) {}
 
   ngOnInit() {
+    this. getpeersList();
     this.gettinghashList(1, 20);
   }
 
@@ -40,6 +42,20 @@ export class LatestblocksComponent implements OnInit {
       error => {},
     );
   }
+
+  public getpeersList() {
+    console.log('EEE');
+    this.http
+    .get('http://5.9.174.122:3413/v1/peers/connected')
+    .pipe(
+      map(res => {
+        console.log('reeeee',res);
+      }),
+      catchError((error: HttpErrorResponse): any => throwError(error)),
+    );
+  }
+
+  
 
   public onClickPlus(height) {
     // this.beforeClick = true;
