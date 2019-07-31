@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ChartService } from '../../../shared/services/chart.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { TransServiceService } from '../../../shared/services/trans-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'epic-explorer-graph-list',
@@ -54,7 +55,16 @@ export class GraphListComponent implements OnInit {
   public tDate: any;
   public tHour: any;
 
-  constructor(private chartService: ChartService, private http: HttpClient,public translate: TransServiceService) {}
+  viewchartvar: boolean;
+
+  constructor(private chartService: ChartService, private http: HttpClient,public translate: TransServiceService,    private router: Router,
+    ) {
+    if (this.router.url == '/all') {
+      this.viewchartvar = true;
+    } else {
+      this.viewchartvar = false;
+    }
+  }
 
   ngOnInit() {
     /* Total Difficulty and blocks chart fetching */
@@ -79,7 +89,7 @@ export class GraphListComponent implements OnInit {
     this.Transactionlinechartreq();
 
     /* Transaction2line chart fetching */
-    this.Transactiondoublelinechartreq();
+    // this.Transactiondoublelinechartreq();
 
     /* Stack chart fetching */
     this.stackchartreq();
@@ -722,13 +732,19 @@ export class GraphListComponent implements OnInit {
         hovermode: 'closest',
        // width: 350,
         height: 250,
-        autosize: false,
+        autosize: true,
         xaxis: {
           tickformat: '%m-%d',
           tickangle: -45,
+          rangemode: 'nonnegative',
+          fixedrange: true,
+          showgrid: true,
         },
         yaxis: {
           title: 'Block / sec',
+          rangemode: 'nonnegative',
+          fixedrange: true,
+          showgrid: true,
         },
         margin: {
           l: 50,

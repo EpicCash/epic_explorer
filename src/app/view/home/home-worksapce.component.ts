@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Utils } from 'src/app/shared/utils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'epic-explorer-home-worksapce',
@@ -16,7 +17,7 @@ import { Utils } from 'src/app/shared/utils';
         </div>
         <div
           *ngIf="viewchartvar"
-          (click)="viewchartenable()"
+          routerLink="/all"
           class="text-center my-3"
         >
           <button class="btn btn_primary align-middle">
@@ -42,9 +43,15 @@ import { Utils } from 'src/app/shared/utils';
 })
 export class HomeWorksapceComponent extends Utils
   implements OnInit, AfterViewInit {
-  viewchartvar: boolean = true;
-  constructor(@Inject(DOCUMENT) public document: Document) {
+  viewchartvar: boolean;
+  constructor(@Inject(DOCUMENT) public document: Document,
+  private router: Router) {
     super(document);
+    if (this.router.url == '/all') {
+      this.viewchartvar = false;
+    } else {
+      this.viewchartvar = true;
+    }
   }
 
   ngOnInit() {}
