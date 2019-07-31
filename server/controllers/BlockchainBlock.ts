@@ -1009,7 +1009,7 @@ export class BlockchainBlockController {
           process.env.TIME_ZONE +
           "' > current_date - interval '30 days'";
       }
-      const TotalDifficultyNBlockQuery = await getConnection()
+      const BlockQuery = await getConnection()
         .query(
           "select 1 as hash, max(total_difficulty_cuckaroo) as total_difficulty_cuckaroo, \
           max(total_difficulty_cuckatoo) as total_difficulty_cuckatoo, \
@@ -1026,18 +1026,35 @@ export class BlockchainBlockController {
         .catch(err_msg => {
           next(err_msg);
         });
+        const TotalDifficultyNBlockQuery = await getConnection()
+        .query(
+          "select 1 as hash, total_difficulty_cuckaroo as total_difficulty_cuckaroo, \
+          total_difficulty_cuckatoo as total_difficulty_cuckatoo, \
+          total_difficulty_progpow as total_difficulty_progpow, \
+          total_difficulty_randomx as total_difficulty_randomx, date(DATE_TRUNC('day', timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "')) as date \
+        from blockchain_block where " +
+          timeIntervalQry +
+          " order by date",
+        )
+        .catch(err_msg => {
+          next(err_msg);
+        });
       let date = [],
         DifficultyCuckaroo = [],
         DifficultyCuckatoo = [],
         DifficultyProgpow = [],
         DifficultyRandomx = [],
         blocks = [];
-      TotalDifficultyNBlockQuery.forEach(e => {
-        date.push(moment(e.date).format('YYYY-MM-DD'));
+        TotalDifficultyNBlockQuery.forEach(e => {
         DifficultyCuckaroo.push(parseInt(e.total_difficulty_cuckaroo));
         DifficultyCuckatoo.push(parseInt(e.total_difficulty_cuckatoo));
         DifficultyProgpow.push(parseInt(e.total_difficulty_progpow));
         DifficultyRandomx.push(parseInt(e.total_difficulty_randomx));
+      });
+        BlockQuery.forEach(e => {
+          date.indexOf(moment(e.date).format('YYYY-MM-DD')) < 0 ? date.push(moment(e.date).format('YYYY-MM-DD')) : ''
         blocks.push(parseInt(e.blocks));
       });
       response.status(200).json({

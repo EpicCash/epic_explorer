@@ -261,7 +261,47 @@
 
 </div>
 
-  <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+  <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+      <!-- <div [ngClass]="{'box_shadow' : true, 'invisible h-0' : viewchart}">
+          <div [ngClass]="{'blocks' : true, 'invisible h-0' : viewchart}">
+            <h2 class="chart_heading d-inline-block"><a routerLink="/chart/hashrate-growth-chart">HashRate Growth Chart</a></h2>
+            <span class="txn_count" *ngIf="this.hg_last">{{
+              this.hg_last | number
+            }}</span>
+            <div class="chart_show">
+              <plotly-plot *ngIf="blockGraphData.data" [data]="blockGraphData.data" [layout]="blockGraphData.layout">
+              </plotly-plot>
+              <div *ngIf="!blockGraphData.data" class="feedback_div news_desc text-center">
+                <div class="graph_img background_loading mx-auto mb-3"></div>
+                <div class=" p-3 bg-white">
+                  <p class="mb-2 background_loading para_load"></p>
+                  <p class="mb-2 background_loading para_load"></p>
+                  <p class="mb-2 background_loading para_load"></p>
+                  <p class="mb-2 background_loading para_load"></p>
+                  <p class="mb-2 background_loading para_load"></p>
+                  <p class="mb-2 background_loading para_load"></p>
+                  <p class="mb-2 background_loading para_load"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="day_filter">
+              <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '1 week'); selectedItem9 = 1" id="1" #item1
+              [ngClass]="{ active: selectedItem9 == item1.id, txt_primay: true }">1 week</a>
+            <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '15 days'); selectedItem9 = 2" id="2" #item2
+              [ngClass]="{ active: selectedItem9 == item2.id, day15_txt: true }">15 days</a>
+            <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '30 days'); selectedItem9 = 3" id="3" #item3
+              [ngClass]="{ active: selectedItem9 == item3.id, day30_txt: true }">30 days</a>
+            <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '60 days'); selectedItem9 = 4" id="4" #item4
+              [ngClass]="{ active: selectedItem9 == item4.id, day60_txt: true }">60 days</a>
+            <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '3 months'); selectedItem9 = 5" id="5" #item5
+              [ngClass]="{ active: selectedItem9 == item5.id, day3m_txt: true }">3 months</a>
+          </div>
+          <div class="explore_all text-right">
+            <a routerLink="/chart/hashrate-growth-chart"><span class="text-uppercase d-block">explore it <i
+                  class="fa fa-long-arrow-right"></i></span></a>
+          </div>
+        </div> -->
       <div class="box_shadow">
           <div class="blocks">
             <h2 class="chart_heading d-inline-block">Blocks by Algorithm</h2>
@@ -308,7 +348,7 @@
           </div>
         </div>
   </div>
-  <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+  <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
     <div class="box_shadow">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.BLOCK_INTERVAL' | translate}}</h2>
@@ -349,7 +389,7 @@
       </div>
     </div>
   </div>
-  <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+  <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
     <div class="box_shadow">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_VS_DATE' | translate}}</h2>
