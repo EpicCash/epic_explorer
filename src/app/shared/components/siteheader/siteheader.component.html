@@ -16,6 +16,20 @@
         </button>
       </div>
       <div class="mble_view_hdr">
+          <span>You are on </span>
+          <ul class="list-unstyled d-inline-block">
+            <li class="nav-item dropdown">
+
+              <a class="nav-link dropdown-toggle bg-white" href="#" id="navbarDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Beta
+              </a>
+              <div class="dropdown-menu net_dropdwn" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item p-2" href="https://explorer2.epic.tech">Alpha</a>
+              </div>
+            </li>
+          </ul>
+          <span> Network </span>
         <div class="nav-item dropdown bg-white px-2 d-inline-block ml-2 order-1 order-sm-2">
           <span class="flag " [ngStyle]="{ 'background-image': 'url(assets/img/' + translate.getCurrentLang() + '.jpg)'}"></span> 
           <!--<span class="flag"  ngIf="translate.getCurrentLang() =='de'" style="background-image: url('assets/img/german.jpg')"></span>-->
