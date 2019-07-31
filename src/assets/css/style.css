@@ -435,6 +435,9 @@ a:focus {
 .link_to_detail:hover{color: #0091ff;text-decoration: underline;}
 .mobile_table{border-bottom: 1px solid #dee2e6;position: relative;}
 .mobile_table .tble_col{padding: 0;}
+.mobile_table:nth-child(even) {
+  background: #eee;
+}
 .expnd_blck{display: none;}
 .block_div h5{color: #555;font-size: 16px;}
 .blck_value{font-size: 15px;}
