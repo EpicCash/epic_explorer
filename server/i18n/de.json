@@ -9,7 +9,7 @@
 	"block-interval" : "Sperrintervall",
 	"transactions-vs-date" : "Transaktionen gegen Datum",
     "home": {
-        "HEADER_TEXT": "Sie befinden sich in Testnet",
+        "HEADER_TEXT": "Sie befinden sich in Beta",
         "COUNTDOWN": "Mainnet-Countdown",
         "EXPLORE_IT": "Entdecke es",
         "VIEWALL": "Alle Diagramme anzeigen",

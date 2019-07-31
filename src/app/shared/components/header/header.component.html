@@ -4,13 +4,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
 		  <li *ngIf="TimeArr" class="d-none d-sm-inline-block"><h1 class="test_msg d-inline-block mb-0 align-middle mr-3">{{'home.HEADER_TEXT' | translate}}</h1>
-            <h1 class="test_msg align-middle mr-3 d-inline-block mb-0">{{'home.COUNTDOWN' | translate}}</h1>
+            <!-- <h1 class="test_msg align-middle mr-3 d-inline-block mb-0">{{'home.COUNTDOWN' | translate}}</h1>
                 <ul class="list-unstyled d-inline-block bg-white p-2 mb-0 timer">
                     <li class="d-inline-block"><span id="days">{{TimeArr.d}}d:</span></li>
                     <li class="d-inline-block"><span id="hours">{{TimeArr.h}}h:</span></li>
                     <li class="d-inline-block"><span id="minutes">{{TimeArr.m}}m:</span></li>
                     <li class="d-inline-block"><span id="seconds">{{TimeArr.s}}s</span></li>
-                  </ul>
+                  </ul> -->
 
           </li>
           <li class="nav-item px-2 dropdown bg-white">
@@ -39,14 +39,14 @@
   </nav>
  <div *ngIf="TimeArr" class="d-sm-none text-center">
       <h1 class="test_msg d-inline-block mb-0 align-middle mr-3">{{'home.HEADER_TEXT' | translate}}</h1>
-      <h1 class="test_msg align-middle mr-3 d-inline-block mb-0">{{'home.COUNTDOWN' | translate}}
+      <!-- <h1 class="test_msg align-middle mr-3 d-inline-block mb-0">{{'home.COUNTDOWN' | translate}}
           <ul class="list-unstyled d-inline-block bg-white p-2 mb-0">
             <li class="d-inline-block"><span id="days">{{TimeArr.d}}d:</span></li>
             <li class="d-inline-block"><span id="hours">{{TimeArr.h}}h:</span></li>
             <li class="d-inline-block"><span id="minutes">{{TimeArr.m}}m:</span></li>
             <li class="d-inline-block"><span id="seconds">{{TimeArr.s}}s</span></li>
             </ul>
-      </h1>
+      </h1> -->
   </div>
   <h2 class="text-center my-3 logo_txt">
     <span class="txt_primary">Epic</span> Explorer

@@ -624,4 +624,8 @@ margin-right: 10px;
   margin-top: -4px;
 }
 .langbut:focus{outline: none;}
-.difficulty_datas{font-size: 15px;}
+.detail_div .difficulty_datas{font-size: 14px !important; color: #0091ff}
+.net_dropdwn{
+  min-width: 5rem;
+  padding: 0;
+}

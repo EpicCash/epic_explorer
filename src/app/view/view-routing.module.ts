@@ -8,6 +8,13 @@ const viewRoutes: Routes = [
     path: '',
     loadChildren: './home/home.module#HomeModule',
   },
+  {
+    path: 'all',
+    loadChildren: './home/home.module#HomeModule',
+    data: {
+      title: 'Epic Explorer - Home',
+    },
+  }
 ];
 
 const siteRoutes: Routes = [
@@ -18,6 +25,9 @@ const siteRoutes: Routes = [
   {
     path: 'chart',
     loadChildren: './graph-view/graph-view.module#GraphViewModule',
+    data: {
+      title: 'Epic Explorer',
+    },
   },
 ];
 

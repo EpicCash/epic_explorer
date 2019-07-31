@@ -32,7 +32,7 @@
               <a href="JavaScript:void(0);" (click)="ChartFromView(GraphtDate, GraphtHour, GraphtInput,'Input'); selectedItem8 = 1" id="1" #item1
               [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">{{'home.INPUT' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="ChartFromView(GraphtDate, GraphtHour, GraphtKernal,'Kernal'); selectedItem8 = 2" id="2" #item2
-              [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">{{'home.KERNEL' | translate}}</a>
+              [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">{{'home.KERNELS' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="ChartFromView(GraphtDate, GraphtHour, GraphtOutput,'Output'); selectedItem8 = 3" id="3" #item3
               [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">{{'home.OUTPUT' | translate}}</a>
             </div>
@@ -45,14 +45,14 @@
       <div class="col-md-3">
           <div *ngIf="TimeArr" class="box_shadow_large detail_div p-3 mb-4">
               <h1 class="test_msg align-middle mr-3 pl-3">{{'home.HEADER_TEXT' | translate}}</h1>
-              <h1 class="test_msg align-middle mb-0 pl-3">{{'home.COUNTDOWN' | translate}}
+              <!-- <h1 class="test_msg align-middle mb-0 pl-3">{{'home.COUNTDOWN' | translate}}
                   <ul class="list-unstyled mt-2  mb-0 txt_primary">
                     <li class="d-inline-block"><span id="days">{{TimeArr.d}}d:</span></li>
                     <li class="d-inline-block"><span id="hours">{{TimeArr.h}}h:</span></li>
                     <li class="d-inline-block"><span id="minutes">{{TimeArr.m}}m:</span></li>
                     <li class="d-inline-block"><span id="seconds">{{TimeArr.s}}s</span></li>
                     </ul>
-              </h1>
+              </h1> -->
           </div>
        <div class="box_shadow_large bg-white p-3">
         <h2 class="chart_heading mb-2 d-inline-block">{{'home.EXPLORE' | translate}}</h2>
