@@ -1048,13 +1048,14 @@ export class BlockchainBlockController {
         DifficultyRandomx = [],
         blocks = [];
         TotalDifficultyNBlockQuery.forEach(e => {
+          //date.indexOf(moment(e.date).format('YYYY-MM-DD')) < 0 ? 
+         date.push(moment(e.date).format('YYYY-MM-DD'));
         DifficultyCuckaroo.push(parseInt(e.total_difficulty_cuckaroo));
         DifficultyCuckatoo.push(parseInt(e.total_difficulty_cuckatoo));
         DifficultyProgpow.push(parseInt(e.total_difficulty_progpow));
         DifficultyRandomx.push(parseInt(e.total_difficulty_randomx));
       });
         BlockQuery.forEach(e => {
-          date.indexOf(moment(e.date).format('YYYY-MM-DD')) < 0 ? date.push(moment(e.date).format('YYYY-MM-DD')) : ''
         blocks.push(parseInt(e.blocks));
       });
       response.status(200).json({
@@ -1120,8 +1121,7 @@ export class BlockchainBlockController {
           "select 1 as hash, date(DATE_TRUNC('day', timestamp at time zone '" +
           process.env.TIME_ZONE +
           "')) as date, Count( CASE WHEN proof = 'RandomX' THEN 1 ELSE NULL END) AS RandomX, \
-                          Count( CASE  WHEN proof = 'Cuckaroo' THEN 1 ELSE NULL END) AS Cuckaroo,\
-                          Count( CASE  WHEN proof = 'Cuckatoo' THEN 1 ELSE NULL END) AS Cuckatoo,\
+                          Count( CASE  WHEN proof = 'Cuckoo' THEN 1 ELSE NULL END) AS Cuckoo,\
                           Count( CASE WHEN proof = 'ProgPow' THEN 1 ELSE NULL END) AS ProgPow \
             from blockchain_block where " +
           timeIntervalQry +
@@ -1134,15 +1134,13 @@ export class BlockchainBlockController {
         });
       let date = [],
       Blocks = [],
-        Cuckaroo = [],
-        Cuckatoo = [],
+        Cuckoo = [],
         ProgPow = [],
         RandomX = [];
       stackNBlockQuery.forEach(e => {
         date.push(moment(e.date).format('YYYY-MM-DD'));
         // Blocks.push({Cuckaroo: parseInt(e.cuckaroo), Cuckatoo : parseInt(e.cuckatoo), ProgPow : parseInt(e.progpow), RandomX : parseInt(e.randomx)})
-        Cuckaroo.push(parseInt(e.cuckaroo));
-        Cuckatoo.push(parseInt(e.cuckatoo));
+        Cuckoo.push(parseInt(e.cuckoo));
         ProgPow.push(parseInt(e.progpow));
         RandomX.push(parseInt(e.randomx));
       });
@@ -1152,8 +1150,7 @@ export class BlockchainBlockController {
         message: 'Stack Data fetched Successfully',
         response: {
           Date: date,
-          Cuckaroo:Cuckaroo,
-          Cuckatoo:Cuckatoo,
+          Cuckoo:Cuckoo,
           ProgPow:ProgPow,
           RandomX:RandomX
         },
@@ -1205,10 +1202,9 @@ export class BlockchainBlockController {
       }
       const stackNBlockQuery = await getConnection()
         .query(
-          "SELECT hash,total_edge_bits, RandomX, Cuckaroo, Cuckatoo, ProgPow, Round(RandomX * 100.0 / total_edge_bits,2) AS RandomXper,  Round(Cuckaroo * 100.0 / total_edge_bits,2) AS Cuckarooper, Round(Cuckatoo * 100.0 / total_edge_bits,2) AS Cuckatooper, Round(ProgPow * 100.0 / total_edge_bits,2) AS ProgPowper from (select 1 as hash, COUNT(edge_bits) AS total_edge_bits, \
+          "SELECT hash,total_edge_bits, RandomX, Cuckoo, ProgPow, Round(RandomX * 100.0 / total_edge_bits,2) AS RandomXper,  Round(Cuckoo * 100.0 / total_edge_bits,2) AS Cuckooper, Round(ProgPow * 100.0 / total_edge_bits,2) AS ProgPowper from (select 1 as hash, COUNT(edge_bits) AS total_edge_bits, \
           Count( CASE WHEN proof = 'RandomX' THEN 1 ELSE NULL END) AS RandomX,\
-           Count( CASE  WHEN proof = 'Cuckaroo' THEN 1 ELSE NULL END) AS Cuckaroo,\
-           Count( CASE  WHEN proof = 'Cuckatoo' THEN 1 ELSE NULL END) AS Cuckatoo,\
+           Count( CASE  WHEN proof = 'Cuckoo' THEN 1 ELSE NULL END) AS Cuckoo,\
             Count( CASE WHEN proof = 'ProgPow' THEN 1 ELSE NULL END) AS ProgPow \
           from blockchain_block  where " +
           timeIntervalQry +
@@ -1221,8 +1217,8 @@ export class BlockchainBlockController {
       value = [];
 
       stackNBlockQuery.forEach(e => {
-        label.push("Cuckaroo","Cuckatoo","ProgPow","RandomX");
-        value.push(parseInt(e.cuckaroo),parseInt(e.cuckatoo),parseInt(e.progpow),parseInt(e.randomx));
+        label.push("Cuckoo","ProgPow","RandomX");
+        value.push(parseInt(e.cuckoo),parseInt(e.progpow),parseInt(e.randomx));
       });
       response.status(200).json({
         status: 200,
@@ -1685,15 +1681,14 @@ export class BlockchainBlockController {
       }
       const BlockMineChartQuery = await getConnection()
         .query(
-          "SELECT hash, date , total_edge_bits, RandomX, Cuckaroo, Cuckatoo, ProgPow, Round(RandomX * 100.0 / total_edge_bits,2) AS RandomXper,  Round(Cuckaroo * 100.0 / total_edge_bits,2) AS Cuckarooper, Round(Cuckatoo * 100.0 / total_edge_bits,2) AS Cuckatooper, Round(ProgPow * 100.0 / total_edge_bits,2) AS ProgPowper \
+          "SELECT hash, date , total_edge_bits, RandomX, Cuckoo, ProgPow, Round(RandomX * 100.0 / total_edge_bits,2) AS RandomXper,  Round(Cuckoo * 100.0 / total_edge_bits,2) AS Cuckooper, Round(ProgPow * 100.0 / total_edge_bits,2) AS ProgPowper \
         FROM   (SELECT    1 as hash, \
                           date(DATE_TRUNC('day', timestamp at time zone '" +
           process.env.TIME_ZONE +
           "')) as date, \
                           COUNT(edge_bits) AS total_edge_bits, \
                           Count( CASE WHEN proof = 'RandomX' THEN 1 ELSE NULL END) AS RandomX, \
-                          Count( CASE  WHEN proof = 'Cuckaroo' THEN 1 ELSE NULL END) AS Cuckaroo,\
-                          Count( CASE  WHEN proof = 'Cuckatoo' THEN 1 ELSE NULL END) AS Cuckatoo,\
+                          Count( CASE  WHEN proof = 'Cuckoo' THEN 1 ELSE NULL END) AS Cuckoo,\
                           Count( CASE WHEN proof = 'ProgPow' THEN 1 ELSE NULL END) AS ProgPow \
                  FROM     blockchain_block \
                  where " +
@@ -1707,23 +1702,19 @@ export class BlockchainBlockController {
         });
       let date = [],
         RandomXper = [],
-        Cuckarooper = [],
-        Cuckatooper = [],
+        Cuckooper = [],
         ProgPowper = [],
         RandomX = [],
-        Cuckatoo = [],
-        Cuckaroo = [],
+        Cuckoo = [],
         ProgPow = [];
 
       BlockMineChartQuery.forEach(e => {
         date.push(moment(e.date).format('YYYY-MM-DD'));
         RandomXper.push(parseFloat(e.randomxper));
-        Cuckarooper.push(parseFloat(e.cuckarooper));
-        Cuckatooper.push(parseFloat(e.cuckatooper));
+        Cuckooper.push(parseFloat(e.cuckarooper));
         ProgPowper.push(parseFloat(e.progpowper));
         RandomX.push(parseInt(e.randomx));
-        Cuckatoo.push(parseInt(e.cuckatoo));
-        Cuckaroo.push(parseInt(e.cuckaroo));
+        Cuckoo.push(parseInt(e.cuckatoo));
         ProgPow.push(parseInt(e.progpow));
       });
 
@@ -1734,13 +1725,11 @@ export class BlockchainBlockController {
         response: {
           date,
           RandomXper,
-          Cuckarooper,
-          Cuckatooper,
+          Cuckooper,
           ProgPowper,
           RandomX,
-          Cuckatoo,
-          Cuckaroo,
-          ProgPow,
+          Cuckoo,
+          ProgPow
         },
       });
     } catch (error) {

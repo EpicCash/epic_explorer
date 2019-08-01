@@ -3,9 +3,9 @@
     <div class="box_shadow">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.TOTAL_DIFFICULTY' | translate}}</h2>
-        <span class="txn_count" *ngIf="this.lg_last">{{
-          this.lg_last | number
-        }}</span>
+        <!-- <span class="txn_count" *ngIf="this.lg_last.length > 0"><span *ngFor="let l of lg_last">{{
+          this.l | number</span>
+        }}</span> -->
         <div class="chart_show">
           <epic-explorer-plotly *ngIf="linearGraphData.data" [data]="linearGraphData.data" [layout]="linearGraphData.layout">
           </epic-explorer-plotly>

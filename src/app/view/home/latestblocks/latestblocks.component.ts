@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ChartService } from '../../../shared/services/chart.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TransServiceService } from '../../../shared/services/trans-service.service';
@@ -44,16 +44,19 @@ export class LatestblocksComponent implements OnInit {
   }
 
   public getpeersList() {
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Access-Control-Allow-Origin':'*'
+      })
+    };
+
     console.log('EEE');
     this.http
-    .get('http://5.9.174.122:3413/v1/peers/connected')
-    .pipe(
-      map(res => {
+    .get('http://5.9.174.122:3413/v1/peers/connected',httpOptions)
+    .subscribe((res) => {
         console.log('reeeee',res);
-      }),
-      catchError((error: HttpErrorResponse): any => throwError(error)),
-    );
-  }
+      });
+}
 
   
 

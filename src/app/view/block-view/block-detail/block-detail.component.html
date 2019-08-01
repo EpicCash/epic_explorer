@@ -70,7 +70,7 @@
           <div class="d-inline-block align-middle ml-2">
             <span class="">{{'home.DIFFICULTY' | translate}}</span>
           </div>
-          <h6 class="view_txt">{{(hashdata.BlockchainBlockFetchQuery.Proof == 'Cuckoo') ? ((hashvalue.target_difficulty_cuckatoo + hashvalue.target_difficulty_cuckaroo) | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'RandomX') ? (hashvalue.target_difficulty_randomx | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'ProgPow') ? (hashvalue.target_difficulty_progpow | number) : 0}}</h6>
+          <h6 class="view_txt">{{(hashdata.BlockchainBlockFetchQuery.Proof == 'Cuckoo') ? ((hashdata.BlockchainBlockFetchQuery.target_difficulty_cuckatoo + hashdata.BlockchainBlockFetchQuery.target_difficulty_cuckaroo) | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'RandomX') ? (hashdata.BlockchainBlockFetchQuery.target_difficulty_randomx | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'ProgPow') ? (hashdata.BlockchainBlockFetchQuery.target_difficulty_progpow | number) : 0}}</h6>
         </div>
         <div class="col-sm-6 col-md-4 mt-4 pt-2">
           <div class="d-inline-block align-middle">

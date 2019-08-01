@@ -38,7 +38,7 @@
         "BLOCKS" : "Blocks",
         "BLOCK" : "Block",
         "BLOCKS_MINED" : "Blocks Mined",
-        "TRANSACTION_FEES" : "Transcation Fees",
+        "TRANSACTION_FEES" : "Transaction Fees",
         "SUPPLY_GROWTH" : "Supply Growth",
         "HASHRATE_GROWTH_CHART" : "HashRate Growth Chart",
         "BLOCK_INTERVAL" : "Block Interval",

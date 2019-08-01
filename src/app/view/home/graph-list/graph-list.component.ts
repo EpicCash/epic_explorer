@@ -25,7 +25,7 @@ export class GraphListComponent implements OnInit {
   public stackGraphData: any = [];
   public pieGraphData: any = [];
 
-  public lg_last: any = '';
+  public lg_last: any;
   public ag_last: any = '';
   public dg_last: any = '';
   public brg_last: any = '';
@@ -146,16 +146,14 @@ export class GraphListComponent implements OnInit {
           res => {
             if (res['status'] == 200) {
               let sDate = res.response.Date;
-              let Cuckaroo = res.response.Cuckaroo;
-              let Cuckatoo = res.response.Cuckatoo;
+              let Cuckoo = res.response.Cuckoo;
               let ProgPow = res.response.ProgPow;
               let RandomX = res.response.RandomX;
                 this.sg_last =
                 RandomX[RandomX.length - 1];
                 this.stackchartFunc(
                   sDate,
-                  Cuckaroo,
-                  Cuckatoo,
+                  Cuckoo,
                   ProgPow,
                   RandomX
                 );
@@ -276,25 +274,21 @@ export class GraphListComponent implements OnInit {
             if (res['status'] == 200) {
               let mDate = res.response.date;
               let ProgPow = res.response.ProgPow;
-              let Cuckaroo = res.response.Cuckaroo;
-              let Cuckatoo = res.response.Cuckatoo;
+              let Cuckoo = res.response.Cuckoo;
               let RandomX = res.response.RandomX;
               
               let ProgPowper = res.response.ProgPowper;
-              let Cuckarooper = res.response.Cuckarooper;
-              let Cuckatooper = res.response.Cuckatooper;
+              let Cuckooper = res.response.Cuckooper;
               let RandomXper = res.response.RandomXper;
 
               this.dg_last = RandomXper[RandomXper.length - 1];
               this.blockminedFunc(
                 mDate,
                 ProgPow,
-                Cuckaroo,
-                Cuckatoo,
+                Cuckoo,
                 RandomX,
                 ProgPowper,
-                Cuckarooper,
-                Cuckatooper,
+                Cuckooper,
                 RandomXper,
               );
               resolve();
@@ -399,7 +393,7 @@ export class GraphListComponent implements OnInit {
                 let DifficultyProgpow = res.response.DifficultyProgpow;
                 let DifficultyRandomx = res.response.DifficultyRandomx;
                 this.lg_last =
-                DifficultyCuckaroo[DifficultyCuckaroo.length - 1];
+                [DifficultyCuckaroo[DifficultyCuckaroo.length - 1],DifficultyCuckatoo[DifficultyCuckatoo.length - 1],DifficultyProgpow[DifficultyProgpow.length - 1],DifficultyRandomx[DifficultyRandomx.length - 1]];
                 this.difficultyChartFunc(
                   DifficultychartDate,
                   DifficultyCuckaroo,
@@ -487,31 +481,31 @@ export class GraphListComponent implements OnInit {
     };
   }
 
-  stackchartFunc(sDate, Cuckaroo, Cuckatoo, ProgPow, RandomX) {
+  stackchartFunc(sDate, Cuckoo, ProgPow, RandomX) {
     this.stackGraphData = {
       data: [
         {
           x: sDate,
-          y: Cuckaroo,
+          y: Cuckoo,
           name: '',
           type: 'bar',
-          text: Cuckaroo,
-          hovertemplate: '%{x}<br> Cuckatoo : %{text:,}',
+          text: Cuckoo,
+          hovertemplate: '%{x}<br> Cuckoo : %{text:,}',
           marker: {
             color: '#77817C',
           },
         },
-        {
-          x: sDate,
-          y: Cuckatoo,
-          name: '',
-          type: 'bar',
-          text: Cuckatoo,
-          hovertemplate: '%{x}<br> Cuckaroo : %{text:,}',
-          marker: {
-            color: '#54CFDC',
-          },
-        },
+        // {
+        //   x: sDate,
+        //   y: Cuckatoo,
+        //   name: '',
+        //   type: 'bar',
+        //   text: Cuckatoo,
+        //   hovertemplate: '%{x}<br> Cuckaroo : %{text:,}',
+        //   marker: {
+        //     color: '#54CFDC',
+        //   },
+        // },
         {
           x: sDate,
           y: ProgPow,
@@ -540,15 +534,23 @@ export class GraphListComponent implements OnInit {
         hovermode: 'closest',
         //width: 350,
         height: 250,
-        autosize: false,
+        autosize: true,
         showlegend: false,
         barmode: 'relative',
         xaxis: {
+          showgrid: true,
+          zeroline: false,
           tickangle: -45,
           tickformat: '%m-%d',
+          rangemode: 'nonnegative',
+          fixedrange: true,
         },
         yaxis: {
+          showline: false,
           title: 'Block',
+          rangemode: 'nonnegative',
+          fixedrange: true,
+          showgrid: true,
         },
         margin: {
           l: 50,
@@ -757,14 +759,14 @@ export class GraphListComponent implements OnInit {
     };
   }
 
-  blockminedFunc(mDate,ProgPow, Cuckaroo, Cuckatoo, RandomX, ProgPowper, Cuckarooper, Cuckatooper, RandomXper) {
+  blockminedFunc(mDate,ProgPow, Cuckoo, RandomX, ProgPowper, Cuckooper, RandomXper) {
     this.doubleareaGraphData = {
       data: [
         {
           x: mDate,
-          y: Cuckarooper,
-          text: Cuckaroo,
-          hovertemplate: 'Cuckaroo :%{y} % ( %{text:,} )',
+          y: Cuckooper,
+          text: Cuckoo,
+          hovertemplate: 'Cuckoo :%{y} % ( %{text:,} )',
           name: '',
           fill: 'tozeroy',
           type: 'line',
@@ -772,18 +774,18 @@ export class GraphListComponent implements OnInit {
             color: '#f5ca19',
           },
         },
-        {
-          x: mDate,
-          y: Cuckatooper,
-          text: Cuckatoo,
-          hovertemplate: 'Cuckatoo :%{y} % ( %{text:,} )',
-          name: '',
-          fill: 'tozeroy',
-          type: 'line',
-          line: {
-            color: '#f5c1a9',
-          },
-        },
+        // {
+        //   x: mDate,
+        //   y: Cuckatooper,
+        //   text: Cuckatoo,
+        //   hovertemplate: 'Cuckatoo :%{y} % ( %{text:,} )',
+        //   name: '',
+        //   fill: 'tozeroy',
+        //   type: 'line',
+        //   line: {
+        //     color: '#f5c1a9',
+        //   },
+        // },
         {
           x: mDate,
           y: RandomXper,
@@ -861,31 +863,36 @@ export class GraphListComponent implements OnInit {
         hovermode: 'closest',
         height: 250,
         //width: 365,
-        autosize: false,
+        autosize: true,
         annotations: [],
         font: {
           size: 8.5,
         },
         xaxis: {
           ticks: '',
-          tickangle: 360,
+          tickangle: screen.width < 767 ? '-90' : 360,
           side: 'top',
           autotick: false,
           showgrid: true,
+          rangemode: 'nonnegative',
+          fixedrange: true,
+          autosize: true,
         },
         yaxis: {
           ticks: '',
           ticksuffix: ' ',
           tickformat: '%m-%d',
-          autosize: false,
+          autosize: true,
           showgrid: true,
           autotick: false,
+          rangemode: 'nonnegative',
+          fixedrange: true,
         },
         margin: {
           l: 30,
-          r: 30,
-          b: 60,
-          t: 60,
+          r: 0,
+          b: 50,
+          t: 50,
         },
         showlegend: false,
       },
@@ -928,17 +935,22 @@ export class GraphListComponent implements OnInit {
         },
       ],
       layout: {
-        autosize: false,
+        autosize: true,
        // width: 350,
         height: 250,
         xaxis: {
-          showgrid: false,
+          showgrid: true,
           zeroline: false,
           tickformat: '%m-%d',
+          rangemode: 'nonnegative',
+          fixedrange: true,
         },
         yaxis: {
           showline: false,
           title: 'Transactions',
+          rangemode: 'nonnegative',
+          fixedrange: true,
+          showgrid: true,
         },
         margin: {
           l: 50,
