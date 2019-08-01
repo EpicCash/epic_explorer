@@ -1042,6 +1042,7 @@ export class BlockchainBlockController {
           next(err_msg);
         });
       let date = [],
+      blockDate = [],
         DifficultyCuckaroo = [],
         DifficultyCuckatoo = [],
         DifficultyProgpow = [],
@@ -1056,6 +1057,7 @@ export class BlockchainBlockController {
         DifficultyRandomx.push(parseInt(e.total_difficulty_randomx));
       });
         BlockQuery.forEach(e => {
+          blockDate.push(moment(e.date).format('YYYY-MM-DD'));
         blocks.push(parseInt(e.blocks));
       });
       response.status(200).json({
@@ -1065,6 +1067,7 @@ export class BlockchainBlockController {
         response: {
           Date: date,
           Blocks: blocks,
+          blockDate:blockDate,
           DifficultyCuckaroo: DifficultyCuckaroo,
           DifficultyCuckatoo: DifficultyCuckatoo,
           DifficultyProgpow: DifficultyProgpow,

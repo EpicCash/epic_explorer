@@ -7,7 +7,7 @@ import {
 import { environment } from '../../../environments/environment';
 import { throwError, Observable, BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import * as io from 'socket.io-client';
+// import * as io from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root',
@@ -18,12 +18,12 @@ private server = environment.domain;
   
   constructor(public http: HttpClient) {}
 
-public createSocketConnection() {
-    this.socket = io.connect(this.server);
-    this.socket.on('connect', function(socket) {
-      console.log('Connected!');
-    });
-  }
+// public createSocketConnection() {
+//     this.socket = io.connect(this.server);
+//     this.socket.on('connect', function(socket) {
+//       console.log('Connected!');
+//     });
+//   }
   
   public apiGetRequest(request: any, reqUrl): Observable<any> {
     return this.http

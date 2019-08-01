@@ -60,6 +60,12 @@
         "SEARCH_RESULT" : "Search Results for",
         "SEARCH_RESULT1" : "Your search term",
         "SEARCH_RESULT2" : "is too short",
-        "SEARCH_RESULT3" : "please enter at least six characters if searching by hash"
+        "SEARCH_RESULT3" : "please enter at least six characters if searching by hash",
+        "PEERS" : "Peers",
+        "CAPABILITIES" : "Capabilities",
+        "USER_AGENT" : "User Agent",
+        "VERSION" : "Version",
+        "ADDR" : "Addr",
+        "DIRECTION" : "Direction"
     }
 }

@@ -286,7 +286,6 @@ a:focus {
   padding: 20px;
   transition: 0.3s linear all;
 }
-.minhgt{  min-height: 139px; }
 .detail_div .count {
   font-size: 25px;
   color: #0091ff;
@@ -435,7 +434,7 @@ a:focus {
 .link_to_detail:hover{color: #0091ff;text-decoration: underline;}
 .mobile_table{border-bottom: 1px solid #dee2e6;position: relative;}
 .mobile_table .tble_col{padding: 0;}
-.mobile_table:nth-child(even) {
+.mobile_table:nth-child(even), .peer_mobile_table:nth-child(even) {
   background: #eee;
 }
 .expnd_blck{display: none;}

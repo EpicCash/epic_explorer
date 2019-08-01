@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ChartService } from '../../../shared/services/chart.service';
 import { HttpParams } from '@angular/common/http';
 import * as io from 'socket.io-client';
@@ -17,15 +17,22 @@ export class BlockDetailListComponent implements OnInit {
   public latestblockdetailObservable: any;
   private server = environment.domain;
   private socket;
-  
+  @ViewChild('minhgt', {static: false}) elementView: ElementRef;
+
+  minHeight: number;
+
   constructor(private chartService: ChartService,public translate: TransServiceService) {
-    this.chartService.createSocketConnection();
+    // this.chartService.createSocketConnection();
   }
   
   ngOnInit() {
     this.gettinglatesthashList();
     this.getBlockDetails();
 
+  }
+
+  ngAfterViewInit() {
+    this.minHeight = this.elementView.nativeElement.offsetHeight;
   }
 
 getBlockDetails() {

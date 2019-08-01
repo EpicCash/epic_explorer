@@ -387,6 +387,7 @@ export class GraphListComponent implements OnInit {
           res => {
             if (res['status'] == 200) {
               let DifficultychartDate = res.response.Date;
+              let BlocksChartDate = res.response.blockDate;
               if (fordifficult) {
                 let DifficultyCuckaroo = res.response.DifficultyCuckaroo;
                 let DifficultyCuckatoo = res.response.DifficultyCuckatoo;
@@ -405,7 +406,7 @@ export class GraphListComponent implements OnInit {
               if (forblocks) {
                 let Blockval = res.response.Blocks;
                 this.brg_last = Blockval[Blockval.length - 1];
-                this.totalBlocksFunc(DifficultychartDate, Blockval);
+                this.totalBlocksFunc(BlocksChartDate, Blockval);
               }
               resolve();
             }

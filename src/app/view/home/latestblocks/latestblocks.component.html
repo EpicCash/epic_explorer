@@ -1,68 +1,103 @@
 <div class="latest_table">
   <h2 class="mb-3 chart_heading px-0">{{'home.LATEST_BLOCK' | translate}}</h2>
   <div class="mobile_table web_hdng">
-     
-      <div class="row">
-        <div class="col-6 col-md-4 tble_col">
-         <div class="block_div"> <h5 class="mb-0">{{'home.HEIGHT' | translate}}</h5></div>
+
+    <div class="row">
+      <div class="col-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">{{'home.HEIGHT' | translate}}</h5>
         </div>
-        <div class="col-6 col-md-4 tble_col">
-          <div class="block_div"><h5 class="mb-0">{{'home.HASH' | translate}}</h5></div>
+      </div>
+      <div class="col-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">{{'home.HASH' | translate}}</h5>
         </div>
-        <div class="col-6 col-md-4 tble_col">
-          <div class="block_div"><h5 class="mb-0" >{{'home.AGE' | translate}}</h5></div>
+      </div>
+      <div class="col-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">{{'home.AGE' | translate}}</h5>
         </div>
-        <div class="col-6 col-md-4 tble_col">
-          <div class="block_div"><h5 class="mb-0">{{'home.DIFFICULTY' | translate}}</h5></div>
+      </div>
+      <div class="col-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">{{'home.DIFFICULTY' | translate}}</h5>
         </div>
-        <div class="col-7 col-sm-6 col-md-4 tble_col">
-          <div class="block_div"><h5 class="mb-0">{{'home.POW_ALGO' | translate}}</h5></div>
+      </div>
+      <div class="col-7 col-sm-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">{{'home.POW_ALGO' | translate}}</h5>
         </div>
-        <div class="col-5 col-sm-6 col-md-4 tble_col">
-          <div class="block_div"><h5 class="mb-0">#{{'home.INPUTS' | translate}}</h5></div>
+      </div>
+      <div class="col-5 col-sm-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">#{{'home.INPUTS' | translate}}</h5>
         </div>
-        <div class="col-6 col-md-4 tble_col">
-          <div class="block_div"><h5  class="mb-0">#{{'home.OUTPUTS' | translate}}</h5></div>
+      </div>
+      <div class="col-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">#{{'home.OUTPUTS' | translate}}</h5>
         </div>
-        <div class="col-6 col-md-4 tble_col">
-          <div class="block_div" ><h5 class="mb-0">#{{'home.KERNELS' | translate}}</h5></div>
+      </div>
+      <div class="col-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">#{{'home.KERNELS' | translate}}</h5>
         </div>
       </div>
     </div>
-  <div [ngClass]="{mobile_table : true, hght_40: item.id != clickValue }"  id="hash_{{hashvalue.blockchain_block_height}}" #item *ngFor="let hashvalue of hashvalues">
-     
+  </div>
+  <div [ngClass]="{mobile_table : true, hght_40: item.id != clickValue }"
+    id="hash_{{hashvalue.blockchain_block_height}}" #item *ngFor="let hashvalue of hashvalues">
+
     <div class="row">
       <div class="col-6 col-md-3 tble_col">
-       <div class="block_div">  <span *ngIf="item.id != clickValue" (click)="onClickPlus(hashvalue.blockchain_block_height);" class="expnd_blck"><i class="fa fa-plus"></i></span>
-        <span  *ngIf="item.id == clickValue" (click)="onClickMinus(hashvalue.blockchain_block_height);" class="expnd_blck"><i class="fa fa-minus"></i></span><h6>{{'home.HEIGHT' | translate}}</h6><span class="blck_value link_to_detail" routerLink="/blockdetail/{{ hashvalue.blockchain_block_height }}">{{ hashvalue.blockchain_block_height }}</span></div>
+        <div class="block_div"> <span *ngIf="item.id != clickValue"
+            (click)="onClickPlus(hashvalue.blockchain_block_height);" class="expnd_blck"><i
+              class="fa fa-plus"></i></span>
+          <span *ngIf="item.id == clickValue" (click)="onClickMinus(hashvalue.blockchain_block_height);"
+            class="expnd_blck"><i class="fa fa-minus"></i></span>
+          <h6>{{'home.HEIGHT' | translate}}</h6><span class="blck_value link_to_detail"
+            routerLink="/blockdetail/{{ hashvalue.blockchain_block_height }}">{{ hashvalue.blockchain_block_height }}</span>
+        </div>
       </div>
       <div class="col-6 col-md-3 tble_col">
-        <div [title]="hashvalue.blockchain_block_hash" routerLink="/blockdetail/{{ hashvalue.blockchain_block_hash }}" class="block_div"><h6>Hash</h6><span class="blck_value">{{ hashvalue.hashstart
-        }}<span
-          *ngFor="let color of hashvalue.hasharray"
-          class="hash"
-          [ngStyle]="{ 'background-color': color }"
-        ></span
-        >{{ hashvalue.hashend }}</span></div>
+        <div [title]="hashvalue.blockchain_block_hash" routerLink="/blockdetail/{{ hashvalue.blockchain_block_hash }}"
+          class="block_div">
+          <h6>Hash</h6><span class="blck_value">{{ hashvalue.hashstart
+        }}<span *ngFor="let color of hashvalue.hasharray" class="hash"
+              [ngStyle]="{ 'background-color': color }"></span>{{ hashvalue.hashend }}</span>
+        </div>
       </div>
       <div class="col-6 col-md-3 tble_col">
-        <div class="block_div"><h6 >Age</h6><span class="blck_value">{{ hashvalue.age }}</span></div>
+        <div class="block_div">
+          <h6>Age</h6><span class="blck_value">{{ hashvalue.age }}</span>
+        </div>
       </div>
       <div class="col-6 col-md-3 tble_col">
-          <!-- title="Cuckaroo : {{ hashvalue.target_difficulty_cuckaroo | number }}, Cuckatoo :  {{ hashvalue.target_difficulty_cuckatoo | number }}, Progpow : {{ hashvalue.target_difficulty_progpow | number }}, Randomx : {{ hashvalue.target_difficulty_randomx | number }}" -->
-        <div class="block_div"><h6>Difficulty</h6><span class="blck_value" >{{(hashvalue.powalgo == 'Cuckoo') ? ((hashvalue.target_difficulty_cuckatoo + hashvalue.target_difficulty_cuckaroo) | number) : (hashvalue.powalgo == 'RandomX') ? (hashvalue.target_difficulty_randomx | number) : (hashvalue.powalgo == 'ProgPow') ? (hashvalue.target_difficulty_progpow | number) : 0}}</span></div>
+        <!-- title="Cuckaroo : {{ hashvalue.target_difficulty_cuckaroo | number }}, Cuckatoo :  {{ hashvalue.target_difficulty_cuckatoo | number }}, Progpow : {{ hashvalue.target_difficulty_progpow | number }}, Randomx : {{ hashvalue.target_difficulty_randomx | number }}" -->
+        <div class="block_div">
+          <h6>Difficulty</h6><span
+            class="blck_value">{{(hashvalue.powalgo == 'Cuckoo') ? ((hashvalue.target_difficulty_cuckatoo + hashvalue.target_difficulty_cuckaroo) | number) : (hashvalue.powalgo == 'RandomX') ? (hashvalue.target_difficulty_randomx | number) : (hashvalue.powalgo == 'ProgPow') ? (hashvalue.target_difficulty_progpow | number) : 0}}</span>
+        </div>
       </div>
       <div class="col-6 col-sm-6 col-md-3 tble_col">
-        <div class="block_div"><h6 class="mb-0">Pow Algo</h6><span class="blck_value">{{ hashvalue.powalgo }}</span></div>
+        <div class="block_div">
+          <h6 class="mb-0">Pow Algo</h6><span class="blck_value">{{ hashvalue.powalgo }}</span>
+        </div>
       </div>
       <div class="col-6 col-sm-6 col-md-3 tble_col">
-        <div class="block_div"><h6>#{{'home.INPUTS' | translate}}</h6><span class="blck_value">{{ hashvalue.input_count }}</span></div>
+        <div class="block_div">
+          <h6>#{{'home.INPUTS' | translate}}</h6><span class="blck_value">{{ hashvalue.input_count }}</span>
+        </div>
       </div>
       <div class="col-6 col-md-3 tble_col">
-        <div class="block_div"><h6 >#{{'home.OUTPUTS' | translate}}</h6><span class="blck_value">{{ hashvalue.output_count }}</span></div>
+        <div class="block_div">
+          <h6>#{{'home.OUTPUTS' | translate}}</h6><span class="blck_value">{{ hashvalue.output_count }}</span>
+        </div>
       </div>
       <div class="col-6 col-md-3 tble_col">
-        <div class="block_div" ><h6>#{{'home.KERNELS' | translate}}</h6><span class="blck_value">{{ hashvalue.kernal_count }}</span></div>
+        <div class="block_div">
+          <h6>#{{'home.KERNELS' | translate}}</h6><span class="blck_value">{{ hashvalue.kernal_count }}</span>
+        </div>
       </div>
       <!-- <div class="col-6 col-md-4">
           <a class="txt_secondary" href="JavaScript:Void(0);"
@@ -71,8 +106,8 @@
             </div> -->
     </div>
   </div>
-  
-  
+
+
 </div>
 
 <div class="explore_all text-right">
@@ -80,11 +115,8 @@
     <div class="d-inline-block float-left mt-2">
       <span>{{'home.BLOCKS_PER_PAGE' | translate}}:</span>&nbsp;&nbsp;
       <div class="item_select d-inline-block position-relative">
-        <select
-          class=""
-          formControlName="pagesize"
-          (change)="gettinghashList(pagedata.currentPage, $event.target.value)"
-        >
+        <select class="" formControlName="pagesize"
+          (change)="gettinghashList(pagedata.currentPage, $event.target.value)">
           <option value="20">20</option>
           <option value="50">50</option>
           <option value="100">100</option>
@@ -95,49 +127,150 @@
       </div>
     </div>
     <ul class="pagination justify-content-end m-0 d-inline-flex">
-      <li
-        class="page-item d-none d-md-inline-flex"
-        (click)="
+      <li class="page-item d-none d-md-inline-flex" (click)="
           gettinghashList(pagedata.startPage, paginationForm.value.pagesize)
-        "
-      >
+        ">
         <a class="page-link"><i class="fa fa-angle-double-left"></i></a>
       </li>
-      <li
-        class="page-item"
-        (click)="
+      <li class="page-item" (click)="
           gettinghashList(
             pagedata.currentPage - 1,
             paginationForm.value.pagesize
           )
-        "
-      >
+        ">
         <a class="page-link"><i class="fa fa-angle-left"></i></a>
       </li>
       <li class="page-item d-none d-md-inline-flex">
-        <a class="page-link"
-          >{{ pagedata.currentPage }} / {{ pagedata.totalPages }}</a
-        >
+        <a class="page-link">{{ pagedata.currentPage }} / {{ pagedata.totalPages }}</a>
       </li>
-      <li
-        class="page-item"
-        (click)="
+      <li class="page-item" (click)="
           gettinghashList(
             pagedata.currentPage + 1,
             paginationForm.value.pagesize
           )
-        "
-      >
+        ">
         <a class="page-link"><i class="fa fa-angle-right"></i></a>
       </li>
-      <li
-        class="page-item d-none d-md-inline-flex"
-        (click)="
+      <li class="page-item d-none d-md-inline-flex" (click)="
           gettinghashList(pagedata.totalPages, paginationForm.value.pagesize)
-        "
-      >
+        ">
         <a class="page-link"><i class="fa fa-angle-double-right"></i></a>
       </li>
     </ul>
   </form>
+</div>
+
+<div class="latest_table mt-3">
+  <h2 class="mb-3 chart_heading px-0">Peers</h2>
+  <div class="mobile_table web_hdng">
+
+      <div class="mobile_table peer_table">
+
+          <div class="row">
+            <div class="col-6 col-md-4 tble_col">
+              <div class="block_div">
+                  <h5 class="mb-0">Capabilities</h5>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 tble_col">
+              <div class="block_div">
+                <h5 class="mb-0">User Agent</h5>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 tble_col">
+              <div class="block_div">
+                <h5 class="mb-0">Version</h5>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 tble_col">
+              <div class="block_div">
+                <h5 class="mb-0">Addr</h5>
+              </div>
+            </div>
+            <div class="col-7 col-sm-6 col-md-4 tble_col">
+              <div class="block_div">
+                <h5 class="mb-0">Direction</h5>
+              </div>
+            </div>
+            <div class="col-5 col-sm-6 col-md-4 tble_col">
+              <div class="block_div">
+                <h5 class="mb-0">Total Difficulty</h5>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+
+    <!-- <div class="row">
+      <div class="col-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">{{'home.CAPABILITIES' | translate}}</h5>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">{{'home.USER_AGENT' | translate}}</h5>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">{{'home.VERSION' | translate}}</h5>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">{{'home.ADDR' | translate}}</h5>
+        </div>
+      </div>
+      <div class="col-7 col-sm-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">{{'home.DIRECTION' | translate}}</h5>
+        </div>
+      </div>
+      <div class="col-5 col-sm-6 col-md-4 tble_col">
+        <div class="block_div">
+          <h5 class="mb-0">{{'home.TOTAL_DIFFICULTY' | translate}}</h5>
+        </div>
+      </div>
+    </div> -->
+  </div>
+  <div class="peer_mobile_table" *ngFor="let peer of peers">
+
+    <div class="row peer_table_data">
+      <div class="col-6 col-md-3 tble_col">
+        <div class="block_div">
+          <span class="blck_value">{{ peer.capabilities.bits }} bits</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 tble_col">
+        <div class="block_div">
+          <span class="blck_value">{{ peer.user_agent }}</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 tble_col">
+        <div class="block_div">
+         <span class="blck_value">{{ peer.version }}</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 tble_col">
+        <div class="block_div">
+          <span class="blck_value">{{ peer.addr }}</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 tble_col">
+        <div class="block_div">
+          <span class="blck_value">{{ peer.direction }}</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 tble_col">
+        <div class="block_div">
+          <span class="blck_value">{{ peer.total_difficulty.cuckaroo }},{{ peer.total_difficulty.cuckatoo}},{{ peer.total_difficulty.randomx}},{{ peer.total_difficulty.progpow}}</span>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+
+
 </div>

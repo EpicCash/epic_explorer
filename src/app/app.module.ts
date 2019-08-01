@@ -25,8 +25,6 @@ export class CustomLoader extends ChartService implements TranslateLoader {
     params = params.append('lang', lang);
     return this.apiGetRequest(params,'/blockchain_kernel/translator').pipe(
       map((res: any) => {
-        console.log("Data got: ");
-        console.log(res);
         return res;
       })
     );  
