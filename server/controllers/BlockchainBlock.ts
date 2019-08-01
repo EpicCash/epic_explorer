@@ -1711,7 +1711,7 @@ export class BlockchainBlockController {
       BlockMineChartQuery.forEach(e => {
         date.push(moment(e.date).format('YYYY-MM-DD'));
         RandomXper.push(parseFloat(e.randomxper));
-        Cuckooper.push(parseFloat(e.cuckarooper));
+        Cuckooper.push(parseFloat(e.cuckooper));
         ProgPowper.push(parseFloat(e.progpowper));
         RandomX.push(parseInt(e.randomx));
         Cuckoo.push(parseInt(e.cuckatoo));
