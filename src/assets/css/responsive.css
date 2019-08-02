@@ -5,15 +5,12 @@
     .view_moble_tble{border-bottom: 1px solid #dee2e6;}
     .mobile_table .row{display: table;}
 .mobile_table .tble_col{padding: 0;display: table-cell;  max-width: unset;  flex: unset;}
-.mobile_table h6, .view_moble_tble h6{display: none;}
+.mobile_table h6, .view_moble_tble h6, .peer_mobile_table h6{display: none;}
 .view_moble_tble .block_div{text-align: left;}
+.peer_table_data .col-md-3 { flex: 0 0 16%;  max-width: 16%;}
+
 }
-@media (min-width: 768px){
-    .peer_table_data .col-md-3 {
-        flex: 0 0 16%;
-        max-width: 16%;
-    }
-}
+
 @media(max-width: 1199px){
     .ftr_links{padding-left: 0px;}
     .ftr_links::before{content: '|'; }
@@ -27,6 +24,7 @@
     .day_filter a{font-size: 11px; margin: 0 4px;}
     .blck_value {font-size: 13px; }
     .block_div {min-width: 110px;}
+    .peer_table .block_div {min-width: 145px;}
     
 }
 @media (min-width: 768px) and (max-width: 991px){
@@ -38,18 +36,20 @@
     .day_filter a{font-size: 12px;}
     .theme_switch{margin-left: 11px;}
     .view_txt{font-size: 13px;}
+    .peer_table_data .col-md-3 {flex: 0 0 40%; max-width: 40%; }
 }
 @media(max-width: 991px){
     .container{max-width: 100%;}
     .hght_40{height: 40px;overflow: hidden;}
     .web_hdng{display: none;}
-    .mobile_table{padding: 10px 0;padding-left: 30px;}
+    .mobile_table, .peer_mobile_table{padding: 10px 0;padding-left: 30px;}
     /* .view_moble_tble .col-md-4{padding: 0;} */
-    .mobile_table h6, .view_moble_tble h6{color: #0091ff; font-size: 13px; display: inline-block;}
-    .mobile_table span.blck_value, .view_moble_tble span.blck_value{font-size: 13px;}
-    .mobile_table span.blck_value::before, .view_moble_tble span.blck_value::before{content: ' - ';}
+    .mobile_table h6, .view_moble_tble h6, .peer_mobile_table h6{color: #0091ff; font-size: 13px; display: inline-block;}
+    .mobile_table span.blck_value, .view_moble_tble span.blck_value,  .peer_mobile_table span.blck_value{font-size: 13px;}
+    .mobile_table span.blck_value::before, .view_moble_tble span.blck_value::before,  .peer_mobile_table span.blck_value::before{content: ' - ';}
     .view_moble_tble{border-bottom: 1px solid #dee2e6;padding-bottom: 10px;  margin-bottom: 10px;}
     .expnd_blck {font-size: 13px; margin-right: 5px; color: green;position: absolute;  left: -15px;  top: 5px; display: inline-block;}
+    .peer_mobile_table .expnd_blck{left: -8px;}
 }
 @media(max-width:767px){
     .day_filter a{margin: 0 4px; font-size: 11px;}
