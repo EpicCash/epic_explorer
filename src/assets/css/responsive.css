@@ -72,6 +72,7 @@
     .mble_view_hdr .nav-link{padding: .5rem;}
     .theme_switch{padding-top: 8px; padding-bottom: 8px;}
     .theme_switch img{height: 15px;}
+    .peer_table_data .col-6 {flex: 0 0 100%; max-width: 100%; }
 }
 @media(max-width: 588px){
     /* .view_page_header{text-align: center;} */
