@@ -16,6 +16,7 @@ import {
   TransactionFeeDto,
 } from '../dtos';
 import { Paginate } from '../utils';
+const https = require('https');
 
 var moment = require('moment');
 
@@ -132,6 +133,29 @@ export class BlockchainKernelController {
     this.router.get(
       `${this.path}/translator`,
       this.Translator,
+    );
+
+    /**
+     * @swagger
+     * /epic_explorer/v1/getpeers:
+     *   get:
+     *     tags:
+     *       - name: Translator | Translator CONTROLLER
+     *     summary: create a translator
+     *     description: create a translator
+     *     consumes:
+     *       - application/json
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: lang
+     *     responses:
+     *       200:
+     *         description: Transaction fee chart fetched successfully
+     */
+    this.router.get(
+      `${this.path}/getpeers`,
+      this.getPeers,
     );
 
     /**
@@ -471,6 +495,24 @@ export class BlockchainKernelController {
       response.header("Content-Type",'application/json');
       response.sendFile(path.resolve(__dirname + '/../i18n/'+request.query.lang+'.json'));
       
+    } catch (error) {
+      next(new InternalServerErrorException(error));
+    }
+  };
+
+  private getPeers = async (
+    request: Request,
+    response: Response,
+    next: NextFunction,
+  ) => {
+    try {
+      https.get('http://5.9.174.122:3413/v1/peers/connected', (resp) => {
+        console.log('resp resp respresp',resp);
+  let data = '';
+
+  // A chunk of data has been recieved.
+  
+});
     } catch (error) {
       next(new InternalServerErrorException(error));
     }

@@ -69,8 +69,8 @@
           </div>
           <div class="d-inline-block align-middle ml-2">
             <span class="">{{'home.DIFFICULTY' | translate}}</span>
+            <h6 class="view_txt">{{(hashdata.BlockchainBlockFetchQuery.Proof == 'Cuckoo') ? ((hashdata.BlockchainBlockFetchQuery.TotalDifficultyCuckatoo + hashdata.BlockchainBlockFetchQuery.TotalDifficultyCuckaroo) | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'RandomX') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyRandomx | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'ProgPow') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyProgpow | number) : 0}}</h6>
           </div>
-          <h6 class="view_txt">{{(hashdata.BlockchainBlockFetchQuery.Proof == 'Cuckoo') ? ((hashdata.BlockchainBlockFetchQuery.TotalDifficultyCuckatoo + hashdata.BlockchainBlockFetchQuery.TotalDifficultyCuckaroo) | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'RandomX') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyRandomx | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'ProgPow') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyProgpow | number) : 0}}</h6>
         </div>
         <div class="col-sm-6 col-md-4 mt-4 pt-2">
           <div class="d-inline-block align-middle">
@@ -233,7 +233,7 @@
                          <div class="block_div"><h5 class="mb-0">{{'home.FEATURES' | translate}}</h5></div>
                         </div>
                         <div class="col-lg-4 ">
-                          <div class="block_div"><h5 class="mb-0">{{'home.LOCK' | translate}} {{'home.HEIGHT' | translate}}</h5></div>
+                          <div class="block_div"><h5 class="mb-0">{{'home.BLOCK' | translate}} {{'home.HEIGHT' | translate}}</h5></div>
                         </div>
                         <div class="col-lg-4 ">
                             <div class="block_div"><h5 class="mb-0">{{'home.FEE' | translate}}</h5></div>
@@ -248,7 +248,7 @@
                         </div>
 
                         <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                          <div class="block_div"><h6>{{'home.LOCK' | translate}} {{'home.HEIGHT' | translate}}</h6><span class="blck_value">{{ hashkernel.LockHeight }}</span></div>
+                          <div class="block_div"><h6>{{'home.BLOCK' | translate}} {{'home.HEIGHT' | translate}}</h6><span class="blck_value">{{ hashkernel.LockHeight }}</span></div>
                         </div>
                         <div class="col-12 col-sm-4 col-md-4 col-lg-4">
                             <div class="block_div"><h6>{{'home.FEE' | translate}}</h6><span class="blck_value">{{ hashkernel.Fee }} Epic</span></div>

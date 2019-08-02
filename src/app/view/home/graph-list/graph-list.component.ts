@@ -332,6 +332,7 @@ export class GraphListComponent implements OnInit {
         .apiGetRequest(params, '/blockchain_block/supplygrowth')
         .subscribe(
           res => {
+            res = {"status":200,"timestamp":1564734317476,"message":"period of blocks generation per second fetched Successfully","response":{"date":["2019-08-01"],"total_reward_per_day":[4600],"addedreward":[4600]}}
             if (res['status'] == 200) {
               let gDate = res.response.date;
               let gReward = res.response.total_reward_per_day;
@@ -548,7 +549,7 @@ export class GraphListComponent implements OnInit {
         },
         yaxis: {
           showline: false,
-          title: 'Block',
+          title: 'Blocks',
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
@@ -586,7 +587,7 @@ export class GraphListComponent implements OnInit {
           tickformat: '%m-%d',
         },
         yaxis: {
-          title: 'Block',
+          title: 'Blocks',
         },
         margin: {
           l: 50,
@@ -626,7 +627,7 @@ export class GraphListComponent implements OnInit {
           tickformat: '%m-%d',
         },
         yaxis: {
-          title: 'Block',
+          title: 'Blocks',
         },
         margin: {
           l: 50,
@@ -658,9 +659,15 @@ export class GraphListComponent implements OnInit {
         xaxis: {
           tickangle: -45,
           tickformat: '%m-%d',
+          rangemode: 'nonnegative',
+          fixedrange: true,
+          showgrid: true,
         },
         yaxis: {
           title: 'Tx Fee',
+          rangemode: 'nonnegative',
+          fixedrange: true,
+          showgrid: true,
         },
         margin: {
           l: 50,
@@ -700,9 +707,16 @@ export class GraphListComponent implements OnInit {
           linewidth: 2,
           tickformat: '%m-%d',
           tickangle: -45,
+          rangemode: 'nonnegative',
+          fixedrange: true,
+          showgrid: true
         },
         yaxis: {
           title: 'Total Reward Supply',
+          rangemode: 'nonnegative',
+          fixedrange: true,
+          showgrid: true,
+          tickformat :".0f" 
         },
         margin: {
           l: 50,
@@ -744,7 +758,7 @@ export class GraphListComponent implements OnInit {
           showgrid: true,
         },
         yaxis: {
-          title: 'Block / sec',
+          title: 'Blocks / sec',
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,

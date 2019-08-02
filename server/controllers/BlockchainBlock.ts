@@ -734,7 +734,7 @@ export class BlockchainBlockController {
       BlockchainBlockFetchQuery['Timestamp'] = moment
         .utc(BlockchainBlockFetchQuery['Timestamp'])
         .utc()
-        .format('YYYY-MM-DD,HH:MM:SS UTC');
+        .format('YYYY-MM-DD, HH:MM:SS UTC');
 
       BlockchainBlockFetchQuery['hashstart'] = BlockchainBlockFetchQuery[
         'Hash'
