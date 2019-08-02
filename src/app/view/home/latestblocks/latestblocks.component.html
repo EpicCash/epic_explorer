@@ -239,31 +239,38 @@
     <div class="row peer_table_data">
       <div class="col-6 col-md-3 tble_col">
         <div class="block_div">
+            <span class="expnd_blck"><i class="fa fa-plus"></i></span>
+            <h6>Capabilities</h6>
           <span class="blck_value">{{ peer.capabilities.bits }} bits</span>
         </div>
       </div>
       <div class="col-6 col-md-3 tble_col">
-        <div class="block_div">
+        <div class="block_div">           
+            <h6>User Agent</h6>
           <span class="blck_value">{{ peer.user_agent }}</span>
         </div>
       </div>
       <div class="col-6 col-md-3 tble_col">
         <div class="block_div">
+            <h6>Version</h6>
          <span class="blck_value">{{ peer.version }}</span>
         </div>
       </div>
       <div class="col-6 col-md-3 tble_col">
         <div class="block_div">
+            <h6>Addr</h6>
           <span class="blck_value">{{ peer.addr }}</span>
         </div>
       </div>
       <div class="col-6 col-md-3 tble_col">
         <div class="block_div">
+            <h6>Direction</h6>
           <span class="blck_value">{{ peer.direction }}</span>
         </div>
       </div>
       <div class="col-6 col-md-3 tble_col">
         <div class="block_div">
+            <h6>Total Difficulty</h6>
           <span class="blck_value">{{ peer.total_difficulty.cuckaroo }},{{ peer.total_difficulty.cuckatoo}},{{ peer.total_difficulty.randomx}},{{ peer.total_difficulty.progpow}}</span>
         </div>
       </div>

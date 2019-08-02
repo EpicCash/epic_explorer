@@ -432,7 +432,7 @@ a:focus {
 }
 .link_to_detail{cursor: pointer;color: #0091ff;}
 .link_to_detail:hover{color: #0091ff;text-decoration: underline;}
-.mobile_table{border-bottom: 1px solid #dee2e6;position: relative;}
+.mobile_table, .peer_mobile_table{border-bottom: 1px solid #dee2e6;position: relative;}
 .mobile_table .tble_col{padding: 0;}
 .mobile_table:nth-child(even), .peer_mobile_table:nth-child(even) {
   background: #eee;
