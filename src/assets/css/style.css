@@ -235,6 +235,7 @@ a:focus {
   margin-left: 5px;
   position: relative;
   z-index: 1;
+  float: right;
 }
 .day_filter {
   background-color: #f9f9f7;
@@ -626,7 +627,7 @@ margin-right: 10px;
   margin-top: -4px;
 }
 .langbut:focus{outline: none;}
-.detail_div .difficulty_datas{font-size: 14px !important; color: #0091ff}
+.detail_div .difficulty_datas{font-size: 14px !important; color: #0091ff; margin-bottom: 0px;}
 .net_dropdwn{
   min-width: 5rem;
   padding: 0;

@@ -65,7 +65,7 @@ export class GraphDetailComponent implements OnInit {
             this.hashdata.layout.height = 500;
             // this.hashdata.layout.width =
             //   window.innerWidth - (window.innerWidth / 2.8);
-            this.title = 'Transactions by time';
+            this.title = 'Transactions over time';
             this.GraphtDate = this.comp.tDate;
             this.GraphtHour = this.comp.tHour;
             this.GraphtInput = this.comp.tInput;
@@ -172,7 +172,7 @@ export class GraphDetailComponent implements OnInit {
             // this.hashdata.layout.width =
             //   window.innerWidth - window.innerWidth / 2.8;
             //console.log(this.hashdata.layout.width);
-            this.title = 'Transactions Vs Date';
+            this.title = 'Transactions by Date';
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
             );
@@ -206,7 +206,7 @@ export class GraphDetailComponent implements OnInit {
           this.hashdata.layout.height = 500;
           // this.hashdata.layout.width =
           //   window.innerWidth - window.innerWidth / 2.8;
-          this.title = 'Transactions by time';
+          this.title = 'Transactions over time';
         });
         break;
       case 'blocks':
@@ -279,7 +279,7 @@ export class GraphDetailComponent implements OnInit {
           this.hashdata.layout.height = 500;
           // this.hashdata.layout.width =
           //   window.innerWidth - window.innerWidth / 2.8;
-          this.title = 'Transactions Vs Date';
+          this.title = 'Transactions by Date';
         });
         break;
     }
