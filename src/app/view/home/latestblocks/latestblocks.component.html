@@ -234,12 +234,15 @@
       </div>
     </div> -->
   </div>
-  <div class="peer_mobile_table" *ngFor="let peer of peers">
+  <div [ngClass]="{peer_mobile_table : true, hght_40: peeritem.id != clickPeer }" id="peer_{{peer.id}}"  #peeritem *ngFor="let peer of peers">
 
     <div class="row peer_table_data">
       <div class="col-6 col-md-3 tble_col">
         <div class="block_div">
-            <span class="expnd_blck"><i class="fa fa-plus"></i></span>
+            <span *ngIf="peeritem.id != clickPeer"
+            (click)="onClickPeerPlus(peer.id);" class="expnd_blck"><i class="fa fa-plus"></i></span>
+            <span *ngIf="peeritem.id == clickPeer" (click)="onClickPeerMinus(peer.id);"
+            class="expnd_blck"><i class="fa fa-minus"></i></span>
             <h6>Capabilities</h6>
           <span class="blck_value">{{ peer.capabilities.bits }} bits</span>
         </div>
