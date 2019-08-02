@@ -16,7 +16,7 @@ import {
   TransactionFeeDto,
 } from '../dtos';
 import { Paginate } from '../utils';
-const https = require('https');
+const http = require('http');
 
 var moment = require('moment');
 
@@ -374,11 +374,11 @@ export class BlockchainKernelController {
       });
       BlockchainKernelFetchQuery
         ? response.status(200).json({
-            status: 200,
-            timestamp: Date.now(),
-            message: 'blockchain_kernelsuccessfully fetched for given id.',
-            response: { ...BlockchainKernelFetchQuery },
-          })
+          status: 200,
+          timestamp: Date.now(),
+          message: 'blockchain_kernelsuccessfully fetched for given id.',
+          response: { ...BlockchainKernelFetchQuery },
+        })
         : next(new NoDataFoundException());
     } catch (error) {
       next(new InternalServerErrorException(error));
@@ -418,11 +418,11 @@ export class BlockchainKernelController {
       ).delete(request.params.Id);
       BlockchainKernelDeleteQuery
         ? response.status(200).json({
-            status: 200,
-            timestamp: Date.now(),
-            message: 'blockchain_kernel successfully deleted for given id.',
-            response: { ...BlockchainKernelDeleteQuery },
-          })
+          status: 200,
+          timestamp: Date.now(),
+          message: 'blockchain_kernel successfully deleted for given id.',
+          response: { ...BlockchainKernelDeleteQuery },
+        })
         : next(new NoDataFoundException());
     } catch (error) {
       next(new InternalServerErrorException(error));
@@ -472,7 +472,7 @@ export class BlockchainKernelController {
       next(new InternalServerErrorException(error));
     }
   };
-  
+
 
   private Translator = async (
     request: Request,
@@ -481,20 +481,20 @@ export class BlockchainKernelController {
   ) => {
     try {
       const lang = request.query.lang;
-      
-    /*  response.status(200).json({
-        status: 200,
-        timestamp: Date.now(),
-        message: 'Transaction fee chart fetched successfully',
-        response: {
-          lang: lang
-        },
-      }); */
-        console.log(path.resolve(__dirname + '/../i18n/'+request.query.lang+'.json'));
-        console.log("Without :",path.resolve('/../i18n/'+request.query.lang+'.json'));
-      response.header("Content-Type",'application/json');
-      response.sendFile(path.resolve(__dirname + '/../i18n/'+request.query.lang+'.json'));
-      
+
+      /*  response.status(200).json({
+          status: 200,
+          timestamp: Date.now(),
+          message: 'Transaction fee chart fetched successfully',
+          response: {
+            lang: lang
+          },
+        }); */
+      console.log(path.resolve(__dirname + '/../i18n/' + request.query.lang + '.json'));
+      console.log("Without :", path.resolve('/../i18n/' + request.query.lang + '.json'));
+      response.header("Content-Type", 'application/json');
+      response.sendFile(path.resolve(__dirname + '/../i18n/' + request.query.lang + '.json'));
+
     } catch (error) {
       next(new InternalServerErrorException(error));
     }
@@ -506,14 +506,29 @@ export class BlockchainKernelController {
     next: NextFunction,
   ) => {
     try {
-      https.get('http://5.9.174.122:3413/v1/peers/connected', (resp) => {
-        console.log('resp resp respresp',resp);
-  let data = '';
+      http.get('http://5.9.174.122:3413/v1/peers/connected', (resp) => {
+        // console.log('resp resp respresp',resp);
+        let data = '';
 
-  // A chunk of data has been recieved.
-  
-});
+        // A chunk of data has been recieved.
+        resp.on('data', function (chunk) {
+          data += chunk;
+          let dataJson = JSON.parse(data);
+          dataJson.forEach(function (value, i) {
+            value['id'] = i;
+          });
+          response.status(200).json({
+            status: 200,
+            timestamp: Date.now(),
+            message: 'Peers list fetched successfully',
+            response: {
+              dataJson
+            },
+          });
+        });
+      });
     } catch (error) {
+      console.log('error 3###########', error);
       next(new InternalServerErrorException(error));
     }
   };
@@ -550,8 +565,8 @@ export class BlockchainKernelController {
         .query(
           "select 1 as hash, date(DATE_TRUNC('day', timestamp)) as date, sum(fee)/1000000 as fee \
             from blockchain_block t1 join blockchain_kernel t2 on t2.block_id=t1.hash  where " +
-            timeIntervalQry +
-            "group by DATE_TRUNC('day', timestamp) order by date",
+          timeIntervalQry +
+          "group by DATE_TRUNC('day', timestamp) order by date",
         )
         .catch(err_msg => {
           next(err_msg);
@@ -608,10 +623,10 @@ export class BlockchainKernelController {
         .query(
           "with hours as ( \
             SELECT generate_series('" +
-            fromdate +
-            " 00:00:00'::timestamp, '" +
-            todate +
-            " 23:00:00', '1 hours') as hour ) select hours.hour, t1.totalinput, t1.totalkernal, t1.totaloutput \
+          fromdate +
+          " 00:00:00'::timestamp, '" +
+          todate +
+          " 23:00:00', '1 hours') as hour ) select hours.hour, t1.totalinput, t1.totalkernal, t1.totaloutput \
             from hours left join(select to_char(x.timestamp,'YYYY-MM-DD HH24:00:00') as hour_of_day ,\
                     SUM(x.input_count) as totalinput, SUM(x.kernal_count) as totalkernal, SUM(x.output_count) as totaloutput\
             from ( SELECT blockchain_block.hash, \
@@ -629,11 +644,11 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ke
 LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_output group by block_id) as bo \
                      ON blockchain_block.hash = \
                         bo.block_id WHERE blockchain_block.timestamp >= '" +
-            fromdate +
-            " 00:00:00' \
+          fromdate +
+          " 00:00:00' \
                           AND blockchain_block.timestamp <= '" +
-            todate +
-            " 23:59:59' \
+          todate +
+          " 23:59:59' \
        GROUP  BY blockchain_block.hash \
        ORDER  BY blockchain_block.timestamp DESC ) as x \
                 group by to_char(x.timestamp,'YYYY-MM-DD HH24:00:00') \
@@ -745,8 +760,8 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
       const TransactionHeatmapChartQuery = await getConnection()
         .query(
           'with hours as ( SELECT hour::date from generate_series(' +
-            seriesquery +
-            ", '1 day') as hour) select hours.hour, \
+          seriesquery +
+          ", '1 day') as hour) select hours.hour, \
               t1.totalinput, \
               t1.totalkernal, \
               t1.totaloutput \
@@ -767,8 +782,8 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ke
 LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_output group by block_id) as bo \
                      ON blockchain_block.hash = \
                         bo.block_id WHERE " +
-            timeIntervalQry +
-            " \
+          timeIntervalQry +
+          " \
        GROUP  BY blockchain_block.hash \
        ORDER  BY blockchain_block.timestamp DESC) as x \
                 group by to_char(x.timestamp,'YYYY-MM-DD') \

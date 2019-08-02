@@ -47,21 +47,15 @@ export class LatestblocksComponent implements OnInit {
   }
 
   public getpeersList() {
-    const httpOptions = {
-      headers: new HttpHeaders({ 
-        'Access-Control-Allow-Origin':'*'
-      })
-    };
-
-    this.http
-    .get('http://5.9.174.122:3413/v1/peers/connected',httpOptions)
-    .subscribe((res) => {
-        console.log('reeeee',res);
-        // this.peers = res;
-        
-        console.log('this.peers',this.peers);
-      });
-      this.peers = [{"id": 1,"capabilities":{"bits":15},"user_agent":"MW/Epic 1.0.0","version":1,"addr":"54.233.177.64:3414","direction":"Outbound","total_difficulty":{"cuckaroo":1630,"cuckatoo":706,"randomx":138024,"progpow":49792},"height":10},{"id": 2,"capabilities":{"bits":15},"user_agent":"MW/Epic 1.0.0","version":1,"addr":"95.216.102.217:3414","direction":"Outbound","total_difficulty":{"cuckaroo":1630,"cuckatoo":706,"randomx":138024,"progpow":49792},"height":10},{"id": 3,"capabilities":{"bits":15},"user_agent":"MW/Epic 1.0.0","version":1,"addr":"90.190.172.177:3414","direction":"Outbound","total_difficulty":{"cuckaroo":2,"cuckatoo":2,"randomx":1024,"progpow":256},"height":0},{"id": 4,"capabilities":{"bits":15},"user_agent":"MW/Epic 1.0.0","version":1,"addr":"67.189.82.196:3414","direction":"Outbound","total_difficulty":{"cuckaroo":1630,"cuckatoo":706,"randomx":138024,"progpow":49792},"height":10},{"id": 5,"capabilities":{"bits":15},"user_agent":"MW/Epic 1.0.0","version":1,"addr":"167.71.72.2:3414","direction":"Outbound","total_difficulty":{"cuckaroo":1630,"cuckatoo":706,"randomx":138024,"progpow":49792},"height":10}];
+    this.chartService.apiGetRequest('','/blockchain_kernel/getpeers').subscribe(
+      res => {
+        if (res['status'] == 200) {
+          this.peers = res.response.dataJson;
+        }
+      },
+      error => {},
+    );
+      // this.peers = [{"id": 1,"capabilities":{"bits":15},"user_agent":"MW/Epic 1.0.0","version":1,"addr":"54.233.177.64:3414","direction":"Outbound","total_difficulty":{"cuckaroo":1630,"cuckatoo":706,"randomx":138024,"progpow":49792},"height":10},{"id": 2,"capabilities":{"bits":15},"user_agent":"MW/Epic 1.0.0","version":1,"addr":"95.216.102.217:3414","direction":"Outbound","total_difficulty":{"cuckaroo":1630,"cuckatoo":706,"randomx":138024,"progpow":49792},"height":10},{"id": 3,"capabilities":{"bits":15},"user_agent":"MW/Epic 1.0.0","version":1,"addr":"90.190.172.177:3414","direction":"Outbound","total_difficulty":{"cuckaroo":2,"cuckatoo":2,"randomx":1024,"progpow":256},"height":0},{"id": 4,"capabilities":{"bits":15},"user_agent":"MW/Epic 1.0.0","version":1,"addr":"67.189.82.196:3414","direction":"Outbound","total_difficulty":{"cuckaroo":1630,"cuckatoo":706,"randomx":138024,"progpow":49792},"height":10},{"id": 5,"capabilities":{"bits":15},"user_agent":"MW/Epic 1.0.0","version":1,"addr":"167.71.72.2:3414","direction":"Outbound","total_difficulty":{"cuckaroo":1630,"cuckatoo":706,"randomx":138024,"progpow":49792},"height":10}];
 }
 
   
