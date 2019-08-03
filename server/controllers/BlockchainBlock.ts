@@ -1481,6 +1481,9 @@ export class BlockchainBlockController {
       }
 
       block_height = BlockchainLatestBlockQuery[0].height;
+      var TotalCuckoo=parseInt(BlockchainLatestBlockQuery[0].total_difficulty_cuckatoo) + 
+                      parseInt(BlockchainLatestBlockQuery[0].total_difficulty_cuckaroo);
+
       response.status(200).json({
         status: 200,
         timestamp: Date.now(),
@@ -1495,7 +1498,12 @@ export class BlockchainBlockController {
           targetdifficultycuckaroo,
           targetdifficultycuckatoo,
           targetdifficultyprogpow,
-          targetdifficultyrandomx
+          targetdifficultyrandomx,
+          TotalCuckoo,
+          TotalDifficultyCuckaroo:BlockchainLatestBlockQuery[0].total_difficulty_cuckaroo,
+          TotalDifficultyCuckatoo:BlockchainLatestBlockQuery[0].total_difficulty_cuckatoo,
+          TotalDifficultyProgpow:BlockchainLatestBlockQuery[0].total_difficulty_progpow,
+          TotalDifficultyRandomx:BlockchainLatestBlockQuery[0].total_difficulty_randomx
         },
       });
     } catch (error) {
