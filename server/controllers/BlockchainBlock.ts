@@ -635,7 +635,6 @@ export class BlockchainBlockController {
             'Hash',
             'Height',
             'Timestamp',
-            '(TotalDifficultyCuckaroo + TotalDifficultyCuckatoo) as TotalCuckoo',
             'TotalDifficultyCuckaroo',
             'TotalDifficultyCuckatoo',
             'TotalDifficultyProgpow',
