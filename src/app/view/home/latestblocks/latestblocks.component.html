@@ -76,7 +76,7 @@
         <!-- title="Cuckaroo : {{ hashvalue.target_difficulty_cuckaroo | number }}, Cuckatoo :  {{ hashvalue.target_difficulty_cuckatoo | number }}, Progpow : {{ hashvalue.target_difficulty_progpow | number }}, Randomx : {{ hashvalue.target_difficulty_randomx | number }}" -->
         <div class="block_div">
           <h6>Difficulty</h6><span
-            class="blck_value">{{(hashvalue.powalgo == 'Cuckoo') ? (hashvalue.TotalCuckoo | number) : (hashvalue.powalgo == 'RandomX') ? (hashvalue.TotalDifficultyRandomx | number) : (hashvalue.powalgo == 'ProgPow') ? (hashvalue.TotalDifficultyProgpow | number) : 0}}</span>
+            class="blck_value">{{(hashvalue.powalgo == 'Cuckoo') ? (((hashvalue.blockchain_block_total_difficulty_cuckaroo | number) + (hashvalue.blockchain_block_total_difficulty_cuckatoo | number )) | number) : (hashvalue.powalgo == 'RandomX') ? (hashvalue.blockchain_block_total_difficulty_randomx | number) : (hashvalue.powalgo == 'ProgPow') ? (hashvalue.blockchain_block_total_difficulty_progpow | number) : 0}}</span>
         </div>
       </div>
       <div class="col-6 col-sm-6 col-md-3 tble_col">
