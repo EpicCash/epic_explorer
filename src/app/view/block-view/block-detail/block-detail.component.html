@@ -69,7 +69,7 @@
           </div>
           <div class="d-inline-block align-middle ml-2">
             <span class="">{{'home.DIFFICULTY' | translate}}</span>
-            <h6 class="view_txt">{{(hashdata.BlockchainBlockFetchQuery.Proof == 'Cuckoo') ? ((hashdata.BlockchainBlockFetchQuery.TotalDifficultyCuckatoo + hashdata.BlockchainBlockFetchQuery.TotalDifficultyCuckaroo) | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'RandomX') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyRandomx | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'ProgPow') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyProgpow | number) : 0}}</h6>
+            <h6 class="view_txt">{{(hashdata.BlockchainBlockFetchQuery.Proof == 'Cuckoo') ? (hashdata.BlockchainBlockFetchQuery.TotalCuckoo | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'RandomX') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyRandomx | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'ProgPow') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyProgpow | number) : 0}}</h6>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 mt-4 pt-2">

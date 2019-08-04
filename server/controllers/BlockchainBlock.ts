@@ -635,6 +635,7 @@ export class BlockchainBlockController {
             'Hash',
             'Height',
             'Timestamp',
+            '(TotalDifficultyCuckaroo + TotalDifficultyCuckatoo) as TotalCuckoo',
             'TotalDifficultyCuckaroo',
             'TotalDifficultyCuckatoo',
             'TotalDifficultyProgpow',
@@ -676,7 +677,8 @@ export class BlockchainBlockController {
       // } else {
       //   BlockchainBlockFetchQuery['PoWAlgorithm'] = 'CuckAToo31';
       // }
-
+      BlockchainBlockFetchQuery['TotalCuckoo']=parseInt(BlockchainBlockFetchQuery.TotalDifficultyCuckaroo) + 
+                                               parseInt(BlockchainBlockFetchQuery.TotalDifficultyCuckatoo);
       if (BlockchainBlockFetchQuery.Height <= 1440) {
         BlockchainBlockFetchQuery['BlockReward'] = 200;
       } else if (BlockchainBlockFetchQuery.Height <= 2880) {
@@ -854,6 +856,7 @@ export class BlockchainBlockController {
             .select([
               'blockchain_block.Hash',
               'blockchain_block.Timestamp',
+              '(blockchain_block.TotalDifficultyCuckaroo + blockchain_block.TotalDifficultyCuckatoo) as TotalCuckoo',
               'blockchain_block.TotalDifficultyCuckaroo',
               'blockchain_block.TotalDifficultyCuckatoo',
               'blockchain_block.TotalDifficultyProgpow',
