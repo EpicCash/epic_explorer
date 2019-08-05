@@ -506,7 +506,7 @@ export class BlockchainKernelController {
     next: NextFunction,
   ) => {
     try {
-      http.get('http://5.9.174.122:3413/v1/peers/connected', (resp) => {
+      http.get('http://116.203.152.58:3413/v1/peers/connected', (resp) => {
         // console.log('resp resp respresp',resp);
         let data = '';
 

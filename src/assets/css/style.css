@@ -464,9 +464,55 @@ a[aria-expanded="true"] > .tab_hdng:after {
 .view_content .mobile_table{text-align: left; min-width: unset;}
 .alt_color:nth-child(odd){background-color: #f9f9f7}
 .test_msg{font-size: 16px;}
+.loader {
+  display: flex;
+  height: 100vh;
+  text-align: center;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.timer{
+  min-width: 140px;
+margin-right: 10px;
+}
+.langbut{
+  border:none !important;
+  color:rgba(0,0,0,.5);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #ffffff;
+}
+.langbut.ftr_lang{background: #ecf2ff;}
+.arrow_drpdwn{
+  border: solid rgba(0,0,0,.5);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  vertical-align: middle;
+  margin-top: -4px;
+}
+.langbut:focus{outline: none;}
+.detail_div .difficulty_datas{font-size: 14px !important; color: #0091ff; margin-bottom: 0px;}
+.net_dropdwn{
+  min-width: 5rem;
+  padding: 0;
+}
+.peers_diff{
+  width: 160px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+}
 /**********************************************Dark Theme CSS********************************/
 body.dark_theme {
   background-color: #27314b;
+  color: #fff;
 }
 .dark_theme .light_theme_display {
   display: none;
@@ -554,6 +600,11 @@ body.dark_theme {
   background-color: #1c2437 !important;
   color: #ffffff !important;
 }
+.dark_theme .nav-item.dropdown .bg-white, .dark_theme .nav-item.dropdown, .dark_theme .langbut{background-color: #27314b !important}
+.dark_theme .langbut{color: #ffffff !important;}
+.dark_theme .arrow_drpdwn{border-color: #ffffff !important;}
+.dark_theme .mobile_table:nth-child(2n), .dark_theme .peer_mobile_table:nth-child(2n){background: #27314b;}
+.dark_theme.langbut.ftr_lang{background: #27314b;color: #ffffff;}
 .dark_theme .dropdown a {
   color: #ffffff !important;
 }
@@ -593,48 +644,3 @@ body.dark_theme {
 .dark_theme .tab_hdng{color: #ffffff;}
 .dark_theme .view_content table{border-color: #384566;}
 .dark_theme .card-body{background-color: #1c2437;}
-.loader {
-  display: flex;
-  height: 100vh;
-  text-align: center;
-  width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
- 
-.timer{
-  min-width: 140px;
-margin-right: 10px;
-}
-.langbut{
-  border:none !important;
-  color:rgba(0,0,0,.5);
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: #ffffff;
-}
-.langbut.ftr_lang{background: #ecf2ff;}
-.arrow_drpdwn{
-  border: solid rgba(0,0,0,.5);
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  padding: 3px;
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  vertical-align: middle;
-  margin-top: -4px;
-}
-.langbut:focus{outline: none;}
-.detail_div .difficulty_datas{font-size: 14px !important; color: #0091ff; margin-bottom: 0px;}
-.net_dropdwn{
-  min-width: 5rem;
-  padding: 0;
-}
-.peers_diff{
-  width: 160px;
-    overflow: hidden;
-    display: inline-block;
-    text-overflow: ellipsis;
-}
