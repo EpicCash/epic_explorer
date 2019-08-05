@@ -9,5 +9,19 @@ import { TransServiceService } from './shared/services/trans-service.service';
 })
 export class AppComponent {
   title = 'explorer2-epic';
-  constructor(private _cookieService: CookieService,public translate: TransServiceService){}
+  constructor(private _cookieService: CookieService,public translate: TransServiceService){
+   console.log('cccc',caches.keys());
+caches.keys().then((keys) => {
+    keys.forEach((eachCacheName) => {
+        let regExPat = /^(ngsw).*api.*/;
+   //     if (regExPat.test(eachCacheName)) {
+            caches.open(eachCacheName).then((eachCache) => {
+                eachCache.keys().then((requests) => {
+                    requests.forEach((eachRequest) => { eachCache.delete(eachRequest); });
+                });
+            });
+     //   }
+    });
+});
+}
 }
