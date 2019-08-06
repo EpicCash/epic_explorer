@@ -38,7 +38,7 @@ export class GraphListComponent implements OnInit {
   public sg_last: any = '';
   public pg_last: any = '';
 
-  public selectedItem: Number = 3;
+  public selectedItem: Number = 6;
   public selectedItem3: Number = 3;
   public selectedItem2: Number = 3;
   public selectedItem4: Number = 3;
@@ -69,6 +69,8 @@ export class GraphListComponent implements OnInit {
   ngOnInit() {
     /* Total Difficulty and blocks chart fetching */
     this.Difficultyreq();
+
+    this.blockreq();
 
     /* Transcation fee chart fetching */
     this.Transcationreq();
@@ -374,8 +376,6 @@ export class GraphListComponent implements OnInit {
     fromDate = '',
     ToDate = '',
     interval = '',
-    fordifficult = true,
-    forblocks = true,
   ) {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
@@ -383,13 +383,12 @@ export class GraphListComponent implements OnInit {
       params = params.append('ToDate', ToDate);
       params = params.append('Interval', interval);
       this.chartService
-        .apiGetRequest(params, '/blockchain_block/totaldiffnblock')
+        .apiGetRequest(params, '/blockchain_block/totaldiff')
         .subscribe(
           res => {
             if (res['status'] == 200) {
               let DifficultychartDate = res.response.Date;
               let BlocksChartDate = res.response.blockDate;
-              if (fordifficult) {
                 let DifficultyCuckaroo = res.response.DifficultyCuckaroo;
                 let DifficultyCuckatoo = res.response.DifficultyCuckatoo;
                 let DifficultyProgpow = res.response.DifficultyProgpow;
@@ -403,12 +402,34 @@ export class GraphListComponent implements OnInit {
                   DifficultyProgpow,
                   DifficultyRandomx
                 );
-              }
-              if (forblocks) {
+              resolve();
+            }
+          },
+          error => {},
+        );
+    });
+  }
+
+  blockreq(
+    fromDate = '',
+    ToDate = '',
+    interval = '',
+  ) {
+    return new Promise((resolve, reject) => {
+      let params = new HttpParams();
+      params = params.append('FromDate', fromDate);
+      params = params.append('ToDate', ToDate);
+      params = params.append('Interval', interval);
+      this.chartService
+        .apiGetRequest(params, '/blockchain_block/blockcount')
+        .subscribe(
+          res => {
+            if (res['status'] == 200) {
+              let DifficultychartDate = res.response.Date;
+              let BlocksChartDate = res.response.blockDate;  
                 let Blockval = res.response.Blocks;
                 this.brg_last = Blockval[Blockval.length - 1];
                 this.totalBlocksFunc(BlocksChartDate, Blockval);
-              }
               resolve();
             }
           },

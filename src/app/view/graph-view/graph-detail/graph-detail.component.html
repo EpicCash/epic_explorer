@@ -12,6 +12,10 @@
   <epic-explorer-plotly *ngIf="hashdata.data" [data]="hashdata.data" [layout]="hashdata.layout">
   </epic-explorer-plotly>
    <div class="day_filter" *ngIf="this.title!='Transactions over time'">
+      
+      <a href="JavaScript:void(0);" *ngIf="this.title=='Total Difficulty'" (click)="
+            ChartFromView('', '', '1 day', true, false); selectedItem = 6
+              " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primay: true }">1 Day</a>
             <a href="JavaScript:void(0);" (click)="
             ChartFromView('', '', '1 week', true, false); selectedItem = 1
               " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>

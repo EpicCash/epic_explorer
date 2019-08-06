@@ -36,7 +36,11 @@ export class GraphDetailComponent implements OnInit {
     private comp: GraphListComponent,
     private titleService: Title,
     public translate: TransServiceService
-  ) {}
+  ) {
+    if(this.title=='Total Difficulty'){
+      this.selectedItem = 6;
+    }
+  }
   ngOnInit() {
     var self = this;
     var x = setInterval(function() {
@@ -81,7 +85,7 @@ export class GraphDetailComponent implements OnInit {
           });
           break;
         case 'blocks':
-          this.comp.Difficultyreq().then(res => {
+          this.comp.blockreq().then(res => {
             this.hashdata = this.comp.barGraphData;
             this.hashdata.layout.height = 500;
             this.title = 'Blocks';
@@ -193,7 +197,7 @@ export class GraphDetailComponent implements OnInit {
 
     switch (this.chartType) {
       case 'total-difficulty':
-        this.comp.Difficultyreq(p1, p2, p3, p4, p5).then(res => {
+        this.comp.Difficultyreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.linearGraphData;
           this.hashdata.layout.height = 500;
           this.title = 'Total Difficulty';
@@ -210,7 +214,7 @@ export class GraphDetailComponent implements OnInit {
         });
         break;
       case 'blocks':
-        this.comp.Difficultyreq(p1, p2, p3, false, true).then(res => {
+        this.comp.Difficultyreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.barGraphData;
           this.hashdata.layout.height = 500;
           this.title = 'Blocks';

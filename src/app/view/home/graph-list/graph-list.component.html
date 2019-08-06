@@ -25,19 +25,22 @@
       </div>
       <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('', '', '1 week', true, false); selectedItem = 1
+          Difficultyreq('', '', '1 day'); selectedItem = 6
+        " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primay: true }">1 Day</a>
+        <a href="JavaScript:void(0);" (click)="
+            Difficultyreq('', '', '1 week'); selectedItem = 1
           " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('', '', '15 days', true, false); selectedItem = 2
+            Difficultyreq('', '', '15 days'); selectedItem = 2
           " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('', '', '30 days', true, false); selectedItem = 3
+            Difficultyreq('', '', '30 days'); selectedItem = 3
           " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('', '', '60 days', true, false); selectedItem = 4
+            Difficultyreq('', '', '60 days'); selectedItem = 4
           " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('', '', '3 months', true, false); selectedItem = 5
+            Difficultyreq('', '', '3 months'); selectedItem = 5
           " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
       </div>
       <div class="explore_all text-right">
@@ -108,19 +111,19 @@
     </div>
     <div class="day_filter">
       <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('', '', '1 week', false, true); selectedItem3 = 1
+      blockreq('', '', '1 week'); selectedItem3 = 1
           " id="1" #item31 [ngClass]="{ active: selectedItem3 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('', '', '15 days', false, true); selectedItem3 = 2
+      blockreq('', '', '15 days'); selectedItem3 = 2
           " id="2" #item32 [ngClass]="{ active: selectedItem3 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('', '', '30 days', false, true); selectedItem3 = 3
+      blockreq('', '', '30 days'); selectedItem3 = 3
           " id="3" #item33 [ngClass]="{ active: selectedItem3 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('', '', '60 days', false, true); selectedItem3 = 4
+      blockreq('', '', '60 days'); selectedItem3 = 4
           " id="4" #item34 [ngClass]="{ active: selectedItem3 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('', '', '3 months', false, true); selectedItem3 = 5
+      blockreq('', '', '3 months'); selectedItem3 = 5
           " id="5" #item35 [ngClass]="{ active: selectedItem3 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
     </div>
     <div class="explore_all text-right">
