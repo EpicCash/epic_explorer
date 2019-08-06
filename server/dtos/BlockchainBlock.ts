@@ -135,4 +135,8 @@ export class TotalDifficultyNBlockDto {
 
   @IsString()
   public Interval: string;
+
+  @IsString()
+  public Type: string;
+
 }

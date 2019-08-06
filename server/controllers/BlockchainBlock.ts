@@ -215,6 +215,10 @@ export class BlockchainBlockController {
      *         description: Try to give Intevals such as 1 week/ 15 days/ 30 days/ 60 days/ 3 months
      *         in: query
      *         type: string
+     *       - name: Type
+     *         description: Enter the Algorithm Type
+     *         in: query
+     *         type: string
      *     responses:
      *       200:
      *         description: Total Difficulty fetched successfully
@@ -224,7 +228,7 @@ export class BlockchainBlockController {
       validationMiddleware(TotalDifficultyNBlockDto, true),
       this.TotalDifficultyNBlock,
     );
-    
+
        /**
      * @swagger
      * /epic_explorer/v1/blockchain_block/blockcount:
@@ -329,7 +333,7 @@ export class BlockchainBlockController {
       validationMiddleware(TotalDifficultyNBlockDto, true),
       this.BlockPieChart,
     );
-    
+
     /**
      * @swagger
      * /epic_explorer/v1/blockchain_block/hashrate:
@@ -711,7 +715,7 @@ export class BlockchainBlockController {
       // } else {
       //   BlockchainBlockFetchQuery['PoWAlgorithm'] = 'CuckAToo31';
       // }
-      BlockchainBlockFetchQuery['TotalCuckoo']=parseInt(BlockchainBlockFetchQuery.TotalDifficultyCuckaroo) + 
+      BlockchainBlockFetchQuery['TotalCuckoo']=parseInt(BlockchainBlockFetchQuery.TotalDifficultyCuckaroo) +
                                                parseInt(BlockchainBlockFetchQuery.TotalDifficultyCuckatoo);
       if (BlockchainBlockFetchQuery.Height <= 1440) {
         BlockchainBlockFetchQuery['BlockReward'] = 200;
@@ -1005,7 +1009,7 @@ export class BlockchainBlockController {
       next(new InternalServerErrorException(error));
     }
   };
-  
+
   private BlockCount = async (
     request: Request,
     response: Response,
@@ -1126,57 +1130,58 @@ export class BlockchainBlockController {
           "timestamp at time zone '" +
           process.env.TIME_ZONE +
           "' > current_date - interval '1 day'";
-       
+
       }
+      var alog_type = TotalDifficultyNBlockRequestData.Type;
+
         const TotalDifficultyNBlockQuery = await getConnection()
         .query(
-          "select 1 as hash, total_difficulty_cuckaroo as total_difficulty_cuckaroo, \
-          total_difficulty_cuckatoo as total_difficulty_cuckatoo, \
-          total_difficulty_progpow as total_difficulty_progpow, \
-          total_difficulty_randomx as total_difficulty_randomx, DATE_TRUNC('minute', timestamp at time zone '" +
-          process.env.TIME_ZONE +
-          "') as date \
-        from blockchain_block where " +
-        timeIntervalQry +
-          " order by date",
+          "SELECT a.hash, a.tarket_difficulty, a.date FROM(select 1 as hash, (total_difficulty_"+alog_type+" - LAG(total_difficulty_"+alog_type+") OVER (ORDER BY total_difficulty_"+alog_type+")) AS tarket_difficulty, \
+             DATE_TRUNC('minute', timestamp at time zone '" +
+            process.env.TIME_ZONE +
+            "') as date \
+          from blockchain_block where " +
+          timeIntervalQry +
+            " order by height) as a WHERE a.tarket_difficulty IS NOT NULL",
         )
         .catch(err_msg => {
           next(err_msg);
         });
-        console.log( "select 1 as hash, total_difficulty_cuckaroo as total_difficulty_cuckaroo, \
-        total_difficulty_cuckatoo as total_difficulty_cuckatoo, \
-        total_difficulty_progpow as total_difficulty_progpow, \
-        total_difficulty_randomx as total_difficulty_randomx, DATE_TRUNC('minute', timestamp at time zone '" +
-        process.env.TIME_ZONE +
-        "') as date \
-      from blockchain_block where " +
-      timeIntervalQry +
-        " order by date");
+        console.log("SELECT a.hash, a.tarket_difficulty, a.date FROM(select 1 as hash, (total_difficulty_"+alog_type+" - LAG(total_difficulty_"+alog_type+") OVER (ORDER BY total_difficulty_"+alog_type+")) AS tarket_difficulty, \
+           DATE_TRUNC('minute', timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "') as date \
+        from blockchain_block where " +
+        timeIntervalQry +
+          " order by height) as a WHERE a.tarket_difficulty IS NOT NULL");
       let date = [],
-        DifficultyCuckaroo = [],
-        DifficultyCuckatoo = [],
-        DifficultyProgpow = [],
-        DifficultyRandomx = [];
+        //DifficultyCuckaroo = [],
+        //DifficultyCuckatoo = [],
+        //DifficultyProgpow = [],
+        //DifficultyRandomx = [];
+
+        TargetDifficulty = [];
 
         TotalDifficultyNBlockQuery.forEach(e => {
-          //date.indexOf(moment(e.date).format('YYYY-MM-DD')) < 0 ? 
+          //date.indexOf(moment(e.date).format('YYYY-MM-DD')) < 0 ?
          date.push(moment(e.date).format('YYYY-MM-DD'));
-        DifficultyCuckaroo.push(parseInt(e.total_difficulty_cuckaroo));
-        DifficultyCuckatoo.push(parseInt(e.total_difficulty_cuckatoo));
-        DifficultyProgpow.push(parseInt(e.total_difficulty_progpow));
-        DifficultyRandomx.push(parseInt(e.total_difficulty_randomx));
+        // DifficultyCuckaroo.push(parseInt(e.total_difficulty_cuckaroo));
+        // DifficultyCuckatoo.push(parseInt(e.total_difficulty_cuckatoo));
+        // DifficultyProgpow.push(parseInt(e.total_difficulty_progpow));
+        // DifficultyRandomx.push(parseInt(e.total_difficulty_randomx));
+        TargetDifficulty.push(parseInt(e.tarket_difficulty));
       });
-    
+
       response.status(200).json({
         status: 200,
         timestamp: Date.now(),
         message: 'Total Difficulty and Blocks Data fetched Successfully',
         response: {
           Date: date,
-          DifficultyCuckaroo: DifficultyCuckaroo,
-          DifficultyCuckatoo: DifficultyCuckatoo,
-          DifficultyProgpow: DifficultyProgpow,
-          DifficultyRandomx: DifficultyRandomx
+          // DifficultyCuckaroo: DifficultyCuckaroo,
+          // DifficultyCuckatoo: DifficultyCuckatoo,
+          // DifficultyProgpow: DifficultyProgpow,
+          TargetDifficulty: TargetDifficulty
         },
       });
     } catch (error) {
@@ -1586,7 +1591,7 @@ export class BlockchainBlockController {
       }
 
       block_height = BlockchainLatestBlockQuery[0].height;
-      var TotalCuckoo=parseInt(BlockchainLatestBlockQuery[0].total_difficulty_cuckatoo) + 
+      var TotalCuckoo=parseInt(BlockchainLatestBlockQuery[0].total_difficulty_cuckatoo) +
                       parseInt(BlockchainLatestBlockQuery[0].total_difficulty_cuckaroo);
 
       response.status(200).json({
