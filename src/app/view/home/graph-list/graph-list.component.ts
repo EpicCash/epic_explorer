@@ -48,12 +48,14 @@ export class GraphListComponent implements OnInit {
   public selectedItem9: Number = 3;
   public selectedItem10: Number = 3;
   public selectedItem11: Number = 3;
+  public selectedItem12: Number = 1;
 
   public tInput: any;
   public tOutput: any;
   public tKernal: any;
   public tDate: any;
   public tHour: any;
+  public Type: any = '';
 
   viewchartvar: boolean;
 
@@ -376,12 +378,15 @@ export class GraphListComponent implements OnInit {
     fromDate = '',
     ToDate = '',
     interval = '',
+    type = ''
   ) {
+    this.Type = this.Type == '' ? type != '' ? type : 'cuckatoo' : this.Type;
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
       params = params.append('Interval', interval);
+      params = params.append('Type', this.Type);
       this.chartService
         .apiGetRequest(params, '/blockchain_block/totaldiff')
         .subscribe(
@@ -389,18 +394,13 @@ export class GraphListComponent implements OnInit {
             if (res['status'] == 200) {
               let DifficultychartDate = res.response.Date;
               let BlocksChartDate = res.response.blockDate;
-                let DifficultyCuckaroo = res.response.DifficultyCuckaroo;
-                let DifficultyCuckatoo = res.response.DifficultyCuckatoo;
-                let DifficultyProgpow = res.response.DifficultyProgpow;
-                let DifficultyRandomx = res.response.DifficultyRandomx;
+                let TargetDifficulty = res.response.TargetDifficulty;
                 this.lg_last =
-                [DifficultyCuckaroo[DifficultyCuckaroo.length - 1],DifficultyCuckatoo[DifficultyCuckatoo.length - 1],DifficultyProgpow[DifficultyProgpow.length - 1],DifficultyRandomx[DifficultyRandomx.length - 1]];
+                TargetDifficulty[TargetDifficulty.length - 1];
                 this.difficultyChartFunc(
                   DifficultychartDate,
-                  DifficultyCuckaroo,
-                  DifficultyCuckatoo,
-                  DifficultyProgpow,
-                  DifficultyRandomx
+                  TargetDifficulty,
+                  this.Type
                 );
               resolve();
             }
@@ -438,49 +438,49 @@ export class GraphListComponent implements OnInit {
     });
   }
 
-  difficultyChartFunc(DifficultychartDate, DifficultyCuckaroo, DifficultyCuckatoo, DifficultyProgpow, DifficultyRandomx) {
+  difficultyChartFunc(DifficultychartDate, TargetDifficulty, Type) {
     this.linearGraphData = {
       data: [
         {
           x: DifficultychartDate,
-          y: DifficultyCuckaroo,
-          text: DifficultyCuckaroo,
+          y: TargetDifficulty,
+          text: TargetDifficulty,
           mode: 'lines+markers',
           type: 'scatter',
           name: '',
           line: { color: '#ac3333' },
-          hovertemplate: '%{x}<br> Cuckaroo : %{text:,}',
+          hovertemplate: '%{x}<br> Difficulty : %{text:,}',
         },
-        {
-          x: DifficultychartDate,
-          y: DifficultyCuckatoo,
-          text: DifficultyCuckatoo,
-          mode: 'lines+markers',
-          type: 'scatter',
-          name: '',
-          line: { color: '#A876C6' },
-          hovertemplate: '%{x}<br> Cuckatoo : %{text:,}',
-        },
-        {
-          x: DifficultychartDate,
-          y: DifficultyProgpow,
-          text: DifficultyProgpow,
-          mode: 'lines+markers',
-          type: 'scatter',
-          name: '',
-          line: { color: '#54CFDC' },
-          hovertemplate: '%{x}<br> Progpow : %{text:,}',
-        },
-        {
-          x: DifficultychartDate,
-          y: DifficultyRandomx,
-          text: DifficultyRandomx,
-          mode: 'lines+markers',
-          type: 'scatter',
-          name: '',
-          line: { color: '#77817C' },
-          hovertemplate: '%{x}<br> Randomx : %{text:,}',
-        },
+        // {
+        //   x: DifficultychartDate,
+        //   y: DifficultyCuckatoo,
+        //   text: DifficultyCuckatoo,
+        //   mode: 'lines+markers',
+        //   type: 'scatter',
+        //   name: '',
+        //   line: { color: '#A876C6' },
+        //   hovertemplate: '%{x}<br> Cuckatoo : %{text:,}',
+        // },
+        // {
+        //   x: DifficultychartDate,
+        //   y: DifficultyProgpow,
+        //   text: DifficultyProgpow,
+        //   mode: 'lines+markers',
+        //   type: 'scatter',
+        //   name: '',
+        //   line: { color: '#54CFDC' },
+        //   hovertemplate: '%{x}<br> Progpow : %{text:,}',
+        // },
+        // {
+        //   x: DifficultychartDate,
+        //   y: DifficultyRandomx,
+        //   text: DifficultyRandomx,
+        //   mode: 'lines+markers',
+        //   type: 'scatter',
+        //   name: '',
+        //   line: { color: '#77817C' },
+        //   hovertemplate: '%{x}<br> Randomx : %{text:,}',
+        // },
       ],
       layout: {
         hovermode: 'closest',
