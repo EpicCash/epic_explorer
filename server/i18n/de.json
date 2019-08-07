@@ -1,5 +1,5 @@
 {
-	"total-difficulty" : "Gesamtschwierigkeit",
+	"difficulty" : "Schwierigkeit",
 	"transactions-by-time" : "Transaktionen im Zeitverlauf",
 	"blocks" : "Blöcke",
 	"transaction-fees" : "Transkationsgebühren",

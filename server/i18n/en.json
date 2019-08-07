@@ -1,5 +1,5 @@
 {
-	"total-difficulty" : "Total Difficulty",
+	"difficulty" : "Difficulty",
 	"transactions-by-time" : "Transactions over time",
 	"blocks" : "Blocks",
 	"transaction-fees" : "Transaction Fees",

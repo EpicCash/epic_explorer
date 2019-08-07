@@ -8,7 +8,7 @@
               <div class="overflow-hidden">
                 <div class="blocks detail_graph">
 
-            <h2 class="chart_heading text-uppercase d-inline-block">{{this.chartType | translate}}</h2>
+            <h2 class="chart_heading text-uppercase d-inline-block">{{this.title=='Total Difficulty' ? 'Target Difficulty' : this.chartType | translate}}</h2>
   <epic-explorer-plotly *ngIf="hashdata.data" [data]="hashdata.data" [layout]="hashdata.layout">
   </epic-explorer-plotly>
    <div class="day_filter" *ngIf="this.title!='Transactions over time'">
@@ -32,7 +32,7 @@
             ChartFromView('', '', '3 months', comp.Type); selectedItem = 5; comp.difficultyRange = '3 months'
               " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
           </div>
-          <div class="day_filter"  *ngIf="this.title!='Transactions over time'">
+          <div class="day_filter"  *ngIf="this.title=='Total Difficulty'">
             <a href="JavaScript:void(0);" (click)="
             ChartFromView('', '', comp.difficultyRange,'cuckatoo'); selectedItem12 = 1
           " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primay: true }">Cuckoo</a>
@@ -72,7 +72,7 @@
        <div class="box_shadow_large bg-white p-3">
         <h2 class="chart_heading mb-2 d-inline-block">{{'home.EXPLORE' | translate}}</h2>
         <ul class="list-unstyled pl-3">
-          <li class="mb-1" *ngIf="this.title!='Total Difficulty'"><a routerLink="/chart/total-difficulty">{{'home.TOTAL_DIFFICULTY' | translate}}</a></li>
+          <li class="mb-1" *ngIf="this.title!='Total Difficulty'"><a routerLink="/chart/difficulty">{{'home.DIFFICULTY' | translate}}</a></li>
           <li class="mb-1" *ngIf="this.title!='Transactions over time'"><a routerLink="/chart/transactions-by-time">{{'home.TRANSACTIONS_BY_TIME' | translate}}</a></li>
           <li class="mb-1" *ngIf="this.title!='Blocks'"><a routerLink="/chart/blocks">{{'home.BLOCKS' | translate}}</a></li>
           <li class="mb-1" *ngIf="this.title!='Blocks Mined'"><a routerLink="/chart/blocks-mined">{{'home.BLOCKS_MINED' | translate}}</a></li>
@@ -86,6 +86,55 @@
         </ul>
        </div>
       </div>
+
+      </div>
+      <div *ngIf="this.title=='Total Difficulty'" class="row mt-3">
+
+          <div class="col-md-9">
+              <div class="box_shadow_large bg-white p-3">
+              <div class="overflow-hidden">
+                <div class="blocks detail_graph">
+
+            <h2 class="chart_heading text-uppercase d-inline-block">Total Difficulty</h2>
+  <epic-explorer-plotly *ngIf="linearTotalGraphData.data" [data]="linearTotalGraphData.data" [layout]="linearTotalGraphData.layout">
+  </epic-explorer-plotly>
+  <div class="day_filter diff_margin">
+      <a href="JavaScript:void(0);" (click)="
+        totalDifficultyreq('', '', '1 day',''); selectedTarget = 6; TdifficultyRange = '1 day'
+      " id="6" #itemtarget6 [ngClass]="{ active: selectedTarget == itemtarget6.id, txt_primay: true }">1 Day</a>
+      <a href="JavaScript:void(0);" (click)="
+          totalDifficultyreq('', '', '1 week',''); selectedTarget = 1; TdifficultyRange = '1 week'
+        " id="1" #itemtarget1 [ngClass]="{ active: selectedTarget == itemtarget1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="
+          totalDifficultyreq('', '', '15 days',''); selectedTarget = 2; TdifficultyRange = '15 days'
+        " id="2" #itemtarget2 [ngClass]="{ active: selectedTarget == itemtarget2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="
+          totalDifficultyreq('', '', '30 days',''); selectedTarget = 3; TdifficultyRange = '30 days'
+        " id="3" #itemtarget3 [ngClass]="{ active: selectedTarget == itemtarget3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="
+          totalDifficultyreq('', '', '60 days',''); selectedTarget = 4; TdifficultyRange = '60 days'
+        " id="4" #itemtarget4 [ngClass]="{ active: selectedTarget == itemtarget4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="
+          totalDifficultyreq('', '', '3 months',''); selectedTarget = 5; TdifficultyRange = '3 months'
+        " id="5" #itemtarget5 [ngClass]="{ active: selectedTarget == itemtarget5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+    </div>
+    <div class="day_filter">
+        <a href="JavaScript:void(0);" (click)="
+        totalDifficultyreq('', '', TdifficultyRange,'cuckatoo'); selectedTarget12 = 1
+      " id="1" #itemtarget121 [ngClass]="{ active: selectedTarget12 == itemtarget121.id, txt_primay: true }">Cuckoo</a>
+      <a href="JavaScript:void(0);" (click)="
+      totalDifficultyreq('', '', TdifficultyRange,'progpow'); selectedTarget12 = 2
+      " id="2" #itemtarget122 [ngClass]="{ active: selectedTarget12 == itemtarget122.id, txt_primay: true }">ProgPow</a>
+      <a href="JavaScript:void(0);" (click)="
+      totalDifficultyreq('', '', TdifficultyRange,'randomx'); selectedTarget12 = 3
+      " id="3" #itemtarget123 [ngClass]="{ active: selectedTarget12 == itemtarget123.id, txt_primay: true }">RandomX</a>
+  </div>
+
+          </div>
+
+      </div>
+      </div>
+    </div>
 
       </div>
     </div>

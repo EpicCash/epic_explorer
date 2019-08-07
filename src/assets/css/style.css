@@ -644,3 +644,4 @@ body.dark_theme {
 .dark_theme .tab_hdng{color: #ffffff;}
 .dark_theme .view_content table{border-color: #384566;}
 .dark_theme .card-body{background-color: #1c2437;}
+.diff_margin{margin-bottom: -10px !important; margin-top: -10px !important;}
