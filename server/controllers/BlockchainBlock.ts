@@ -219,6 +219,10 @@ export class BlockchainBlockController {
      *         description: Enter the Algorithm Type
      *         in: query
      *         type: string
+     *       - name: Difftype
+     *         description: Enter the Difficulty Type
+     *         in: query
+     *         type: string
      *     responses:
      *       200:
      *         description: Total Difficulty fetched successfully
@@ -1133,8 +1137,14 @@ export class BlockchainBlockController {
 
       }
       var alog_type = TotalDifficultyNBlockRequestData.Type;
-
-        const TotalDifficultyNBlockQuery = await getConnection()
+      var Difftype = TotalDifficultyNBlockRequestData.Difftype;
+      if (TotalDifficultyNBlockRequestData.Interval && TotalDifficultyNBlockRequestData.Interval != '1 day') {
+        var dateFormat = 'YYYY-MM-DD';
+      }else{
+        var dateFormat = 'hh:mm:ss';
+      }
+      if(Difftype == "target"){
+        var TotalDifficultyNBlockQuery = await getConnection()
         .query(
           "SELECT a.hash, a.tarket_difficulty, a.date FROM(select 1 as hash, (total_difficulty_"+alog_type+" - LAG(total_difficulty_"+alog_type+") OVER (ORDER BY total_difficulty_"+alog_type+")) AS tarket_difficulty, \
              DATE_TRUNC('minute', timestamp at time zone '" +
@@ -1147,13 +1157,49 @@ export class BlockchainBlockController {
         .catch(err_msg => {
           next(err_msg);
         });
-        console.log("SELECT a.hash, a.tarket_difficulty, a.date FROM(select 1 as hash, (total_difficulty_"+alog_type+" - LAG(total_difficulty_"+alog_type+") OVER (ORDER BY total_difficulty_"+alog_type+")) AS tarket_difficulty, \
-           DATE_TRUNC('minute', timestamp at time zone '" +
-          process.env.TIME_ZONE +
-          "') as date \
-        from blockchain_block where " +
-        timeIntervalQry +
-          " order by height) as a WHERE a.tarket_difficulty IS NOT NULL");
+        }else if(Difftype == "solution"){
+          var TotalDifficultyNBlockQuery = await getConnection()
+          .query(
+            "SELECT a.hash, a.tarket_difficulty, a.date FROM(select 1 as hash, (total_difficulty_"+alog_type+" - LAG(total_difficulty_"+alog_type+") OVER (ORDER BY total_difficulty_"+alog_type+")) AS tarket_difficulty, \
+               DATE_TRUNC('minute', timestamp at time zone '" +
+              process.env.TIME_ZONE +
+              "') as date \
+            from blockchain_block where " +
+            timeIntervalQry +
+              " order by height) as a WHERE a.tarket_difficulty IS NOT NULL",
+          )
+          .catch(err_msg => {
+            next(err_msg);
+          });
+        }else if(Difftype == "total"){
+          var TotalDifficultyNBlockQuery = await getConnection()
+          .query(
+            "select 1 as hash, total_difficulty_"+alog_type+" as tarket_difficulty, \
+               DATE_TRUNC('minute', timestamp at time zone '" +
+              process.env.TIME_ZONE +
+              "') as date \
+            from blockchain_block where " +
+            timeIntervalQry +
+              " order by height",
+          )
+          .catch(err_msg => {
+            next(err_msg);
+          });
+        }else{
+          var TotalDifficultyNBlockQuery = await getConnection()
+          .query(
+            "SELECT a.hash, a.tarket_difficulty, a.date FROM(select 1 as hash, (total_difficulty_"+alog_type+" - LAG(total_difficulty_"+alog_type+") OVER (ORDER BY total_difficulty_"+alog_type+")) AS tarket_difficulty, \
+               DATE_TRUNC('minute', timestamp at time zone '" +
+              process.env.TIME_ZONE +
+              "') as date \
+            from blockchain_block where " +
+            timeIntervalQry +
+              " order by height) as a WHERE a.tarket_difficulty IS NOT NULL",
+          )
+          .catch(err_msg => {
+            next(err_msg);
+          });
+        }
       let date = [],
         //DifficultyCuckaroo = [],
         //DifficultyCuckatoo = [],
@@ -1164,7 +1210,7 @@ export class BlockchainBlockController {
 
         TotalDifficultyNBlockQuery.forEach(e => {
           //date.indexOf(moment(e.date).format('YYYY-MM-DD')) < 0 ?
-         date.push(moment(e.date).format('YYYY-MM-DD'));
+         date.push(moment(e.date).format(dateFormat));
         // DifficultyCuckaroo.push(parseInt(e.total_difficulty_cuckaroo));
         // DifficultyCuckatoo.push(parseInt(e.total_difficulty_cuckatoo));
         // DifficultyProgpow.push(parseInt(e.total_difficulty_progpow));
