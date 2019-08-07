@@ -16,14 +16,17 @@ export class ChartService {
   private server = environment.domain;
   private socket;
 
-  constructor(public http: HttpClient) {}
-
-  public createSocketConnection() {
-    this.socket = io.connect(this.server);
-    this.socket.on("connect", function(socket) {
-      console.log("Connected!");
-    });
+  constructor(public http: HttpClient) {
+        this.socket = io.connect(this.server);
   }
+
+  // public createSocketConnection() {
+  //   console.log("environment.domain",environment.domain);
+  //   this.socket = io.connect(this.server);
+  //   this.socket.on("connect", function(socket) {
+  //     console.log("Connected!");
+  //   });
+  // }
 
   public apiGetRequest(request: any, reqUrl): Observable<any> {
     return this.http

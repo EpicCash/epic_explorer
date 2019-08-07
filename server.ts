@@ -134,7 +134,9 @@ connection
     });
     const io = require("socket.io").listen(server);
     io.sockets.on("connection", socket => {
+      setInterval(function() {
       universalGetLatestBlockDetails(socket);
+    },1000);
     });
   })
   .catch(error => {

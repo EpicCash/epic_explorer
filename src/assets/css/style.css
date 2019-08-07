@@ -473,7 +473,7 @@ a[aria-expanded="true"] > .tab_hdng:after {
   justify-content: center;
   align-items: center;
 }
- 
+
 .timer{
   min-width: 140px;
 margin-right: 10px;
@@ -645,3 +645,10 @@ body.dark_theme {
 .dark_theme .view_content table{border-color: #384566;}
 .dark_theme .card-body{background-color: #1c2437;}
 .diff_margin{margin-bottom: -10px !important; margin-top: -10px !important;}
+
+.item-highlight {
+  animation: yellowfade 5s ;
+  -moz-animation: yellowfade 5s ;
+  -webkit-animation: yellowfade 5s ;
+  -o-animation: yellowfade 5s ;
+}

@@ -2,6 +2,7 @@ import { getConnection } from "typeorm";
 const moment = require("moment");
 
 export async function universalGetLatestBlockDetails(socket) {
+
   let block_height = "",
     letest_block = "",
     letest_block_num = "",

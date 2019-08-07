@@ -31,6 +31,8 @@ export class BlockDetailListComponent implements OnInit {
   ngOnInit() {
     this.gettinglatesthashList();
     this.getBlockDetails();
+    console.log("Enter Nginit");
+
   }
 
   ngAfterViewInit() {
