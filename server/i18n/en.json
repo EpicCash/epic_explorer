@@ -34,6 +34,7 @@
         "BLOCKS_PER_PAGE" : "Blocks per page",
         "MINUTE" : "minute",
         "TOTAL_DIFFICULTY" : "Total Difficulty",
+        "TARGET_DIFFICULTY" : "Target Difficulty",
         "TRANSACTIONS_BY_TIME" : "Transactions over time",
         "BLOCKS" : "Blocks",
         "BLOCK" : "Block",

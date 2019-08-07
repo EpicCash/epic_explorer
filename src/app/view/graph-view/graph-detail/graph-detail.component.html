@@ -14,24 +14,35 @@
    <div class="day_filter" *ngIf="this.title!='Transactions over time'">
       
       <a href="JavaScript:void(0);" *ngIf="this.title=='Total Difficulty'" (click)="
-            ChartFromView('', '', '1 day', true, false); selectedItem = 6
+            ChartFromView('', '', '1 day', comp.Type); selectedItem = 6; comp.difficultyRange = '1 day'
               " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primay: true }">1 Day</a>
             <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', '1 week', true, false); selectedItem = 1
+            ChartFromView('', '', '1 week', comp.Type); selectedItem = 1; comp.difficultyRange = '1 week'
               " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', '15 days', true, false); selectedItem = 2
+            ChartFromView('', '', '15 days', comp.Type); selectedItem = 2; comp.difficultyRange = '15 days'
               " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', '30 days', true, false); selectedItem = 3
+            ChartFromView('', '', '30 days', comp.Type); selectedItem = 3; comp.difficultyRange = '30 days'
               " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', '60 days', true, false); selectedItem = 4
+            ChartFromView('', '', '60 days', comp.Type); selectedItem = 4; comp.difficultyRange = '60 days'
               " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', '3 months', true, false); selectedItem = 5
+            ChartFromView('', '', '3 months', comp.Type); selectedItem = 5; comp.difficultyRange = '3 months'
               " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
           </div>
+          <div class="day_filter"  *ngIf="this.title!='Transactions over time'">
+            <a href="JavaScript:void(0);" (click)="
+            ChartFromView('', '', comp.difficultyRange,'cuckatoo'); selectedItem12 = 1
+          " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primay: true }">Cuckoo</a>
+          <a href="JavaScript:void(0);" (click)="
+          ChartFromView('', '', comp.difficultyRange,'progpow'); selectedItem12 = 2
+          " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primay: true }">ProgPow</a>
+          <a href="JavaScript:void(0);" (click)="
+          ChartFromView('', '', comp.difficultyRange,'randomx'); selectedItem12 = 3
+          " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primay: true }">RandomX</a>
+      </div>
           <div class="day_filter" *ngIf="this.title=='Transactions over time'">
               <a href="JavaScript:void(0);" (click)="ChartFromView(GraphtDate, GraphtHour, GraphtInput,'Input'); selectedItem8 = 1" id="1" #item1
               [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">{{'home.INPUT' | translate}}</a>

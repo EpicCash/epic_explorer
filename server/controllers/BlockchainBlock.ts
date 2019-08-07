@@ -1221,7 +1221,7 @@ export class BlockchainBlockController {
       response.status(200).json({
         status: 200,
         timestamp: Date.now(),
-        message: 'Total Difficulty and Blocks Data fetched Successfully',
+        message: 'Difficulty and Blocks Data fetched Successfully',
         response: {
           Date: date,
           // DifficultyCuckaroo: DifficultyCuckaroo,

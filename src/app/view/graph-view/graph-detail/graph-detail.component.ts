@@ -23,7 +23,10 @@ export class GraphDetailComponent implements OnInit {
   public chartType : any = [];
   public selectedItem: Number = 3;
   public selectedItem8: Number = 2;
+  public selectedItem12: Number = 1;
+  public Type: any = '';
 
+  
   public GraphtInput: any;
   public GraphtOutput: any;
   public GraphtKernal: any;
@@ -36,12 +39,11 @@ export class GraphDetailComponent implements OnInit {
     private comp: GraphListComponent,
     private titleService: Title,
     public translate: TransServiceService
-  ) {
+  ) {}
+  ngOnInit() {
     if(this.title=='Total Difficulty'){
       this.selectedItem = 6;
     }
-  }
-  ngOnInit() {
     var self = this;
     var x = setInterval(function() {
       self.TimeArr = self.chartService.GetTimer()
@@ -194,10 +196,11 @@ export class GraphDetailComponent implements OnInit {
   ) {
     // (p1, p2, p3, p4, p5) for (fromDate, ToDate, interval, fordifficult, forblocks) for difficult and nar chart
     // AND For heatmap and others - It will change
+    this.comp.Type = p4 != '' ? p4 : this.comp.Type == '' ? 'cuckatoo' : this.comp.Type;
 
     switch (this.chartType) {
       case 'total-difficulty':
-        this.comp.Difficultyreq(p1, p2, p3).then(res => {
+        this.comp.Difficultyreq(p1, p2, p3, p4).then(res => {
           this.hashdata = this.comp.linearGraphData;
           this.hashdata.layout.height = 500;
           this.title = 'Total Difficulty';
