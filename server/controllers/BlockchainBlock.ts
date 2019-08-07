@@ -1141,7 +1141,7 @@ export class BlockchainBlockController {
       if (TotalDifficultyNBlockRequestData.Interval && TotalDifficultyNBlockRequestData.Interval != '1 day') {
         var dateFormat = 'YYYY-MM-DD';
       }else{
-        var dateFormat = 'hh:mm';
+        var dateFormat = 'HH:mm';
       }
       if(Difftype == "target"){
         var TotalDifficultyNBlockQuery = await getConnection()
