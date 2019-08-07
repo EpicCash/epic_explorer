@@ -1232,7 +1232,7 @@ export class BlockchainBlockController {
           // DifficultyCuckatoo: DifficultyCuckatoo,
           // DifficultyProgpow: DifficultyProgpow,
           Maxrange: Maxrange,
-          Minrange: (Minrange * 0.3),
+          Minrange: (Minrange * 0.2),
           TargetDifficulty: TargetDifficulty
         },
       });

@@ -7,7 +7,9 @@
 	"blocks-mined" : "Blöcke abgebaut",
 	"hashrate-growth-chart" : "HashRate-Wachstumstabelle",
 	"block-interval" : "Sperrintervall",
-	"transactions-vs-date" : "Transaktionen nach Datum",
+    "transactions-vs-date" : "Transaktionen nach Datum",
+    "total-difficulty" : "Gesamtschwierigkeit",
+    "target-difficulty" : "Zielschwierigkeit",
     "home": {
         "HEADER_TEXT": "Sie befinden sich in Beta",
         "COUNTDOWN": "Mainnet-Countdown",
@@ -62,7 +64,6 @@
         "SEARCH_RESULT1" : "Ihr Suchbegriff",
         "SEARCH_RESULT2" : "ist zu kurz",
         "SEARCH_RESULT3" : "Bitte geben Sie mindestens sechs Zeichen ein, wenn Sie nach Hash suchen",
-        "total-difficulty" : "Gesamtschwierigkeit",
         "PEERS" : "Gleichaltrigen",
         "CAPABILITIES" : "Fähigkeiten",
         "USER_AGENT" : "User Agent",

@@ -55,20 +55,35 @@ export class GraphDetailComponent implements OnInit {
       this.chartType = params['hashid'];
       //console.log(this.chartType);
     switch(this.chartType){
-      case 'difficulty':
-        this.totalDifficultyreq();
-          this.comp.Difficultyreq().then(res => {
-            this.hashdata = this.comp.linearGraphData;
+      case 'total-difficulty':
+        // this.totalDifficultyreq();
+          this.comp.Difficultyreq('total').then(res => {
+            this.hashdata = this.comp.linearTotalGraphData;
+            console.log('this.comp.linearTotalGraphData',this.comp.linearTotalGraphData);
             this.hashdata.layout.height = 500;
             this.title = 'Total Difficulty';
             this.selectedItem = 6;
-            this.selectedTarget = 6;
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
             );
             //console.log(this.hashdata);
           });
           break;
+        case 'target-difficulty':
+            // this.totalDifficultyreq();
+              this.comp.Difficultyreq('target').then(res => {
+                this.hashdata = this.comp.linearGraphData;
+                console.log('this.comp.linearGraphData',this.comp.linearGraphData);
+                this.hashdata.layout.height = 500;
+                this.title = 'Target Difficulty';
+                this.selectedItem = 6;
+                this.titleService.setTitle(
+                  this.route.snapshot.data.title + ' - ' + this.title,
+                );
+                //console.log(this.hashdata);
+              });
+              break;
+        
       case 'transactions-by-time':
           this.comp.Transactionheatmapreq().then(res => {
             this.hashdata = this.comp.heatMapGrowthData;
@@ -200,12 +215,19 @@ export class GraphDetailComponent implements OnInit {
   ) {
     // (p1, p2, p3, p4, p5) for (fromDate, ToDate, interval, fordifficult, forblocks) for difficult and nar chart
     // AND For heatmap and others - It will change
-    this.comp.Type = p4 != '' ? p4 : this.comp.Type == '' ? 'cuckatoo' : this.comp.Type;
+    this.comp.Type = p4 != '' && (p4 == 'cuckatoo' || p4 == 'progpow' || p4 == 'randomx') ? p4 : this.comp.Type == '' ? 'cuckatoo' : this.comp.Type;
 
     switch (this.chartType) {
-      case 'difficulty':
-        this.comp.Difficultyreq(p1, p2, p3, p4).then(res => {
+      case 'target-difficulty':
+        this.comp.Difficultyreq('target',p1, p2, p3, p4).then(res => {
           this.hashdata = this.comp.linearGraphData;
+          this.hashdata.layout.height = 500;
+          this.title = 'Target Difficulty';
+        });
+        break;
+        case 'total-difficulty':
+        this.comp.Difficultyreq('total',p1, p2, p3, p4).then(res => {
+          this.hashdata = this.comp.linearTotalGraphData;
           this.hashdata.layout.height = 500;
           this.title = 'Total Difficulty';
         });
@@ -221,7 +243,7 @@ export class GraphDetailComponent implements OnInit {
         });
         break;
       case 'blocks':
-        this.comp.Difficultyreq(p1, p2, p3).then(res => {
+        this.comp.blockreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.barGraphData;
           this.hashdata.layout.height = 500;
           this.title = 'Blocks';
@@ -296,74 +318,46 @@ export class GraphDetailComponent implements OnInit {
     }
   }
 
-  totalDifficultyreq(
-    fromDate = '',
-    ToDate = '',
-    interval = '',
-    type = ''
-  ) {
-    this.Type = type != '' ? type : this.Type == '' ? 'cuckatoo' : this.Type;
-    return new Promise((resolve, reject) => {
-      let params = new HttpParams();
-      params = params.append('FromDate', fromDate);
-      params = params.append('ToDate', ToDate);
-      params = params.append('Interval', interval);
-      params = params.append('Type', this.Type);
-      params = params.append('Difftype', 'total');
-      this.chartService
-        .apiGetRequest(params, '/blockchain_block/totaldiff')
-        .subscribe(
-          res => {
-            if (res['status'] == 200) {
-              let DifficultychartDate = res.response.Date;
-                let TargetDifficulty = res.response.TargetDifficulty;
-                
-                this.totaldifficultyChartFunc(
-                  DifficultychartDate,
-                  TargetDifficulty,
-                  this.Type
-                );
-              resolve();
-            }
-          },
-          error => {},
-        );
-    });
-  }
+  
 
-  totaldifficultyChartFunc(DifficultychartDate, TargetDifficulty, Type) {
-    this.linearTotalGraphData = {
-      data: [
-        {
-          x: DifficultychartDate,
-          y: TargetDifficulty,
-          text: TargetDifficulty,
-          mode: 'lines+markers',
-          type: 'scatter',
-          name: '',
-          line: { color: '#ac3333' },
-          hovertemplate: '%{x}<br> Difficulty : %{text:,}',
-        },
-      ],
-      layout: {
-        hovermode: 'closest',
-        height: 250,
-        autosize: true,
-        showlegend: false,
-        xaxis: {
-          tickangle: -45,
-          tickformat: '%m-%d',
-        },
-        yaxis: {
-          title: 'Diff',
-        },
-        margin: {
-          l: 50,
-          r: 50,
-          b: 50,
-          t: 50,
-        },
-      },
-    };
-  }
+  // totaldifficultyChartFunc(DifficultychartDate, TargetDifficulty, Type, range) {
+  //   this.linearTotalGraphData = {
+  //     data: [
+  //       {
+  //         x: DifficultychartDate,
+  //         y: TargetDifficulty,
+  //         text: TargetDifficulty,
+  //         mode: 'lines+markers',
+  //         type: 'scatter',
+  //         name: '',
+  //         line: { color: '#ac3333' },
+  //         hovertemplate: '%{x}<br> Difficulty : %{text:,}',
+  //       },
+  //     ],
+  //     layout: {
+  //       hovermode: 'closest',
+  //       height: 500,
+  //       autosize: true,
+  //       showlegend: false,
+  //       xaxis: {
+  //         tickangle: -45,
+  //         tickformat: '%m-%d',
+  //         fixedrange: true,
+  //         showgrid: true
+  //       },
+  //       yaxis: {
+  //         title: 'Diff',
+  //         fixedrange: true,
+  //         showgrid: true,
+  //         range: range
+  //       },
+  //       margin: {
+  //         l: 50,
+  //         r: 50,
+  //         b: 50,
+  //         t: 50,
+  //       },
+  //     },
+  //   };
+  // }
 }
