@@ -13,4 +13,13 @@
 <body>
   <app-root></app-root>
 </body>
+<script>
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    console.log('checking the  service worker registertion...', registrations);
+    for(let registration of registrations) {
+      registration.unregister();
+     }
+    console.log('service workers unregistered successfully.');
+})
+</script>
 </html>
