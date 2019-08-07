@@ -45,6 +45,7 @@ import {
   BlockchainKernelController,
   BlockchainOutputController
 } from "./server/controllers";
+import { universalGetLatestBlockDetails } from "./server/socket";
 import { dbConfig } from "./server/ormconfig";
 import { config } from "dotenv";
 
@@ -128,8 +129,12 @@ app.get("*", (req, res) => {
 connection
   .connect()
   .then(() => {
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log(`Node Express server listening on http://localhost:${PORT}`);
+    });
+    const io = require("socket.io").listen(server);
+    io.sockets.on("connection", socket => {
+      universalGetLatestBlockDetails(socket);
     });
   })
   .catch(error => {

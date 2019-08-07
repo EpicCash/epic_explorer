@@ -26,36 +26,71 @@
 </div> -->
 <div class="row" *ngIf="latestblockdetail">
   <div class="col-md-3">
-    <div class="text-center detail_div" [ngStyle]="{'min-height.px': minHeight}">
-        <p class="mb-0 desc">{{'home.BLOCKCHAIN_HEIGHT' | translate}}</p>
-      <p class="count mb-0">{{ latestblockdetail.block_height | number }}</p>
-     
+    <div
+      class="text-center detail_div"
+      [ngStyle]="{ 'min-height.px': minHeight }"
+    >
+      <p class="mb-0 desc">{{ "home.BLOCKCHAIN_HEIGHT" | translate }}</p>
+      <p
+        class="count mb-0"
+        [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
+      >
+        {{ latestblockdetail.block_height | number }}
+      </p>
     </div>
   </div>
   <div class="col-md-3">
-    <div class="text-center detail_div" [ngStyle]="{'min-height.px': minHeight}">
-        <p class="mb-0 desc">{{'home.LATEST_BLOCK' | translate}}</p>
-      <p class="count mb-0">{{latestblockdetail.letest_block_num}} <span class="">{{latestblockdetail.letest_block_duration}}</span></p>
-      
+    <div
+      class="text-center detail_div"
+      [ngStyle]="{ 'min-height.px': minHeight }"
+    >
+      <p class="mb-0 desc">{{ "home.LATEST_BLOCK" | translate }}</p>
+      <p
+        class="count mb-0"
+        [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
+      >
+        {{ latestblockdetail.letest_block_num }}
+        <span class="">{{ latestblockdetail.letest_block_duration }}</span>
+      </p>
     </div>
   </div>
   <div class="col-md-3">
     <div class="text-center detail_div" #minhgt>
-        <p class="mb-2 desc">{{'home.LATEST_BLOCK1' | translate}}</p>
-     <div class=" text-left d-inline-block" title="Target / Total Block Difficulty">
+      <p class="mb-2 desc">{{ "home.LATEST_BLOCK1" | translate }}</p>
+      <div
+        class=" text-left d-inline-block"
+        title="Target / Total Block Difficulty"
+        [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
+      >
         <!-- <p class="difficulty_datas">Cuckaroo : {{latestblockdetail.targetdifficultycuckaroo | number}} / {{latestblockdetail.TotalDifficultyCuckatoo | number}}</p> -->
-      <p class="difficulty_datas">Cuckoo : {{latestblockdetail.targetdifficultycuckatoo | number}} / {{latestblockdetail.TotalDifficultyCuckatoo | number}}</p>
-      <p class="difficulty_datas">ProgPow : {{latestblockdetail.targetdifficultyprogpow | number}} / {{latestblockdetail.TotalDifficultyProgpow | number}}</p>
-      <p class="difficulty_datas">RandomX : {{latestblockdetail.targetdifficultyrandomx | number}} / {{latestblockdetail.TotalDifficultyRandomx | number}}</p>
-     </div>
-      
+        <p class="difficulty_datas">
+          Cuckoo : {{ latestblockdetail.targetdifficultycuckatoo | number }} /
+          {{ latestblockdetail.TotalDifficultyCuckatoo | number }}
+        </p>
+        <p class="difficulty_datas">
+          ProgPow : {{ latestblockdetail.targetdifficultyprogpow | number }} /
+          {{ latestblockdetail.TotalDifficultyProgpow | number }}
+        </p>
+        <p class="difficulty_datas">
+          RandomX : {{ latestblockdetail.targetdifficultyrandomx | number }} /
+          {{ latestblockdetail.TotalDifficultyRandomx | number }}
+        </p>
+      </div>
     </div>
   </div>
   <div class="col-md-3">
-    <div class="text-center detail_div" [ngStyle]="{'min-height.px': minHeight}">
-        <p class="mb-0 desc">{{'home.COIN_IN' | translate}}</p>
-      <p class="count mb-0">{{latestblockdetail.coin_existence | number}} <span class="">Epic</span></p>
-      
+    <div
+      class="text-center detail_div"
+      [ngStyle]="{ 'min-height.px': minHeight }"
+    >
+      <p class="mb-0 desc">{{ "home.COIN_IN" | translate }}</p>
+      <p
+        class="count mb-0"
+        [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
+      >
+        {{ latestblockdetail.coin_existence | number }}
+        <span class="">Epic</span>
+      </p>
     </div>
   </div>
 </div>
