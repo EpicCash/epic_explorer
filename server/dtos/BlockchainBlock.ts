@@ -139,4 +139,7 @@ export class TotalDifficultyNBlockDto {
   @IsString()
   public Type: string;
 
+  @IsString()
+  public Difftype: string;
+
 }

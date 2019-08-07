@@ -25,13 +25,16 @@ export class GraphDetailComponent implements OnInit {
   public selectedItem8: Number = 2;
   public selectedItem12: Number = 1;
   public Type: any = '';
-
+  public selectedTarget: Number = 3;
+  public selectedTarget12: Number = 1;
   
   public GraphtInput: any;
   public GraphtOutput: any;
   public GraphtKernal: any;
   public GraphtDate: any;
   public GraphtHour: any;
+  public linearTotalGraphData: any = [];
+  public TdifficultyRange: any = '1 day';
 
   constructor(
     private route: ActivatedRoute,
@@ -41,9 +44,7 @@ export class GraphDetailComponent implements OnInit {
     public translate: TransServiceService
   ) {}
   ngOnInit() {
-    if(this.title=='Total Difficulty'){
-      this.selectedItem = 6;
-    }
+
     var self = this;
     var x = setInterval(function() {
       self.TimeArr = self.chartService.GetTimer()
@@ -54,11 +55,14 @@ export class GraphDetailComponent implements OnInit {
       this.chartType = params['hashid'];
       //console.log(this.chartType);
     switch(this.chartType){
-      case 'total-difficulty':
+      case 'difficulty':
+        this.totalDifficultyreq();
           this.comp.Difficultyreq().then(res => {
             this.hashdata = this.comp.linearGraphData;
             this.hashdata.layout.height = 500;
             this.title = 'Total Difficulty';
+            this.selectedItem = 6;
+            this.selectedTarget = 6;
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
             );
@@ -199,7 +203,7 @@ export class GraphDetailComponent implements OnInit {
     this.comp.Type = p4 != '' ? p4 : this.comp.Type == '' ? 'cuckatoo' : this.comp.Type;
 
     switch (this.chartType) {
-      case 'total-difficulty':
+      case 'difficulty':
         this.comp.Difficultyreq(p1, p2, p3, p4).then(res => {
           this.hashdata = this.comp.linearGraphData;
           this.hashdata.layout.height = 500;
@@ -290,5 +294,76 @@ export class GraphDetailComponent implements OnInit {
         });
         break;
     }
+  }
+
+  totalDifficultyreq(
+    fromDate = '',
+    ToDate = '',
+    interval = '',
+    type = ''
+  ) {
+    this.Type = type != '' ? type : this.Type == '' ? 'cuckatoo' : this.Type;
+    return new Promise((resolve, reject) => {
+      let params = new HttpParams();
+      params = params.append('FromDate', fromDate);
+      params = params.append('ToDate', ToDate);
+      params = params.append('Interval', interval);
+      params = params.append('Type', this.Type);
+      params = params.append('Difftype', 'total');
+      this.chartService
+        .apiGetRequest(params, '/blockchain_block/totaldiff')
+        .subscribe(
+          res => {
+            if (res['status'] == 200) {
+              let DifficultychartDate = res.response.Date;
+                let TargetDifficulty = res.response.TargetDifficulty;
+                
+                this.totaldifficultyChartFunc(
+                  DifficultychartDate,
+                  TargetDifficulty,
+                  this.Type
+                );
+              resolve();
+            }
+          },
+          error => {},
+        );
+    });
+  }
+
+  totaldifficultyChartFunc(DifficultychartDate, TargetDifficulty, Type) {
+    this.linearTotalGraphData = {
+      data: [
+        {
+          x: DifficultychartDate,
+          y: TargetDifficulty,
+          text: TargetDifficulty,
+          mode: 'lines+markers',
+          type: 'scatter',
+          name: '',
+          line: { color: '#ac3333' },
+          hovertemplate: '%{x}<br> Difficulty : %{text:,}',
+        },
+      ],
+      layout: {
+        hovermode: 'closest',
+        height: 250,
+        autosize: true,
+        showlegend: false,
+        xaxis: {
+          tickangle: -45,
+          tickformat: '%m-%d',
+        },
+        yaxis: {
+          title: 'Diff',
+        },
+        margin: {
+          l: 50,
+          r: 50,
+          b: 50,
+          t: 50,
+        },
+      },
+    };
   }
 }
