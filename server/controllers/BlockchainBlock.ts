@@ -1147,13 +1147,6 @@ export class BlockchainBlockController {
         .catch(err_msg => {
           next(err_msg);
         });
-        console.log("SELECT a.hash, a.tarket_difficulty, a.date FROM(select 1 as hash, (total_difficulty_"+alog_type+" - LAG(total_difficulty_"+alog_type+") OVER (ORDER BY total_difficulty_"+alog_type+")) AS tarket_difficulty, \
-           DATE_TRUNC('minute', timestamp at time zone '" +
-          process.env.TIME_ZONE +
-          "') as date \
-        from blockchain_block where " +
-        timeIntervalQry +
-          " order by height) as a WHERE a.tarket_difficulty IS NOT NULL");
       let date = [],
         //DifficultyCuckaroo = [],
         //DifficultyCuckatoo = [],

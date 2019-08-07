@@ -24,7 +24,7 @@ export class GraphListComponent implements OnInit {
   public transcationGraphData: any = [];
   public stackGraphData: any = [];
   public pieGraphData: any = [];
-
+  
   public lg_last: any;
   public ag_last: any = '';
   public dg_last: any = '';
@@ -56,7 +56,8 @@ export class GraphListComponent implements OnInit {
   public tDate: any;
   public tHour: any;
   public Type: any = '';
-
+  public difficultyRange: any = '1 day';
+  
   viewchartvar: boolean;
 
   constructor(private chartService: ChartService, private http: HttpClient,public translate: TransServiceService,    private router: Router,
@@ -380,7 +381,7 @@ export class GraphListComponent implements OnInit {
     interval = '',
     type = ''
   ) {
-    this.Type = this.Type == '' ? type != '' ? type : 'cuckatoo' : this.Type;
+    this.Type = type != '' ? type : this.Type == '' ? 'cuckatoo' : this.Type;
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
       params = params.append('FromDate', fromDate);
