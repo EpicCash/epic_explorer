@@ -50,7 +50,7 @@ export class LatestblocksComponent implements OnInit {
           this.hashvalues = res.response.BlockchainBlockResult;
           if(CurrentPage == 1){
             this.lastblock = res.response.BlockchainBlockResult[0].blockchain_block_height;
-            console.log(this.lastblock);
+            //console.log(this.lastblock);
 
           }
         }

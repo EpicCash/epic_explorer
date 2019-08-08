@@ -12,7 +12,7 @@ export class BlockAppendComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log(this.blockdetails);
+    //console.log(this.blockdetails);
   }
 
   public onClickPlus(height) {
