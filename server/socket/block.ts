@@ -198,11 +198,11 @@ export async function universalGetLatestBlockDetails(socket) {
     TotalCuckoo,
     age : dateTimeDurationString,
     input_count: BlockchainLatestBlockQuery[0].input_count,
-    kernal_count: BlockchainLatestBlockQuery[0].kernal_count,
+    kernel_count: BlockchainLatestBlockQuery[0].kernel_count,
     output_count: BlockchainLatestBlockQuery[0].output_count,
     proof: BlockchainLatestBlockQuery[0].proof,
     hasharray: hasharray,
-    Difficulty: Difficulty,
+    // Difficulty: Difficulty,
     hashstart:BlockchainLatestBlockQuery[0].hash.slice(0, 2),
     hashend:BlockchainLatestBlockQuery[0].hash.slice(62,64),
     TotalDifficultyCuckaroo:

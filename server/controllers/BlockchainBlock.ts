@@ -1139,9 +1139,11 @@ export class BlockchainBlockController {
       var alog_type = TotalDifficultyNBlockRequestData.Type;
       var Difftype = TotalDifficultyNBlockRequestData.Difftype;
       if (TotalDifficultyNBlockRequestData.Interval && TotalDifficultyNBlockRequestData.Interval != '1 day') {
-        var dateFormat = 'YYYY-MM-DD';
+        var dateFormat = 'YYYY-MM-DD HH:mm:ss';
+        var tickFormat = '%m-%d';
       }else{
-        var dateFormat = 'HH:mm';
+        var dateFormat = 'YYYY-MM-DD HH:mm:ss';
+        var tickFormat = '%H-%M';
       }
       if(Difftype == "target"){
         var TotalDifficultyNBlockQuery = await getConnection()
@@ -1233,7 +1235,8 @@ export class BlockchainBlockController {
           // DifficultyProgpow: DifficultyProgpow,
           Maxrange: Maxrange,
           Minrange: (Minrange * 0.2),
-          TargetDifficulty: TargetDifficulty
+          TargetDifficulty: TargetDifficulty,
+          tickFormat: tickFormat
         },
       });
     } catch (error) {
