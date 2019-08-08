@@ -469,12 +469,12 @@ export class GraphListComponent implements OnInit {
         {
           x: DifficultychartDate,
           y: TargetDifficulty,
-          text: TargetDifficulty,
+          text: DifficultychartDate,
           mode: 'lines+markers',
           type: 'scatter',
           name: '',
           line: { color: '#ac3333' },
-          hovertemplate: '%{x}<br> Difficulty : %{text:,}',
+          hovertemplate: '%{text}<br> Difficulty : %{y:,}',
         },
         // {
         //   x: DifficultychartDate,
@@ -740,7 +740,6 @@ export class GraphListComponent implements OnInit {
   }
 
   growthFunc(gDate, gReward, gaddedreward) {
-    console.log('gDate gReward gaddedreward',gDate, gReward, gaddedreward)
     this.growthGraphData = {
       data: [
         {
@@ -776,7 +775,8 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
-          tickformat :".0f" 
+          tickformat :".0f",
+          tickprefix: '                '
         },
         margin: {
           l: 50,
@@ -1096,12 +1096,12 @@ export class GraphListComponent implements OnInit {
         {
           x: DifficultychartDate,
           y: TargetDifficulty,
-          text: TargetDifficulty,
+          text: DifficultychartDate,
           mode: 'lines+markers',
           type: 'scatter',
           name: '',
           line: { color: '#ac3333' },
-          hovertemplate: '%{x}<br> Difficulty : %{text:,}',
+          hovertemplate: '%{text}<br> Difficulty : %{y:,}',
         },
       ],
       layout: {
