@@ -1241,6 +1241,8 @@ export class BlockchainBlockController {
       if(Minrange != 0){
           Minrange = (Minrange - (Minrange * 0.2));
       }
+      Maxrange = (Maxrange + (Maxrange * 0.2));
+
       // Minrange = parseInt(Minrange);
       // var Minrange2  = parseInt(Minrange * 0.3);
       response.status(200).json({
