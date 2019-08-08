@@ -13,10 +13,10 @@
 
               <a class="nav-link dropdown-toggle bg-white" href="#" id="navbarDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Testnet
+                Test Net
               </a>
               <div class="dropdown-menu net_dropdwn" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item p-2 disabled" href="https://explorer2.epic.tech">Mainnet</a>
+                <a class="dropdown-item p-2 disabled" href="https://explorer2.epic.tech">Main Net</a>
               </div>
             </li>
           </ul>
@@ -32,9 +32,9 @@
         </button>
       </div>
       <div class="mble_view_hdr">
-          
+
         <div class="nav-item dropdown bg-white px-2 d-inline-block ml-2 order-1 order-sm-2">
-          <span class="flag " [ngStyle]="{ 'background-image': 'url(assets/img/' + translate.getCurrentLang() + '.jpg)'}"></span> 
+          <span class="flag " [ngStyle]="{ 'background-image': 'url(assets/img/' + translate.getCurrentLang() + '.jpg)'}"></span>
           <!--<span class="flag"  ngIf="translate.getCurrentLang() =='de'" style="background-image: url('assets/img/german.jpg')"></span>-->
           <select class="langbut py-2 mx-1" #langSelect (change)="translate.changeLang(langSelect.value)">
             <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}}</option>
@@ -46,9 +46,9 @@
             src="assets/img/light_theme.png" height="20" class="dark_theme_display"></button>
       </div>
     </div>
-    
+
     <div class="position-relative d-block d-sm-none w-100 mt-3">
-        
+
       <input type="text" [(ngModel)]="search" #ctrl="ngModel" class="form-control search_input"
         (keyup.enter)="ctrl.value ? onSearch(ctrl.value) : ''" placeholder="{{'home.SEARCH_TEXT' | translate}}">
       <button class="btn search_btn" (click)="ctrl.value ? onSearch(ctrl.value) : ''">
@@ -64,10 +64,10 @@
 
             <a class="nav-link dropdown-toggle bg-white" href="#" id="navbarDropdown" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Testnet
+              Test Net
             </a>
             <div class="dropdown-menu net_dropdwn" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item p-2 disabled" href="https://explorer2.epic.tech">Mainnet</a>
+              <a class="dropdown-item p-2 disabled" href="https://explorer2.epic.tech">Main Net</a>
             </div>
           </li>
         </ul>

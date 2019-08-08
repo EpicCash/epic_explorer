@@ -19,6 +19,7 @@ body {
   max-width: 75%;
   margin: 0 auto;
 }
+.text_underline{text-decoration: underline;}
 a:hover,
 a:focus {
   text-decoration: none;
