@@ -252,6 +252,7 @@ a:focus {
   background: #fff;
   padding: 0 5px;
 }
+.difficulty_filter.day_filter a.active{border-color: #0056b3; color: #0056b3;}
 .explore_all {
   background: #ecf2ff;
   padding: 15px;
@@ -352,6 +353,9 @@ a:focus {
   font-family: FontAwesome;
   right: 5px;
   top: 1px;
+}
+.chart_show {
+  min-height: 268px;
 }
 /************************************************Footer*****************************************/
 .footer_div {
