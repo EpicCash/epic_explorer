@@ -160,15 +160,15 @@
 
 
     <div class="day_filter">
-      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tInput,'Input'); selectedItem8 = 1" id="1" #item1
-        [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">{{'home.INPUT' | translate}}</a>
-      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tKernal,'Kernal'); selectedItem8 = 2" id="2" #item2
-        [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">{{'home.KERNEL' | translate}}</a>
-      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tOutput,'Output'); selectedItem8 = 3" id="3" #item3
-        [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">{{'home.OUTPUT' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tInput,'Input'); selectedItem81 = 1" id="1" #item1
+        [ngClass]="{ active: selectedItem81 == item1.id, txt_primay: true }">{{'home.INPUT' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tKernal,'Kernal'); selectedItem81 = 2" id="2" #item2
+        [ngClass]="{ active: selectedItem81 == item2.id, day15_txt: true }">{{'home.KERNEL' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tOutput,'Output'); selectedItem81 = 3" id="3" #item3
+        [ngClass]="{ active: selectedItem81 == item3.id, day30_txt: true }">{{'home.OUTPUT' | translate}}</a>
     </div>
     <div class="explore_all text-right">
-      <a routerLink="/chart/transactions-by-time"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
+      <a routerLink="/chart/transactions-over-time"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
             class="fa fa-long-arrow-right"></i></span></a>
     </div>
   </div>
@@ -433,7 +433,7 @@
               " id="5" #item5 [ngClass]="{ active: selectedItem10 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
           </div>
           <div class="explore_all text-right">
-            <a routerLink="/chart/stackchart"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
+            <a routerLink="/chart/blocks-by-algorithm"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
                   class="fa fa-long-arrow-right"></i></span></a>
           </div>
         </div>
@@ -521,7 +521,7 @@
           " id="5" #item5 [ngClass]="{ active: selectedItem8 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
       </div>
       <div class="explore_all text-right">
-        <a routerLink="/chart/transactions-vs-date"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
+        <a routerLink="/chart/transactions-by-date"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
               class="fa fa-long-arrow-right"></i></span></a>
       </div>
     </div>

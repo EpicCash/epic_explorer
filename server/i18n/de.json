@@ -1,6 +1,7 @@
 {
 	"difficulty" : "Schwierigkeit",
-	"transactions-by-time" : "Transaktionen im Zeitverlauf",
+    "transactions-over-time" : "Transaktionen im Zeitverlauf",
+    "blocks-by-algorithm" : "Blöcke nach Algorithmus",
 	"blocks" : "Blöcke",
 	"transaction-fees" : "Transkationsgebühren",
 	"supply-growth" : "Angebotswachstum",

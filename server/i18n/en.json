@@ -1,13 +1,14 @@
 {
 	"difficulty" : "Difficulty",
-	"transactions-by-time" : "Transactions over time",
+    "transactions-over-time" : "Transactions over time",
+    "blocks-by-algorithm" : "Blocks by Algorithm",
 	"blocks" : "Blocks",
 	"transaction-fees" : "Transaction Fees",
 	"supply-growth" : "Supply Growth",
 	"blocks-mined" : "Blocks Mined",
 	"hashrate-growth-chart" : "HashRate Growth Chart",
 	"block-interval" : "Block Interval",
-    "transactions-vs-date" : "Transactions by Date",
+    "transactions-by-date" : "Transactions by Date",
     "total-difficulty" : "Total Difficulty",
     "target-difficulty" : "Target Difficulty",
     "home": {
