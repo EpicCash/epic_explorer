@@ -1,0 +1,37 @@
+<div [ngClass]="{'mobile_table alt_color' : true, hght_40: item.id != clickValue }"  id="hash_{{blockdetails.blockchain_block_height}}" #item >
+<div class="my-animation">
+  <div class="row">
+    <div class="col-6 col-md-3 tble_col">
+     <div class="block_div">  <span *ngIf="item.id != clickValue" (click)="onClickPlus(blockdetails.blockchain_block_height);" class="expnd_blck"><i class="fa fa-plus"></i></span>
+      <span  *ngIf="item.id == clickValue" (click)="onClickMinus(blockdetails.blockchain_block_height);" class="expnd_blck"><i class="fa fa-minus"></i></span><h6>Height</h6><span class="blck_value link_to_detail" routerLink="/blockdetail/{{ blockdetails.blockchain_block_height }}">{{ blockdetails.blockchain_block_height }}</span></div>
+    </div>
+    <div class="col-6 col-md-3 tble_col">
+      <div [title]="blockdetails.blockchain_block_hash" routerLink="/blockdetail/{{ blockdetails.blockchain_block_hash }}" class="block_div link_to_detail"><h6>Hash</h6><span class="blck_value">{{ blockdetails.hashstart
+      }}<span
+        *ngFor="let color of blockdetails.hasharray"
+        class="hash"
+        [ngStyle]="{ 'background-color': color }"
+      ></span
+      >{{ blockdetails.hashend }}</span></div>
+    </div>
+    <div class="col-6 col-md-3 tble_col">
+      <div class="block_div"><h6 >Age</h6><span class="blck_value">{{ blockdetails.age }}</span></div>
+    </div>
+    <div class="col-6 col-md-3 tble_col">
+      <div class="block_div"><h6>Difficulty</h6><span class="blck_value">{{ blockdetails.target_difficulty | number }}</span></div>
+    </div>
+    <div class="col-6 col-sm-6 col-md-3 tble_col">
+      <div class="block_div"><h6 class="mb-0">Pow Algo</h6><span class="blck_value">{{ blockdetails.PoWAlgo }}</span></div>
+    </div>
+    <div class="col-6 col-sm-6 col-md-3 tble_col">
+      <div class="block_div"><h6>#Inputs</h6><span class="blck_value">{{ blockdetails.input_count }}</span></div>
+    </div>
+    <div class="col-6 col-md-3 tble_col">
+      <div class="block_div"><h6 >#Outputs</h6><span class="blck_value">{{ blockdetails.output_count }}</span></div>
+    </div>
+    <div class="col-6 col-md-3 tble_col">
+      <div class="block_div" ><h6>#Kernels</h6><span class="blck_value">{{ blockdetails.kernal_count }}</span></div>
+    </div>
+  </div>
+</div>
+</div>

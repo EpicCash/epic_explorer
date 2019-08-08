@@ -7,6 +7,7 @@ import { GraphListComponent } from './graph-list/graph-list.component';
 import { BlockDetailListComponent } from './block-detail-list/block-detail-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { BlockAppendComponent } from './block-append/block-append.component';
 
 import { HttpClientModule, HttpClient, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
@@ -22,6 +23,7 @@ import { CustomLoader } from 'src/app/app.module';
     LatestblocksComponent,
     GraphListComponent,
     BlockDetailListComponent,
+    BlockAppendComponent
   ],
   imports: [
     CommonModule,
@@ -30,9 +32,10 @@ import { CustomLoader } from 'src/app/app.module';
     ReactiveFormsModule,
     SharedModule,
     TranslateModule.forChild({
-      loader: {provide: TranslateLoader, useClass: CustomLoader, deps : [HttpClient]},         
+      loader: {provide: TranslateLoader, useClass: CustomLoader, deps : [HttpClient]},
   })
   ],
+  entryComponents: [BlockAppendComponent],
   providers: [TransServiceService,CookieService,ChartService],
 })
 export class HomeModule {}

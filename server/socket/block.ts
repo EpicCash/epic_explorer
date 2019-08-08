@@ -9,8 +9,7 @@ export async function universalGetLatestBlockDetails(socket) {
     letest_block_duration = "";
 
   const BlockchainLatestBlockQuery = await getConnection().query(
-    "SELECT timestamp,height,edge_bits,hash,secondary_scaling, previous_id, total_difficulty_cuckaroo, total_difficulty_cuckatoo, total_difficulty_progpow, total_difficulty_randomx FROM blockchain_block ORDER BY timestamp DESC LIMIT 1"
-  );
+    "SELECT bb.timestamp,bb.proof,bb.height,bb.edge_bits,bb.hash,bb.secondary_scaling, bb.previous_id, bb.total_difficulty_cuckaroo, bb.total_difficulty_cuckatoo, bb.total_difficulty_progpow, bb.total_difficulty_randomx, COUNT(DISTINCT(bi.block_id)) AS input_count, COUNT(DISTINCT(bk.block_id)) AS kernel_count, COUNT(DISTINCT(bo.block_id)) AS output_count FROM blockchain_block bb LEFT JOIN blockchain_input bi ON bi.block_id = bb.hash LEFT JOIN blockchain_kernel bk ON bk.block_id = bb.hash LEFT JOIN blockchain_output bo ON bo.block_id = bb.hash group by bb.hash, bb.timestamp ORDER BY bb.timestamp DESC LIMIT 1");
   const BlockchainPreviousBlockQuery = await getConnection().query(
     "SELECT total_difficulty_cuckaroo, total_difficulty_cuckatoo, total_difficulty_progpow, total_difficulty_randomx FROM blockchain_block WHERE hash=" +
       "'" +
@@ -132,10 +131,58 @@ export async function universalGetLatestBlockDetails(socket) {
       BlockchainPreviousBlockQuery[0].total_difficulty_randomx;
   }
 
+  if(BlockchainLatestBlockQuery[0].proof == "RandomX"){
+   var Difficulty = targetdifficultyrandomx;
+  }else if(BlockchainLatestBlockQuery[0].proof == "ProgPow"){
+    var Difficulty = targetdifficultyprogpow;
+  }else if(BlockchainLatestBlockQuery[0].proof == "Cuckoo" ){
+    var Difficulty = targetdifficultycuckatoo;
+  }
+
   block_height = BlockchainLatestBlockQuery[0].height;
+
+  var current_date = new Date();
+  // var current_date = new Date("Sat Apr 2 2018 15:04:00 GMT+0530 (IST)");
+
+  var enddaydif =
+    Math.abs(
+      BlockchainLatestBlockQuery[0].timestamp.getTime() -
+        current_date.getTime(),
+    ) /
+    (1000 * 60 * 60 * 24);
+  var enddayrnd = Math.round(enddaydif);
+  // if(enddayrnd < 1) {
+  var millseconds = Math.abs(
+    BlockchainLatestBlockQuery[0].timestamp.getTime() -
+      current_date.getTime(),
+  );
+
+  var seconds = Math.floor(millseconds / 1000);
+  var days = Math.floor(seconds / 86400);
+  var hours = Math.floor((seconds % 86400) / 3600);
+  var minutes = Math.floor(((seconds % 86400) % 3600) / 60);
+  seconds = seconds % 60;
+  var dateTimeDurationString = '';
+
+  if (days > 0 && (hours === 0 && minutes === 0))
+    dateTimeDurationString += days > 1 ? days + 'd ' : days + 'd ';
+  if (days > 0 && (hours > 0 || minutes > 0))
+    dateTimeDurationString += days > 1 ? days + 'd ' : days + 'd ';
+  if (hours > 0 && minutes > 0)
+    dateTimeDurationString += hours > 1 ? hours + 'h ' : hours + 'h ';
+  if (hours > 0 && minutes === 0)
+    dateTimeDurationString += hours > 1 ? hours + 'h ' : hours + 'h ';
+  if (minutes > 0)
+    dateTimeDurationString += minutes > 1 ? minutes + 'm ' : minutes + 'm ';
+  if (seconds > 0)
+    dateTimeDurationString += seconds > 1 ? seconds + 's ' : seconds + 's ';
+
   var TotalCuckoo =
     parseInt(BlockchainLatestBlockQuery[0].total_difficulty_cuckatoo) +
     parseInt(BlockchainLatestBlockQuery[0].total_difficulty_cuckaroo);
+    let balance = BlockchainLatestBlockQuery[0].hash.substring(2, 62);
+    let arr = balance.match(/.{1,6}/g);
+    var hasharray = arr.map(i => '#' + i);
 
   socket.emit("latestblockdetail", {
     block_height,
@@ -149,6 +196,15 @@ export async function universalGetLatestBlockDetails(socket) {
     targetdifficultyprogpow,
     targetdifficultyrandomx,
     TotalCuckoo,
+    age : dateTimeDurationString,
+    input_count: BlockchainLatestBlockQuery[0].input_count,
+    kernal_count: BlockchainLatestBlockQuery[0].kernal_count,
+    output_count: BlockchainLatestBlockQuery[0].output_count,
+    proof: BlockchainLatestBlockQuery[0].proof,
+    hasharray: hasharray,
+    Difficulty: Difficulty,
+    hashstart:BlockchainLatestBlockQuery[0].hash.slice(0, 2),
+    hashend:BlockchainLatestBlockQuery[0].hash.slice(62,64),
     TotalDifficultyCuckaroo:
       BlockchainLatestBlockQuery[0].total_difficulty_cuckaroo,
     TotalDifficultyCuckatoo:
