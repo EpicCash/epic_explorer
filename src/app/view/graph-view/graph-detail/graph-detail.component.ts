@@ -60,7 +60,7 @@ export class GraphDetailComponent implements OnInit {
           this.comp.Difficultyreq('total').then(res => {
             this.hashdata = this.comp.linearTotalGraphData;
             console.log('this.comp.linearTotalGraphData',this.comp.linearTotalGraphData);
-            this.hashdata.layout.height = 500;
+            this.hashdata.layout.height = 300;
             this.title = 'Total Difficulty';
             this.selectedItem = 6;
             this.titleService.setTitle(
@@ -74,7 +74,7 @@ export class GraphDetailComponent implements OnInit {
               this.comp.Difficultyreq('target').then(res => {
                 this.hashdata = this.comp.linearGraphData;
                 console.log('this.comp.linearGraphData',this.comp.linearGraphData);
-                this.hashdata.layout.height = 500;
+                this.hashdata.layout.height = 300;
                 this.title = 'Target Difficulty';
                 this.selectedItem = 6;
                 this.titleService.setTitle(
@@ -84,10 +84,10 @@ export class GraphDetailComponent implements OnInit {
               });
               break;
         
-      case 'transactions-by-time':
+      case 'transactions-over-time':
           this.comp.Transactionheatmapreq().then(res => {
             this.hashdata = this.comp.heatMapGrowthData;
-            this.hashdata.layout.height = 500;
+            this.hashdata.layout.height = 300;
             // this.hashdata.layout.width =
             //   window.innerWidth - (window.innerWidth / 2.8);
             this.title = 'Transactions over time';
@@ -108,7 +108,7 @@ export class GraphDetailComponent implements OnInit {
         case 'blocks':
           this.comp.blockreq().then(res => {
             this.hashdata = this.comp.barGraphData;
-            this.hashdata.layout.height = 500;
+            this.hashdata.layout.height = 300;
             this.title = 'Blocks';
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
@@ -119,7 +119,7 @@ export class GraphDetailComponent implements OnInit {
           this.comp.Transcationreq().then(res => {
             this.hashdata = this.comp.transcationGraphData;
             //console.log(this.hashdata);
-            this.hashdata.layout.height = 500;
+            this.hashdata.layout.height = 300;
             this.title = 'Transaction Fees';
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
@@ -129,7 +129,7 @@ export class GraphDetailComponent implements OnInit {
         case 'supply-growth':
           this.comp.Growthreq().then(res => {
             this.hashdata = this.comp.growthGraphData;
-            this.hashdata.layout.height = 500;
+            this.hashdata.layout.height = 300;
             this.title = 'Supply Growth';
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
@@ -139,7 +139,7 @@ export class GraphDetailComponent implements OnInit {
         case 'blocks-mined':
           this.comp.Blockminedreq().then(res => {
             this.hashdata = this.comp.doubleareaGraphData;
-            this.hashdata.layout.height = 500;
+            this.hashdata.layout.height = 300;
             this.title = 'Blocks Mined';
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
@@ -147,21 +147,21 @@ export class GraphDetailComponent implements OnInit {
           });
           break;
         case 'hashrate-growth-chart':
-          this.comp.Transactiondoublelinechartreq().then(res => {
-            this.hashdata = this.comp.blockGraphData;
-            this.hashdata.layout.height = 500;
-            // this.hashdata.layout.width =
-            //   window.innerWidth - window.innerWidth / 2.8;
-            this.title = 'HashRate Growth Chart';
-            this.titleService.setTitle(
-              this.route.snapshot.data.title + ' - ' + this.title,
-            );
-          });
+          // this.comp.Transactiondoublelinechartreq().then(res => {
+          //   this.hashdata = this.comp.blockGraphData;
+          //   this.hashdata.layout.height = 300;
+          //   // this.hashdata.layout.width =
+          //   //   window.innerWidth - window.innerWidth / 2.8;
+          //   this.title = 'HashRate Growth Chart';
+          //   this.titleService.setTitle(
+          //     this.route.snapshot.data.title + ' - ' + this.title,
+          //   );
+          // });
           break;
         case 'block-interval':
           this.comp.Blockspersecreq().then(res => {
             this.hashdata = this.comp.areaGraphData;
-            this.hashdata.layout.height = 500;
+            this.hashdata.layout.height = 300;
             // this.hashdata.layout.width =
             //   window.innerWidth - window.innerWidth / 2.8;
             this.title = 'Block Interval';
@@ -170,11 +170,11 @@ export class GraphDetailComponent implements OnInit {
             );
           });
           break;
-        case 'stackchart':
+        case 'blocks-by-algorithm':
         this.comp.stackchartreq().then(res => {
           this.hashdata = this.comp.stackGraphData;
-          this.hashdata.layout.height = 500;
-          this.title = 'Stackbar Chart';
+          this.hashdata.layout.height = 300;
+          this.title = 'Blocks by Algorithm';
           this.titleService.setTitle(
             this.route.snapshot.data.title + ' - ' + this.title,
           );
@@ -183,17 +183,17 @@ export class GraphDetailComponent implements OnInit {
         case 'piechart':
         this.comp.piechartreq().then(res => {
           this.hashdata = this.comp.pieGraphData;
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           this.title = 'Pie Chart';
           this.titleService.setTitle(
             this.route.snapshot.data.title + ' - ' + this.title,
           );
         });
         break;
-        case 'transactions-vs-date':
+        case 'transactions-by-date':
           this.comp.Transactionlinechartreq().then(res => {
             this.hashdata = this.comp.feeGraphData;
-            this.hashdata.layout.height = 500;
+            this.hashdata.layout.height = 300;
             // this.hashdata.layout.width =
             //   window.innerWidth - window.innerWidth / 2.8;
             //console.log(this.hashdata.layout.width);
@@ -221,22 +221,22 @@ export class GraphDetailComponent implements OnInit {
       case 'target-difficulty':
         this.comp.Difficultyreq('target',p1, p2, p3, p4).then(res => {
           this.hashdata = this.comp.linearGraphData;
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           this.title = 'Target Difficulty';
         });
         break;
         case 'total-difficulty':
         this.comp.Difficultyreq('total',p1, p2, p3, p4).then(res => {
           this.hashdata = this.comp.linearTotalGraphData;
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           this.title = 'Total Difficulty';
         });
         break;
-      case 'transactions-by-time':
+      case 'transactions-over-time':
         this.comp.transactionheatmapFunc(p1, p2, p3, p4).then(res => {
           this.hashdata = this.comp.heatMapGrowthData;
           // console.log(this.hashdata);
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           // this.hashdata.layout.width =
           //   window.innerWidth - window.innerWidth / 2.8;
           this.title = 'Transactions over time';
@@ -245,53 +245,53 @@ export class GraphDetailComponent implements OnInit {
       case 'blocks':
         this.comp.blockreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.barGraphData;
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           this.title = 'Blocks';
         });
         break;
       case 'blocks-mined':
         this.comp.Blockminedreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.doubleareaGraphData;
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           this.title = 'Blocks Mined';
         });
         break;
       case 'transaction-fees':
         this.comp.Transcationreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.transcationGraphData;
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           this.title = 'Transaction Fees';
         });
         break;
       case 'supply-growth':
         this.comp.Growthreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.growthGraphData;
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           this.title = 'Supply Growth';
         });
         break;
       case 'hashrate-growth-chart':
-        this.comp.Transactiondoublelinechartreq(p1, p2, p3).then(res => {
-          this.hashdata = this.comp.blockGraphData;
-          this.hashdata.layout.height = 500;
-          // this.hashdata.layout.width =
-          //   window.innerWidth - window.innerWidth / 2.8;
-          this.title = 'HashRate Growth Chart';
-        });
+        // this.comp.Transactiondoublelinechartreq(p1, p2, p3).then(res => {
+        //   this.hashdata = this.comp.blockGraphData;
+        //   this.hashdata.layout.height = 300;
+        //   // this.hashdata.layout.width =
+        //   //   window.innerWidth - window.innerWidth / 2.8;
+        //   this.title = 'HashRate Growth Chart';
+        // });
         break;
       case 'block-interval':
         this.comp.Blockspersecreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.areaGraphData;
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           // this.hashdata.layout.width =
           //   window.innerWidth - window.innerWidth / 2.8;
           this.title = 'Block Interval';
         });
         break;
-      case 'stackchart':
+      case 'blocks-by-algorithm':
         this.comp.stackchartreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.stackGraphData;
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           // this.hashdata.layout.width =
           //   window.innerWidth - window.innerWidth / 2.8;
           this.title = 'Stackbar Chart';
@@ -300,16 +300,16 @@ export class GraphDetailComponent implements OnInit {
       case 'piechart':
         this.comp.piechartreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.pieGraphData;
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           // this.hashdata.layout.width =
           //   window.innerWidth - window.innerWidth / 2.8;
           this.title = 'Pie Chart';
         });
         break;
-      case 'transactions-vs-date':
+      case 'transactions-by-date':
         this.comp.Transactionlinechartreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.feeGraphData;
-          this.hashdata.layout.height = 500;
+          this.hashdata.layout.height = 300;
           // this.hashdata.layout.width =
           //   window.innerWidth - window.innerWidth / 2.8;
           this.title = 'Transactions by Date';
@@ -336,7 +336,7 @@ export class GraphDetailComponent implements OnInit {
   //     ],
   //     layout: {
   //       hovermode: 'closest',
-  //       height: 500,
+  //       height: 300,
   //       autosize: true,
   //       showlegend: false,
   //       xaxis: {
