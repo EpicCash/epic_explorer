@@ -217,6 +217,7 @@ export async function universalGetLatestBlockDetails(socket) {
     input_count: BlockchainLatestBlockQuery[0].input_count,
     kernel_count: BlockchainLatestBlockQuery[0].kernel_count,
     output_count: BlockchainLatestBlockQuery[0].output_count,
+    hash: BlockchainLatestBlockQuery[0].hash,
     proof: BlockchainLatestBlockQuery[0].proof,
     hasharray: hasharray,
     Difficulty: Difficulty,
