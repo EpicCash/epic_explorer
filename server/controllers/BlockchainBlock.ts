@@ -1238,6 +1238,9 @@ export class BlockchainBlockController {
 
       var Maxrange = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.tarket_difficulty; }));
       var Minrange = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.tarket_difficulty; }));
+      if(Minrange != 0){
+          Minrange = (Minrange - (Minrange * 0.2));
+      }
       // Minrange = parseInt(Minrange);
       // var Minrange2  = parseInt(Minrange * 0.3);
       response.status(200).json({
@@ -1250,7 +1253,7 @@ export class BlockchainBlockController {
           // DifficultyCuckatoo: DifficultyCuckatoo,
           // DifficultyProgpow: DifficultyProgpow,
           Maxrange: Maxrange,
-          Minrange: (Minrange * 0.2),
+          Minrange: Minrange,
           TargetDifficulty: TargetDifficulty,
           tickFormat: tickFormat
         },
