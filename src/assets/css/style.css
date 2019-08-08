@@ -288,6 +288,9 @@ a:focus {
   padding: 20px;
   transition: 0.3s linear all;
   min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .detail_div .count {
   font-size: 25px;
