@@ -173,7 +173,7 @@ export class GraphListComponent implements OnInit {
         );
     });
   }
-  
+
   Transactiondoublelinechartreq(fromDate = '', ToDate = '', interval = '') {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
@@ -285,7 +285,7 @@ export class GraphListComponent implements OnInit {
               let ProgPow = res.response.ProgPow;
               let Cuckoo = res.response.Cuckoo;
               let RandomX = res.response.RandomX;
-              
+
               let ProgPowper = res.response.ProgPowper;
               let Cuckooper = res.response.Cuckooper;
               let RandomXper = res.response.RandomXper;
@@ -341,7 +341,6 @@ export class GraphListComponent implements OnInit {
         .apiGetRequest(params, '/blockchain_block/supplygrowth')
         .subscribe(
           res => {
-            res = {"status":200,"timestamp":1564734317476,"message":"period of blocks generation per second fetched Successfully","response":{"date":["2019-08-01"],"total_reward_per_day":[4600],"addedreward":[4600]}}
             if (res['status'] == 200) {
               let gDate = res.response.date;
               let gReward = res.response.total_reward_per_day;
@@ -406,7 +405,7 @@ export class GraphListComponent implements OnInit {
                 let tickformat = res.response.tickFormat;
                 this.lg_last =
                 TargetDifficulty[TargetDifficulty.length - 1];
-                
+
                 switch(difftype){
                   case 'total':
                       this.totaldifficultyChartFunc(
@@ -451,7 +450,7 @@ export class GraphListComponent implements OnInit {
           res => {
             if (res['status'] == 200) {
               let DifficultychartDate = res.response.Date;
-              let BlocksChartDate = res.response.blockDate;  
+              let BlocksChartDate = res.response.blockDate;
                 let Blockval = res.response.Blocks;
                 this.brg_last = Blockval[Blockval.length - 1];
                 this.totalBlocksFunc(BlocksChartDate, Blockval);
@@ -464,18 +463,18 @@ export class GraphListComponent implements OnInit {
   }
 
   difficultyChartFunc(DifficultychartDate, TargetDifficulty, Type, range, tickformat) {
-    console.log('range rangerangerange@@@@@@@22444',range);
+    // console.log('range rangerangerange',range);
     this.linearGraphData = {
       data: [
         {
           x: DifficultychartDate,
           y: TargetDifficulty,
-          text: TargetDifficulty,
+          text: DifficultychartDate,
           mode: 'lines+markers',
           type: 'scatter',
           name: '',
           line: { color: '#ac3333' },
-          hovertemplate: '%{x}<br> Difficulty : %{text:,}',
+          hovertemplate: '%{text}<br> Difficulty : %{y:,}',
         },
         // {
         //   x: DifficultychartDate,
@@ -741,7 +740,6 @@ export class GraphListComponent implements OnInit {
   }
 
   growthFunc(gDate, gReward, gaddedreward) {
-    console.log('gDate gReward gaddedreward',gDate, gReward, gaddedreward)
     this.growthGraphData = {
       data: [
         {
@@ -777,7 +775,8 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
-          tickformat :".0f" 
+          tickformat :".0f",
+          tickprefix: '                '
         },
         margin: {
           l: 50,
@@ -1097,12 +1096,12 @@ export class GraphListComponent implements OnInit {
         {
           x: DifficultychartDate,
           y: TargetDifficulty,
-          text: TargetDifficulty,
+          text: DifficultychartDate,
           mode: 'lines+markers',
           type: 'scatter',
           name: '',
           line: { color: '#ac3333' },
-          hovertemplate: '%{DifficultychartDate}<br> Difficulty : %{text:,}',
+          hovertemplate: '%{text}<br> Difficulty : %{y:,}',
         },
       ],
       layout: {

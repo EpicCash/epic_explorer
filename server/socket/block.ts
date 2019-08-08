@@ -1,5 +1,22 @@
 import { getConnection } from "typeorm";
-const moment = require("moment");
+var moment = require("moment");
+moment.updateLocale('en', {
+  relativeTime: {
+       future: "in %s",
+       past:   "%s ago",
+       s:  "seconds",
+       m:  "1 minute",
+       mm: "%d minutes",
+       h:  "1 hour",
+       hh: "%d hours",
+       d:  "1 day",
+       dd: "%d days",
+       M:  "1 month",
+       MM: "%d months",
+       y:  "1 year",
+       yy: "%d years"
+ }
+});
 
 export async function universalGetLatestBlockDetails(socket) {
 
@@ -200,6 +217,7 @@ export async function universalGetLatestBlockDetails(socket) {
     input_count: BlockchainLatestBlockQuery[0].input_count,
     kernel_count: BlockchainLatestBlockQuery[0].kernel_count,
     output_count: BlockchainLatestBlockQuery[0].output_count,
+    hash: BlockchainLatestBlockQuery[0].hash,
     proof: BlockchainLatestBlockQuery[0].proof,
     hasharray: hasharray,
     Difficulty: Difficulty,

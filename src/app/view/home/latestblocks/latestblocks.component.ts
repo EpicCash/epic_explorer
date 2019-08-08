@@ -48,6 +48,11 @@ export class LatestblocksComponent implements OnInit {
         if (res['status'] == 200) {
           this.pagedata = res.response;
           this.hashvalues = res.response.BlockchainBlockResult;
+          if(CurrentPage == 1){
+            this.lastblock = res.response.BlockchainBlockResult[0].blockchain_block_height;
+            //console.log(this.lastblock);
+
+          }
         }
       },
       error => {},
@@ -57,9 +62,9 @@ export class LatestblocksComponent implements OnInit {
   getLastCeatedBlock() {
     this.chartService.getLatestblockdetails().subscribe(response => {
       this.blockdetails = response;
-      console.log(this.blockdetails);
+      //console.log(this.blockdetails);
       if (this.lastblock != this.blockdetails.block_height) {
-        console.log('Create');
+        //console.log('Create');
         this.createBlock();
       }
       this.lastblock = this.blockdetails.block_height;
