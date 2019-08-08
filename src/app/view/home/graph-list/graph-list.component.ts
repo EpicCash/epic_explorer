@@ -341,7 +341,6 @@ export class GraphListComponent implements OnInit {
         .apiGetRequest(params, '/blockchain_block/supplygrowth')
         .subscribe(
           res => {
-            res = {"status":200,"timestamp":1564734317476,"message":"period of blocks generation per second fetched Successfully","response":{"date":["2019-08-01"],"total_reward_per_day":[4600],"addedreward":[4600]}}
             if (res['status'] == 200) {
               let gDate = res.response.date;
               let gReward = res.response.total_reward_per_day;
@@ -1102,7 +1101,7 @@ export class GraphListComponent implements OnInit {
           type: 'scatter',
           name: '',
           line: { color: '#ac3333' },
-          hovertemplate: '%{DifficultychartDate}<br> Difficulty : %{text:,}',
+          hovertemplate: '%{x}<br> Difficulty : %{text:,}',
         },
       ],
       layout: {
