@@ -2,6 +2,8 @@ import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Utils } from 'src/app/shared/utils';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'epic-explorer-home-worksapce',
@@ -31,7 +33,7 @@ import { Router } from '@angular/router';
         </div>
       </div>
     </div>
-    
+
     <div class="latest_blocks my-5">
       <div class="container">
         <div class="filter_shadow">
@@ -46,7 +48,7 @@ export class HomeWorksapceComponent extends Utils
   implements OnInit, AfterViewInit {
   viewchartvar: boolean;
   constructor(@Inject(DOCUMENT) public document: Document,
-  private router: Router) {
+  private router: Router,private route: ActivatedRoute,private titleService: Title) {
     super(document);
     if (this.router.url == '/all') {
       this.viewchartvar = false;
@@ -55,7 +57,10 @@ export class HomeWorksapceComponent extends Utils
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.titleService.setTitle(
+      this.route.snapshot.data.title,
+    );}
 
   viewchartenable() {
     this.viewchartvar = false;

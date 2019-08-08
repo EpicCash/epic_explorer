@@ -60,19 +60,40 @@
         title="Target / Total Block Difficulty"
         [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
       >
+
         <!-- <p class="difficulty_datas">Cuckaroo : {{latestblockdetail.targetdifficultycuckaroo | number}} / {{latestblockdetail.TotalDifficultyCuckatoo | number}}</p> -->
-        <p class="difficulty_datas">
-          Cuckoo : {{ latestblockdetail.targetdifficultycuckatoo | number }} /
-          {{ latestblockdetail.TotalDifficultyCuckatoo | number }}
-        </p>
-        <p class="difficulty_datas">
+        <div class="difficulty_datas">
+          <span class="day60_txt">Cuckoo</span> 
+          <div>
+            <span>Target Difficulty:</span><span>{{ latestblockdetail.targetdifficultycuckatoo | number }}</span><br>
+            <span>Total Difficulty</span><span>{{ latestblockdetail.TotalDifficultyCuckatoo | number }}</span>
+          </div>
+          
+        </div>
+        <div class="difficulty_datas">
+            <span class="day60_txt">ProgPow </span> 
+            <div>
+              <span>Target Difficulty:</span><span>{{ latestblockdetail.targetdifficultyprogpow | number }}</span><br>
+              <span>Total Difficulty</span><span>{{ latestblockdetail.TotalDifficultyProgpow | number }}</span>
+            </div>
+            
+          </div>
+          <div class="difficulty_datas">
+             <span class="day60_txt"> RandomX </span>
+              <div>
+                <span>Target Difficulty:</span><span>{{ latestblockdetail.targetdifficultyrandomx | number }}</span><br>
+                <span>Total Difficulty</span><span>{{ latestblockdetail.TotalDifficultyRandomx | number }}</span>
+              </div>
+              
+            </div>
+        <!-- <p class="difficulty_datas">
           ProgPow : {{ latestblockdetail.targetdifficultyprogpow | number }} /
           {{ latestblockdetail.TotalDifficultyProgpow | number }}
         </p>
         <p class="difficulty_datas">
           RandomX : {{ latestblockdetail.targetdifficultyrandomx | number }} /
           {{ latestblockdetail.TotalDifficultyRandomx | number }}
-        </p>
+        </p> -->
       </div>
     </div>
   </div>

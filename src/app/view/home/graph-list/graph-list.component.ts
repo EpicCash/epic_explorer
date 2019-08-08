@@ -776,7 +776,7 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
-          tickformat :".0f",
+          //tickformat :".0f",
           tickprefix: '                '
         },
         margin: {
