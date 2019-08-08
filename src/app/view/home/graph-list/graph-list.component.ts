@@ -970,6 +970,7 @@ export class GraphListComponent implements OnInit {
       },
       options: null,
     };
+    resolve();
   });
   }
   transactionlinechartFunc(Tdate, Ttotalinput, Ttotalkernal, Ttotaloutput) {
