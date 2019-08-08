@@ -6,8 +6,8 @@
 
     <div class="ml-auto ">
       <a class="chart_heading d-sm-none" routerLink="/"><span class="txt_primary">Epic</span><span>Explorer</span></a>
-      <div class="d-inline-block mr-3">
-          <span>You are on </span>
+      <div class=" d-none d-sm-inline-block mr-3">
+          <span>You are viewing </span>
           <ul class="list-unstyled d-inline-block">
             <li class="nav-item dropdown">
 
@@ -46,7 +46,9 @@
             src="assets/img/light_theme.png" height="20" class="dark_theme_display"></button>
       </div>
     </div>
+    
     <div class="position-relative d-block d-sm-none w-100 mt-3">
+        
       <input type="text" [(ngModel)]="search" #ctrl="ngModel" class="form-control search_input"
         (keyup.enter)="ctrl.value ? onSearch(ctrl.value) : ''" placeholder="{{'home.SEARCH_TEXT' | translate}}">
       <button class="btn search_btn" (click)="ctrl.value ? onSearch(ctrl.value) : ''">
@@ -54,6 +56,22 @@
         <i class="fa fa-search"></i>
         <!-- </a> -->
       </button>
+    </div>
+    <div class="d-block d-sm-none text-center mt-3 mx-auto">
+        <span>You are viewing </span>
+        <ul class="list-unstyled d-inline-block">
+          <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle bg-white" href="#" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Testnet
+            </a>
+            <div class="dropdown-menu net_dropdwn" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item p-2 disabled" href="https://explorer2.epic.tech">Mainnet</a>
+            </div>
+          </li>
+        </ul>
+        <span> Network </span>
     </div>
   </div>
 </nav>

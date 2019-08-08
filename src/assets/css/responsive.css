@@ -82,9 +82,12 @@
 }
 @media(max-width: 470px){
     .navbar-expand .navbar-collapse.home_mble_hdr{display: block !important;}
-    .home_mble_hdr .navbar-nav{margin-top: 15px;}
+    .home_mble_hdr .navbar-nav{margin: 15px auto 0; width: 63%;}
+    .home_tst_net{font-size: 15px;  width: 85%;  margin: 0 auto;}
+    
 }
 @media(max-width: 365px){
     .mobile_table .col-6 {flex: 0 0 100%;max-width: 100%;}
     .view_page_header .search_btn{display: none;}
+    .home_tst_net{font-size: 13px;}
 }
