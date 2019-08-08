@@ -36,7 +36,7 @@ export class BlockDetailListComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.minHeight = this.elementView.nativeElement.offsetHeight;
+    // this.minHeight = this.elementView.nativeElement.offsetHeight;
   }
 
   getBlockDetails() {

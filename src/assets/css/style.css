@@ -286,6 +286,7 @@ a:focus {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: 0.3s linear all;
+  min-height: 100%;
 }
 .detail_div .count {
   font-size: 25px;
@@ -645,7 +646,14 @@ body.dark_theme {
 .dark_theme .view_content table{border-color: #384566;}
 .dark_theme .card-body{background-color: #1c2437;}
 .diff_margin{margin-bottom: -10px !important; margin-top: -10px !important;}
-
+@keyframes yellowfade {
+  from {
+    background: yellow;
+  }
+  to {
+    background: transparent;
+  }
+}
 .item-highlight {
   animation: yellowfade 5s ;
   -moz-animation: yellowfade 5s ;
