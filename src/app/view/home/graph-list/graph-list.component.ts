@@ -403,6 +403,7 @@ export class GraphListComponent implements OnInit {
               let BlocksChartDate = res.response.blockDate;
                 let TargetDifficulty = res.response.TargetDifficulty;
                 let range = [res.response.Minrange, res.response.Maxrange]
+                let tickformat = res.response.tickFormat;
                 this.lg_last =
                 TargetDifficulty[TargetDifficulty.length - 1];
                 
@@ -412,7 +413,8 @@ export class GraphListComponent implements OnInit {
                         DifficultychartDate,
                         TargetDifficulty,
                         this.Type,
-                        range
+                        range,
+                        tickformat
                       );
                     break;
                   case 'target':
@@ -420,7 +422,8 @@ export class GraphListComponent implements OnInit {
                         DifficultychartDate,
                         TargetDifficulty,
                         this.Type,
-                        range
+                        range,
+                        tickformat
                       );
                    break;
                 }
@@ -460,7 +463,7 @@ export class GraphListComponent implements OnInit {
     });
   }
 
-  difficultyChartFunc(DifficultychartDate, TargetDifficulty, Type, range) {
+  difficultyChartFunc(DifficultychartDate, TargetDifficulty, Type, range, tickformat) {
     console.log('range rangerangerange@@@@@@@22444',range);
     this.linearGraphData = {
       data: [
@@ -512,7 +515,7 @@ export class GraphListComponent implements OnInit {
         showlegend: false,
         xaxis: {
           tickangle: -45,
-          tickformat: '%m-%d',
+          tickformat: tickformat,
           showgrid: true,
           fixedrange: true
         },
@@ -738,6 +741,7 @@ export class GraphListComponent implements OnInit {
   }
 
   growthFunc(gDate, gReward, gaddedreward) {
+    console.log('gDate gReward gaddedreward',gDate, gReward, gaddedreward)
     this.growthGraphData = {
       data: [
         {
@@ -1087,7 +1091,7 @@ export class GraphListComponent implements OnInit {
       options: null,
     };
   }
-  totaldifficultyChartFunc(DifficultychartDate, TargetDifficulty, Type, range) {
+  totaldifficultyChartFunc(DifficultychartDate, TargetDifficulty, Type, range, tickformat) {
     this.linearTotalGraphData = {
       data: [
         {
@@ -1098,7 +1102,7 @@ export class GraphListComponent implements OnInit {
           type: 'scatter',
           name: '',
           line: { color: '#ac3333' },
-          hovertemplate: '%{x}<br> Difficulty : %{text:,}',
+          hovertemplate: '%{DifficultychartDate}<br> Difficulty : %{text:,}',
         },
       ],
       layout: {
@@ -1108,7 +1112,7 @@ export class GraphListComponent implements OnInit {
         showlegend: false,
         xaxis: {
           tickangle: -45,
-          tickformat: '%m-%d',
+          tickformat: tickformat,
           fixedrange: true,
           showgrid: true
         },

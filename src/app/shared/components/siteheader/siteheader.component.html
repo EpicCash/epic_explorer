@@ -36,7 +36,7 @@
         <div class="nav-item dropdown bg-white px-2 d-inline-block ml-2 order-1 order-sm-2">
           <span class="flag " [ngStyle]="{ 'background-image': 'url(assets/img/' + translate.getCurrentLang() + '.jpg)'}"></span> 
           <!--<span class="flag"  ngIf="translate.getCurrentLang() =='de'" style="background-image: url('assets/img/german.jpg')"></span>-->
-          <select class="langbut py-2 ml-1" #langSelect (change)="translate.changeLang(langSelect.value)">
+          <select class="langbut py-2 mx-1" #langSelect (change)="translate.changeLang(langSelect.value)">
             <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}}</option>
           </select>
           <i class="arrow_drpdwn"></i>
