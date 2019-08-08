@@ -7,7 +7,9 @@
 	"blocks-mined" : "Blocks Mined",
 	"hashrate-growth-chart" : "HashRate Growth Chart",
 	"block-interval" : "Block Interval",
-	"transactions-vs-date" : "Transactions by Date",
+    "transactions-vs-date" : "Transactions by Date",
+    "total-difficulty" : "Total Difficulty",
+    "target-difficulty" : "Target Difficulty",
     "home": {
         "HEADER_TEXT": "You are on Beta",
         "COUNTDOWN": "Mainnet Countdown",

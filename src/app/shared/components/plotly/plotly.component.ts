@@ -36,6 +36,9 @@ import {
     }
     @Input() set layout(layout: any) {
       this._layout = layout;
+      if(this._plotlyJs){
+        this.showChart();
+      }
     }
 
     get layout(): any {
@@ -46,6 +49,9 @@ import {
     }
     @Input() set options(options: any) {
        this._options = options;
+       if(this._plotlyJs){
+        this.showChart();
+      }
     }
     get options(): any {
       return this._options;

@@ -24,7 +24,8 @@ export class GraphListComponent implements OnInit {
   public transcationGraphData: any = [];
   public stackGraphData: any = [];
   public pieGraphData: any = [];
-  
+  public linearTotalGraphData: any = [];
+
   public lg_last: any;
   public ag_last: any = '';
   public dg_last: any = '';
@@ -49,6 +50,8 @@ export class GraphListComponent implements OnInit {
   public selectedItem10: Number = 3;
   public selectedItem11: Number = 3;
   public selectedItem12: Number = 1;
+  public selectedTarget: Number = 6;
+  public selectedTarget12: Number = 1;
 
   public tInput: any;
   public tOutput: any;
@@ -57,7 +60,8 @@ export class GraphListComponent implements OnInit {
   public tHour: any;
   public Type: any = '';
   public difficultyRange: any = '1 day';
-  
+  public TdifficultyRange: any = '1 day';
+
   viewchartvar: boolean;
 
   constructor(private chartService: ChartService, private http: HttpClient,public translate: TransServiceService,    private router: Router,
@@ -71,8 +75,8 @@ export class GraphListComponent implements OnInit {
 
   ngOnInit() {
     /* Total Difficulty and blocks chart fetching */
-    this.Difficultyreq();
-
+    this.Difficultyreq('target');
+    this.Difficultyreq('total');
     this.blockreq();
 
     /* Transcation fee chart fetching */
@@ -376,6 +380,7 @@ export class GraphListComponent implements OnInit {
   }
 
   Difficultyreq(
+    difftype = '',
     fromDate = '',
     ToDate = '',
     interval = '',
@@ -388,6 +393,7 @@ export class GraphListComponent implements OnInit {
       params = params.append('ToDate', ToDate);
       params = params.append('Interval', interval);
       params = params.append('Type', this.Type);
+      params = params.append('Difftype', difftype);
       this.chartService
         .apiGetRequest(params, '/blockchain_block/totaldiff')
         .subscribe(
@@ -396,13 +402,28 @@ export class GraphListComponent implements OnInit {
               let DifficultychartDate = res.response.Date;
               let BlocksChartDate = res.response.blockDate;
                 let TargetDifficulty = res.response.TargetDifficulty;
+                let range = [res.response.Minrange, res.response.Maxrange]
                 this.lg_last =
                 TargetDifficulty[TargetDifficulty.length - 1];
-                this.difficultyChartFunc(
-                  DifficultychartDate,
-                  TargetDifficulty,
-                  this.Type
-                );
+                
+                switch(difftype){
+                  case 'total':
+                      this.totaldifficultyChartFunc(
+                        DifficultychartDate,
+                        TargetDifficulty,
+                        this.Type,
+                        range
+                      );
+                    break;
+                  case 'target':
+                      this.difficultyChartFunc(
+                        DifficultychartDate,
+                        TargetDifficulty,
+                        this.Type,
+                        range
+                      );
+                   break;
+                }
               resolve();
             }
           },
@@ -439,7 +460,8 @@ export class GraphListComponent implements OnInit {
     });
   }
 
-  difficultyChartFunc(DifficultychartDate, TargetDifficulty, Type) {
+  difficultyChartFunc(DifficultychartDate, TargetDifficulty, Type, range) {
+    console.log('range rangerangerange@@@@@@@22444',range);
     this.linearGraphData = {
       data: [
         {
@@ -491,9 +513,14 @@ export class GraphListComponent implements OnInit {
         xaxis: {
           tickangle: -45,
           tickformat: '%m-%d',
+          showgrid: true,
+          fixedrange: true
         },
         yaxis: {
           title: 'Diff',
+          showgrid: true,
+          fixedrange: true,
+          range: range
         },
         margin: {
           l: 50,
@@ -574,7 +601,7 @@ export class GraphListComponent implements OnInit {
           title: 'Blocks',
           rangemode: 'nonnegative',
           fixedrange: true,
-          showgrid: true,
+          showgrid: true
         },
         margin: {
           l: 50,
@@ -607,9 +634,13 @@ export class GraphListComponent implements OnInit {
        xaxis: {
           tickangle: -45,
           tickformat: '%m-%d',
+          showgrid: true,
+          fixedrange: true
         },
         yaxis: {
           title: 'Blocks',
+          showgrid: true,
+          fixedrange: true
         },
         margin: {
           l: 50,
@@ -647,9 +678,13 @@ export class GraphListComponent implements OnInit {
         xaxis: {
           tickangle: -45,
           tickformat: '%m-%d',
+          showgrid: true,
+          fixedrange: true
         },
         yaxis: {
           title: 'Blocks',
+          showgrid: true,
+          fixedrange: true
         },
         margin: {
           l: 50,
@@ -1032,10 +1067,13 @@ export class GraphListComponent implements OnInit {
           showgrid: false,
           zeroline: false,
           tickformat: '%m-%d',
+          fixedrange: true
         },
         yaxis: {
           showline: false,
           title: 'Estimated Hashrate (GH/s)',
+          showgrid: true,
+          fixedrange: true
         },
         margin: {
           l: 50,
@@ -1046,6 +1084,46 @@ export class GraphListComponent implements OnInit {
         showlegend: false,
       },
       options: null,
+    };
+  }
+  totaldifficultyChartFunc(DifficultychartDate, TargetDifficulty, Type, range) {
+    this.linearTotalGraphData = {
+      data: [
+        {
+          x: DifficultychartDate,
+          y: TargetDifficulty,
+          text: TargetDifficulty,
+          mode: 'lines+markers',
+          type: 'scatter',
+          name: '',
+          line: { color: '#ac3333' },
+          hovertemplate: '%{x}<br> Difficulty : %{text:,}',
+        },
+      ],
+      layout: {
+        hovermode: 'closest',
+        height: 250,
+        autosize: true,
+        showlegend: false,
+        xaxis: {
+          tickangle: -45,
+          tickformat: '%m-%d',
+          fixedrange: true,
+          showgrid: true
+        },
+        yaxis: {
+          title: 'Diff',
+          fixedrange: true,
+          showgrid: true,
+          range: range
+        },
+        margin: {
+          l: 50,
+          r: 50,
+          b: 50,
+          t: 50,
+        },
+      },
     };
   }
 }
