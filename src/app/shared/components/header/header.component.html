@@ -2,20 +2,9 @@
   <nav class="navbar navbar-expand navbar-light bg-transparent">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-		  <!-- <li *ngIf="TimeArr" class="d-none d-sm-inline-block"><h1 class="test_msg d-inline-block mb-0 align-middle mr-3">{{'home.HEADER_TEXT' | translate}}</h1>
-            <h1 class="test_msg align-middle mr-3 d-inline-block mb-0">{{'home.COUNTDOWN' | translate}}</h1>
-                <ul class="list-unstyled d-inline-block bg-white p-2 mb-0 timer">
-                    <li class="d-inline-block"><span id="days">{{TimeArr.d}}d:</span></li>
-                    <li class="d-inline-block"><span id="hours">{{TimeArr.h}}h:</span></li>
-                    <li class="d-inline-block"><span id="minutes">{{TimeArr.m}}m:</span></li>
-                    <li class="d-inline-block"><span id="seconds">{{TimeArr.s}}s</span></li>
-                  </ul>
-
-          </li> -->
-          <li >
+          <div >
               <span>You are on </span> 
-              <ul class="list-unstyled d-inline-block">
+              <ul class="list-unstyled d-inline-block mb-0">
                   <li class="nav-item dropdown">
                       <a
                         class="nav-link dropdown-toggle bg-white"
@@ -35,12 +24,24 @@
                     </li>
               </ul>
                <span> Network </span>
-            </li>
+            </div>
+        <ul class="navbar-nav ml-auto">
+		  <!-- <li *ngIf="TimeArr" class="d-none d-sm-inline-block"><h1 class="test_msg d-inline-block mb-0 align-middle mr-3">{{'home.HEADER_TEXT' | translate}}</h1>
+            <h1 class="test_msg align-middle mr-3 d-inline-block mb-0">{{'home.COUNTDOWN' | translate}}</h1>
+                <ul class="list-unstyled d-inline-block bg-white p-2 mb-0 timer">
+                    <li class="d-inline-block"><span id="days">{{TimeArr.d}}d:</span></li>
+                    <li class="d-inline-block"><span id="hours">{{TimeArr.h}}h:</span></li>
+                    <li class="d-inline-block"><span id="minutes">{{TimeArr.m}}m:</span></li>
+                    <li class="d-inline-block"><span id="seconds">{{TimeArr.s}}s</span></li>
+                  </ul>
+
+          </li> -->
+          
           <li class="nav-item px-2 dropdown bg-white">
             
             <span class="flag " [ngStyle]="{ 'background-image': 'url(assets/img/' + translate.getCurrentLang() + '.jpg)'}"></span> 
             <!--<span class="flag"  ngIf="translate.getCurrentLang() =='de'" style="background-image: url('assets/img/german.jpg')"></span>-->
-            <select class="langbut py-2" #langSelect (change)="translate.changeLang(langSelect.value)">
+            <select class="langbut py-2 ml-1" #langSelect (change)="translate.changeLang(langSelect.value)">
               <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}}</option>
             </select>
             <i class="arrow_drpdwn"></i>

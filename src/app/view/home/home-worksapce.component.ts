@@ -9,6 +9,11 @@ import { Router } from '@angular/router';
     <div class="body_bg py-4">
       <div class="chart_section mt-4">
         <div class="container">
+        <div class="block_details mb-5">
+      <div class="container">
+        <app-block-detail-list></app-block-detail-list>
+      </div>
+    </div>
           <div class="explore_charts pt-3">
             <epic-explorer-graph-list
               [viewchart]="viewchartvar"
@@ -26,11 +31,7 @@ import { Router } from '@angular/router';
         </div>
       </div>
     </div>
-    <div class="block_details mt-5">
-      <div class="container">
-        <app-block-detail-list></app-block-detail-list>
-      </div>
-    </div>
+    
     <div class="latest_blocks my-5">
       <div class="container">
         <div class="filter_shadow">
