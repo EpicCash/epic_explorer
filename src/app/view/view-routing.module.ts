@@ -7,6 +7,9 @@ const viewRoutes: Routes = [
   {
     path: '',
     loadChildren: './home/home.module#HomeModule',
+    data: {
+      title: 'Epic Explorer - Home',
+    },
   },
   {
     path: 'all',
@@ -21,6 +24,9 @@ const siteRoutes: Routes = [
   {
     path: 'blockdetail/:hash',
     loadChildren: './block-view/block-view.module#BlockViewModule',
+    data: {
+        title: 'Epic Explorer - Block',
+      },
   },
   {
     path: 'chart',
