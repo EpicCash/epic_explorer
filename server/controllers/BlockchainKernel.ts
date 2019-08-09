@@ -28,6 +28,15 @@ export class BlockchainKernelController {
     this.IntializeRoutes();
   }
 
+  IsJsonString(str) {
+    try {
+     var dataJson = JSON.parse(str);
+    } catch (e) {
+        return [];
+    }
+    return dataJson;
+  }
+
   public IntializeRoutes() {
     /**
      * @swagger
@@ -505,6 +514,7 @@ export class BlockchainKernelController {
     response: Response,
     next: NextFunction,
   ) => {
+    var self = this;
     try {
       http.get('http://116.203.152.58:3413/v1/peers/connected', (resp) => {
         // console.log('resp resp respresp',resp);
@@ -513,7 +523,8 @@ export class BlockchainKernelController {
         // A chunk of data has been recieved.
         resp.on('data', function (chunk) {
           data += chunk;
-          let dataJson = JSON.parse(data);
+          
+          let dataJson = self.IsJsonString(data);
           dataJson.forEach(function (value, i) {
             value['id'] = i;
           });
@@ -532,6 +543,7 @@ export class BlockchainKernelController {
       next(new InternalServerErrorException(error));
     }
   };
+
 
   private TransactionFee = async (
     request: Request,
