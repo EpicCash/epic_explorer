@@ -124,7 +124,6 @@ export class BlockchainBlockController {
       let sec = Math.floor(millseconds / 1000);
       return sec;
     }
-    console.log('secnds djfhksjdfdsf',seconds);
     var days = Math.floor(seconds / 86400);
     var hours = Math.floor((seconds % 86400) / 3600);
     var minutes = Math.floor(((seconds % 86400) % 3600) / 60);
@@ -713,7 +712,7 @@ export class BlockchainBlockController {
       }
       if (!BlockchainBlockFetchQuery) {
         next(new NoDataFoundException());
-      }
+      }else{
       const BlockchainBlockInputFetchQuery = await getRepository(
         BlockchainInput,
       ).find({
@@ -824,10 +823,12 @@ export class BlockchainBlockController {
           },
         })
         : next(new NoDataFoundException());
+      }
     } catch (error) {
       console.log('error', error);
       next(new InternalServerErrorException(error));
     }
+  
   };
 
   private BlockchainBlockUpdate = async (
@@ -1630,7 +1631,6 @@ export class BlockchainBlockController {
       }
 
       letest_block = this.dateDiff(BlockchainLatestBlockQuery[0].timestamp,true);
-      console.log('letest_block letest_block letest_block !!!!!!!!!!!!!1',letest_block);
       letest_block_num = letest_block; // "72"
       letest_block_duration = letest_block == 1 ? 'second ago' : 'seconds ago';
       const SECOND_POW_EDGE_BITS = 29;

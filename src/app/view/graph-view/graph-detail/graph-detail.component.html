@@ -67,6 +67,28 @@
 
               <h2 class="chart_heading text-uppercase d-inline-block">
                 {{chartType | translate}}</h2>
+                <div class="day_filter" *ngIf="this.title=='Target Difficulty'">
+                    <a href="JavaScript:void(0);" (click)="
+                ChartFromView('', '', comp.difficultyRange,'cuckatoo'); selectedItem12 = 1
+              " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primay: true }">Cuckoo</a>
+                    <a href="JavaScript:void(0);" (click)="
+              ChartFromView('', '', comp.difficultyRange,'progpow'); selectedItem12 = 2
+              " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primay: true }">ProgPow</a>
+                    <a href="JavaScript:void(0);" (click)="
+              ChartFromView('', '', comp.difficultyRange,'randomx'); selectedItem12 = 3
+              " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primay: true }">RandomX</a>
+                  </div>
+                  <div class="day_filter" *ngIf="this.title=='Total Difficulty'">
+                      <a href="JavaScript:void(0);" (click)="
+                  ChartFromView('', '', comp.TdifficultyRange,'cuckatoo'); selectedItem12 = 1
+                " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primay: true }">Cuckoo</a>
+                      <a href="JavaScript:void(0);" (click)="
+                ChartFromView('', '', comp.TdifficultyRange,'progpow'); selectedItem12 = 2
+                " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primay: true }">ProgPow</a>
+                      <a href="JavaScript:void(0);" (click)="
+                ChartFromView('', '', comp.TdifficultyRange,'randomx'); selectedItem12 = 3
+                " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primay: true }">RandomX</a>
+                    </div>
               <epic-explorer-plotly *ngIf="hashdata.data" [data]="hashdata.data" [layout]="hashdata.layout">
               </epic-explorer-plotly>
               <div class="day_filter" *ngIf="this.title!='Transactions over time'">
@@ -95,28 +117,7 @@
               " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3
                   {{'home.MONTHS' | translate}}</a>
               </div>
-              <div class="day_filter" *ngIf="this.title=='Target Difficulty'">
-                <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', comp.difficultyRange,'cuckatoo'); selectedItem12 = 1
-          " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primay: true }">Cuckoo</a>
-                <a href="JavaScript:void(0);" (click)="
-          ChartFromView('', '', comp.difficultyRange,'progpow'); selectedItem12 = 2
-          " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primay: true }">ProgPow</a>
-                <a href="JavaScript:void(0);" (click)="
-          ChartFromView('', '', comp.difficultyRange,'randomx'); selectedItem12 = 3
-          " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primay: true }">RandomX</a>
-              </div>
-              <div class="day_filter" *ngIf="this.title=='Total Difficulty'">
-                  <a href="JavaScript:void(0);" (click)="
-              ChartFromView('', '', comp.TdifficultyRange,'cuckatoo'); selectedItem12 = 1
-            " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primay: true }">Cuckoo</a>
-                  <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', comp.TdifficultyRange,'progpow'); selectedItem12 = 2
-            " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primay: true }">ProgPow</a>
-                  <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', comp.TdifficultyRange,'randomx'); selectedItem12 = 3
-            " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primay: true }">RandomX</a>
-                </div>
+             
               <div class="day_filter" *ngIf="this.title=='Transactions over time'">
                 <a href="JavaScript:void(0);"
                   (click)="ChartFromView(GraphtDate, GraphtHour, GraphtInput,'Input'); selectedItem8 = 1" id="1" #item1
