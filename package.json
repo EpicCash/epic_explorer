@@ -6,14 +6,15 @@
     "start": "ng serve",
     "build": "ng build",
     "lint": "ng lint",
+    "copyToLive":"rm -rf live && cp -rf dist live",
     "build:client-and-server-bundles": "ng build --prod && ng run explorer2-epic:server:production",
     "build:prerender": "npm run build:client-and-server-bundles && npm run compile:server && npm run generate:prerender",
-    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server && npm run move:build",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server && npm run move:build  && npm run copyToLive",
     "compile:server": "tsc -p server.tsconfig.json",
     "move:build": "(cp -r ./server/i18n/ dist/server)",
     "generate:prerender": "cd dist && node prerender",
     "serve:prerender": "cd dist/browser && http-server",
-    "serve:ssr": "node dist/server"
+    "serve:ssr": "node live/server"
   },
   "private": true,
   "dependencies": {

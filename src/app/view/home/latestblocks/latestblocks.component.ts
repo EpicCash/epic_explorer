@@ -64,10 +64,11 @@ export class LatestblocksComponent implements OnInit {
       this.blockdetails = response;
       //console.log(this.blockdetails);
       if (this.lastblock != this.blockdetails.block_height) {
-        //console.log('Create');
+        console.log('Create');
         this.createBlock();
       }
       this.lastblock = this.blockdetails.block_height;
+      console.log(this.lastblock);
     });
   }
 
@@ -75,7 +76,7 @@ export class LatestblocksComponent implements OnInit {
     const blockFactory = this.resolver.resolveComponentFactory(
       BlockAppendComponent,
     );
-    const block = this.block.createComponent(blockFactory);
+    const block = this.block.createComponent(blockFactory, 0);
     this.blockAppend = {};
     this.blockAppend['blockchain_block_hash'] = this.blockdetails.hash;
     this.blockAppend[
