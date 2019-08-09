@@ -39,21 +39,6 @@ function dateDiff(date2, insec = false) {
   // }
 }
 
-// convertMinsToHrmin(millseconds) {
-//   var seconds = Math.floor(millseconds / 1000);
-//   var days = Math.floor(seconds / 86400);
-//   var hours = Math.floor((seconds % 86400) / 3600);
-//   var minutes = Math.floor(((seconds % 86400) % 3600) / 60);
-
-//   var dateTimeDurationString = '';
-//   if ((days > 0) && (hours === 0 && minutes === 0)) dateTimeDurationString += (days > 1) ? (days + ' days ') : (days + ' day ');
-//   if ((days > 0) && (hours > 0 || minutes > 0)) dateTimeDurationString += (days > 1) ? (days + ' days, ') : (days + ' day, ');
-//   if ((hours > 0) && (minutes > 0)) dateTimeDurationString += (hours > 1) ? (hours + ' hours, ') : (hours + ' hour, ');
-//   if ((hours > 0) && (minutes === 0)) dateTimeDurationString += (hours > 1) ? (hours + ' hours ') : (hours + ' hour ');
-//   if (minutes > 0) dateTimeDurationString += (minutes > 1) ? (minutes + ' minutes ') : (minutes + ' minute ');
-//   if (seconds > 0) dateTimeDurationString += (seconds > 1) ? (minutes + ' seconds ') : (minutes + ' second ');
-//   return dateTimeDurationString;
-// }
 
 function convertMinsToHrmin(millseconds,insec) {
   var seconds = Math.floor(millseconds / 1000);
@@ -61,7 +46,7 @@ function convertMinsToHrmin(millseconds,insec) {
     let sec = Math.floor(millseconds / 1000);
     return sec;
   }
-  console.log('secnds djfhksjdfdsf',seconds);
+  //console.log('secnds djfhksjdfdsf',seconds);
   var days = Math.floor(seconds / 86400);
   var hours = Math.floor((seconds % 86400) / 3600);
   var minutes = Math.floor(((seconds % 86400) % 3600) / 60);
@@ -85,7 +70,7 @@ function convertMinsToHrmin(millseconds,insec) {
 
 
 export async function universalGetLatestBlockDetails(socket) {
-  
+
 
   let block_height = "",
     letest_block,
@@ -224,42 +209,7 @@ export async function universalGetLatestBlockDetails(socket) {
   }
 
   block_height = BlockchainLatestBlockQuery[0].height;
-
-  var current_date = new Date();
-  // var current_date = new Date("Sat Apr 2 2018 15:04:00 GMT+0530 (IST)");
-
-  var enddaydif =
-    Math.abs(
-      BlockchainLatestBlockQuery[0].timestamp.getTime() -
-        current_date.getTime(),
-    ) /
-    (1000 * 60 * 60 * 24);
-  var enddayrnd = Math.round(enddaydif);
-  // if(enddayrnd < 1) {
-  var millseconds = Math.abs(
-    BlockchainLatestBlockQuery[0].timestamp.getTime() -
-      current_date.getTime(),
-  );
-
-  var seconds = Math.floor(millseconds / 1000);
-  var days = Math.floor(seconds / 86400);
-  var hours = Math.floor((seconds % 86400) / 3600);
-  var minutes = Math.floor(((seconds % 86400) % 3600) / 60);
-  seconds = seconds % 60;
-  var dateTimeDurationString = '';
-
-  if (days > 0 && (hours === 0 && minutes === 0))
-    dateTimeDurationString += days > 1 ? days + 'd ' : days + 'd ';
-  if (days > 0 && (hours > 0 || minutes > 0))
-    dateTimeDurationString += days > 1 ? days + 'd ' : days + 'd ';
-  if (hours > 0 && minutes > 0)
-    dateTimeDurationString += hours > 1 ? hours + 'h ' : hours + 'h ';
-  if (hours > 0 && minutes === 0)
-    dateTimeDurationString += hours > 1 ? hours + 'h ' : hours + 'h ';
-  if (minutes > 0)
-    dateTimeDurationString += minutes > 1 ? minutes + 'm ' : minutes + 'm ';
-  if (seconds > 0)
-    dateTimeDurationString += seconds > 1 ? seconds + 's ' : seconds + 's ';
+  var dateTimeDurationString = dateDiff(BlockchainLatestBlockQuery[0].timestamp, false);
 
   var TotalCuckoo =
     parseInt(BlockchainLatestBlockQuery[0].total_difficulty_cuckatoo) +
