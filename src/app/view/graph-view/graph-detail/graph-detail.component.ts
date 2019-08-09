@@ -110,6 +110,7 @@ export class GraphDetailComponent implements OnInit {
             this.hashdata = this.comp.barGraphData;
             this.hashdata.layout.height = 300;
             this.title = 'Blocks';
+            this.selectedItem = 6;
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
             );

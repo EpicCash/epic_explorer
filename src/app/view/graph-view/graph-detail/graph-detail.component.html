@@ -93,7 +93,7 @@
               </epic-explorer-plotly>
               <div class="day_filter" *ngIf="this.title!='Transactions over time'">
 
-                <a href="JavaScript:void(0);" *ngIf="this.title=='Total Difficulty' || this.title=='Target Difficulty'" (click)="
+                <a href="JavaScript:void(0);" *ngIf="this.title=='Total Difficulty' || this.title=='Target Difficulty' || this.title == 'Blocks'" (click)="
             ChartFromView('', '', '1 day', comp.Type); selectedItem = 6; comp.difficultyRange = '1 day'
               " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primay: true }">1 Day</a>
                 <a href="JavaScript:void(0);" (click)="
