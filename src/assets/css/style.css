@@ -283,10 +283,10 @@ a:focus {
   padding: 10px 20px;
 }
 .detail_div {
-  background-color: #ecf2ff;
-  border: 1px solid rgb(220, 228, 245);
+  background-color: #fff;
+  border: 1px solid #fff;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 10px ;
   transition: 0.3s linear all;
   min-height: 100%;
   display: flex;
@@ -301,7 +301,7 @@ a:focus {
   text-overflow: ellipsis;
 }
 .detail_div .desc {
-  font-size: 20px;
+  font-size: 18px;
 }
 .detail_div .count span {
   font-size: 15px;
@@ -656,7 +656,7 @@ body.dark_theme {
 .diff_margin{margin-bottom: -10px !important; margin-top: -10px !important;}
 @keyframes yellowfade {
   from {
-    background: yellow;
+    background: white;
   }
   to {
     background: transparent;
