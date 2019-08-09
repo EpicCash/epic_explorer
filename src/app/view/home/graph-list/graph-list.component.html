@@ -197,21 +197,24 @@
       </div>
     </div>
     <div class="day_filter">
+        <a href="JavaScript:void(0);" (click)="
+        blockreq('', '', '1 day'); selectedItem3 = 2
+            " id="2" #item32 [ngClass]="{ active: selectedItem3 == item32.id, txt_primay: true }">1 day</a>
       <a href="JavaScript:void(0);" (click)="
       blockreq('', '', '1 week'); selectedItem3 = 1
-          " id="1" #item31 [ngClass]="{ active: selectedItem3 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
-      <a href="JavaScript:void(0);" (click)="
+          " id="1" #item31 [ngClass]="{ active: selectedItem3 == item31.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+      <!-- <a href="JavaScript:void(0);" (click)="
       blockreq('', '', '15 days'); selectedItem3 = 2
-          " id="2" #item32 [ngClass]="{ active: selectedItem3 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
+          " id="2" #item32 [ngClass]="{ active: selectedItem3 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a> -->
       <a href="JavaScript:void(0);" (click)="
       blockreq('', '', '30 days'); selectedItem3 = 3
-          " id="3" #item33 [ngClass]="{ active: selectedItem3 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
+          " id="3" #item33 [ngClass]="{ active: selectedItem3 == item33.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
       blockreq('', '', '60 days'); selectedItem3 = 4
-          " id="4" #item34 [ngClass]="{ active: selectedItem3 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
+          " id="4" #item34 [ngClass]="{ active: selectedItem3 == item34.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
       blockreq('', '', '3 months'); selectedItem3 = 5
-          " id="5" #item35 [ngClass]="{ active: selectedItem3 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+          " id="5" #item35 [ngClass]="{ active: selectedItem3 == item35.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
     </div>
     <div class="explore_all text-right">
       <a routerLink="/chart/blocks"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>

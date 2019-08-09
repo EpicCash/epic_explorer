@@ -82,7 +82,7 @@ export class BlockchainBlockController {
     return fee;
   }
 
-  dateDiff(date2) {
+  dateDiff(date2, insec = false) {
     var current_date = new Date();
     // var current_date = new Date("Sat Apr 2 2018 15:04:00 GMT+0530 (IST)");
 
@@ -92,7 +92,7 @@ export class BlockchainBlockController {
     var enddayrnd = Math.round(enddaydif);
     // if(enddayrnd < 1) {
     var time = this.convertMinsToHrmin(
-      Math.abs(date2.getTime() - current_date.getTime()),
+      Math.abs(date2.getTime() - current_date.getTime()),insec
     );
     return time;
     // } else if(enddayrnd == 1) {
@@ -118,8 +118,13 @@ export class BlockchainBlockController {
   //   return dateTimeDurationString;
   // }
 
-  convertMinsToHrmin(millseconds) {
+  convertMinsToHrmin(millseconds,insec) {
     var seconds = Math.floor(millseconds / 1000);
+    if(insec){
+      let sec = Math.floor(millseconds / 1000);
+      return sec;
+    }
+    console.log('secnds djfhksjdfdsf',seconds);
     var days = Math.floor(seconds / 86400);
     var hours = Math.floor((seconds % 86400) / 3600);
     var minutes = Math.floor(((seconds % 86400) % 3600) / 60);
@@ -1068,7 +1073,7 @@ export class BlockchainBlockController {
           var timeIntervalQry =
           "timestamp at time zone '" +
           process.env.TIME_ZONE +
-          "' > current_date - interval '30 days'";
+          "' > current_date - interval '1 day'";
       }
       const BlockQuery = await getConnection()
         .query(
@@ -1523,7 +1528,7 @@ export class BlockchainBlockController {
   ) => {
     try {
       let block_height = '',
-        letest_block = '',
+        letest_block,
         letest_block_num = '',
         letest_block_duration = '';
 
@@ -1624,11 +1629,10 @@ export class BlockchainBlockController {
         var coin_existence = height * 200;
       }
 
-      letest_block = moment(BlockchainLatestBlockQuery[0].timestamp).fromNow();
-      letest_block_num = letest_block.substr(0, letest_block.indexOf(' ')); // "72"
-      letest_block_duration = letest_block.substr(
-        letest_block.indexOf(' ') + 1,
-      ); // "tocirah sneab"
+      letest_block = this.dateDiff(BlockchainLatestBlockQuery[0].timestamp,true);
+      console.log('letest_block letest_block letest_block !!!!!!!!!!!!!1',letest_block);
+      letest_block_num = letest_block; // "72"
+      letest_block_duration = letest_block == 1 ? 'second ago' : 'seconds ago';
       const SECOND_POW_EDGE_BITS = 29;
       const BASE_EDGE_BITS = 24;
 

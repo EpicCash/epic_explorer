@@ -1,4 +1,5 @@
 import { getConnection } from "typeorm";
+
 var moment = require("moment");
 moment.updateLocale('en', {
   relativeTime: {
@@ -18,10 +19,76 @@ moment.updateLocale('en', {
  }
 });
 
+function dateDiff(date2, insec = false) {
+  var current_date = new Date();
+  // var current_date = new Date("Sat Apr 2 2018 15:04:00 GMT+0530 (IST)");
+
+  var enddaydif =
+    Math.abs(date2.getTime() - current_date.getTime()) /
+    (1000 * 60 * 60 * 24);
+  var enddayrnd = Math.round(enddaydif);
+  // if(enddayrnd < 1) {
+  var time = convertMinsToHrmin(
+    Math.abs(date2.getTime() - current_date.getTime()),insec
+  );
+  return time;
+  // } else if(enddayrnd == 1) {
+  //   return 'Ends in ' + enddayrnd + ' day';
+  // }else {
+  //   return 'Ends in ' + enddayrnd + ' days';
+  // }
+}
+
+// convertMinsToHrmin(millseconds) {
+//   var seconds = Math.floor(millseconds / 1000);
+//   var days = Math.floor(seconds / 86400);
+//   var hours = Math.floor((seconds % 86400) / 3600);
+//   var minutes = Math.floor(((seconds % 86400) % 3600) / 60);
+
+//   var dateTimeDurationString = '';
+//   if ((days > 0) && (hours === 0 && minutes === 0)) dateTimeDurationString += (days > 1) ? (days + ' days ') : (days + ' day ');
+//   if ((days > 0) && (hours > 0 || minutes > 0)) dateTimeDurationString += (days > 1) ? (days + ' days, ') : (days + ' day, ');
+//   if ((hours > 0) && (minutes > 0)) dateTimeDurationString += (hours > 1) ? (hours + ' hours, ') : (hours + ' hour, ');
+//   if ((hours > 0) && (minutes === 0)) dateTimeDurationString += (hours > 1) ? (hours + ' hours ') : (hours + ' hour ');
+//   if (minutes > 0) dateTimeDurationString += (minutes > 1) ? (minutes + ' minutes ') : (minutes + ' minute ');
+//   if (seconds > 0) dateTimeDurationString += (seconds > 1) ? (minutes + ' seconds ') : (minutes + ' second ');
+//   return dateTimeDurationString;
+// }
+
+function convertMinsToHrmin(millseconds,insec) {
+  var seconds = Math.floor(millseconds / 1000);
+  if(insec){
+    let sec = Math.floor(millseconds / 1000);
+    return sec;
+  }
+  console.log('secnds djfhksjdfdsf',seconds);
+  var days = Math.floor(seconds / 86400);
+  var hours = Math.floor((seconds % 86400) / 3600);
+  var minutes = Math.floor(((seconds % 86400) % 3600) / 60);
+  seconds = seconds % 60;
+  var dateTimeDurationString = '';
+
+  if (days > 0 && (hours === 0 && minutes === 0))
+    dateTimeDurationString += days > 1 ? days + 'd ' : days + 'd ';
+  if (days > 0 && (hours > 0 || minutes > 0))
+    dateTimeDurationString += days > 1 ? days + 'd ' : days + 'd ';
+  if (hours > 0 && minutes > 0)
+    dateTimeDurationString += hours > 1 ? hours + 'h ' : hours + 'h ';
+  if (hours > 0 && minutes === 0)
+    dateTimeDurationString += hours > 1 ? hours + 'h ' : hours + 'h ';
+  if (minutes > 0)
+    dateTimeDurationString += minutes > 1 ? minutes + 'm ' : minutes + 'm ';
+  if (seconds > 0)
+    dateTimeDurationString += seconds > 1 ? seconds + 's ' : seconds + 's ';
+  return dateTimeDurationString;
+}
+
+
 export async function universalGetLatestBlockDetails(socket) {
+  
 
   let block_height = "",
-    letest_block = "",
+    letest_block,
     letest_block_num = "",
     letest_block_duration = "";
 
@@ -108,9 +175,9 @@ export async function universalGetLatestBlockDetails(socket) {
     var coin_existence = height * 200;
   }
 
-  letest_block = moment(BlockchainLatestBlockQuery[0].timestamp).fromNow();
-  letest_block_num = letest_block.substr(0, letest_block.indexOf(" ")); // "72"
-  letest_block_duration = letest_block.substr(letest_block.indexOf(" ") + 1); // "tocirah sneab"
+  letest_block = dateDiff(BlockchainLatestBlockQuery[0].timestamp, true);
+  letest_block_num = letest_block // "72"
+  letest_block_duration = letest_block == 1 ? 'second ago' : 'seconds ago'; // "tocirah sneab"
   const SECOND_POW_EDGE_BITS = 29;
   const BASE_EDGE_BITS = 24;
 

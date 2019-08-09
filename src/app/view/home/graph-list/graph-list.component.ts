@@ -40,7 +40,7 @@ export class GraphListComponent implements OnInit {
   public pg_last: any = '';
 
   public selectedItem: Number = 6;
-  public selectedItem3: Number = 3;
+  public selectedItem3: Number = 2;
   public selectedItem2: Number = 3;
   public selectedItem4: Number = 3;
   public selectedItem5: Number = 3;
