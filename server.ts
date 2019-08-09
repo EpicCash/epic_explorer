@@ -76,7 +76,7 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept, Authtoken,cookie_id');
-  
+
   // intercept OPTIONS method
   if ('OPTIONS' == req.method) {
      return res.status(200).end();
@@ -87,7 +87,6 @@ app.use(function(req, res, next) {
 }
 );
 
-app.use(errorMiddleware);
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
@@ -111,6 +110,7 @@ controllers.forEach(controller => {
 app.get("/epic_explorer/v1/**", (req, res) => {
   res.send({ msg: "Api works." });
 });
+app.use(errorMiddleware);
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require("./server/main");

@@ -516,29 +516,35 @@ export class BlockchainKernelController {
   ) => {
     var self = this;
     try {
-      http.get('http://116.203.152.58:3413/v1/peers/connected', (resp) => {
+      http.get('http://116.203.152.58:3413/v1/peers/connected',
+      async (resp) => {
         // console.log('resp resp respresp',resp);
         let data = '';
+        let result ;
 
         // A chunk of data has been recieved.
+        await new Promise((resolve) => {
         resp.on('data', function (chunk) {
-          data += chunk;
-          
-          let dataJson = self.IsJsonString(data);
-          if(dataJson.length > 0){
+           data += chunk;
 
-          dataJson.forEach(function (value, i) {
-            value['id'] = i;
-          });
-        }
-          response.status(200).json({
-            status: 200,
-            timestamp: Date.now(),
-            message: 'Peers list fetched successfully',
-            response: {
-              dataJson
-            },
-          });
+           let dataJson = self.IsJsonString(data);
+           if(dataJson.length > 0){
+
+          result = dataJson.map(function (value, i) {
+              value['id'] = i;
+              return value;
+           });
+         }
+         resolve();
+         });
+      });
+        response.status(200).json({
+          status: 200,
+          timestamp: Date.now(),
+          message: 'Peers list fetched successfully',
+          response: {
+          dataJson:  result
+          },
         });
       });
     } catch (error) {
