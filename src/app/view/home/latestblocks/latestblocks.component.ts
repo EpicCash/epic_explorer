@@ -64,11 +64,11 @@ export class LatestblocksComponent implements OnInit {
       this.blockdetails = response;
       //console.log(this.blockdetails);
       if (this.lastblock != this.blockdetails.block_height) {
-        console.log('Create');
+        //console.log('Create');
         this.createBlock();
       }
       this.lastblock = this.blockdetails.block_height;
-      console.log(this.lastblock);
+      //console.log(this.lastblock);
     });
   }
 
