@@ -20,7 +20,7 @@
       </div>
       <div class="col-6 col-md-4 tble_col">
         <div class="block_div">
-          <h5 class="mb-0">{{'home.DIFFICULTY' | translate}}</h5>
+          <h5 class="mb-0">{{'home.TARGET_DIFFICULTY' | translate}}</h5>
         </div>
       </div>
       <div class="col-7 col-sm-6 col-md-4 tble_col">
@@ -46,6 +46,7 @@
     </div>
   </div>
   <div #block></div>
+  <!-- <ng-container #block></ng-container> -->
   <div [ngClass]="{mobile_table : true, hght_40: item.id != clickValue }"
     id="hash_{{hashvalue.blockchain_block_height}}" #item *ngFor="let hashvalue of hashvalues">
 

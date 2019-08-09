@@ -45,7 +45,8 @@ export class GraphListComponent implements OnInit {
   public selectedItem4: Number = 3;
   public selectedItem5: Number = 3;
   public selectedItem7: Number = 3;
-  public selectedItem8: Number = 1;
+  public selectedItem8: Number = 3;
+  public selectedItem81: Number = 2;
   public selectedItem9: Number = 3;
   public selectedItem10: Number = 3;
   public selectedItem11: Number = 3;
@@ -180,21 +181,21 @@ export class GraphListComponent implements OnInit {
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
       params = params.append('Interval', interval);
-      this.chartService
-        .apiGetRequest(params, '/blockchain_block/hashrate')
-        .subscribe(
-          res => {
-            if (res['status'] == 200) {
-              let Hdate = res.response.date;
-              let H29 = res.response.hashrate29;
-              let H31 = res.response.hashrate31;
-              this.hg_last = H31[H31.length - 1];
-              this.transactiondoublelinechartFunc(Hdate, H29, H31);
-              resolve();
-            }
-          },
-          error => {},
-        );
+      // this.chartService
+      //   .apiGetRequest(params, '/blockchain_block/hashrate')
+      //   .subscribe(
+      //     res => {
+      //       if (res['status'] == 200) {
+      //         let Hdate = res.response.date;
+      //         let H29 = res.response.hashrate29;
+      //         let H31 = res.response.hashrate31;
+      //         this.hg_last = H31[H31.length - 1];
+      //         this.transactiondoublelinechartFunc(Hdate, H29, H31);
+      //         resolve();
+      //       }
+      //     },
+      //     error => {},
+      //   );
     });
   }
 
@@ -259,8 +260,8 @@ export class GraphListComponent implements OnInit {
               this.transactionheatmapFunc(
                 this.tDate,
                 this.tHour,
-                this.tInput,
-                'Input',
+                this.tKernal,
+                'Kernal',
               );
               resolve();
             }
@@ -775,7 +776,7 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
-          tickformat :".0f",
+          //tickformat :".0f",
           tickprefix: '                '
         },
         margin: {

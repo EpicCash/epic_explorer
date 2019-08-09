@@ -17,7 +17,7 @@ export class TransServiceService {
     if (isPlatformBrowser(this.platformId)) {
       translate.addLangs(["en", "de"]);
       translate.setDefaultLang("en");
-      this.langLabel = { en: "English", de: "German" };
+      this.langLabel = { en: "EN", de: "DE" };
       // console.log('this.getCookie() ifconf',this.getCookie() != 'undefined' ? 1: 2);
       // console.log("(this.getCookie() && this.getCookie() != null) ? this.getCookie() : (this.getCurrentLang() && this.getCurrentLang() != null) ? this.getCurrentLang() : 'en'",(this.getCookie() && this.getCookie() != 'undefined') ? this.getCookie() : (this.getCurrentLang() && this.getCurrentLang() != 'undefined') ? this.getCurrentLang() : 'en');
       translate.use(

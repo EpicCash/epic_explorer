@@ -19,6 +19,7 @@ body {
   max-width: 75%;
   margin: 0 auto;
 }
+.text_underline{text-decoration: underline;}
 a:hover,
 a:focus {
   text-decoration: none;
@@ -252,6 +253,7 @@ a:focus {
   background: #fff;
   padding: 0 5px;
 }
+.difficulty_filter.day_filter a.active{border-color: #0056b3; color: #0056b3;}
 .explore_all {
   background: #ecf2ff;
   padding: 15px;
@@ -287,6 +289,9 @@ a:focus {
   padding: 20px;
   transition: 0.3s linear all;
   min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .detail_div .count {
   font-size: 25px;
@@ -352,6 +357,9 @@ a:focus {
   font-family: FontAwesome;
   right: 5px;
   top: 1px;
+}
+.chart_show {
+  min-height: 268px;
 }
 /************************************************Footer*****************************************/
 .footer_div {
