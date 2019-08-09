@@ -75,7 +75,7 @@ export class LatestblocksComponent implements OnInit {
     const blockFactory = this.resolver.resolveComponentFactory(
       BlockAppendComponent,
     );
-    const block = this.block.createComponent(blockFactory);
+    const block = this.block.createComponent(blockFactory, 0);
     this.blockAppend = {};
     this.blockAppend['blockchain_block_hash'] = this.blockdetails.hash;
     this.blockAppend[

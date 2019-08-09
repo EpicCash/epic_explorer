@@ -46,6 +46,7 @@
     </div>
   </div>
   <div #block></div>
+  <!-- <ng-container #block></ng-container> -->
   <div [ngClass]="{mobile_table : true, hght_40: item.id != clickValue }"
     id="hash_{{hashvalue.blockchain_block_height}}" #item *ngFor="let hashvalue of hashvalues">
 
