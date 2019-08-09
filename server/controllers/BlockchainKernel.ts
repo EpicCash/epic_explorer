@@ -525,9 +525,12 @@ export class BlockchainKernelController {
           data += chunk;
           
           let dataJson = self.IsJsonString(data);
+          if(dataJson.length > 0){
+
           dataJson.forEach(function (value, i) {
             value['id'] = i;
           });
+        }
           response.status(200).json({
             status: 200,
             timestamp: Date.now(),
