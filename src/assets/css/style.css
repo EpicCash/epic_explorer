@@ -512,12 +512,8 @@ margin-right: 10px;
   min-width: 5rem;
   padding: 0;
 }
-.peers_diff{
-  width: 160px;
-    overflow: hidden;
-    display: inline-block;
-    text-overflow: ellipsis;
-}
+
+.peers_diff .blck_value{word-wrap: break-word;}
 /**********************************************Dark Theme CSS********************************/
 body.dark_theme {
   background-color: #27314b;

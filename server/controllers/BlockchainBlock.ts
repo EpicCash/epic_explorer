@@ -828,7 +828,7 @@ export class BlockchainBlockController {
       console.log('error', error);
       next(new InternalServerErrorException(error));
     }
-  
+
   };
 
   private BlockchainBlockUpdate = async (
@@ -1167,30 +1167,18 @@ export class BlockchainBlockController {
         var dateFormat = 'YYYY-MM-DD HH:mm:ss';
         var tickFormat = '%H-%M';
       }
-      if(Difftype == "target"){
-        var TotalDifficultyNBlockQuery = await getConnection()
-        .query(
-          "SELECT a.hash, a.tarket_difficulty, a.date FROM(select 1 as hash, (total_difficulty_"+alog_type+" - LAG(total_difficulty_"+alog_type+") OVER (ORDER BY total_difficulty_"+alog_type+")) AS tarket_difficulty, \
-             DATE_TRUNC('minute', timestamp at time zone '" +
-            process.env.TIME_ZONE +
-            "') as date \
-          from blockchain_block where " +
-          timeIntervalQry +
-            " order by height) as a WHERE a.tarket_difficulty IS NOT NULL",
-        )
-        .catch(err_msg => {
-          next(err_msg);
-        });
-        }else if(Difftype == "solution"){
+     if(Difftype == "target"){
           var TotalDifficultyNBlockQuery = await getConnection()
           .query(
-            "SELECT a.hash, a.tarket_difficulty, a.date FROM(select 1 as hash, (total_difficulty_"+alog_type+" - LAG(total_difficulty_"+alog_type+") OVER (ORDER BY total_difficulty_"+alog_type+")) AS tarket_difficulty, \
+            "SELECT a.hash, a.total_difficulty_randomx, a.total_difficulty_cuckatoo,a.total_difficulty_progpow, a.date FROM(select 1 as hash, (total_difficulty_cuckatoo - LAG(total_difficulty_cuckatoo) OVER (ORDER BY total_difficulty_cuckatoo)) AS total_difficulty_cuckatoo, \
+            (total_difficulty_progpow	 - LAG(total_difficulty_progpow) OVER (ORDER BY total_difficulty_progpow)) AS total_difficulty_progpow	,  \
+            (total_difficulty_randomx - LAG(total_difficulty_randomx) OVER (ORDER BY total_difficulty_randomx)) AS total_difficulty_randomx,  \
                DATE_TRUNC('minute', timestamp at time zone '" +
               process.env.TIME_ZONE +
               "') as date \
             from blockchain_block where " +
             timeIntervalQry +
-              " order by height) as a WHERE a.tarket_difficulty IS NOT NULL",
+              " order by height) as a WHERE a.total_difficulty_randomx IS NOT NULL AND a.total_difficulty_progpow IS NOT NULL AND a.total_difficulty_cuckatoo IS NOT NULL AND a.total_difficulty_cuckatoo != '0' AND a.total_difficulty_randomx != '0' AND a.total_difficulty_progpow != '0'",
           )
           .catch(err_msg => {
             next(err_msg);
@@ -1198,7 +1186,7 @@ export class BlockchainBlockController {
         }else if(Difftype == "total"){
           var TotalDifficultyNBlockQuery = await getConnection()
           .query(
-            "select 1 as hash, total_difficulty_"+alog_type+" as tarket_difficulty, \
+            "select 1 as hash, total_difficulty_cuckatoo,total_difficulty_progpow,total_difficulty_randomx, \
                DATE_TRUNC('minute', timestamp at time zone '" +
               process.env.TIME_ZONE +
               "') as date \
@@ -1209,45 +1197,55 @@ export class BlockchainBlockController {
           .catch(err_msg => {
             next(err_msg);
           });
-        }else{
-          var TotalDifficultyNBlockQuery = await getConnection()
-          .query(
-            "SELECT a.hash, a.tarket_difficulty, a.date FROM(select 1 as hash, (total_difficulty_"+alog_type+" - LAG(total_difficulty_"+alog_type+") OVER (ORDER BY total_difficulty_"+alog_type+")) AS tarket_difficulty, \
-               DATE_TRUNC('minute', timestamp at time zone '" +
-              process.env.TIME_ZONE +
-              "') as date \
-            from blockchain_block where " +
-            timeIntervalQry +
-              " order by height) as a WHERE a.tarket_difficulty IS NOT NULL",
-          )
-          .catch(err_msg => {
-            next(err_msg);
-          });
         }
       let date = [],
-        //DifficultyCuckaroo = [],
-        //DifficultyCuckatoo = [],
-        //DifficultyProgpow = [],
-        //DifficultyRandomx = [];
-
-        TargetDifficulty = [];
+      DifficultyCuckatoo = [],
+      DifficultyProgpow = [],
+      DifficultyRandomx = [];
 
         TotalDifficultyNBlockQuery.forEach(e => {
-          //date.indexOf(moment(e.date).format('YYYY-MM-DD')) < 0 ?
          date.push(moment(e.date).format(dateFormat));
-        // DifficultyCuckaroo.push(parseInt(e.total_difficulty_cuckaroo));
-        // DifficultyCuckatoo.push(parseInt(e.total_difficulty_cuckatoo));
-        // DifficultyProgpow.push(parseInt(e.total_difficulty_progpow));
-        // DifficultyRandomx.push(parseInt(e.total_difficulty_randomx));
-        TargetDifficulty.push(parseInt(e.tarket_difficulty));
+        DifficultyCuckatoo.push(parseInt(e.total_difficulty_cuckatoo));
+        DifficultyProgpow.push(parseInt(e.total_difficulty_progpow));
+        DifficultyRandomx.push(parseInt(e.total_difficulty_randomx));
       });
-
-      var Maxrange = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.tarket_difficulty; }));
-      var Minrange = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.tarket_difficulty; }));
+      var Maxrange;
+      var Minrange;
+      if(alog_type == "cuckatoo"){
+      Maxrange = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_cuckatoo; }));
+      Minrange = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_cuckatoo; }));
       if(Minrange != 0){
-          Minrange = (Minrange - (Minrange * 0.2));
+        Minrange = (Minrange - (Minrange * 0.2));
       }
       Maxrange = (Maxrange + (Maxrange * 0.2));
+      }else if(alog_type == "progpow"){
+      Maxrange = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_progpow; }));
+      Minrange = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_progpow; }));
+      if(Minrange != 0){
+        Minrange = (Minrange - (Minrange * 0.2));
+      }
+      Maxrange = (Maxrange + (Maxrange * 0.2));
+      }else if(alog_type == "randomx"){
+      Maxrange = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_randomx; }));
+      Minrange = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_randomx; }));
+      if(Minrange != 0){
+      Minrange = (Minrange - (Minrange * 0.2));
+      }
+      Maxrange = (Maxrange + (Maxrange * 0.2));
+      }else{
+        var Maxrange1 = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_cuckatoo; }));
+        var Minrange1 = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_cuckatoo; }));
+        var Maxrange2 = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_progpow; }));
+        var Minrange2 = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_progpow; }));
+        var Maxrange3 = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_randomx; }));
+        var Minrange3 = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_randomx; }));
+        Maxrange = Math.max(Maxrange1, Maxrange2, Maxrange3);
+        Minrange = Math.min(Minrange1, Minrange2, Minrange3);
+        if(Minrange != 0){
+          Minrange = (Minrange - (Minrange * 0.2));
+          }
+          Maxrange = (Maxrange + (Maxrange * 0.2));
+      }
 
       // Minrange = parseInt(Minrange);
       // var Minrange2  = parseInt(Minrange * 0.3);
@@ -1257,12 +1255,11 @@ export class BlockchainBlockController {
         message: 'Difficulty and Blocks Data fetched Successfully',
         response: {
           Date: date,
-          // DifficultyCuckaroo: DifficultyCuckaroo,
-          // DifficultyCuckatoo: DifficultyCuckatoo,
-          // DifficultyProgpow: DifficultyProgpow,
+          DifficultyCuckatoo: DifficultyCuckatoo,
+          DifficultyRandomx: DifficultyRandomx,
+          DifficultyProgpow: DifficultyProgpow,
           Maxrange: Maxrange,
           Minrange: Minrange,
-          TargetDifficulty: TargetDifficulty,
           tickFormat: tickFormat
         },
       });
