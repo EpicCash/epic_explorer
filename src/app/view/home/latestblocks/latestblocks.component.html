@@ -1,5 +1,5 @@
 <div class="latest_table">
-  <h2 class="mb-3 chart_heading px-0">{{'home.LATEST_BLOCK' | translate}}</h2>
+  <h2 class="mb-3 chart_heading px-0">{{'home.LATEST_BLOCKS' | translate}}</h2>
   <div class="mobile_table web_hdng">
 
     <div class="row">
@@ -46,9 +46,9 @@
     </div>
   </div>
   <div #block></div>
-  <!-- <ng-container #block></ng-container> -->
-  <div [ngClass]="{mobile_table : true, hght_40: item.id != clickValue }"
-    id="hash_{{hashvalue.blockchain_block_height}}" #item *ngFor="let hashvalue of hashvalues">
+  <ng-container *ngFor="let hashvalue of hashvalues">
+  <div *ngIf="hashvalue.target_difficulty_cuckatoo != '0'" [ngClass]="{mobile_table : true, hght_40: item.id != clickValue }"
+    id="hash_{{hashvalue.blockchain_block_height}}" #item >
 
     <div class="row">
       <div class="col-6 col-md-3 tble_col">
@@ -108,7 +108,7 @@
             </div> -->
     </div>
   </div>
-
+</ng-container>
 
 </div>
 

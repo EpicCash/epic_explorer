@@ -17,6 +17,7 @@
         "EXPLORE_IT": "Explore",
         "VIEWALL": "View All Charts",
         "BLOCKCHAIN_HEIGHT": "Blockchain Height",
+        "LATEST_BLOCKS" : "Latest Blocks",
         "LATEST_BLOCK": "Latest Block",
 				"LATEST_BLOCK1": "Current Target Difficulty",
 				"LATEST_BLOCK2": "Current Total Difficulty",
