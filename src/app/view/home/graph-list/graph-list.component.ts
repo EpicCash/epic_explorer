@@ -819,7 +819,7 @@ export class GraphListComponent implements OnInit {
           showgrid: true,
         },
         yaxis: {
-          title: 'Blocks / sec',
+          title: 'Seconds / Block',
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
