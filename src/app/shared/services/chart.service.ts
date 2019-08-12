@@ -17,7 +17,7 @@ export class ChartService {
   private socket;
 
   constructor(public http: HttpClient) {
-        this.socket = io.connect(this.server);
+        this.socket = io.connect(this.server, {transports: ['websocket']});
   }
 
   // public createSocketConnection() {
