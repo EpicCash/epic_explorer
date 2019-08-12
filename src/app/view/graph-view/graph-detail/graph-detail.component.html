@@ -69,6 +69,9 @@
                 {{chartType | translate}}</h2>
                 <div class="day_filter" *ngIf="this.title=='Target Difficulty'">
                     <a href="JavaScript:void(0);" (click)="
+                    ChartFromView('', '', comp.difficultyRange,'all'); selectedItem12 = 4
+                  " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primay: true }">All</a>
+                    <a href="JavaScript:void(0);" (click)="
                 ChartFromView('', '', comp.difficultyRange,'cuckatoo'); selectedItem12 = 1
               " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primay: true }">Cuckoo</a>
                     <a href="JavaScript:void(0);" (click)="
@@ -79,7 +82,9 @@
               " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primay: true }">RandomX</a>
                   </div>
                   <div class="day_filter" *ngIf="this.title=='Total Difficulty'">
-                      <a href="JavaScript:void(0);" (click)="
+                    <a href="JavaScript:void(0);" (click)="
+                  ChartFromView('', '', comp.TdifficultyRange,'cuckatoo'); selectedItem12 = 4
+                " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primay: true }">All</a>       <a href="JavaScript:void(0);" (click)="
                   ChartFromView('', '', comp.TdifficultyRange,'cuckatoo'); selectedItem12 = 1
                 " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primay: true }">Cuckoo</a>
                       <a href="JavaScript:void(0);" (click)="
@@ -94,26 +99,26 @@
               <div class="day_filter" *ngIf="this.title!='Transactions over time'">
 
                 <a href="JavaScript:void(0);" *ngIf="this.title=='Total Difficulty' || this.title=='Target Difficulty' || this.title == 'Blocks'" (click)="
-            ChartFromView('', '', '1 day', comp.Type); selectedItem = 6; comp.difficultyRange = '1 day'
+            ChartFromView('', '', '1 day', comp.Type); selectedItem = 6; comp.difficultyRange = '1 day';comp.TdifficultyRange = '1 day'
               " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primay: true }">1 Day</a>
                 <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', '1 week', comp.Type); selectedItem = 1; comp.difficultyRange = '1 week'
+            ChartFromView('', '', '1 week', comp.Type); selectedItem = 1; comp.difficultyRange = '1 week';comp.TdifficultyRange = '1 week'
               " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1
                   {{'home.WEEK' | translate}}</a>
                 <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', '15 days', comp.Type); selectedItem = 2; comp.difficultyRange = '15 days'
+            ChartFromView('', '', '15 days', comp.Type); selectedItem = 2; comp.difficultyRange = '15 days';comp.TdifficultyRange = '15 days'
               " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15
                   {{'home.DAYS' | translate}}</a>
                 <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', '30 days', comp.Type); selectedItem = 3; comp.difficultyRange = '30 days'
+            ChartFromView('', '', '30 days', comp.Type); selectedItem = 3; comp.difficultyRange = '30 days';comp.TdifficultyRange = '30 days'
               " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30
                   {{'home.DAYS' | translate}}</a>
                 <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', '60 days', comp.Type); selectedItem = 4; comp.difficultyRange = '60 days'
+            ChartFromView('', '', '60 days', comp.Type); selectedItem = 4; comp.difficultyRange = '30 days';comp.TdifficultyRange = '30 days'
               " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60
                   {{'home.DAYS' | translate}}</a>
                 <a href="JavaScript:void(0);" (click)="
-            ChartFromView('', '', '3 months', comp.Type); selectedItem = 5; comp.difficultyRange = '3 months'
+            ChartFromView('', '', '3 months', comp.Type); selectedItem = 5; comp.difficultyRange = '3 months';comp.TdifficultyRange = '3 months'
               " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3
                   {{'home.MONTHS' | translate}}</a>
               </div>
@@ -152,8 +157,6 @@
         <div class="box_shadow_large bg-white p-3">
           <h2 class="chart_heading mb-2 d-inline-block">{{'home.EXPLORE' | translate}}</h2>
           <ul class="list-unstyled pl-3">
-            <li class="mb-1" *ngIf="this.title!='Target Difficulty'"><a
-                routerLink="/chart/target-difficulty">{{'target-difficulty' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Total Difficulty'"><a
               routerLink="/chart/total-difficulty">{{'total-difficulty' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Transactions over time'"><a
@@ -173,6 +176,8 @@
                 routerLink="/chart/transactions-by-date">{{'home.TRANSACTIONS_VS_DATE' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Stackbar Chart'"><a routerLink="/chart/blocks-by-algorithm">Blocks by Algorithm</a>
             </li>
+            <li class="mb-1" *ngIf="this.title!='Target Difficulty'"><a
+              routerLink="/chart/target-difficulty">{{'target-difficulty' | translate}}</a></li>
             <!-- <li class="mb-1" *ngIf="this.title!='Pie Chart'"><a routerLink="/chart/piechart">Pie Chart</a></li> -->
           </ul>
         </div>

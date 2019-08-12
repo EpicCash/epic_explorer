@@ -23,7 +23,7 @@ export class GraphDetailComponent implements OnInit {
   public chartType : any = [];
   public selectedItem: Number = 3;
   public selectedItem8: Number = 2;
-  public selectedItem12: Number = 1;
+  public selectedItem12: Number = 4;
   public Type: any = '';
   public selectedTarget: Number = 3;
   public selectedTarget12: Number = 1;
@@ -34,7 +34,6 @@ export class GraphDetailComponent implements OnInit {
   public GraphtDate: any;
   public GraphtHour: any;
   public linearTotalGraphData: any = [];
-  public TdifficultyRange: any = '1 day';
 
   constructor(
     private route: ActivatedRoute,

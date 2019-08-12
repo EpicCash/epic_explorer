@@ -3,20 +3,20 @@ import { getConnection } from "typeorm";
 var moment = require("moment");
 moment.updateLocale('en', {
   relativeTime: {
-       future: "in %s",
-       past:   "%s ago",
-       s:  "seconds",
-       m:  "1 minute",
-       mm: "%d minutes",
-       h:  "1 hour",
-       hh: "%d hours",
-       d:  "1 day",
-       dd: "%d days",
-       M:  "1 month",
-       MM: "%d months",
-       y:  "1 year",
-       yy: "%d years"
- }
+    future: "in %s",
+    past: "%s ago",
+    s: "seconds",
+    m: "1 minute",
+    mm: "%d minutes",
+    h: "1 hour",
+    hh: "%d hours",
+    d: "1 day",
+    dd: "%d days",
+    M: "1 month",
+    MM: "%d months",
+    y: "1 year",
+    yy: "%d years"
+  }
 });
 
 function dateDiff(date2, insec = false) {
@@ -29,7 +29,7 @@ function dateDiff(date2, insec = false) {
   var enddayrnd = Math.round(enddaydif);
   // if(enddayrnd < 1) {
   var time = convertMinsToHrmin(
-    Math.abs(date2.getTime() - current_date.getTime()),insec
+    Math.abs(date2.getTime() - current_date.getTime()), insec
   );
   return time;
   // } else if(enddayrnd == 1) {
@@ -40,9 +40,9 @@ function dateDiff(date2, insec = false) {
 }
 
 
-function convertMinsToHrmin(millseconds,insec) {
+function convertMinsToHrmin(millseconds, insec) {
   var seconds = Math.floor(millseconds / 1000);
-  if(insec){
+  if (insec) {
     let sec = Math.floor(millseconds / 1000);
     return sec;
   }
@@ -81,83 +81,118 @@ export async function universalGetLatestBlockDetails(socket) {
     "SELECT bb.timestamp,bb.proof,bb.height,bb.edge_bits,bb.hash,bb.secondary_scaling, bb.previous_id, bb.total_difficulty_cuckaroo, bb.total_difficulty_cuckatoo, bb.total_difficulty_progpow, bb.total_difficulty_randomx, COUNT(DISTINCT(bi.block_id)) AS input_count, COUNT(DISTINCT(bk.block_id)) AS kernel_count, COUNT(DISTINCT(bo.block_id)) AS output_count FROM blockchain_block bb LEFT JOIN blockchain_input bi ON bi.block_id = bb.hash LEFT JOIN blockchain_kernel bk ON bk.block_id = bb.hash LEFT JOIN blockchain_output bo ON bo.block_id = bb.hash group by bb.hash, bb.timestamp ORDER BY bb.timestamp DESC LIMIT 1");
   const BlockchainPreviousBlockQuery = await getConnection().query(
     "SELECT total_difficulty_cuckaroo, total_difficulty_cuckatoo, total_difficulty_progpow, total_difficulty_randomx FROM blockchain_block WHERE hash=" +
-      "'" +
-      BlockchainLatestBlockQuery[0].previous_id +
-      "'"
+    "'" +
+    BlockchainLatestBlockQuery[0].previous_id +
+    "'"
   );
   let height = BlockchainLatestBlockQuery[0].height;
 
-  if (height > 12960) {
-    var remain_block = height - 12960;
-    var coin_existence =
-      1440 * 200 +
-      1440 * 180 +
-      1440 * 160 +
-      1440 * 140 +
-      1440 * 120 +
-      1440 * 100 +
-      1440 * 80 +
-      1440 * 60 +
-      1440 * 50 +
-      25 * remain_block;
-  } else if (height > 11520) {
-    var remain_block = height - 11520;
-    var coin_existence =
-      1440 * 200 +
-      1440 * 180 +
-      1440 * 160 +
-      1440 * 140 +
-      1440 * 120 +
-      1440 * 100 +
-      1440 * 80 +
-      1440 * 60 +
-      remain_block * 50;
-  } else if (height > 10080) {
-    var remain_block = height - 10080;
-    var coin_existence =
-      1440 * 200 +
-      1440 * 180 +
-      1440 * 160 +
-      1440 * 140 +
-      1440 * 120 +
-      1440 * 100 +
-      1440 * 80 +
-      remain_block * 60;
-  } else if (height > 8640) {
-    var remain_block = height - 8640;
-    var coin_existence =
-      1440 * 200 +
-      1440 * 180 +
-      1440 * 160 +
-      1440 * 140 +
-      1440 * 120 +
-      1440 * 100 +
-      remain_block * 80;
-  } else if (height > 7200) {
-    var remain_block = height - 7200;
-    var coin_existence =
-      1440 * 200 +
-      1440 * 180 +
-      1440 * 160 +
-      1440 * 140 +
-      1440 * 120 +
-      remain_block * 100;
-  } else if (height > 5760) {
-    var remain_block = height - 5760;
-    var coin_existence =
-      1440 * 200 + 1440 * 180 + 1440 * 160 + 1440 * 140 + remain_block * 120;
-  } else if (height > 4320) {
-    var remain_block = height - 4320;
-    var coin_existence =
-      1440 * 200 + 1440 * 180 + 1440 * 160 + remain_block * 140;
-  } else if (height > 2880) {
-    var remain_block = height - 2880;
-    var coin_existence = 1440 * 200 + 1440 * 180 + remain_block * 160;
-  } else if (height > 1440) {
-    var remain_block = height - 1440;
-    var coin_existence = 1440 * 200 + remain_block * 180;
+  // if (height > 12960) {
+  //   var remain_block = height - 12960;
+  //   var coin_existence =
+  //     1440 * 200 +
+  //     1440 * 180 +
+  //     1440 * 160 +
+  //     1440 * 140 +
+  //     1440 * 120 +
+  //     1440 * 100 +
+  //     1440 * 80 +
+  //     1440 * 60 +
+  //     1440 * 50 +
+  //     25 * remain_block;
+  // } else if (height > 11520) {
+  //   var remain_block = height - 11520;
+  //   var coin_existence =
+  //     1440 * 200 +
+  //     1440 * 180 +
+  //     1440 * 160 +
+  //     1440 * 140 +
+  //     1440 * 120 +
+  //     1440 * 100 +
+  //     1440 * 80 +
+  //     1440 * 60 +
+  //     remain_block * 50;
+  // } else if (height > 10080) {
+  //   var remain_block = height - 10080;
+  //   var coin_existence =
+  //     1440 * 200 +
+  //     1440 * 180 +
+  //     1440 * 160 +
+  //     1440 * 140 +
+  //     1440 * 120 +
+  //     1440 * 100 +
+  //     1440 * 80 +
+  //     remain_block * 60;
+  // } else if (height > 8640) {
+  //   var remain_block = height - 8640;
+  //   var coin_existence =
+  //     1440 * 200 +
+  //     1440 * 180 +
+  //     1440 * 160 +
+  //     1440 * 140 +
+  //     1440 * 120 +
+  //     1440 * 100 +
+  //     remain_block * 80;
+  // } else if (height > 7200) {
+  //   var remain_block = height - 7200;
+  //   var coin_existence =
+  //     1440 * 200 +
+  //     1440 * 180 +
+  //     1440 * 160 +
+  //     1440 * 140 +
+  //     1440 * 120 +
+  //     remain_block * 100;
+  // } else if (height > 5760) {
+  //   var remain_block = height - 5760;
+  //   var coin_existence =
+  //     1440 * 200 + 1440 * 180 + 1440 * 160 + 1440 * 140 + remain_block * 120;
+  // } else if (height > 4320) {
+  //   var remain_block = height - 4320;
+  //   var coin_existence =
+  //     1440 * 200 + 1440 * 180 + 1440 * 160 + remain_block * 140;
+  // } else if (height > 2880) {
+  //   var remain_block = height - 2880;
+  //   var coin_existence = 1440 * 200 + 1440 * 180 + remain_block * 160;
+  // } else if (height > 1440) {
+  //   var remain_block = height - 1440;
+  //   var coin_existence = 1440 * 200 + remain_block * 180;
+  // } else {
+  //   var coin_existence = height * 200;
+  // }
+  var coin_existence;
+  let DAY_HEIGHT = 1440
+  /// Height of the first epic block emission era
+  const BLOCK_ERA_1 = DAY_HEIGHT * 334;
+  /// Height of the second epic block emission era
+  const BLOCK_ERA_2 = BLOCK_ERA_1 + (DAY_HEIGHT * 470);
+  /// Height of the third epic block emission era
+  const BLOCK_ERA_3 = BLOCK_ERA_2 + (DAY_HEIGHT * 601);
+  /// Height of the fourth epic block emission era
+  const BLOCK_ERA_4 = BLOCK_ERA_3 + (DAY_HEIGHT * 800);
+  /// Height of the fifth epic block emission era
+  const BLOCK_ERA_5 = BLOCK_ERA_4 + (DAY_HEIGHT * 1019);
+  /// After the epic block emission era 6, each era will last 4 years (approximately 1460 days)
+  const BLOCK_ERA_6_ONWARDS = DAY_HEIGHT * 1460;
+  /// Block Reward that will be assigned after we change from era 5 to era 6.
+  const BASE_REWARD_ERA_6_ONWARDS = 0.15625;
+  /// Compute the total reward generated by each block in a given height.
+  if (height <= BLOCK_ERA_1) {
+    coin_existence = 16;
+  } else if (height <= BLOCK_ERA_2) {
+    coin_existence = 8;
+  } else if (height <= BLOCK_ERA_3) {
+    coin_existence = 4;
+  } else if (height <= BLOCK_ERA_4) {
+    coin_existence = 2;
+  } else if (height <= BLOCK_ERA_5) {
+    coin_existence = 1;
   } else {
-    var coin_existence = height * 200;
+    // After the era 6, we reduce the block rewards by half each 1460 days.
+    // Minus 1 to include multiples in the same index
+    // (i.e changes greater than to greater or equals to)
+    let height_with_offset = height - (BLOCK_ERA_5 - 1);
+    let exp = height_with_offset / BLOCK_ERA_6_ONWARDS;
+    coin_existence = BASE_REWARD_ERA_6_ONWARDS / (1 << exp);
   }
 
   letest_block = dateDiff(BlockchainLatestBlockQuery[0].timestamp, true);
@@ -200,11 +235,11 @@ export async function universalGetLatestBlockDetails(socket) {
       BlockchainPreviousBlockQuery[0].total_difficulty_randomx;
   }
 
-  if(BlockchainLatestBlockQuery[0].proof == "RandomX"){
-   var Difficulty = targetdifficultyrandomx;
-  }else if(BlockchainLatestBlockQuery[0].proof == "ProgPow"){
+  if (BlockchainLatestBlockQuery[0].proof == "RandomX") {
+    var Difficulty = targetdifficultyrandomx;
+  } else if (BlockchainLatestBlockQuery[0].proof == "ProgPow") {
     var Difficulty = targetdifficultyprogpow;
-  }else if(BlockchainLatestBlockQuery[0].proof == "Cuckoo" ){
+  } else if (BlockchainLatestBlockQuery[0].proof == "Cuckoo") {
     var Difficulty = targetdifficultycuckatoo;
   }
 
@@ -214,9 +249,9 @@ export async function universalGetLatestBlockDetails(socket) {
   var TotalCuckoo =
     parseInt(BlockchainLatestBlockQuery[0].total_difficulty_cuckatoo) +
     parseInt(BlockchainLatestBlockQuery[0].total_difficulty_cuckaroo);
-    let balance = BlockchainLatestBlockQuery[0].hash.substring(2, 62);
-    let arr = balance.match(/.{1,6}/g);
-    var hasharray = arr.map(i => '#' + i);
+  let balance = BlockchainLatestBlockQuery[0].hash.substring(2, 62);
+  let arr = balance.match(/.{1,6}/g);
+  var hasharray = arr.map(i => '#' + i);
 
   socket.emit("latestblockdetail", {
     block_height,
@@ -230,7 +265,7 @@ export async function universalGetLatestBlockDetails(socket) {
     targetdifficultyprogpow,
     targetdifficultyrandomx,
     TotalCuckoo,
-    age : dateTimeDurationString,
+    age: dateTimeDurationString,
     input_count: BlockchainLatestBlockQuery[0].input_count,
     kernel_count: BlockchainLatestBlockQuery[0].kernel_count,
     output_count: BlockchainLatestBlockQuery[0].output_count,
@@ -238,8 +273,8 @@ export async function universalGetLatestBlockDetails(socket) {
     proof: BlockchainLatestBlockQuery[0].proof,
     hasharray: hasharray,
     Difficulty: Difficulty,
-    hashstart:BlockchainLatestBlockQuery[0].hash.slice(0, 2),
-    hashend:BlockchainLatestBlockQuery[0].hash.slice(62,64),
+    hashstart: BlockchainLatestBlockQuery[0].hash.slice(0, 2),
+    hashend: BlockchainLatestBlockQuery[0].hash.slice(62, 64),
     TotalDifficultyCuckaroo:
       BlockchainLatestBlockQuery[0].total_difficulty_cuckaroo,
     TotalDifficultyCuckatoo:

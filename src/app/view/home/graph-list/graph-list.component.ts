@@ -50,16 +50,16 @@ export class GraphListComponent implements OnInit {
   public selectedItem9: Number = 3;
   public selectedItem10: Number = 3;
   public selectedItem11: Number = 3;
-  public selectedItem12: Number = 1;
+  public selectedItem12: Number = 4;
   public selectedTarget: Number = 6;
-  public selectedTarget12: Number = 1;
+  public selectedTarget12: Number = 4;
 
   public tInput: any;
   public tOutput: any;
   public tKernal: any;
   public tDate: any;
   public tHour: any;
-  public Type: any = '';
+  public Type: any = 'all';
   public difficultyRange: any = '1 day';
   public TdifficultyRange: any = '1 day';
 
@@ -386,7 +386,7 @@ export class GraphListComponent implements OnInit {
     interval = '',
     type = ''
   ) {
-    this.Type = type != '' ? type : this.Type == '' ? 'cuckatoo' : this.Type;
+    this.Type = type != '' ? type : this.Type == '' ? 'all' : this.Type;
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
       params = params.append('FromDate', fromDate);
@@ -400,18 +400,73 @@ export class GraphListComponent implements OnInit {
           res => {
             if (res['status'] == 200) {
               let DifficultychartDate = res.response.Date;
-              let BlocksChartDate = res.response.blockDate;
-                let TargetDifficulty = res.response.TargetDifficulty;
+              let DifficultyCuckatoo =  res.response.DifficultyCuckatoo;
+              let DifficultyRandomx = res.response.DifficultyRandomx;
+              let DifficultyProgpow = res.response.DifficultyProgpow;
+              let data;
+              switch(this.Type) { 
+                case 'all':
+                    data = 
+                    [
+                      {
+                        x: DifficultychartDate,
+                        y: DifficultyCuckatoo,
+                        text: DifficultychartDate,
+                        mode: 'lines+markers',
+                        type: 'scatter',
+                        name: '',
+                        line: { color: '#ac3333' },
+                        hovertemplate: '%{text}<br> Cuckoo : %{y:,}',
+                      },
+                      {
+                        x: DifficultychartDate,
+                        y: DifficultyProgpow,
+                        text: DifficultychartDate,
+                        mode: 'lines+markers',
+                        type: 'scatter',
+                        name: '',
+                        line: { color: '#ac3333' },
+                        hovertemplate: '%{text}<br> Progpow : %{y:,}',
+                      },
+                      {
+                        x: DifficultychartDate,
+                        y: DifficultyRandomx,
+                        text: DifficultychartDate,
+                        mode: 'lines+markers',
+                        type: 'scatter',
+                        name: '',
+                        line: { color: '#ac3333' },
+                        hovertemplate: '%{text}<br> RandomX : %{y:,}',
+                      },
+                    ];
+                break;
+                default:
+                    let yvalue = this.Type == 'cuckatoo' ? DifficultyCuckatoo : this.Type == 'progpow' ? DifficultyProgpow : this.Type == 'randomx' ? DifficultyRandomx : []
+                    data = 
+                    [
+                      {
+                        x: DifficultychartDate,
+                        y: yvalue,
+                        text: DifficultychartDate,
+                        mode: 'lines+markers',
+                        type: 'scatter',
+                        name: '',
+                        line: { color: '#ac3333' },
+                        hovertemplate: '%{text}<br> Difficulty : %{y:,}',
+                      }];
+                break;
+              } 
+
                 let range = [res.response.Minrange, res.response.Maxrange]
                 let tickformat = res.response.tickFormat;
-                this.lg_last =
-                TargetDifficulty[TargetDifficulty.length - 1];
+                // this.lg_last =
+                // TargetDifficulty[TargetDifficulty.length - 1];
 
                 switch(difftype){
                   case 'total':
                       this.totaldifficultyChartFunc(
                         DifficultychartDate,
-                        TargetDifficulty,
+                        data,
                         this.Type,
                         range,
                         tickformat
@@ -420,7 +475,7 @@ export class GraphListComponent implements OnInit {
                   case 'target':
                       this.difficultyChartFunc(
                         DifficultychartDate,
-                        TargetDifficulty,
+                        data,
                         this.Type,
                         range,
                         tickformat
@@ -463,51 +518,10 @@ export class GraphListComponent implements OnInit {
     });
   }
 
-  difficultyChartFunc(DifficultychartDate, TargetDifficulty, Type, range, tickformat) {
+  difficultyChartFunc(DifficultychartDate, data, Type, range, tickformat) {
     // console.log('range rangerangerange',range);
     this.linearGraphData = {
-      data: [
-        {
-          x: DifficultychartDate,
-          y: TargetDifficulty,
-          text: DifficultychartDate,
-          mode: 'lines+markers',
-          type: 'scatter',
-          name: '',
-          line: { color: '#ac3333' },
-          hovertemplate: '%{text}<br> Difficulty : %{y:,}',
-        },
-        // {
-        //   x: DifficultychartDate,
-        //   y: DifficultyCuckatoo,
-        //   text: DifficultyCuckatoo,
-        //   mode: 'lines+markers',
-        //   type: 'scatter',
-        //   name: '',
-        //   line: { color: '#A876C6' },
-        //   hovertemplate: '%{x}<br> Cuckatoo : %{text:,}',
-        // },
-        // {
-        //   x: DifficultychartDate,
-        //   y: DifficultyProgpow,
-        //   text: DifficultyProgpow,
-        //   mode: 'lines+markers',
-        //   type: 'scatter',
-        //   name: '',
-        //   line: { color: '#54CFDC' },
-        //   hovertemplate: '%{x}<br> Progpow : %{text:,}',
-        // },
-        // {
-        //   x: DifficultychartDate,
-        //   y: DifficultyRandomx,
-        //   text: DifficultyRandomx,
-        //   mode: 'lines+markers',
-        //   type: 'scatter',
-        //   name: '',
-        //   line: { color: '#77817C' },
-        //   hovertemplate: '%{x}<br> Randomx : %{text:,}',
-        // },
-      ],
+      data: data ,
       layout: {
         hovermode: 'closest',
         height: 250,
@@ -1091,20 +1105,9 @@ export class GraphListComponent implements OnInit {
       options: null,
     };
   }
-  totaldifficultyChartFunc(DifficultychartDate, TargetDifficulty, Type, range, tickformat) {
+  totaldifficultyChartFunc(DifficultychartDate, data, type, range, tickformat) {
     this.linearTotalGraphData = {
-      data: [
-        {
-          x: DifficultychartDate,
-          y: TargetDifficulty,
-          text: DifficultychartDate,
-          mode: 'lines+markers',
-          type: 'scatter',
-          name: '',
-          line: { color: '#ac3333' },
-          hovertemplate: '%{text}<br> Difficulty : %{y:,}',
-        },
-      ],
+      data: data,
       layout: {
         hovermode: 'closest',
         height: 250,
