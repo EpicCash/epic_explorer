@@ -1903,7 +1903,7 @@ let remaining_height = 0;
       const BlockchainBlockPerSecondQuery = await getConnection()
         .query(
           'select x.timestamp, SUM(x.reward) as total_reward_per_day \
-        from (SELECT hash, height, CAST(timestamp AS DATE), \
+        from (SELECT DISTINCT height, hash, CAST(timestamp AS DATE), \
         CASE \
             WHEN height <= '+BLOCK_ERA_1+' THEN 16 \
             WHEN height <= '+BLOCK_ERA_2+' THEN 8 \
