@@ -1235,54 +1235,70 @@ export class BlockchainBlockController {
             next(err_msg);
           });
         }
-      let date = [],
-      DifficultyCuckatoo = [],
-      DifficultyProgpow = [],
-      DifficultyRandomx = [];
+      // let date = [],
+      // DifficultyCuckatoo = [],
+      // DifficultyProgpow = [],
+      // DifficultyRandomx = [];
 
-        TotalDifficultyNBlockQuery.forEach(e => {
-         date.push(moment(e.date).format(dateFormat));
-        DifficultyCuckatoo.push(parseInt(e.total_difficulty_cuckatoo));
-        DifficultyProgpow.push(parseInt(e.total_difficulty_progpow));
-        DifficultyRandomx.push(parseInt(e.total_difficulty_randomx));
+      var DifficultyCuckatoo = TotalDifficultyNBlockQuery.map(function (e) {
+        return parseInt(e.total_difficulty_cuckatoo);
       });
-      var Maxrange;
-      var Minrange;
-      if(alog_type == "cuckatoo"){
-      Maxrange = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_cuckatoo; }));
-      Minrange = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_cuckatoo; }));
-      if(Minrange != 0){
-        Minrange = (Minrange - (Minrange * 0.2));
-      }
-      Maxrange = (Maxrange + (Maxrange * 0.2));
-      }else if(alog_type == "progpow"){
-      Maxrange = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_progpow; }));
-      Minrange = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_progpow; }));
-      if(Minrange != 0){
-        Minrange = (Minrange - (Minrange * 0.2));
-      }
-      Maxrange = (Maxrange + (Maxrange * 0.2));
-      }else if(alog_type == "randomx"){
-      Maxrange = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_randomx; }));
-      Minrange = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_randomx; }));
-      if(Minrange != 0){
-      Minrange = (Minrange - (Minrange * 0.2));
-      }
-      Maxrange = (Maxrange + (Maxrange * 0.2));
-      }else{
-        var Maxrange1 = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_cuckatoo; }));
-        var Minrange1 = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_cuckatoo; }));
-        var Maxrange2 = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_progpow; }));
-        var Minrange2 = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_progpow; }));
-        var Maxrange3 = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_randomx; }));
-        var Minrange3 = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_randomx; }));
-        Maxrange = Math.max(Maxrange1, Maxrange2, Maxrange3);
-        Minrange = Math.min(Minrange1, Minrange2, Minrange3);
-        if(Minrange != 0){
-          Minrange = (Minrange - (Minrange * 0.2));
-          }
-          Maxrange = (Maxrange + (Maxrange * 0.2));
-      }
+
+      var DifficultyProgpow = TotalDifficultyNBlockQuery.map(function (e) {
+        return parseInt(e.total_difficulty_progpow);
+      });
+
+      var DifficultyRandomx = TotalDifficultyNBlockQuery.map(function (e) {
+        return parseInt(e.total_difficulty_randomx);
+      });
+
+      var date = TotalDifficultyNBlockQuery.map(function (e) {
+        return moment(e.date).format(dateFormat);
+      });
+
+      //   TotalDifficultyNBlockQuery.forEach(e => {
+      //    date.push(moment(e.date).format(dateFormat));
+      //   DifficultyCuckatoo.push(parseInt(e.total_difficulty_cuckatoo));
+      //   DifficultyProgpow.push(parseInt(e.total_difficulty_progpow));
+      //   DifficultyRandomx.push(parseInt(e.total_difficulty_randomx));
+      // });
+      // var Maxrange;
+      // var Minrange;
+      // if(alog_type == "cuckatoo"){
+      // Maxrange = Math.max.apply(Math, DifficultyCuckatoo);
+      // Minrange = Math.min.apply(Math, DifficultyCuckatoo);
+      // if(Minrange != 0){
+      //   Minrange = (Minrange - (Minrange * 0.2));
+      // }
+      // Maxrange = (Maxrange + (Maxrange * 0.2));
+      // }else if(alog_type == "progpow"){
+      // Maxrange = Math.max.apply(Math, DifficultyProgpow);
+      // Minrange = Math.min.apply(Math, DifficultyProgpow);
+      // if(Minrange != 0){
+      //   Minrange = (Minrange - (Minrange * 0.2));
+      // }
+      // Maxrange = (Maxrange + (Maxrange * 0.2));
+      // }else if(alog_type == "randomx"){
+      // Maxrange = Math.max.apply(Math, DifficultyRandomx);
+      // Minrange = Math.min.apply(Math, DifficultyRandomx);
+      // if(Minrange != 0){
+      // Minrange = (Minrange - (Minrange * 0.2));
+      // }
+      // Maxrange = (Maxrange + (Maxrange * 0.2));
+      // }else{
+      //   var Maxrange1 = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_cuckatoo; }));
+      //   var Minrange1 = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_cuckatoo; }));
+      //   var Maxrange2 = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_progpow; }));
+      //   var Minrange2 = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_progpow; }));
+      //   var Maxrange3 = Math.max.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_randomx; }));
+      //   var Minrange3 = Math.min.apply(Math, TotalDifficultyNBlockQuery.map(function(o) { return o.total_difficulty_randomx; }));
+      //   Maxrange = Math.max(Maxrange1, Maxrange2, Maxrange3);
+      //   Minrange = Math.min(Minrange1, Minrange2, Minrange3);
+      //   if(Minrange != 0){
+      //     Minrange = (Minrange - (Minrange * 0.2));
+      //     }
+      //     Maxrange = (Maxrange + (Maxrange * 0.2));
+      // }
 
       // Minrange = parseInt(Minrange);
       // var Minrange2  = parseInt(Minrange * 0.3);
@@ -1295,8 +1311,8 @@ export class BlockchainBlockController {
           DifficultyCuckatoo: DifficultyCuckatoo,
           DifficultyRandomx: DifficultyRandomx,
           DifficultyProgpow: DifficultyProgpow,
-          Maxrange: Maxrange,
-          Minrange: Minrange,
+          //Maxrange: Maxrange,
+          //Minrange: Minrange,
           tickFormat: tickFormat
         },
       });
