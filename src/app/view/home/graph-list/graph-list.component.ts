@@ -458,8 +458,8 @@ export class GraphListComponent implements OnInit {
                       }];
                   break;
               }
-
-              let range = [res.response.Minrange, res.response.Maxrange]
+              // res.response.Minrange, res.response.Maxrange
+              let range = [];
               let tickformat = res.response.tickFormat;
               // this.lg_last =
               // TargetDifficulty[TargetDifficulty.length - 1];
