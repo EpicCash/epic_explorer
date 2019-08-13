@@ -1886,7 +1886,7 @@ let remaining_height = 0;
       const BASE_REWARD_ERA_6_ONWARDS = 0.15625;
       const BlockchainBlockPerSecondQuery = await getConnection()
         .query(
-          'select x.timestamp, x.height, SUM(x.reward) as total_reward_per_day \
+          'select x.timestamp, SUM(x.reward) as total_reward_per_day \
         from (SELECT hash, height, CAST(timestamp AS DATE), \
         CASE \
             WHEN height <= '+BLOCK_ERA_1+' THEN 16 \
