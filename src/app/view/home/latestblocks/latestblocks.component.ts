@@ -99,7 +99,11 @@ export class LatestblocksComponent implements OnInit {
     this.chartService.apiGetRequest('','/blockchain_kernel/getpeers').subscribe(
       res => {
         if (res['status'] == 200) {
-          this.peers = res.response.dataJson;
+          let json = res.response.dataJson;
+          if(json && json.length > 0){
+            localStorage.setItem('peersJson',JSON.stringify(json));
+          }
+          this.peers = JSON.parse(localStorage.getItem('peersJson'));
         }
       },
       error => {},

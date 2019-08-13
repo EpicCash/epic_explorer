@@ -163,9 +163,11 @@
 </div>
 
 <div class="latest_table mt-3">
-  <h2 class="mb-3 chart_heading px-0 d-inline-block">Peers  <span *ngIf="peers.length > 0" class="txn_count" >{{
+  <h2 class="mb-3 chart_heading px-0 d-inline-block">Peers  
+    <span *ngIf="peers && peers.length > 0" class="txn_count" >{{
       peers.length | number
-    }}</span></h2>
+    }}</span>
+  </h2>
   <div class="mobile_table web_hdng">
 
       <div class="mobile_table peer_table">
