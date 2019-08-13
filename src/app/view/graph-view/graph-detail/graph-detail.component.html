@@ -67,7 +67,7 @@
 
               <h2 class="chart_heading text-uppercase d-inline-block">
                 {{chartType | translate}}</h2>
-                <div class="day_filter" *ngIf="this.title=='Target Difficulty'">
+                <!-- <div class="day_filter" *ngIf="this.title=='Target Difficulty'">
                     <a href="JavaScript:void(0);" (click)="
                     ChartFromView('', '', comp.difficultyRange,'all'); selectedItem12 = 4
                   " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primay: true }">All</a>
@@ -93,7 +93,7 @@
                       <a href="JavaScript:void(0);" (click)="
                 ChartFromView('', '', comp.TdifficultyRange,'randomx'); selectedItem12 = 3
                 " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primay: true }">RandomX</a>
-                    </div>
+                    </div> -->
               <epic-explorer-plotly *ngIf="hashdata.data" [data]="hashdata.data" [layout]="hashdata.layout">
               </epic-explorer-plotly>
               <div class="day_filter" *ngIf="this.title!='Transactions over time'">

@@ -65,8 +65,8 @@ export class GraphListComponent implements OnInit {
 
   viewchartvar: boolean;
 
-  constructor(private chartService: ChartService, private http: HttpClient,public translate: TransServiceService,    private router: Router,
-    ) {
+  constructor(private chartService: ChartService, private http: HttpClient, public translate: TransServiceService, private router: Router,
+  ) {
     if (this.router.url == '/all') {
       this.viewchartvar = true;
     } else {
@@ -126,16 +126,16 @@ export class GraphListComponent implements OnInit {
             if (res['status'] == 200) {
               let plabel = res.response.label;
               let pvalues = res.response.value;
-                this.pg_last =
-                  pvalues[pvalues.length - 1];
-                this.piechartFunc(
-                  plabel,
-                  pvalues,
-                );
+              this.pg_last =
+                pvalues[pvalues.length - 1];
+              this.piechartFunc(
+                plabel,
+                pvalues,
+              );
               resolve();
             }
           },
-          error => {},
+          error => { },
         );
     });
   }
@@ -159,18 +159,18 @@ export class GraphListComponent implements OnInit {
               let Cuckoo = res.response.Cuckoo;
               let ProgPow = res.response.ProgPow;
               let RandomX = res.response.RandomX;
-                this.sg_last =
+              this.sg_last =
                 RandomX[RandomX.length - 1];
-                this.stackchartFunc(
-                  sDate,
-                  Cuckoo,
-                  ProgPow,
-                  RandomX
-                );
+              this.stackchartFunc(
+                sDate,
+                Cuckoo,
+                ProgPow,
+                RandomX
+              );
               resolve();
             }
           },
-          error => {},
+          error => { },
         );
     });
   }
@@ -224,7 +224,7 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
-          error => {},
+          error => { },
         );
     });
   }
@@ -266,7 +266,7 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
-          error => {},
+          error => { },
         );
     });
   }
@@ -304,7 +304,7 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
-          error => {},
+          error => { },
         );
     });
   }
@@ -327,7 +327,7 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
-          error => {},
+          error => { },
         );
     });
   }
@@ -351,7 +351,7 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
-          error => {},
+          error => { },
         );
     });
   }
@@ -374,7 +374,7 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
-          error => {},
+          error => { },
         );
     });
   }
@@ -400,49 +400,51 @@ export class GraphListComponent implements OnInit {
           res => {
             if (res['status'] == 200) {
               let DifficultychartDate = res.response.Date;
-              let DifficultyCuckatoo =  res.response.DifficultyCuckatoo;
+              let DifficultyCuckatoo = res.response.DifficultyCuckatoo;
               let DifficultyRandomx = res.response.DifficultyRandomx;
               let DifficultyProgpow = res.response.DifficultyProgpow;
               let data;
-              switch(this.Type) { 
+              switch (this.Type) {
                 case 'all':
-                    data = 
+                  data =
                     [
                       {
                         x: DifficultychartDate,
                         y: DifficultyCuckatoo,
                         text: DifficultychartDate,
-                        mode: 'lines+markers',
+                        // mode: 'lines+markers',
                         type: 'scatter',
                         name: '',
-                        line: { color: '#ac3333' },
+                        // line: { color: '#ac3333' },
                         hovertemplate: '%{text}<br> Cuckoo : %{y:,}',
                       },
                       {
                         x: DifficultychartDate,
                         y: DifficultyProgpow,
                         text: DifficultychartDate,
-                        mode: 'lines+markers',
+                        // mode: 'lines+markers',
                         type: 'scatter',
                         name: '',
-                        line: { color: '#ac3333' },
+                        yaxis: 'y2',
+                        // line: { color: '#ac3333' },
                         hovertemplate: '%{text}<br> Progpow : %{y:,}',
                       },
                       {
                         x: DifficultychartDate,
                         y: DifficultyRandomx,
                         text: DifficultychartDate,
-                        mode: 'lines+markers',
+                        // mode: 'lines+markers',
                         type: 'scatter',
                         name: '',
-                        line: { color: '#ac3333' },
+                        yaxis: 'y3',
+                        // line: { color: '#ac3333' },
                         hovertemplate: '%{text}<br> RandomX : %{y:,}',
                       },
                     ];
-                break;
+                  break;
                 default:
-                    let yvalue = this.Type == 'cuckatoo' ? DifficultyCuckatoo : this.Type == 'progpow' ? DifficultyProgpow : this.Type == 'randomx' ? DifficultyRandomx : []
-                    data = 
+                  let yvalue = this.Type == 'cuckatoo' ? DifficultyCuckatoo : this.Type == 'progpow' ? DifficultyProgpow : this.Type == 'randomx' ? DifficultyRandomx : []
+                  data =
                     [
                       {
                         x: DifficultychartDate,
@@ -454,38 +456,38 @@ export class GraphListComponent implements OnInit {
                         line: { color: '#ac3333' },
                         hovertemplate: '%{text}<br> Difficulty : %{y:,}',
                       }];
-                break;
-              } 
+                  break;
+              }
 
-                let range = [res.response.Minrange, res.response.Maxrange]
-                let tickformat = res.response.tickFormat;
-                // this.lg_last =
-                // TargetDifficulty[TargetDifficulty.length - 1];
+              let range = [res.response.Minrange, res.response.Maxrange]
+              let tickformat = res.response.tickFormat;
+              // this.lg_last =
+              // TargetDifficulty[TargetDifficulty.length - 1];
 
-                switch(difftype){
-                  case 'total':
-                      this.totaldifficultyChartFunc(
-                        DifficultychartDate,
-                        data,
-                        this.Type,
-                        range,
-                        tickformat
-                      );
-                    break;
-                  case 'target':
-                      this.difficultyChartFunc(
-                        DifficultychartDate,
-                        data,
-                        this.Type,
-                        range,
-                        tickformat
-                      );
-                   break;
-                }
+              switch (difftype) {
+                case 'total':
+                  this.totaldifficultyChartFunc(
+                    DifficultychartDate,
+                    data,
+                    this.Type,
+                    range,
+                    tickformat
+                  );
+                  break;
+                case 'target':
+                  this.difficultyChartFunc(
+                    DifficultychartDate,
+                    data,
+                    this.Type,
+                    range,
+                    tickformat
+                  );
+                  break;
+              }
               resolve();
             }
           },
-          error => {},
+          error => { },
         );
     });
   }
@@ -507,13 +509,13 @@ export class GraphListComponent implements OnInit {
             if (res['status'] == 200) {
               let DifficultychartDate = res.response.Date;
               let BlocksChartDate = res.response.blockDate;
-                let Blockval = res.response.Blocks;
-                this.brg_last = Blockval[Blockval.length - 1];
-                this.totalBlocksFunc(BlocksChartDate, Blockval);
+              let Blockval = res.response.Blocks;
+              this.brg_last = Blockval[Blockval.length - 1];
+              this.totalBlocksFunc(BlocksChartDate, Blockval);
               resolve();
             }
           },
-          error => {},
+          error => { },
         );
     });
   }
@@ -521,23 +523,42 @@ export class GraphListComponent implements OnInit {
   difficultyChartFunc(DifficultychartDate, data, Type, range, tickformat) {
     // console.log('range rangerangerange',range);
     this.linearGraphData = {
-      data: data ,
+      data: data,
       layout: {
-        hovermode: 'closest',
+        // hovermode: 'closest',
         height: 250,
         autosize: true,
         showlegend: false,
         xaxis: {
           tickangle: -45,
           tickformat: tickformat,
-          showgrid: true,
-          fixedrange: true
+          fixedrange: true,
+          // showgrid: true
         },
         yaxis: {
-          title: 'Diff',
-          showgrid: true,
+          title: 'Cuckoo',
           fixedrange: true,
-          range: range
+          // showgrid: true,
+          // range: range
+        },
+        yaxis2: {
+          title: 'Progpow',
+          fixedrange: true,
+          // showgrid: true,
+          // range: range,
+          overlaying: 'y',
+          side: 'left',
+          position: 0.25
+        },
+        yaxis3: {
+          title: 'RandomX',
+          fixedrange: true,
+          // showgrid: true,
+          // range: range,
+          anchor: 'x',
+          overlaying: 'y',
+          side: 'right'
+
         },
         margin: {
           l: 50,
@@ -633,7 +654,7 @@ export class GraphListComponent implements OnInit {
 
 
   piechartFunc(plabel, pvalues) {
-     this.pieGraphData = {
+    this.pieGraphData = {
       data: [
         {
           values: pvalues,
@@ -648,7 +669,7 @@ export class GraphListComponent implements OnInit {
         height: 250,
         autosize: false,
         showlegend: false,
-       xaxis: {
+        xaxis: {
           tickangle: -45,
           tickformat: '%m-%d',
           showgrid: true,
@@ -822,7 +843,7 @@ export class GraphListComponent implements OnInit {
       ],
       layout: {
         hovermode: 'closest',
-       // width: 350,
+        // width: 350,
         height: 250,
         autosize: true,
         xaxis: {
@@ -849,7 +870,7 @@ export class GraphListComponent implements OnInit {
     };
   }
 
-  blockminedFunc(mDate,ProgPow, Cuckoo, RandomX, ProgPowper, Cuckooper, RandomXper) {
+  blockminedFunc(mDate, ProgPow, Cuckoo, RandomX, ProgPowper, Cuckooper, RandomXper) {
     this.doubleareaGraphData = {
       data: [
         {
@@ -932,64 +953,64 @@ export class GraphListComponent implements OnInit {
 
   transactionheatmapFunc(tDate, tHour, tInput, hovertext) {
     return new Promise((resolve, reject) => {
-    this.heatMapGrowthData = {
-      data: [
-        {
-          x: tHour,
-          y: tDate,
-          z: tInput,
-          name: '',
-          text: hovertext,
-          hovertemplate: hovertext + ': %{z:,} ',
-          colorscale: 'Rainbow',
-          type: 'heatmap',
-          visible: true,
-          colorbar: { thickness: 3 },
-          xgap: 1,
-          ygap: 1,
-        },
-      ],
-      layout: {
-        hovermode: 'closest',
-        height: 250,
-        //width: 365,
-        autosize: true,
-        annotations: [],
-        font: {
-          size: 8.5,
-        },
-        xaxis: {
-          ticks: '',
-          tickangle: screen.width < 767 ? '-90' : 360,
-          side: 'top',
-          autotick: false,
-          showgrid: true,
-          rangemode: 'nonnegative',
-          fixedrange: true,
+      this.heatMapGrowthData = {
+        data: [
+          {
+            x: tHour,
+            y: tDate,
+            z: tInput,
+            name: '',
+            text: hovertext,
+            hovertemplate: hovertext + ': %{z:,} ',
+            colorscale: 'Rainbow',
+            type: 'heatmap',
+            visible: true,
+            colorbar: { thickness: 3 },
+            xgap: 1,
+            ygap: 1,
+          },
+        ],
+        layout: {
+          hovermode: 'closest',
+          height: 250,
+          //width: 365,
           autosize: true,
+          annotations: [],
+          font: {
+            size: 8.5,
+          },
+          xaxis: {
+            ticks: '',
+            tickangle: screen.width < 767 ? '-90' : 360,
+            side: 'top',
+            autotick: false,
+            showgrid: true,
+            rangemode: 'nonnegative',
+            fixedrange: true,
+            autosize: true,
+          },
+          yaxis: {
+            ticks: '',
+            ticksuffix: ' ',
+            tickformat: '%m-%d',
+            autosize: true,
+            showgrid: true,
+            autotick: false,
+            rangemode: 'nonnegative',
+            fixedrange: true,
+          },
+          margin: {
+            l: 30,
+            r: 0,
+            b: 50,
+            t: 50,
+          },
+          showlegend: false,
         },
-        yaxis: {
-          ticks: '',
-          ticksuffix: ' ',
-          tickformat: '%m-%d',
-          autosize: true,
-          showgrid: true,
-          autotick: false,
-          rangemode: 'nonnegative',
-          fixedrange: true,
-        },
-        margin: {
-          l: 30,
-          r: 0,
-          b: 50,
-          t: 50,
-        },
-        showlegend: false,
-      },
-      options: null,
-    };
-    resolve();
-  });
+        options: null,
+      };
+      resolve();
+    });
   }
   transactionlinechartFunc(Tdate, Ttotalinput, Ttotalkernal, Ttotaloutput) {
     this.feeGraphData = {
@@ -1027,7 +1048,7 @@ export class GraphListComponent implements OnInit {
       ],
       layout: {
         autosize: true,
-       // width: 350,
+        // width: 350,
         height: 250,
         xaxis: {
           showgrid: true,
@@ -1109,7 +1130,7 @@ export class GraphListComponent implements OnInit {
     this.linearTotalGraphData = {
       data: data,
       layout: {
-        hovermode: 'closest',
+        // hovermode: 'closest',
         height: 250,
         autosize: true,
         showlegend: false,
@@ -1117,13 +1138,32 @@ export class GraphListComponent implements OnInit {
           tickangle: -45,
           tickformat: tickformat,
           fixedrange: true,
-          showgrid: true
+          // showgrid: true
         },
         yaxis: {
-          title: 'Diff',
+          title: 'Cuckoo',
           fixedrange: true,
-          showgrid: true,
-          range: range
+          // showgrid: true,
+          // range: range
+        },
+        yaxis2: {
+          title: 'Progpow',
+          fixedrange: true,
+          // showgrid: true,
+          // range: range,
+          overlaying: 'y',
+          side: 'left',
+          position: 0.25
+        },
+        yaxis3: {
+          title: 'RandomX',
+          fixedrange: true,
+          // showgrid: true,
+          // range: range,
+          anchor: 'x',
+          overlaying: 'y',
+          side: 'right'
+
         },
         margin: {
           l: 50,

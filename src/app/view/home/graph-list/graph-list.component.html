@@ -8,7 +8,7 @@
           }}</span> -->
           
           <div class="chart_show">
-              <div class="difficulty_filter day_filter p-0 bg-transparent mt-2">
+              <!-- <div class="difficulty_filter day_filter p-0 bg-transparent mt-2">
                   <a href="JavaScript:void(0);" (click)="
                   Difficultyreq('total', '', '', TdifficultyRange,'all'); selectedTarget12 = 4
                 " id="4" #itemtarget124
@@ -25,7 +25,7 @@
                 Difficultyreq('total', '', '', TdifficultyRange,'randomx'); selectedTarget12 = 3
                 " id="3" #itemtarget123
                           [ngClass]="{ active: selectedTarget12 == itemtarget123.id, txt_primay: true }">RandomX</a>
-            </div>
+            </div> -->
               <epic-explorer-plotly *ngIf="linearTotalGraphData.data" [data]="linearTotalGraphData.data"
               [layout]="linearTotalGraphData.layout">
             </epic-explorer-plotly>
@@ -43,7 +43,7 @@
             </div>
           </div>
         </div>
-        <div class="day_filter diff_margin">
+        <div class="day_filter">
             <a href="JavaScript:void(0);" (click)="
       Difficultyreq('total', '', '', '1 day',''); selectedTarget = 6; TdifficultyRange = '1 day'
     " id="6" #itemtarget6 [ngClass]="{ active: selectedTarget == itemtarget6.id, txt_primay: true }">1 day</a>
@@ -530,7 +530,7 @@
         }}</span> -->
         
         <div class="chart_show">
-            <div class="difficulty_filter day_filter p-0 bg-transparent mt-2">
+            <!-- <div class="difficulty_filter day_filter p-0 bg-transparent mt-2">
                 <a href="JavaScript:void(0);" (click)="
                 Difficultyreq('target', '', '', difficultyRange,'all'); selectedItem12 = 4
               " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primay: true }">All</a>
@@ -543,7 +543,7 @@
               <a href="JavaScript:void(0);" (click)="
                 Difficultyreq('target', '', '', difficultyRange,'randomx'); selectedItem12 = 3
               " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primay: true }">RandomX</a>
-          </div>
+          </div> -->
           <epic-explorer-plotly *ngIf="linearGraphData.data" [data]="linearGraphData.data" [layout]="linearGraphData.layout">
           </epic-explorer-plotly>
           <div *ngIf="!linearGraphData.data" class="feedback_div news_desc text-center">
@@ -560,7 +560,7 @@
           </div>
         </div>
       </div>
-      <div class="day_filter diff_margin">
+      <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="
           Difficultyreq('target', '', '', '1 day',''); selectedItem = 6; difficultyRange = '1 day'
         " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primay: true }">1 day</a>
