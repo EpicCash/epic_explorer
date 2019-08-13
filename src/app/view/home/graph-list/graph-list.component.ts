@@ -533,6 +533,7 @@ export class GraphListComponent implements OnInit {
           tickangle: -45,
           tickformat: tickformat,
           fixedrange: true,
+          domain: [0.2, 0.8]
           // showgrid: true
         },
         yaxis: {
@@ -548,7 +549,7 @@ export class GraphListComponent implements OnInit {
           // range: range,
           overlaying: 'y',
           side: 'left',
-          position: 0.25
+          position: 1.25
         },
         yaxis3: {
           title: 'RandomX',
@@ -1138,6 +1139,7 @@ export class GraphListComponent implements OnInit {
           tickangle: -45,
           tickformat: tickformat,
           fixedrange: true,
+          domain: [0.2, 0.8]
           // showgrid: true
         },
         yaxis: {
@@ -1153,7 +1155,7 @@ export class GraphListComponent implements OnInit {
           // range: range,
           overlaying: 'y',
           side: 'left',
-          position: 0.25
+          position: 1.25
         },
         yaxis3: {
           title: 'RandomX',

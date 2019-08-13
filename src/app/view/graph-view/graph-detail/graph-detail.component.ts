@@ -60,6 +60,8 @@ export class GraphDetailComponent implements OnInit {
             this.hashdata = this.comp.linearTotalGraphData;
             console.log('this.comp.linearTotalGraphData',this.comp.linearTotalGraphData);
             this.hashdata.layout.height = 300;
+            this.hashdata.layout.xaxis.domain = [0.1,0.9];
+            this.hashdata.layout.yaxis2.position = 2.25;
             this.title = 'Total Difficulty';
             this.selectedItem = 6;
             this.titleService.setTitle(
@@ -74,6 +76,8 @@ export class GraphDetailComponent implements OnInit {
                 this.hashdata = this.comp.linearGraphData;
                 console.log('this.comp.linearGraphData',this.comp.linearGraphData);
                 this.hashdata.layout.height = 300;
+                this.hashdata.layout.xaxis.domain = [0.1,0.9];
+                this.hashdata.layout.yaxis2.position = 2.25;
                 this.title = 'Target Difficulty';
                 this.selectedItem = 6;
                 this.titleService.setTitle(
@@ -222,6 +226,8 @@ export class GraphDetailComponent implements OnInit {
         this.comp.Difficultyreq('target',p1, p2, p3, p4).then(res => {
           this.hashdata = this.comp.linearGraphData;
           this.hashdata.layout.height = 300;
+          this.hashdata.layout.xaxis.domain = [0.1,0.9];
+          this.hashdata.layout.yaxis2.position = 2.25;
           this.title = 'Target Difficulty';
         });
         break;
@@ -229,6 +235,8 @@ export class GraphDetailComponent implements OnInit {
         this.comp.Difficultyreq('total',p1, p2, p3, p4).then(res => {
           this.hashdata = this.comp.linearTotalGraphData;
           this.hashdata.layout.height = 300;
+          this.hashdata.layout.xaxis.domain = [0.1,0.9];
+          this.hashdata.layout.yaxis2.position = 2.25;
           this.title = 'Total Difficulty';
         });
         break;
