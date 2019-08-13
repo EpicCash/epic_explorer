@@ -516,7 +516,7 @@ export class BlockchainKernelController {
   ) => {
     var self = this;
     try {
-      http.get('http://116.203.152.58:3413/v1/peers/connected',
+      http.get('http://116.203.152.58:13413/v1/peers/connected',
       async (resp) => {
         // console.log('resp resp respresp',resp);
         let data = '';
