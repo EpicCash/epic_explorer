@@ -157,8 +157,8 @@
         <div class="box_shadow_large bg-white p-3">
           <h2 class="chart_heading mb-2 d-inline-block">{{'home.EXPLORE' | translate}}</h2>
           <ul class="list-unstyled pl-3">
-            <li class="mb-1" *ngIf="this.title!='Total Difficulty'"><a
-              routerLink="/chart/total-difficulty">{{'total-difficulty' | translate}}</a></li>
+            <li class="mb-1" *ngIf="this.title!='Target Difficulty'"><a
+              routerLink="/chart/target-difficulty">{{'target-difficulty' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Transactions over time'"><a
                 routerLink="/chart/transactions-over-time">{{'home.TRANSACTIONS_BY_TIME' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Blocks'"><a
@@ -176,8 +176,8 @@
                 routerLink="/chart/transactions-by-date">{{'home.TRANSACTIONS_VS_DATE' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Stackbar Chart'"><a routerLink="/chart/blocks-by-algorithm">Blocks by Algorithm</a>
             </li>
-            <li class="mb-1" *ngIf="this.title!='Target Difficulty'"><a
-              routerLink="/chart/target-difficulty">{{'target-difficulty' | translate}}</a></li>
+              <li class="mb-1" *ngIf="this.title!='Total Difficulty'"><a
+                routerLink="/chart/total-difficulty">{{'total-difficulty' | translate}}</a></li>
             <!-- <li class="mb-1" *ngIf="this.title!='Pie Chart'"><a routerLink="/chart/piechart">Pie Chart</a></li> -->
           </ul>
         </div>
