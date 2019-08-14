@@ -509,11 +509,13 @@ margin-right: 10px;
 .langbut:focus{outline: none;}
 .detail_div .difficulty_datas{font-size: 14px !important; color: #0091ff; margin-bottom: 0px;}
 .net_dropdwn{
-  min-width: 5rem;
-  padding: 0;
+ position: absolute;
+ top: 20px;
+ right: 8px;
 }
 
 .peers_diff .blck_value{word-wrap: break-word;}
+
 /**********************************************Dark Theme CSS********************************/
 body.dark_theme {
   background-color: #27314b;
@@ -650,6 +652,7 @@ body.dark_theme {
 .dark_theme .view_content table{border-color: #384566;}
 .dark_theme .card-body{background-color: #1c2437;}
 .diff_margin{margin-bottom: -10px !important; margin-top: -10px !important;}
+.dark_theme .difficulty_datas .day60_txt{color: #fff;}
 @keyframes yellowfade {
   from {
     background: white;
