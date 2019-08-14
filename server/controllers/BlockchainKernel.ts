@@ -2,6 +2,7 @@ import express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import { getRepository, getConnection } from 'typeorm';
 import { validationMiddleware } from '../middlewares';
+import { Global } from "../global";
 import * as path from 'path';
 import {
   InternalServerErrorException,
@@ -142,6 +143,30 @@ export class BlockchainKernelController {
     this.router.get(
       `${this.path}/translator`,
       this.Translator,
+    );
+
+
+     /**
+     * @swagger
+     * /epic_explorer/v1/network:
+     *   get:
+     *     tags:
+     *       - name: Network | Network CONTROLLER
+     *     summary: change a network
+     *     description: change a network
+     *     consumes:
+     *       - application/json
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: network
+     *     responses:
+     *       200:
+     *         description: Network Changed successfully
+     */
+    this.router.get(
+      `${this.path}/network`,
+      this.changeNetwok,
     );
 
     /**
@@ -356,7 +381,7 @@ export class BlockchainKernelController {
     try {
       const BlockchainKernelRequestData: BlockchainKernelCreateDto =
         request.body;
-      const BlockchainKernelCreateQuery = await getRepository(
+      const BlockchainKernelCreateQuery = await getConnection(Global.network).getRepository(
         BlockchainKernel,
       ).save(BlockchainKernelRequestData);
       response.status(200).json({
@@ -376,7 +401,7 @@ export class BlockchainKernelController {
     next: NextFunction,
   ) => {
     try {
-      const BlockchainKernelFetchQuery = await getRepository(
+      const BlockchainKernelFetchQuery = await getConnection(Global.network).getRepository(
         BlockchainKernel,
       ).findOne({
         where: { id: request.params.id },
@@ -402,7 +427,7 @@ export class BlockchainKernelController {
     try {
       const BlockchainKernelRequestData: BlockchainKernelUpdateDto =
         request.body;
-      const BlockchainKernelUpdateQuery = await getRepository(
+      const BlockchainKernelUpdateQuery = await getConnection(Global.network).getRepository(
         BlockchainKernel,
       ).update(BlockchainKernelRequestData.Id, BlockchainKernelRequestData);
       response.status(200).json({
@@ -422,7 +447,7 @@ export class BlockchainKernelController {
     next: NextFunction,
   ) => {
     try {
-      const BlockchainKernelDeleteQuery = await getRepository(
+      const BlockchainKernelDeleteQuery = await getConnection(Global.network).getRepository(
         BlockchainKernel,
       ).delete(request.params.Id);
       BlockchainKernelDeleteQuery
@@ -446,7 +471,7 @@ export class BlockchainKernelController {
     try {
       const BlockchainKernelRequestData: BlockchainKernelPaginationDto =
         request.query;
-      const BlockchainKernelCountQuery = await getRepository(
+      const BlockchainKernelCountQuery = await getConnection(Global.network).getRepository(
         BlockchainKernel,
       ).findAndCount({});
       if (BlockchainKernelCountQuery[1]) {
@@ -456,7 +481,7 @@ export class BlockchainKernelController {
           BlockchainKernelRequestData.PageSize,
           BlockchainKernelRequestData.MaxPages,
         );
-        const BlockchainKernelPaginationQuery = await getRepository(
+        const BlockchainKernelPaginationQuery = await getConnection(Global.network).getRepository(
           BlockchainKernel,
         ).find({
           skip: PaginationReponseData.startIndex,
@@ -482,7 +507,25 @@ export class BlockchainKernelController {
     }
   };
 
-
+  private changeNetwok = async (
+    request: Request,
+    response: Response,
+    next: NextFunction,
+  ) => {
+    try {
+      Global.network = request.query.network;
+      console.log(Global.network);
+      //const network = request.query.network;
+      response.status(200).json({
+        status: 200,
+        timestamp: Date.now(),
+        message: 'Network Changed successfully',
+        response: request.query.network,
+      });
+    } catch (error) {
+      next(new InternalServerErrorException(error));
+    }
+  };
   private Translator = async (
     request: Request,
     response: Response,
@@ -582,7 +625,7 @@ export class BlockchainKernelController {
       } else {
         var timeIntervalQry = "timestamp > current_date - interval '30 days'";
       }
-      const TransactionFeeQuery = await getConnection()
+      const TransactionFeeQuery = await getConnection(Global.network)
         .query(
           "select 1 as hash, date(DATE_TRUNC('day', timestamp)) as date, sum(fee)/1000000 as fee \
             from blockchain_block t1 join blockchain_kernel t2 on t2.block_id=t1.hash  where " +
@@ -640,7 +683,7 @@ export class BlockchainKernelController {
       // } else {
       //   var timeIntervalQry = "timestamp > current_date - interval '30 days'";
       // }
-      const TransactionHeatmapChartQuery = await getConnection()
+      const TransactionHeatmapChartQuery = await getConnection(Global.network)
         .query(
           "with hours as ( \
             SELECT generate_series('" +
@@ -778,7 +821,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
           "blockchain_block.timestamp > current_date - interval '30 days'";
         var seriesquery = "now() - interval '30 days', now()";
       }
-      const TransactionHeatmapChartQuery = await getConnection()
+      const TransactionHeatmapChartQuery = await getConnection(Global.network)
         .query(
           'with hours as ( SELECT hour::date from generate_series(' +
           seriesquery +

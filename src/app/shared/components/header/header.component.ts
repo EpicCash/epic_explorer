@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ChartService } from '../../services/chart.service';
 import { TransServiceService } from '../../services/trans-service.service';
+import {  HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'epic-explorer-header',
@@ -23,6 +24,15 @@ export class HeaderComponent implements OnInit {
         ? self.chartService.GetTimer()
         : false;
     }, 1000);
+  }
+
+  public getNetwork(){
+    return localStorage.getItem('network');
+  }
+
+  public onChangeNetwork(networkValue){
+   localStorage.setItem('network', networkValue);
+   window.location.reload();
   }
 
   public ChangeTheme() {

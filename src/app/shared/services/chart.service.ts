@@ -31,7 +31,8 @@ export class ChartService {
   public apiGetRequest(request: any, reqUrl): Observable<any> {
     return this.http
       .get(`${environment.apiUrl}` + reqUrl, {
-        params: request
+        params: request,
+        headers: this.getHttpheader() 
       })
       .pipe(
         map(res => {
@@ -40,6 +41,17 @@ export class ChartService {
         catchError((error: HttpErrorResponse): any => throwError(error))
       );
   }
+
+  public getHttpheader(){
+    var network;
+    if(localStorage.getItem('network') == null){
+      network = "Floonet"
+    }else{
+      network = localStorage.getItem('network')
+    }
+    return new HttpHeaders().set('network', network);
+  }
+
 
   public getLatestblockdetails() {
     return Observable.create(observer => {

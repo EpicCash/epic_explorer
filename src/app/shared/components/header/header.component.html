@@ -2,6 +2,7 @@
   <nav class="navbar navbar-expand navbar-light bg-transparent">
     <div class="container-fluid">
       <div class="collapse navbar-collapse home_mble_hdr" id="navbarSupportedContent">
+        
 
         <ul class="navbar-nav ml-auto">
 		  <!-- <li *ngIf="TimeArr" class="d-none d-sm-inline-block"><h1 class="test_msg d-inline-block mb-0 align-middle mr-3">{{'home.HEADER_TEXT' | translate}}</h1>
@@ -17,7 +18,13 @@
           <li class="home_tst_net mr-3">
             <a href="https://epic.tech/" target="_blank" class="text_underline mr-2">Epic Cash</a>
               <span>You are viewing </span>
-              <ul class="list-unstyled d-inline-block mb-0">
+              <select (change)="onChangeNetwork($event.target.value)">
+                  <option value="Floonet" [selected]="'Floonet' == getNetwork()" >FlooNet</option>
+                  <option value="Testnet" [selected]="'Testnet' == getNetwork()">TestNet</option>
+                  <option disabled value="Mainnet">MainNet</option>
+              </select>
+
+              <!-- <ul class="list-unstyled d-inline-block mb-0">
                   <li class="nav-item dropdown">
                       <a
                       class="nav-link dropdown-toggle bg-white"
@@ -36,7 +43,7 @@
                           >
                       </div>
                     </li>
-              </ul>
+              </ul> -->
 
             </li>
           <li class="nav-item px-2 dropdown bg-white">

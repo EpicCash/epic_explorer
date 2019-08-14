@@ -20,6 +20,7 @@ Object.defineProperty(window.document.body.style, "transform", {
 global["document"] = window.document;
 
 import { enableProdMode } from "@angular/core";
+import { Global } from "./server/global";
 
 // Express Engine
 import { ngExpressEngine } from "@nguniversal/express-engine";
@@ -36,7 +37,8 @@ import {
   getRepository,
   In,
   getConnection,
-  getConnectionManager
+  getConnectionManager,
+  createConnections
 } from "typeorm";
 import { resolve } from "path";
 import {
@@ -45,14 +47,20 @@ import {
   BlockchainKernelController,
   BlockchainOutputController
 } from "./server/controllers";
+import {
+BlockchainBlock,
+BlockchainInput,
+BlockchainKernel,
+BlockchainOutput
+} from "./server/entities";
 import { universalGetLatestBlockDetails } from "./server/socket";
 import { dbConfig } from "./server/ormconfig";
 import { config } from "dotenv";
 
 config({ path: resolve(__dirname, "../.env") });
 
-const connectionManager = getConnectionManager();
-const connection = connectionManager.create(dbConfig);
+// const connectionManager = getConnectionManager();
+// const connection = connectionManager.create(dbConfig);
 
 import { join } from "path";
 
@@ -140,17 +148,47 @@ app.get("*", (req, res) => {
 });
 
 // Start up the Node server
+console.log(__dirname);
+// connection
+//   .connect()
+//   .then(() => {
+  createConnections([ {
+    name: 'Floonet',
+    type: 'postgres',
+    host: process.env.FLOONET_DB_HOST,
+    port: Number(process.env.FLOONET_DB_PORT),
+    username: process.env.FLOONET_DB_USERNAME,
+    password: process.env.FLOONET_DB_PASSWORD,
+    database: process.env.FLOONET_DB_DATABASE,
+    synchronize: false,
+    logging: false,
+    entities: [BlockchainBlock,
+      BlockchainInput,
+      BlockchainKernel,
+      BlockchainOutput],
+  }, {
+    name: 'Testnet',
+    type: 'postgres',
+    host: process.env.TESTNET_DB_HOST,
+    port: Number(process.env.TESTNET_DB_PORT),
+    username: process.env.TESTNET_DB_USERNAME,
+    password: process.env.TESTNET_DB_PASSWORD,
+    database: process.env.TESTNET_DB_DATABASE,
+    synchronize: false,
+    logging: false,
+    entities: [BlockchainBlock,
+      BlockchainInput,
+      BlockchainKernel,
+      BlockchainOutput],
+  }]).then(async () => {
 
-connection
-  .connect()
-  .then(() => {
     const server = app.listen(PORT, () => {
       console.log(`Node Express server listening on http://localhost:${PORT}`);
     });
     const io = require("socket.io").listen(server);
     io.sockets.on("connection", socket => {
     //   setInterval(function() {
-    //   //universalGetLatestBlockDetails(socket);
+    //   universalGetLatestBlockDetails(socket);
     // },1000);
     });
   })
