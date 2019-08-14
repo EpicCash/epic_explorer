@@ -621,9 +621,9 @@ body.dark_theme {
 .dark_theme .main-svg:first-child {
   background: rgb(39, 49, 75) !important;
 }
-.dark_theme .g-ytitle text,
-.dark_theme .xtick text,
-.dark_theme .ytick text {
+.dark_theme .g-ytitle text, .dark_theme .g-y2title text, .dark_theme .g-y3title text
+.dark_theme .xtick text, .dark_theme .x2tick text, .dark_theme .x3tick text
+.dark_theme .ytick text, .dark_theme .y2tick text, .dark_theme .y3tick text {
   fill: #e0e3e6 !important;
 }
 .dark_theme .crisp,
@@ -646,6 +646,7 @@ body.dark_theme {
 .zerolinelayer {
   display: none;
 }
+.dark_theme .bg{fill: transparent !important;}
 .dark_theme .not_found{color: #ffffff;}
 .dark_theme .card, .dark_theme .card-header{background-color: #27314b; border-color: #27314b;}
 .dark_theme .tab_hdng{color: #ffffff;}
