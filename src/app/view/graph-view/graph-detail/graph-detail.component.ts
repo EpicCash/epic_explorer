@@ -23,7 +23,7 @@ export class GraphDetailComponent implements OnInit {
   public chartType : any = [];
   public selectedItem: Number = 3;
   public selectedItem8: Number = 2;
-  public selectedItem12: Number = 1;
+  public selectedItem12: Number = 4;
   public Type: any = '';
   public selectedTarget: Number = 3;
   public selectedTarget12: Number = 1;
@@ -34,7 +34,6 @@ export class GraphDetailComponent implements OnInit {
   public GraphtDate: any;
   public GraphtHour: any;
   public linearTotalGraphData: any = [];
-  public TdifficultyRange: any = '1 day';
 
   constructor(
     private route: ActivatedRoute,
@@ -61,6 +60,8 @@ export class GraphDetailComponent implements OnInit {
             this.hashdata = this.comp.linearTotalGraphData;
             console.log('this.comp.linearTotalGraphData',this.comp.linearTotalGraphData);
             this.hashdata.layout.height = 300;
+            this.hashdata.layout.xaxis.domain = [0.1,0.9];
+            this.hashdata.layout.yaxis2.position = 2.25;
             this.title = 'Total Difficulty';
             this.selectedItem = 6;
             this.titleService.setTitle(
@@ -75,6 +76,8 @@ export class GraphDetailComponent implements OnInit {
                 this.hashdata = this.comp.linearGraphData;
                 console.log('this.comp.linearGraphData',this.comp.linearGraphData);
                 this.hashdata.layout.height = 300;
+                this.hashdata.layout.xaxis.domain = [0.1,0.9];
+                this.hashdata.layout.yaxis2.position = 2.25;
                 this.title = 'Target Difficulty';
                 this.selectedItem = 6;
                 this.titleService.setTitle(
@@ -223,6 +226,8 @@ export class GraphDetailComponent implements OnInit {
         this.comp.Difficultyreq('target',p1, p2, p3, p4).then(res => {
           this.hashdata = this.comp.linearGraphData;
           this.hashdata.layout.height = 300;
+          this.hashdata.layout.xaxis.domain = [0.1,0.9];
+          this.hashdata.layout.yaxis2.position = 2.25;
           this.title = 'Target Difficulty';
         });
         break;
@@ -230,6 +235,8 @@ export class GraphDetailComponent implements OnInit {
         this.comp.Difficultyreq('total',p1, p2, p3, p4).then(res => {
           this.hashdata = this.comp.linearTotalGraphData;
           this.hashdata.layout.height = 300;
+          this.hashdata.layout.xaxis.domain = [0.1,0.9];
+          this.hashdata.layout.yaxis2.position = 2.25;
           this.title = 'Total Difficulty';
         });
         break;
