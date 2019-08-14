@@ -1,4 +1,5 @@
 import express from 'express';
+import { Global } from "../global";
 import { Request, Response, NextFunction } from 'express';
 import { getRepository, getConnection } from 'typeorm';
 import { validationMiddleware } from '../middlewares';
@@ -646,7 +647,7 @@ export class BlockchainBlockController {
   ) => {
     try {
       const BlockchainBlockRequestData: BlockchainBlockCreateDto = request.body;
-      const BlockchainBlockCreateQuery = await getRepository(
+      const BlockchainBlockCreateQuery = await getConnection(Global.network).getRepository(
         BlockchainBlock,
       ).save(BlockchainBlockRequestData);
       response.status(200).json({
@@ -658,7 +659,7 @@ export class BlockchainBlockController {
     } catch (error) {
       next(new InternalServerErrorException(error));
     }
-  };
+  };    
 
   private BlockchainBlockFetch = async (
     request: Request,
@@ -666,7 +667,7 @@ export class BlockchainBlockController {
     next: NextFunction,
   ) => {
     try {
-      var BlockchainBlockFetchQuery = await getRepository(
+      var BlockchainBlockFetchQuery = await getConnection(Global.network).getRepository(
         BlockchainBlock,
       ).findOne({
         select: [
@@ -691,7 +692,7 @@ export class BlockchainBlockController {
         paramVal.length <= 10 &&
         paramVal <= 2147483647
       ) {
-        var BlockchainBlockFetchQuery = await getRepository(
+        var BlockchainBlockFetchQuery = await getConnection(Global.network).getRepository(
           BlockchainBlock,
         ).findOne({
           select: [
@@ -713,21 +714,21 @@ export class BlockchainBlockController {
       if (!BlockchainBlockFetchQuery) {
         next(new NoDataFoundException());
       }else{
-      const BlockchainBlockInputFetchQuery = await getRepository(
+      const BlockchainBlockInputFetchQuery = await getConnection(Global.network).getRepository(
         BlockchainInput,
       ).find({
         select: ['Data'],
         where: { BlockId: BlockchainBlockFetchQuery.Hash },
       });
 
-      const BlockchainBlockOutputFetchQuery = await getRepository(
+      const BlockchainBlockOutputFetchQuery = await getConnection(Global.network).getRepository(
         BlockchainOutput,
       ).find({
         select: ['OutputType', 'Commit', 'Spent'],
         where: { BlockId: BlockchainBlockFetchQuery.Hash },
       });
 
-      const BlockchainBlockKernalFetchQuery = await getRepository(
+      const BlockchainBlockKernalFetchQuery = await getConnection(Global.network).getRepository(
         BlockchainKernel,
       ).find({
         select: ['Features', 'Fee', 'LockHeight'],
@@ -801,7 +802,7 @@ export class BlockchainBlockController {
       // }
 
       if (BlockchainBlockFetchQuery.PreviousId) {
-        const BlockchainPreviousBlockFetchQuery = await getRepository(
+        const BlockchainPreviousBlockFetchQuery = await getConnection(Global.network).getRepository(
           BlockchainBlock,
         ).findOne({
           select: ['TotalDifficultyCuckaroo', 'TotalDifficultyCuckatoo', 'TotalDifficultyProgpow', 'TotalDifficultyRandomx'],
@@ -875,7 +876,7 @@ export class BlockchainBlockController {
   ) => {
     try {
       const BlockchainBlockRequestData: BlockchainBlockUpdateDto = request.body;
-      const BlockchainBlockUpdateQuery = await getRepository(
+      const BlockchainBlockUpdateQuery = await getConnection(Global.network).getRepository(
         BlockchainBlock,
       ).update(BlockchainBlockRequestData.Hash, BlockchainBlockRequestData);
       response.status(200).json({
@@ -895,7 +896,7 @@ export class BlockchainBlockController {
     next: NextFunction,
   ) => {
     try {
-      const BlockchainBlockDeleteQuery = await getRepository(
+      const BlockchainBlockDeleteQuery = await getConnection(Global.network).getRepository(
         BlockchainBlock,
       ).delete(request.params.Hash);
       BlockchainBlockDeleteQuery
@@ -931,7 +932,7 @@ export class BlockchainBlockController {
       //   next(new IntegerValidationException('MaxPages'));
       // }
       else {
-        const BlockchainBlockCountQuery = await getRepository(BlockchainBlock)
+        const BlockchainBlockCountQuery = await getConnection(Global.network).getRepository(BlockchainBlock)
           .createQueryBuilder()
           .getCount();
         if (BlockchainBlockCountQuery) {
@@ -950,7 +951,7 @@ export class BlockchainBlockController {
           //     Hash: 'DESC',
           //   },
           // });
-          const BlockchainBlockPaginationQuery = await getRepository(
+          const BlockchainBlockPaginationQuery = await getConnection(Global.network).getRepository(
             BlockchainBlock,
           )
             .createQueryBuilder('blockchain_block')
@@ -995,7 +996,7 @@ export class BlockchainBlockController {
           let BlockchainBlockResult = BlockchainBlockPaginationQuery.raw;
           let lastElemt =
             BlockchainBlockResult[BlockchainBlockResult.length - 1];
-          const BlockchainPreviousBlockFetchQuery = await getRepository(
+          const BlockchainPreviousBlockFetchQuery = await getConnection(Global.network).getRepository(
             BlockchainBlock,
           ).findOne({
             select: ['TotalDifficultyCuckaroo', 'TotalDifficultyCuckatoo', 'TotalDifficultyProgpow', 'TotalDifficultyRandomx'],
@@ -1113,7 +1114,7 @@ export class BlockchainBlockController {
           process.env.TIME_ZONE +
           "' > current_date - interval '1 day'";
       }
-      const BlockQuery = await getConnection()
+      const BlockQuery = await getConnection(Global.network)
         .query(
           "select 1 as hash, max(total_difficulty_cuckaroo) as total_difficulty_cuckaroo, \
           max(total_difficulty_cuckatoo) as total_difficulty_cuckatoo, \
@@ -1205,7 +1206,7 @@ export class BlockchainBlockController {
         var tickFormat = '%H-%M';
       }
      if(Difftype == "target"){
-          var TotalDifficultyNBlockQuery = await getConnection()
+          var TotalDifficultyNBlockQuery = await getConnection(Global.network)
           .query(
             "SELECT a.hash, a.total_difficulty_randomx, a.total_difficulty_cuckatoo,a.total_difficulty_progpow, a.date FROM(select 1 as hash, (total_difficulty_cuckatoo - LAG(total_difficulty_cuckatoo) OVER (ORDER BY total_difficulty_cuckatoo)) AS total_difficulty_cuckatoo, \
             (total_difficulty_progpow	 - LAG(total_difficulty_progpow) OVER (ORDER BY total_difficulty_progpow)) AS total_difficulty_progpow	,  \
@@ -1221,7 +1222,7 @@ export class BlockchainBlockController {
             next(err_msg);
           });
         }else if(Difftype == "total"){
-          var TotalDifficultyNBlockQuery = await getConnection()
+          var TotalDifficultyNBlockQuery = await getConnection(Global.network)
           .query(
             "select 1 as hash, total_difficulty_cuckatoo,total_difficulty_progpow,total_difficulty_randomx, \
                DATE_TRUNC('minute', timestamp at time zone '" +
@@ -1361,7 +1362,7 @@ export class BlockchainBlockController {
           process.env.TIME_ZONE +
           "' > current_date - interval '30 days'";
       }
-      const stackNBlockQuery = await getConnection()
+      const stackNBlockQuery = await getConnection(Global.network)
         .query(
           "select 1 as hash, date(DATE_TRUNC('day', timestamp at time zone '" +
           process.env.TIME_ZONE +
@@ -1445,7 +1446,7 @@ export class BlockchainBlockController {
           process.env.TIME_ZONE +
           "' > current_date - interval '30 days'";
       }
-      const stackNBlockQuery = await getConnection()
+      const stackNBlockQuery = await getConnection(Global.network)
         .query(
           "SELECT hash,total_edge_bits, RandomX, Cuckoo, ProgPow, Round(RandomX * 100.0 / total_edge_bits,2) AS RandomXper,  Round(Cuckoo * 100.0 / total_edge_bits,2) AS Cuckooper, Round(ProgPow * 100.0 / total_edge_bits,2) AS ProgPowper from (select 1 as hash, COUNT(edge_bits) AS total_edge_bits, \
           Count( CASE WHEN proof = 'RandomX' THEN 1 ELSE NULL END) AS RandomX,\
@@ -1516,7 +1517,7 @@ export class BlockchainBlockController {
         var seriesquery = "now() - interval '30 days', now()";
       }
 
-      const HashRateQueryAR29 = await getConnection()
+      const HashRateQueryAR29 = await getConnection(Global.network)
         .query(
           'with hours as ( SELECT hour::date from generate_series(' +
           seriesquery +
@@ -1527,7 +1528,7 @@ export class BlockchainBlockController {
         .catch(err_msg => {
           next(err_msg);
         });
-      const HashRateQueryAT31 = await getConnection()
+      const HashRateQueryAT31 = await getConnection(Global.network)
         .query(
           'with hours as ( SELECT hour::date from generate_series(' +
           seriesquery +
@@ -1583,14 +1584,14 @@ export class BlockchainBlockController {
         letest_block_num = '',
         letest_block_duration = '';
 
-      const BlockchainLatestBlockQuery = await getConnection()
+      const BlockchainLatestBlockQuery = await getConnection(Global.network)
         .query(
           'SELECT timestamp,height,edge_bits,hash,secondary_scaling, previous_id, total_difficulty_cuckaroo, total_difficulty_cuckatoo, total_difficulty_progpow, total_difficulty_randomx FROM blockchain_block ORDER BY timestamp DESC LIMIT 1',
         )
         .catch(err_msg => {
           next(err_msg);
         });
-      const BlockchainPreviousBlockQuery = await getConnection()
+      const BlockchainPreviousBlockQuery = await getConnection(Global.network)
         .query(
           'SELECT total_difficulty_cuckaroo, total_difficulty_cuckatoo, total_difficulty_progpow, total_difficulty_randomx FROM blockchain_block WHERE hash=' +
           "'" +
@@ -1825,7 +1826,7 @@ let remaining_height = 0;
       } else {
         var timeIntervalQry = "timestamp > current_date - interval '30 days'";
       }
-      const BlockchainBlockPerSecondQuery = await getConnection()
+      const BlockchainBlockPerSecondQuery = await getConnection(Global.network)
         .query(
           "select date(DATE_TRUNC('day', timestamp)) as date, count(hash) as blocks, 86400/count(hash) as period \
         from blockchain_block where " +
@@ -1900,7 +1901,7 @@ let remaining_height = 0;
       const BLOCK_ERA_6_ONWARDS = DAY_HEIGHT * 1460;
       /// Block Reward that will be assigned after we change from era 5 to era 6.
       const BASE_REWARD_ERA_6_ONWARDS = 0.15625;
-      const BlockchainBlockPerSecondQuery = await getConnection()
+      const BlockchainBlockPerSecondQuery = await getConnection(Global.network)
         .query(
           'select x.timestamp, SUM(x.reward) as total_reward_per_day \
         from (SELECT DISTINCT height, hash, CAST(timestamp AS DATE), \
@@ -2008,7 +2009,7 @@ let remaining_height = 0;
           process.env.TIME_ZONE +
           "' > current_date - interval '30 days'";
       }
-      const BlockMineChartQuery = await getConnection()
+      const BlockMineChartQuery = await getConnection(Global.network)
         .query(
           "SELECT hash, date , total_edge_bits, RandomX, Cuckoo, ProgPow, Round(RandomX * 100.0 / total_edge_bits,2) AS RandomXper,  Round(Cuckoo * 100.0 / total_edge_bits,2) AS Cuckooper, Round(ProgPow * 100.0 / total_edge_bits,2) AS ProgPowper \
         FROM   (SELECT    1 as hash, \
@@ -2043,7 +2044,7 @@ let remaining_height = 0;
         Cuckooper.push(parseFloat(e.cuckooper));
         ProgPowper.push(parseFloat(e.progpowper));
         RandomX.push(parseInt(e.randomx));
-        Cuckoo.push(parseInt(e.cuckatoo));
+        Cuckoo.push(parseInt(e.cuckoo));
         ProgPow.push(parseInt(e.progpow));
       });
 

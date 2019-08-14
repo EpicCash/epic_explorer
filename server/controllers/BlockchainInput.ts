@@ -1,11 +1,13 @@
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
-import { getRepository } from 'typeorm';
+import { getRepository,getConnection } from 'typeorm';
 import { validationMiddleware } from '../middlewares';
 import {
   InternalServerErrorException,
   NoDataFoundException,
 } from '../exceptions';
+import { Global } from "../global";
+
 import { BlockchainInput } from '../entities';
 import {
   BlockchainInputCreateDto,
@@ -195,7 +197,7 @@ export class BlockchainInputController {
   ) => {
     try {
       const BlockchainInputRequestData: BlockchainInputCreateDto = request.body;
-      const BlockchainInputCreateQuery = await getRepository(
+      const BlockchainInputCreateQuery = await getConnection(Global.network).getRepository(
         BlockchainInput,
       ).save(BlockchainInputRequestData);
       response.status(200).json({
@@ -215,7 +217,7 @@ export class BlockchainInputController {
     next: NextFunction,
   ) => {
     try {
-      const BlockchainInputFetchQuery = await getRepository(
+      const BlockchainInputFetchQuery = await getConnection(Global.network).getRepository(
         BlockchainInput,
       ).findOne({
         where: { id: request.params.id },
@@ -240,7 +242,7 @@ export class BlockchainInputController {
   ) => {
     try {
       const BlockchainInputRequestData: BlockchainInputUpdateDto = request.body;
-      const BlockchainInputUpdateQuery = await getRepository(
+      const BlockchainInputUpdateQuery = await getConnection(Global.network).getRepository(
         BlockchainInput,
       ).update(BlockchainInputRequestData.Id, BlockchainInputRequestData);
       response.status(200).json({
@@ -260,7 +262,7 @@ export class BlockchainInputController {
     next: NextFunction,
   ) => {
     try {
-      const BlockchainInputDeleteQuery = await getRepository(
+      const BlockchainInputDeleteQuery = await getConnection(Global.network).getRepository(
         BlockchainInput,
       ).delete(request.params.Id);
       BlockchainInputDeleteQuery
@@ -284,7 +286,7 @@ export class BlockchainInputController {
     try {
       const BlockchainInputRequestData: BlockchainInputPaginationDto =
         request.query;
-      const BlockchainInputCountQuery = await getRepository(
+      const BlockchainInputCountQuery = await getConnection(Global.network).getRepository(
         BlockchainInput,
       ).findAndCount({});
       if (BlockchainInputCountQuery[1]) {
@@ -294,7 +296,7 @@ export class BlockchainInputController {
           BlockchainInputRequestData.PageSize,
           BlockchainInputRequestData.MaxPages,
         );
-        const BlockchainInputPaginationQuery = await getRepository(
+        const BlockchainInputPaginationQuery = await getConnection(Global.network).getRepository(
           BlockchainInput,
         ).find({
           skip: PaginationReponseData.startIndex,

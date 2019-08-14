@@ -1,7 +1,9 @@
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
-import { getRepository } from 'typeorm';
+import { getRepository, getConnection } from 'typeorm';
 import { validationMiddleware } from '../middlewares';
+import { Global } from "../global";
+
 import {
   InternalServerErrorException,
   NoDataFoundException,
@@ -210,7 +212,7 @@ export class BlockchainOutputController {
     try {
       const BlockchainOutputRequestData: BlockchainOutputCreateDto =
         request.body;
-      const BlockchainOutputCreateQuery = await getRepository(
+      const BlockchainOutputCreateQuery = await getConnection(Global.network).getRepository(
         BlockchainOutput,
       ).save(BlockchainOutputRequestData);
       response.status(200).json({
@@ -230,7 +232,7 @@ export class BlockchainOutputController {
     next: NextFunction,
   ) => {
     try {
-      const BlockchainOutputFetchQuery = await getRepository(
+      const BlockchainOutputFetchQuery = await getConnection(Global.network).getRepository(
         BlockchainOutput,
       ).findOne({
         where: { id: request.params.id },
@@ -256,7 +258,7 @@ export class BlockchainOutputController {
     try {
       const BlockchainOutputRequestData: BlockchainOutputUpdateDto =
         request.body;
-      const BlockchainOutputUpdateQuery = await getRepository(
+      const BlockchainOutputUpdateQuery = await getConnection(Global.network).getRepository(
         BlockchainOutput,
       ).update(BlockchainOutputRequestData.Id, BlockchainOutputRequestData);
       response.status(200).json({
@@ -276,7 +278,7 @@ export class BlockchainOutputController {
     next: NextFunction,
   ) => {
     try {
-      const BlockchainOutputDeleteQuery = await getRepository(
+      const BlockchainOutputDeleteQuery = await getConnection(Global.network).getRepository(
         BlockchainOutput,
       ).delete(request.params.Id);
       BlockchainOutputDeleteQuery
@@ -300,7 +302,7 @@ export class BlockchainOutputController {
     try {
       const BlockchainOutputRequestData: BlockchainOutputPaginationDto =
         request.query;
-      const BlockchainOutputCountQuery = await getRepository(
+      const BlockchainOutputCountQuery = await getConnection(Global.network).getRepository(
         BlockchainOutput,
       ).findAndCount({});
       if (BlockchainOutputCountQuery[1]) {
@@ -310,7 +312,7 @@ export class BlockchainOutputController {
           BlockchainOutputRequestData.PageSize,
           BlockchainOutputRequestData.MaxPages,
         );
-        const BlockchainOutputPaginationQuery = await getRepository(
+        const BlockchainOutputPaginationQuery = await getConnection(Global.network).getRepository(
           BlockchainOutput,
         ).find({
           skip: PaginationReponseData.startIndex,

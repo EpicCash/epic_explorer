@@ -3,12 +3,14 @@ import { validate, ValidationError } from 'class-validator';
 import * as express from 'express';
 import { NextFunction, Request, Response } from 'express';
 import { HttpException } from '../exceptions/index';
+import { Global } from "../global";
 
 export function validationMiddleware<T>(
   type: any,
   skipMissingProperties = false,
 ): express.RequestHandler {
   return (request: Request, response: Response, next: NextFunction) => {
+    Global.network = request.headers.network;
     validate(
       plainToClass(type, {
         ...request.body,

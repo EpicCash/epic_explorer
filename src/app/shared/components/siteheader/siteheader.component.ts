@@ -23,6 +23,16 @@ export class SiteheaderComponent implements OnInit {
     this.document.body.classList.toggle('dark_theme');
   }
 
+  public getNetwork(){
+    return localStorage.getItem('network');
+  }
+
+  public onChangeNetwork(networkValue){
+    localStorage.setItem('network', networkValue);
+    window.location.reload();
+
+   }
+
   onSearch(hash) {
     this.router.navigate(['blockdetail', hash]);
   }
