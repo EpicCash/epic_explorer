@@ -40,7 +40,7 @@ export class GraphListComponent implements OnInit {
   public pg_last: any = '';
 
   public selectedItem: Number = 6;
-  public selectedItem3: Number = 2;
+  public selectedItem3: Number = 1;
   public selectedItem2: Number = 3;
   public selectedItem4: Number = 3;
   public selectedItem5: Number = 3;
@@ -416,7 +416,10 @@ export class GraphListComponent implements OnInit {
                         type: 'scatter',
                         name: 'Cuckoo',
                         // line: { color: '#ac3333' },
-                        hovertemplate: '%{text}<br> Cuckoo : %{y:,}',
+                        //hovertemplate: '%{text}<br> Cuckoo : %{y:,}',
+                        hovertemplate: 'Cuckoo : %{y:,}',
+                        hoverlabel: {namelength : 0}
+
                       },
                       {
                         x: DifficultychartDate,
@@ -427,7 +430,8 @@ export class GraphListComponent implements OnInit {
                         name: 'Progpow',
                         yaxis: 'y2',
                         // line: { color: '#ac3333' },
-                        hovertemplate: '%{text}<br> Progpow : %{y:,}',
+                        hovertemplate: 'Progpow : %{y:,}',
+                        hoverlabel: {namelength : 0}
                       },
                       {
                         x: DifficultychartDate,
@@ -438,7 +442,8 @@ export class GraphListComponent implements OnInit {
                         name: 'RandomX',
                         yaxis: 'y3',
                         // line: { color: '#ac3333' },
-                        hovertemplate: '%{text}<br> RandomX : %{y:,}',
+                        hovertemplate: 'RandomX : %{y:,}',
+                        hoverlabel: {namelength : 0}
                       },
                     ];
                   break;
@@ -530,7 +535,7 @@ export class GraphListComponent implements OnInit {
         autosize: true,
         showlegend: true,
         legend: {"orientation": "h",
-                y: 3.5,font :{ 'size': 10}},
+               x: 0.35, y: -0.5,font :{ 'size': 10}},
         xaxis: {
           tickangle: -45,
           tickformat: tickformat,
@@ -583,6 +588,7 @@ export class GraphListComponent implements OnInit {
           type: 'bar',
           text: Cuckoo,
           hovertemplate: '%{x}<br> Cuckoo : %{text:,}',
+          hoverlabel: {namelength : 0},
           marker: {
             color: '#77817C',
           },
@@ -605,6 +611,7 @@ export class GraphListComponent implements OnInit {
           type: 'bar',
           text: ProgPow,
           hovertemplate: '%{x}<br> ProgPow : %{text:,}',
+          hoverlabel: {namelength : 0},
           marker: {
             color: '#825f5f',
           },
@@ -616,6 +623,7 @@ export class GraphListComponent implements OnInit {
           type: 'bar',
           text: RandomX,
           hovertemplate: '%{x}<br> RandomX : %{text:,}',
+          hoverlabel: {namelength : 0},
           marker: {
             color: '#a9df5f',
           },
@@ -629,7 +637,7 @@ export class GraphListComponent implements OnInit {
         autosize: true,
         showlegend: true,
         legend: {"orientation": "h",
-                y: 3.5,font :{ 'size': 10}},
+        x: 0.35, y: -0.5,font :{ 'size': 10}},
         barmode: 'relative',
         xaxis: {
           showgrid: true,
@@ -883,6 +891,7 @@ export class GraphListComponent implements OnInit {
           y: Cuckooper,
           text: Cuckoo,
           hovertemplate: 'Cuckoo :%{y} % ( %{text:,} )',
+          hoverlabel: {namelength : 0},
           name: 'Cuckoo',
           fill: 'tozeroy',
           type: 'line',
@@ -907,6 +916,7 @@ export class GraphListComponent implements OnInit {
           y: RandomXper,
           text: RandomX,
           hovertemplate: 'RandomX :%{y} % ( %{text:,} )',
+          hoverlabel: {namelength : 0},
           fill: 'tozeroy',
           type: 'line',
           name: 'RandomX',
@@ -919,6 +929,7 @@ export class GraphListComponent implements OnInit {
           y: ProgPowper,
           text: ProgPow,
           hovertemplate: 'ProgPow :%{y} % ( %{text:,} )',
+          hoverlabel: {namelength : 0},
           fill: 'tozeroy',
           type: 'line',
           name: 'ProgPow',
@@ -933,7 +944,7 @@ export class GraphListComponent implements OnInit {
         autosize: true,
         showlegend: true,
         legend: {"orientation": "h",
-                y: 3.5,font :{ 'size': 10}},
+        x: 0.35, y: -0.5,font :{ 'size': 10}},
         xaxis: {
           tickformat: '%m-%d',
           tickangle: -45,
@@ -1030,6 +1041,7 @@ export class GraphListComponent implements OnInit {
           y: Ttotalinput,
           text: Ttotalinput,
           hovertemplate: 'Total Input : %{text:,} ',
+          hoverlabel: {namelength : 0},
           line: { color: '#6ebe58' },
         },
         {
@@ -1040,6 +1052,7 @@ export class GraphListComponent implements OnInit {
           y: Ttotalkernal,
           text: Ttotalkernal,
           hovertemplate: 'Total Kernel : %{text:,} ',
+          hoverlabel: {namelength : 0},
           line: { color: '#f57979' },
         },
         {
@@ -1050,6 +1063,7 @@ export class GraphListComponent implements OnInit {
           y: Ttotaloutput,
           text: Ttotaloutput,
           hovertemplate: 'Total Output : %{text:,} ',
+          hoverlabel: {namelength : 0},
           line: { color: '#f7d340' },
         },
       ],
@@ -1079,7 +1093,7 @@ export class GraphListComponent implements OnInit {
         },
         showlegend: true,
         legend: {"orientation": "h",
-                y: 3.5,font :{ 'size': 10}}
+        x: 0.35, y: -0.5,font :{ 'size': 10}}
       },
       options: null,
     };
@@ -1144,7 +1158,7 @@ export class GraphListComponent implements OnInit {
         autosize: true,
         showlegend: true,
         legend: {"orientation": "h",
-                y: 3.5,font :{ 'size': 10}},
+        x: 0.35, y: -0.5,font :{ 'size': 10}},
         xaxis: {
           tickangle: -45,
           tickformat: tickformat,

@@ -238,7 +238,7 @@
     </div>
   </div>
 </div>
-<div class="col-md-6 col-lg-4 mb-4">
+<div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
   <div class="box_shadow">
     <div class="blocks">
       <h2 class="chart_heading d-inline-block">{{'home.BLOCKS_MINED' | translate}}</h2>
