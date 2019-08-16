@@ -296,7 +296,7 @@ a:focus {
 .detail_div {
   background-color: #fff;
   border: 1px solid #fff;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   padding: 10px ;
   transition: 0.3s linear all;
   min-height: 100%;
@@ -319,7 +319,9 @@ a:focus {
   color: #002f5b;
 }
 .detail_div:hover {
-  box-shadow: none;
+  background-color: #ecf2ff;
+  border-color: #ecf2ff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   transition: 0.3s linear all;
 }
 .latest_table {
