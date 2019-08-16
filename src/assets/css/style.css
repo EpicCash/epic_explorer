@@ -25,6 +25,8 @@ a:focus {
   text-decoration: none;
   outline: none;
 }
+.langbut option:disabled{background-color: #f7f7f9; color: rgba(0,0,0,.2) }
+
 @media (min-width: 1200px) {
   .container {
     max-width: 1170px;
@@ -671,6 +673,7 @@ body.dark_theme {
 .dark_theme .difficulty_datas .day60_txt{color: #fff;}
 .dark_theme .legendtext{fill: rgb(255, 255, 255) !important;}
 .dark_theme .background_loading{background: #384566;background-image: linear-gradient( to right, #384566 0%, #27314b 20%, #384566 40%, #384566 100% );}
+.dark_theme .langbut option:disabled { background-color: #384566; color: rgba(255,255,255,.2);}
 @keyframes yellowfade {
   from {
     background: white;
