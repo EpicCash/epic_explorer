@@ -763,7 +763,7 @@ export class GraphListComponent implements OnInit {
           y: Blockval,
           text: Blockval,
           name: '',
-          hovertemplate: 'Blocks %{x}<br> Inteval : %{text:,}',
+          hovertemplate: 'Blocks : %{x}<br> Inteval : %{text:,}',
           type: 'bar',
           marker: {
             color: Blockval,
