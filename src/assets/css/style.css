@@ -614,10 +614,12 @@ body.dark_theme {
 .dark_theme .theme_switch,
 .dark_theme .footer_div .theme_switch,
 .dark_theme .ftr_dropdown,
+.dark_theme .langbut.ftr_lang,
 .dark_theme .bg-white {
   background-color: #1c2437 !important;
   color: #ffffff !important;
 }
+.dark_theme footer.bg-white{ background-color: #27314b !important;}
 .dark_theme .nav-item.dropdown .bg-white, .dark_theme .nav-item.dropdown, .dark_theme .langbut{background-color: #27314b !important}
 .dark_theme .langbut{color: #ffffff !important;}
 .dark_theme .arrow_drpdwn{border-color: #ffffff !important;}
@@ -666,6 +668,7 @@ body.dark_theme {
 .diff_margin{margin-bottom: -10px !important; margin-top: -10px !important;}
 .dark_theme .difficulty_datas .day60_txt{color: #fff;}
 .dark_theme .legendtext{fill: rgb(255, 255, 255) !important;}
+.dark_theme .background_loading{background: #384566;background-image: linear-gradient( to right, #384566 0%, #27314b 20%, #384566 40%, #384566 100% );}
 @keyframes yellowfade {
   from {
     background: white;
