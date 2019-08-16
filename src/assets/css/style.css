@@ -686,6 +686,7 @@ body.dark_theme {
   -o-animation: yellowfade 5s ;
 }
 .news_desc .bg-white{padding-top: 100px;}
+.langbut option:disabled{background-color: #f7f7f9; color: rgba(0,0,0,.2) }
 .sk-cube-grid {
   width: 40px;
   height: 40px;
