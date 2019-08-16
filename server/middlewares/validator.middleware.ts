@@ -10,7 +10,11 @@ export function validationMiddleware<T>(
   skipMissingProperties = false,
 ): express.RequestHandler {
   return (request: Request, response: Response, next: NextFunction) => {
-    Global.network = request.headers.network;
+    if(request.headers.network){
+      Global.network = request.headers.network;
+    }else{
+      Global.network = 'Floonet';
+    }
     validate(
       plainToClass(type, {
         ...request.body,

@@ -101,9 +101,17 @@ export class LatestblocksComponent implements OnInit {
         if (res['status'] == 200) {
           let json = res.response.dataJson;
           if(json && json.length > 0){
-            localStorage.setItem('peersJson',JSON.stringify(json));
+            if(localStorage.getItem('network') == "Testnet"){
+            localStorage.setItem('peersJson_Testnet',JSON.stringify(json));
+            }else{
+              localStorage.setItem('peersJson_Floonet',JSON.stringify(json));
+            }
           }
-          this.peers = JSON.parse(localStorage.getItem('peersJson'));
+          if(localStorage.getItem('network') == "Testnet"){
+          this.peers = JSON.parse(localStorage.getItem('peersJson_Testnet'));
+          }else{
+            this.peers = JSON.parse(localStorage.getItem('peersJson_Floonet'));
+          }
         }
       },
       error => {},

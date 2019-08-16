@@ -559,7 +559,12 @@ export class BlockchainKernelController {
   ) => {
     var self = this;
     try {
-      http.get('http://116.203.152.58:13413/v1/peers/connected',
+      if(Global.network == "Floonet"){
+          var peer_url = process.env.FLOONET_PEER_URL;
+      }else{
+        var peer_url = process.env.TESTNET_PEER_URL;
+      }
+      http.get(peer_url,
       async (resp) => {
         // console.log('resp resp respresp',resp);
         let data = '';
