@@ -96,7 +96,7 @@
                     </div> -->
               <epic-explorer-plotly *ngIf="hashdata.data" [data]="hashdata.data" [layout]="hashdata.layout">
               </epic-explorer-plotly>
-              <div class="day_filter" *ngIf="this.title!='Transactions over time'">
+              <div class="day_filter" *ngIf="this.title!='Transactions over time' &&  this.title!='Interval B/W Blocks'">
 
                 <a href="JavaScript:void(0);" *ngIf="this.title=='Total Difficulty' || this.title=='Target Difficulty' || this.title == 'Blocks'" (click)="
             ChartFromView('', '', '1 day', comp.Type); selectedItem = 6; comp.difficultyRange = '1 day';comp.TdifficultyRange = '1 day'
@@ -137,6 +137,19 @@
                   [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">{{'home.OUTPUT' | translate}}</a>
               </div>
 
+
+              <div class="day_filter" *ngIf="this.title=='Interval B/W Blocks'">
+                <a href="JavaScript:void(0);" (click)="
+                ChartFromView('today'); selectedInteverval = 1
+                    " id="1" #intevalitem1 [ngClass]="{ active: selectedInteverval == intevalitem1.id, txt_primay: true }">Today</a>
+              <a href="JavaScript:void(0);" (click)="
+              ChartFromView('yesterday'); selectedInteverval = 2
+                  " id="2" #intevalitem2 [ngClass]="{ active: selectedInteverval == intevalitem2.id, txt_primay: true }">Yesterday</a>
+                  <a href="JavaScript:void(0);" (click)="ChartFromView('previous'); ">Pre</a>
+                  <span>{{showcurrentIntervalDate}}</span>
+                  <a href="JavaScript:void(0);" (click)="ChartFromView('next'); ">Next</a>
+              </div>
+
             </div>
 
           </div>
@@ -163,6 +176,8 @@
                 routerLink="/chart/transactions-over-time">{{'home.TRANSACTIONS_BY_TIME' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Blocks'"><a
                 routerLink="/chart/blocks">{{'home.BLOCKS' | translate}}</a></li>
+                <li class="mb-1" *ngIf="this.title!='Interval B/W Blocks'"><a
+                  routerLink="/chart/interval-between-blocks">{{'home.BLOCKSINTERVAL' | translate}}</a></li>    
             <li class="mb-1" *ngIf="this.title!='Blocks Mined'"><a
                 routerLink="/chart/blocks-mined">{{'home.BLOCKS_MINED' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Transaction Fees'"><a

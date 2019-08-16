@@ -27,6 +27,9 @@ export class GraphDetailComponent implements OnInit {
   public Type: any = '';
   public selectedTarget: Number = 3;
   public selectedTarget12: Number = 1;
+  public selectedInteverval: Number = 1;
+  public currenyIntervalDate: any;
+  public showcurrentIntervalDate: any;
   
   public GraphtInput: any;
   public GraphtOutput: any;
@@ -119,6 +122,19 @@ export class GraphDetailComponent implements OnInit {
             );
           });
           break;
+          case 'interval-between-blocks':
+            this.comp.Blockintervalreq().then(res => {
+              this.hashdata = this.comp.barGraphIntevalData;
+              this.currenyIntervalDate = this.comp.currenyIntervalDate;
+              this.showcurrentIntervalDate =this.comp.showcurrentIntervalDate;
+              this.hashdata.layout.height = 300;
+              this.title = 'Interval B/W Blocks';
+              this.selectedInteverval = 1;
+              this.titleService.setTitle(
+                this.route.snapshot.data.title + ' - ' + this.title,
+              );
+            });
+            break;  
         case 'transaction-fees':
           this.comp.Transcationreq().then(res => {
             this.hashdata = this.comp.transcationGraphData;
@@ -257,6 +273,15 @@ export class GraphDetailComponent implements OnInit {
           this.title = 'Blocks';
         });
         break;
+      case 'interval-between-blocks':
+      this.comp.Blockintervalreq(p1).then(res => {
+        this.hashdata = this.comp.barGraphIntevalData;
+        this.currenyIntervalDate = this.comp.currenyIntervalDate;
+        this.showcurrentIntervalDate =this.comp.showcurrentIntervalDate;
+        this.hashdata.layout.height = 300;
+        this.title = 'Interval B/W Blocks';
+      });
+      break;  
       case 'blocks-mined':
         this.comp.Blockminedreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.doubleareaGraphData;

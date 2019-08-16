@@ -371,6 +371,50 @@
           </div>
         </div>
   </div>
+
+
+
+  <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+    <div class="box_shadow">
+      <div class="blocks">
+        <h2 class="chart_heading d-inline-block">{{'home.BLOCKSINTERVAL' | translate}}</h2>
+        <span class="txn_count" *ngIf="this.blockinteval_last">{{
+            this.blockinteval_last | number
+          }}</span>
+        <div class="chart_show">
+          <epic-explorer-plotly *ngIf="barGraphIntevalData.data" [data]="barGraphIntevalData.data" [layout]="barGraphIntevalData.layout"></epic-explorer-plotly>
+          <div *ngIf="!barGraphIntevalData.data" class="feedback_div news_desc text-center">
+            <div class="graph_img background_loading mx-auto mb-3"></div>
+            <div class=" p-3 bg-white">
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+              <p class="mb-2 background_loading para_load"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day_filter">
+          <a href="JavaScript:void(0);" (click)="
+          Blockintervalreq('today'); selectedInteverval = 1
+              " id="1" #intevalitem1 [ngClass]="{ active: selectedInteverval == intevalitem1.id, txt_primay: true }">Today</a>
+        <a href="JavaScript:void(0);" (click)="
+        Blockintervalreq('yesterday'); selectedInteverval = 2
+            " id="2" #intevalitem2 [ngClass]="{ active: selectedInteverval == intevalitem2.id, txt_primay: true }">Yesterday</a>
+            <a href="JavaScript:void(0);" (click)="Blockintervalreq('previous'); ">Pre</a>
+            <span>{{showcurrentIntervalDate}}</span>
+            <a href="JavaScript:void(0);" (click)="Blockintervalreq('next'); ">Next</a>
+  
+      </div>
+      <div class="explore_all text-right">
+        <a routerLink="/chart/interval-between-blocks"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
+      </div>
+    </div>
+  </div>
+
   <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
     <div class="box_shadow">
       <div class="blocks">

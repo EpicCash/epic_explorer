@@ -43,6 +43,7 @@
         "TARGET_DIFFICULTY" : "Zielschwierigkeit",
         "TRANSACTIONS_BY_TIME" : "Transaktionen im Zeitverlauf",
         "BLOCKS" : "Blöcke",
+        "BLOCKSINTERVAL" : "Intervall-S / W-Blöcke",
         "BLOCK" : "Block",
         "BLOCKS_MINED" : "Blöcke abgebaut",
         "TRANSACTION_FEES" : "Transkationsgebühren",

@@ -43,6 +43,7 @@
         "TARGET_DIFFICULTY" : "Target Difficulty",
         "TRANSACTIONS_BY_TIME" : "Transactions over time",
         "BLOCKS" : "Blocks",
+        "BLOCKSINTERVAL" : "Interval B/W Blocks",
         "BLOCK" : "Block",
         "BLOCKS_MINED" : "Blocks Mined",
         "TRANSACTION_FEES" : "Transaction Fees",

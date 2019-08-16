@@ -3,6 +3,7 @@ import { ChartService } from '../../../shared/services/chart.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { TransServiceService } from '../../../shared/services/trans-service.service';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'epic-explorer-graph-list',
@@ -16,6 +17,7 @@ export class GraphListComponent implements OnInit {
   public areaGraphData: any = [];
   public doubleareaGraphData: any = [];
   public barGraphData: any = [];
+  public barGraphIntevalData: any = [];
   public blockGraphData: any = [];
   public bubbleGraphdData: any = [];
   public feeGraphData: any = [];
@@ -25,6 +27,8 @@ export class GraphListComponent implements OnInit {
   public stackGraphData: any = [];
   public pieGraphData: any = [];
   public linearTotalGraphData: any = [];
+  public currenyIntervalDate: any;
+  public showcurrentIntervalDate: any;
 
   public lg_last: any;
   public ag_last: any = '';
@@ -38,6 +42,7 @@ export class GraphListComponent implements OnInit {
   public hg_last: any = '';
   public sg_last: any = '';
   public pg_last: any = '';
+  public blockinteval_last: any = '';
 
   public selectedItem: Number = 6;
   public selectedItem3: Number = 1;
@@ -53,6 +58,7 @@ export class GraphListComponent implements OnInit {
   public selectedItem12: Number = 4;
   public selectedTarget: Number = 6;
   public selectedTarget12: Number = 4;
+  public selectedInteverval: Number = 1;
 
   public tInput: any;
   public tOutput: any;
@@ -79,6 +85,8 @@ export class GraphListComponent implements OnInit {
     this.Difficultyreq('target');
     this.Difficultyreq('total');
     this.blockreq();
+
+    this.Blockintervalreq();
 
     /* Transcation fee chart fetching */
     this.Transcationreq();
@@ -497,6 +505,49 @@ export class GraphListComponent implements OnInit {
     });
   }
 
+  Blockintervalreq(interval = ''){
+    //interval = '2019-08-11';
+    if(interval == "today"){
+      this.currenyIntervalDate = moment(new Date()).format('YYYY-MM-DD');
+      this.showcurrentIntervalDate = moment(new Date()).format('MM-DD-YYYY');
+    }else if(interval == "yesterday"){
+      this.currenyIntervalDate = moment(new Date()).subtract(1, "days").format("YYYY-MM-DD");
+      this.showcurrentIntervalDate = moment(new Date()).subtract(1, "days").format("MM-DD-YYYY");
+    }else if(interval == "previous"){
+      var currentdate = this.currenyIntervalDate;
+      this.currenyIntervalDate = moment(currentdate).subtract(1, "days").format("YYYY-MM-DD");
+      this.showcurrentIntervalDate = moment(currentdate).subtract(1, "days").format("MM-DD-YYYY");
+    }else if(interval == "next"){
+      var currentdate = this.currenyIntervalDate;
+      this.currenyIntervalDate = moment(currentdate).add(1, "days").format("YYYY-MM-DD");
+      this.showcurrentIntervalDate = moment(currentdate).add(1, "days").format("MM-DD-YYYY");
+    }else{
+      this.currenyIntervalDate = moment(new Date()).format('YYYY-MM-DD');
+      this.showcurrentIntervalDate = moment(new Date()).format('MM-DD-YYYY');
+    }
+    // console.log(this.currenyIntervalDate);
+    // console.log(this.showcurrentIntervalDate);
+    interval = this.currenyIntervalDate;
+    return new Promise((resolve, reject) => {
+      let params = new HttpParams();
+      params = params.append('Interval', interval);
+      this.chartService
+        .apiGetRequest(params, '/blockchain_block/blockinterval')
+        .subscribe(
+          res => {
+            if (res['status'] == 200) {
+              let BlocksChartHeight = res.response.height;
+              let Blockval = res.response.alter;
+              this.blockinteval_last = Blockval[Blockval.length - 1];
+              this.BlocksIntevalFunc(BlocksChartHeight, Blockval);
+              resolve();
+            }
+          },
+          error => { },
+        );
+    });
+  }
+
   blockreq(
     fromDate = '',
     ToDate = '',
@@ -535,7 +586,7 @@ export class GraphListComponent implements OnInit {
         autosize: true,
         showlegend: true,
         legend: {"orientation": "h",
-               x: 0.35, y: -0.5,font :{ 'size': 10}},
+               x: 0.1, y: -0.5,font :{ 'size': 10}},
         xaxis: {
           tickangle: -45,
           tickformat: tickformat,
@@ -704,6 +755,49 @@ export class GraphListComponent implements OnInit {
     };
   }
 
+  BlocksIntevalFunc(BlocksChartHeight, Blockval) {
+    this.barGraphIntevalData = {
+      data: [
+        {
+          x: BlocksChartHeight,
+          y: Blockval,
+          text: Blockval,
+          name: '',
+          hovertemplate: 'Blocks %{x}<br> Inteval : %{text:,}',
+          type: 'bar',
+          marker: {
+            color: Blockval,
+            colorscale: 'Viridis',
+          },
+        },
+      ],
+      layout: {
+        hovermode: 'closest',
+        height: 250,
+        autosize: true,
+        showlegend: false,
+        xaxis: {
+          tickangle: -45,
+          showgrid: true,
+          title: 'Blocks Height',
+          fixedrange: true
+        },
+        yaxis: {
+          title: 'Seonds',
+          showgrid: true,
+          fixedrange: true
+        },
+        margin: {
+          l: 50,
+          r: 50,
+          b: 50,
+          t: 50,
+        },
+      },
+      options: null,
+    };
+  }
+
 
   totalBlocksFunc(DifficultychartDate, Blockval) {
     this.barGraphData = {
@@ -803,7 +897,7 @@ export class GraphListComponent implements OnInit {
           },
           text: gReward,
           hovertemplate:
-            '%{x}<br> supply per day: %{text:,}<br> Total supply: %{y:,}',
+            '%{x}<br> supply per day : %{text:,}<br> Total supply : %{y:,}',
         },
       ],
       layout: {
@@ -890,7 +984,7 @@ export class GraphListComponent implements OnInit {
           x: mDate,
           y: Cuckooper,
           text: Cuckoo,
-          hovertemplate: 'Cuckoo :%{y} % ( %{text:,} )',
+          hovertemplate: 'Cuckoo : %{y} % ( %{text:,} )',
           hoverlabel: {namelength : 0},
           name: 'Cuckoo',
           fill: 'tozeroy',
@@ -915,7 +1009,7 @@ export class GraphListComponent implements OnInit {
           x: mDate,
           y: RandomXper,
           text: RandomX,
-          hovertemplate: 'RandomX :%{y} % ( %{text:,} )',
+          hovertemplate: 'RandomX : %{y} % ( %{text:,} )',
           hoverlabel: {namelength : 0},
           fill: 'tozeroy',
           type: 'line',
@@ -928,7 +1022,7 @@ export class GraphListComponent implements OnInit {
           x: mDate,
           y: ProgPowper,
           text: ProgPow,
-          hovertemplate: 'ProgPow :%{y} % ( %{text:,} )',
+          hovertemplate: 'ProgPow : %{y} % ( %{text:,} )',
           hoverlabel: {namelength : 0},
           fill: 'tozeroy',
           type: 'line',
@@ -1093,7 +1187,7 @@ export class GraphListComponent implements OnInit {
         },
         showlegend: true,
         legend: {"orientation": "h",
-        x: 0.35, y: -0.5,font :{ 'size': 10}}
+        x: 0.05, y: -0.5,font :{ 'size': 10}}
       },
       options: null,
     };
@@ -1158,7 +1252,7 @@ export class GraphListComponent implements OnInit {
         autosize: true,
         showlegend: true,
         legend: {"orientation": "h",
-        x: 0.35, y: -0.5,font :{ 'size': 10}},
+        x: 0.1, y: -0.5,font :{ 'size': 10}},
         xaxis: {
           tickangle: -45,
           tickformat: tickformat,
