@@ -53,7 +53,7 @@
         "DAYS" : "Tage",
         "MONTHS" : "Monate",
         "WEEK" : "Woche",
-        "SEARCH_TEXT" : "Suche nach Adresse, Hash oder Blockhöhe",
+        "SEARCH_TEXT" : "Suche nach Hash oder Blockhöhe",
         "BLOCK_REWARD" : "Block Belohnung",
         "NOT_FOUND" : "Seite nicht gefunden",
         "NOT_FOUND1" : "Die von Ihnen gesuchte Seite wurde nicht gefunden",
