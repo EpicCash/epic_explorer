@@ -232,11 +232,19 @@ a:focus {
   font-size: 13px;
   color: #fff;
   padding: 4px 18px 2px;
-  display: inline-block;
+  /* display: inline-block; */
   margin-left: 5px;
   position: relative;
   z-index: 1;
   float: right;
+  margin-top: 5px;
+  border: 1px solid #0091ff;
+  transition: all 0.3s linear;
+}
+.blocks:hover .txn_count {
+  background: #fff;
+  color: #0091ff;
+  transition: all 0.3s linear;
 }
 .day_filter {
   background-color: #f9f9f7;
@@ -263,6 +271,9 @@ a:focus {
 }
 .explore_all a {
   color: #777777;
+}
+.explore_all a:hover, .explore_all a:focus {
+  color: #0091ff;
 }
 .ip_filter {
   padding: 12px 6px;
@@ -654,6 +665,7 @@ body.dark_theme {
 .dark_theme .card-body{background-color: #1c2437;}
 .diff_margin{margin-bottom: -10px !important; margin-top: -10px !important;}
 .dark_theme .difficulty_datas .day60_txt{color: #fff;}
+.dark_theme .legendtext{fill: rgb(255, 255, 255) !important;}
 @keyframes yellowfade {
   from {
     background: white;
