@@ -27,7 +27,11 @@ export class HeaderComponent implements OnInit {
   }
 
   public getNetwork(){
+    if(localStorage.getItem('network') == null){
+        return "Testnet";
+    }else{
     return localStorage.getItem('network');
+    }
   }
 
   public onChangeNetwork(networkValue){

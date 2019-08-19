@@ -13,7 +13,7 @@ export function validationMiddleware<T>(
     if(request.headers.network){
       Global.network = request.headers.network;
     }else{
-      Global.network = 'Floonet';
+      Global.network = 'Testnet';
     }
     validate(
       plainToClass(type, {

@@ -24,8 +24,12 @@ export class SiteheaderComponent implements OnInit {
   }
 
   public getNetwork(){
-    return localStorage.getItem('network');
-  }
+    if(localStorage.getItem('network') == null){
+      return "Testnet";
+     }else{
+       return localStorage.getItem('network');
+    }   
+ }
 
   public onChangeNetwork(networkValue){
     localStorage.setItem('network', networkValue);

@@ -45,7 +45,7 @@ export class ChartService {
   public getHttpheader(){
     var network;
     if(localStorage.getItem('network') == null){
-      network = "Floonet"
+      network = "Testnet"
     }else{
       network = localStorage.getItem('network')
     }
