@@ -115,7 +115,7 @@
   <div class="box_shadow">
     <div class="blocks">
       <h2 class="chart_heading d-inline-block">{{'home.BLOCKS' | translate}}</h2>
-      <span class="txn_count" *ngIf="this.brg_last">{{
+      <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.brg_last">{{
           this.brg_last | number
         }}</span>
       <div class="chart_show">
@@ -170,7 +170,7 @@
   <div class="box_shadow">
     <div class="blocks">
       <h2 class="chart_heading d-inline-block">{{'home.TRANSACTION_FEES' | translate}}</h2>
-      <span class="txn_count" *ngIf="this.fg_last">{{this.fg_last |number}}</span>
+      <span class="txn_count" title="{{'home.TRANSACTION_FEE_HOVER' | translate}}" *ngIf="this.fg_last">{{this.fg_last |number}}</span>
 
       <div class="chart_show">
         <epic-explorer-plotly *ngIf="transcationGraphData.data" [data]="transcationGraphData.data"
@@ -216,7 +216,7 @@
   <div class="box_shadow">
     <div class="blocks">
       <h2 class="chart_heading d-inline-block">{{'home.SUPPLY_GROWTH' | translate}}</h2>
-      <span class="txn_count" *ngIf="this.gg_last">{{
+      <span class="txn_count" title="{{'home.SUPPLY_GROWTH_HOVER' | translate}}" *ngIf="this.gg_last">{{
           this.gg_last | number
         }}</span>
       <div class="chart_show">
@@ -262,7 +262,7 @@
   <div class="box_shadow">
     <div class="blocks">
       <h2 class="chart_heading d-inline-block">{{'home.BLOCKS_MINED' | translate}}</h2>
-      <span class="txn_count" *ngIf="this.dg_last">{{
+      <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.dg_last">{{
           this.dg_last | number
         }}</span>
 
@@ -352,7 +352,7 @@
       <div class="box_shadow">
           <div class="blocks">
             <h2 class="chart_heading d-inline-block">Blocks by Algorithm</h2>
-            <span class="txn_count" *ngIf="this.sg_last">{{
+            <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.sg_last">{{
               this.sg_last | number
             }}</span>
     
@@ -447,7 +447,7 @@
     <div class="box_shadow">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.BLOCK_INTERVAL' | translate}}</h2>
-        <span class="txn_count" *ngIf="this.ag_last">{{ this.ag_last | number }} sec</span>
+        <span class="txn_count" title="{{'home.BLOCK_INTERVAL_HOVER' | translate}}" *ngIf="this.ag_last">{{ this.ag_last | number }} sec</span>
 
         <div class="chart_show">
           <epic-explorer-plotly *ngIf="areaGraphData.data" [data]="areaGraphData.data" [layout]="areaGraphData.layout">

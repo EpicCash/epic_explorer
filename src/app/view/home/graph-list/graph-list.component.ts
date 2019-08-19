@@ -167,8 +167,9 @@ export class GraphListComponent implements OnInit {
               let Cuckoo = res.response.Cuckoo;
               let ProgPow = res.response.ProgPow;
               let RandomX = res.response.RandomX;
-              this.sg_last =
-                RandomX[RandomX.length - 1];
+              let today_date_index = sDate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
+              this.sg_last = RandomX[today_date_index] +  ProgPow[today_date_index] +  Cuckoo[today_date_index];
+              //this.sg_last = RandomX[RandomX.length - 1];
               this.stackchartFunc(
                 sDate,
                 Cuckoo,
@@ -299,7 +300,11 @@ export class GraphListComponent implements OnInit {
               let Cuckooper = res.response.Cuckooper;
               let RandomXper = res.response.RandomXper;
 
-              this.dg_last = RandomXper[RandomXper.length - 1];
+              let today_date_index = mDate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
+              
+              this.dg_last = ProgPow[today_date_index] + Cuckoo[today_date_index] + RandomX[today_date_index];
+
+              //this.dg_last = RandomXper[RandomXper.length - 1];
               this.blockminedFunc(
                 mDate,
                 ProgPow,
@@ -330,7 +335,9 @@ export class GraphListComponent implements OnInit {
             if (res['status'] == 200) {
               let bDate = res.response.date;
               let bPeriod = res.response.period;
-              this.ag_last = bPeriod[bPeriod.length - 1];
+              let today_date_index = bDate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
+              this.ag_last = bPeriod[today_date_index];
+              //this.ag_last = bPeriod[bPeriod.length - 1];
               this.blockspersecFunc(bDate, bPeriod);
               resolve();
             }
@@ -354,7 +361,10 @@ export class GraphListComponent implements OnInit {
               let gDate = res.response.date;
               let gReward = res.response.total_reward_per_day;
               let gaddedreward = res.response.addedreward;
-              this.gg_last = gReward[gReward.length - 1];
+              let today_date_index = gDate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
+              //let today_date_index = gDate.indexOf('2019-08-06');
+              this.gg_last = gReward[today_date_index];
+              //this.gg_last = gReward[gReward.length - 1];
               this.growthFunc(gDate, gReward, gaddedreward);
               resolve();
             }
@@ -377,7 +387,9 @@ export class GraphListComponent implements OnInit {
             if (res['status'] == 200) {
               let TfDate = res.response.Date;
               let TfFee = res.response.Fee;
-              this.fg_last = TfFee[TfFee.length - 1];
+              let today_date_index = TfDate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
+              this.fg_last = TfFee[today_date_index];
+              //this.fg_last = TfFee[TfFee.length - 1];
               this.transcationfeeFunc(TfDate, TfFee);
               resolve();
             }
@@ -566,7 +578,9 @@ export class GraphListComponent implements OnInit {
               let DifficultychartDate = res.response.Date;
               let BlocksChartDate = res.response.blockDate;
               let Blockval = res.response.Blocks;
-              this.brg_last = Blockval[Blockval.length - 1];
+              let today_date_index = BlocksChartDate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
+              this.brg_last = Blockval[today_date_index];
+              //this.brg_last = Blockval[Blockval.length - 1];
               this.totalBlocksFunc(BlocksChartDate, Blockval);
               resolve();
             }
