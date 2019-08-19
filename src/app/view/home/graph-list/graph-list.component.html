@@ -406,7 +406,7 @@
     <div class="box_shadow">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.BLOCKSINTERVAL' | translate}}</h2>
-        <span class="txn_count" *ngIf="this.blockinteval_last">{{
+        <span class="txn_count"  title="{{'home.BLOCK_INTERVAL_BW_BLOCKS_HOVER' | translate}}" *ngIf="this.blockinteval_last">{{
             this.blockinteval_last | number
           }}</span>
         <div class="chart_show">
@@ -492,7 +492,7 @@
     <div class="box_shadow">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_VS_DATE' | translate}}</h2>
-        <span class="txn_count" *ngIf="this.tg_last">{{
+        <span class="txn_count" title="{{'home.TRANSACTION_LINECHAT_HOVER' | translate}}" *ngIf="this.tg_last">{{
           this.tg_last | number
         }}</span>
 

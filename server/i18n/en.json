@@ -48,6 +48,8 @@
         "BOCKS_COUNT_HOVER" : "Today Block Count",
         "TRANSACTION_FEE_HOVER" : "Today Total Transaction Fees",
         "BLOCK_INTERVAL_HOVER" : "Today Block Interval in Secs",
+        "TRANSACTION_LINECHAT_HOVER" : "Today Total Transaction Count",
+        "BLOCK_INTERVAL_BW_BLOCKS_HOVER" : "Last Block Interval in Secs",
         "BLOCK" : "Block",
         "BLOCKS_MINED" : "Blocks Mined",
         "TRANSACTION_FEES" : "Transaction Fees",
