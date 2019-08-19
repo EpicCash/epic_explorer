@@ -484,8 +484,14 @@ export class GraphListComponent implements OnInit {
                       }];
                   break;
               }
-              // res.response.Minrange, res.response.Maxrange
-              let range = [];
+              let range1 = [];
+              let range2 = [];
+              let range3 = [];              // res.response.Minrange, res.response.Maxrange
+              if(DifficultychartDate.length == 1 && DifficultyCuckatoo[0] != 0 && DifficultyRandomx[0] != 0 && DifficultyProgpow[0] != 0){
+                    range1 = [ (DifficultyCuckatoo[0] - (DifficultyCuckatoo[0] * 0.3)), (DifficultyCuckatoo[0] + (DifficultyCuckatoo[0] * 0.3)) ];
+                    range2 = [ (DifficultyRandomx[0] - (DifficultyRandomx[0] * 0.3)), (DifficultyRandomx[0] + (DifficultyRandomx[0] * 0.3)) ];
+                    range3 = [ (DifficultyProgpow[0] - (DifficultyProgpow[0] * 0.3)), (DifficultyProgpow[0] + (DifficultyProgpow[0] * 0.3)) ];
+              }
               let tickformat = res.response.tickFormat;
               // this.lg_last =
               // TargetDifficulty[TargetDifficulty.length - 1];
@@ -496,7 +502,9 @@ export class GraphListComponent implements OnInit {
                     DifficultychartDate,
                     data,
                     this.Type,
-                    range,
+                    range1,
+                    range2,
+                    range3,
                     tickformat
                   );
                   break;
@@ -505,7 +513,9 @@ export class GraphListComponent implements OnInit {
                     DifficultychartDate,
                     data,
                     this.Type,
-                    range,
+                    range1,
+                    range2,
+                    range3,
                     tickformat
                   );
                   break;
@@ -591,7 +601,7 @@ export class GraphListComponent implements OnInit {
     });
   }
 
-  difficultyChartFunc(DifficultychartDate, data, Type, range, tickformat) {
+  difficultyChartFunc(DifficultychartDate, data, Type, range1, range2, range3, tickformat) {
     // console.log('range rangerangerange',range);
     this.linearGraphData = {
       data: data,
@@ -613,15 +623,15 @@ export class GraphListComponent implements OnInit {
         yaxis: {
           title: 'Cuckoo',
           fixedrange: true,
-          rangemode: 'nonnegative'
+          rangemode: 'nonnegative',
           // showgrid: true,
-          // range: range
+          range: range1
         },
         yaxis2: {
           title: 'Progpow',
           fixedrange: true,
           // showgrid: true,
-          // range: range,
+          range: range3,
           overlaying: 'y',
           rangemode: 'nonnegative',
           side: 'left',
@@ -631,7 +641,7 @@ export class GraphListComponent implements OnInit {
           title: 'RandomX',
           fixedrange: true,
           // showgrid: true,
-          // range: range,
+          range: range2,
           anchor: 'x',
           overlaying: 'y',
           rangemode: 'nonnegative',
@@ -1270,7 +1280,7 @@ export class GraphListComponent implements OnInit {
       options: null,
     };
   }
-  totaldifficultyChartFunc(DifficultychartDate, data, type, range, tickformat) {
+  totaldifficultyChartFunc(DifficultychartDate, data, type, range1, range2, range3, tickformat) {
     this.linearTotalGraphData = {
       data: data,
       layout: {
@@ -1292,13 +1302,13 @@ export class GraphListComponent implements OnInit {
           fixedrange: true,
           rangemode: 'nonnegative',
           // showgrid: true,
-          // range: range
+          range: range1,
         },
         yaxis2: {
           title: 'Progpow',
           fixedrange: true,
           // showgrid: true,
-          // range: range,
+          range: range3,
           overlaying: 'y',
           rangemode: 'nonnegative',
           side: 'left',
@@ -1308,7 +1318,7 @@ export class GraphListComponent implements OnInit {
           title: 'RandomX',
           fixedrange: true,
           // showgrid: true,
-          // range: range,
+          range: range2,
           rangemode: 'nonnegative',
           anchor: 'x',
           overlaying: 'y',
