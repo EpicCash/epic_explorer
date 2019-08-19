@@ -1170,7 +1170,7 @@ export class BlockchainBlockController {
         blocks.push(parseInt(e.blocks));
       });
 
-      if(date.length == 0){
+      if(blockDate.length == 0){
         date = [moment(Date.now()).format('YYYY-MM-DD')];
         blockDate = [moment(Date.now()).format('YYYY-MM-DD')];
         blocks = [0];
