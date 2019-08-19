@@ -646,6 +646,11 @@ export class BlockchainKernelController {
         date.push(moment(e.date).format('YYYY-MM-DD'));
         Fee.push(parseInt(e.fee));
       });
+
+      if(date.length == 0){
+        date = [moment(Date.now()).format('YYYY-MM-DD')];
+        Fee = [0];
+      }
       response.status(200).json({
         status: 200,
         timestamp: Date.now(),

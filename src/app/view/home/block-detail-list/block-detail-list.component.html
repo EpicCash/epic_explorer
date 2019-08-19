@@ -48,7 +48,7 @@
         class="count mb-0"
         [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
       >
-        {{ latestblockdetail.letest_block_num }} <span class="">{{ latestblockdetail.letest_block_duration }}</span>
+        {{ latestblockdetail.letest_block_num  | number }} <span class="">{{ latestblockdetail.letest_block_duration  | number }}</span>
       </p>
      
     </div>

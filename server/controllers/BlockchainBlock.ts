@@ -1169,6 +1169,13 @@ export class BlockchainBlockController {
           blockDate.push(moment(e.date).format('YYYY-MM-DD'));
         blocks.push(parseInt(e.blocks));
       });
+
+      if(date.length == 0){
+        date = [moment(Date.now()).format('YYYY-MM-DD')];
+        blockDate = [moment(Date.now()).format('YYYY-MM-DD')];
+        blocks = [0];
+   }
+
       response.status(200).json({
         status: 200,
         timestamp: Date.now(),
@@ -1334,6 +1341,13 @@ export class BlockchainBlockController {
         return moment(e.date).format(dateFormat);
       });
 
+      if(date.length == 0){
+           date = [moment(Date.now()).format(dateFormat)];
+           DifficultyCuckatoo = [0];
+           DifficultyProgpow = [0];
+           DifficultyRandomx = [0];
+      }
+
       //   TotalDifficultyNBlockQuery.forEach(e => {
       //    date.push(moment(e.date).format(dateFormat));
       //   DifficultyCuckatoo.push(parseInt(e.total_difficulty_cuckatoo));
@@ -1467,6 +1481,13 @@ export class BlockchainBlockController {
         ProgPow.push(parseInt(e.progpow));
         RandomX.push(parseInt(e.randomx));
       });
+
+      if(date.length == 0){
+        date = [moment(Date.now()).format('YYYY-MM-DD')];
+        Cuckoo = [0];
+        ProgPow = [0];
+        RandomX = [0];
+      }
       response.status(200).json({
         status: 200,
         timestamp: Date.now(),
@@ -1920,6 +1941,11 @@ let remaining_height = 0;
         date.push(moment(e.date).format('YYYY-MM-DD'));
         period.push(parseInt(e.period));
       });
+
+      if(date.length == 0){
+        date = [moment(Date.now()).format('YYYY-MM-DD')];
+        period = [0];
+      }
       response.status(200).json({
         status: 200,
         timestamp: Date.now(),
@@ -2031,6 +2057,12 @@ let remaining_height = 0;
         addedreward.push(prev_value + parseInt(e.total_reward_per_day));
         prev_value = prev_value + parseInt(e.total_reward_per_day);
       });
+
+      if(date.length == 0){
+        date = [moment(Date.now()).format('YYYY-MM-DD')];
+        total_reward_per_day = [0];
+        addedreward = [0];
+      }
       response.status(200).json({
         status: 200,
         timestamp: Date.now(),
@@ -2124,6 +2156,16 @@ let remaining_height = 0;
         Cuckoo.push(parseInt(e.cuckoo));
         ProgPow.push(parseInt(e.progpow));
       });
+
+      if(date.length == 0){
+        date = [moment(Date.now()).format('YYYY-MM-DD')];
+        RandomXper = [0];
+        Cuckooper = [0];
+        ProgPowper = [0];
+        RandomX = [0];
+        Cuckoo = [0];
+        ProgPow = [0];
+      }
 
       response.status(200).json({
         status: 200,

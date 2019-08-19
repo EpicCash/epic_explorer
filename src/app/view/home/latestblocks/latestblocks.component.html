@@ -280,7 +280,7 @@
       <div class="col-6 col-md-3 tble_col">
         <div class="block_div peers_diff text-left" title="Cuckaroo : {{ peer.total_difficulty.cuckaroo | number }}, Cuckatoo :  {{ peer.total_difficulty.cuckatoo | number }}, Progpow : {{ peer.total_difficulty.progpow | number }}, Randomx : {{ peer.total_difficulty.randomx | number }}">
             <h6>Total Difficulty</h6>
-          <span class="blck_value ">{{ peer.total_difficulty.cuckaroo }},{{ peer.total_difficulty.cuckatoo}},{{ peer.total_difficulty.progpow}},{{ peer.total_difficulty.randomx}}</span>
+          <span class="blck_value ">{{ peer.total_difficulty.cuckaroo  | number }} / {{ peer.total_difficulty.cuckatoo  | number}} / {{ peer.total_difficulty.progpow  | number}} / {{ peer.total_difficulty.randomx  | number}}</span>
         </div>
       </div>
     </div>

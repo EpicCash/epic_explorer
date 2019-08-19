@@ -591,12 +591,14 @@ export class GraphListComponent implements OnInit {
           tickangle: -45,
           tickformat: tickformat,
           fixedrange: true,
+          rangemode: 'nonnegative',
           domain: [0.2, 0.8]
           // showgrid: true
         },
         yaxis: {
           title: 'Cuckoo',
           fixedrange: true,
+          rangemode: 'nonnegative'
           // showgrid: true,
           // range: range
         },
@@ -606,6 +608,7 @@ export class GraphListComponent implements OnInit {
           // showgrid: true,
           // range: range,
           overlaying: 'y',
+          rangemode: 'nonnegative',
           side: 'left',
           position: 1.25
         },
@@ -616,6 +619,7 @@ export class GraphListComponent implements OnInit {
           // range: range,
           anchor: 'x',
           overlaying: 'y',
+          rangemode: 'nonnegative',
           side: 'right'
 
         },
@@ -737,12 +741,14 @@ export class GraphListComponent implements OnInit {
           tickangle: -45,
           tickformat: '%m-%d',
           showgrid: true,
+          rangemode: 'nonnegative',
           fixedrange: true
         },
         yaxis: {
           title: 'Blocks',
           showgrid: true,
-          fixedrange: true
+          fixedrange: true,
+          rangemode: 'nonnegative'
         },
         margin: {
           l: 50,
@@ -780,12 +786,14 @@ export class GraphListComponent implements OnInit {
           tickangle: -45,
           showgrid: true,
           title: 'Blocks Height',
+          rangemode: 'nonnegative',
           fixedrange: true
         },
         yaxis: {
           title: 'Seonds',
           showgrid: true,
-          fixedrange: true
+          fixedrange: true,
+          rangemode: 'nonnegative'
         },
         margin: {
           l: 50,
@@ -824,10 +832,12 @@ export class GraphListComponent implements OnInit {
           tickangle: -45,
           tickformat: '%m-%d',
           showgrid: true,
-          fixedrange: true
+          fixedrange: true,
+          rangemode: 'nonnegative'
         },
         yaxis: {
           title: 'Blocks',
+          rangemode: 'nonnegative',
           showgrid: true,
           fixedrange: true
         },
@@ -940,7 +950,7 @@ export class GraphListComponent implements OnInit {
           y: bPeriod,
           text: bPeriod,
           name: '',
-          hovertemplate: '%{x}<br> Blocks Per Sec : %{text:,}',
+          hovertemplate: '%{x}<br> Seconds per Block : %{text:,}',
           fill: 'tozeroy',
           type: 'line',
           line: {
@@ -1224,13 +1234,15 @@ export class GraphListComponent implements OnInit {
           showgrid: false,
           zeroline: false,
           tickformat: '%m-%d',
-          fixedrange: true
+          fixedrange: true,
+          rangemode: 'nonnegative'
         },
         yaxis: {
           showline: false,
           title: 'Estimated Hashrate (GH/s)',
           showgrid: true,
-          fixedrange: true
+          fixedrange: true,
+          rangemode: 'nonnegative',
         },
         margin: {
           l: 50,
@@ -1263,6 +1275,7 @@ export class GraphListComponent implements OnInit {
         yaxis: {
           title: 'Cuckoo',
           fixedrange: true,
+          rangemode: 'nonnegative',
           // showgrid: true,
           // range: range
         },
@@ -1272,6 +1285,7 @@ export class GraphListComponent implements OnInit {
           // showgrid: true,
           // range: range,
           overlaying: 'y',
+          rangemode: 'nonnegative',
           side: 'left',
           position: 1.25
         },
@@ -1280,6 +1294,7 @@ export class GraphListComponent implements OnInit {
           fixedrange: true,
           // showgrid: true,
           // range: range,
+          rangemode: 'nonnegative',
           anchor: 'x',
           overlaying: 'y',
           side: 'right'
