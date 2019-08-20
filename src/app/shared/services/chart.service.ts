@@ -13,8 +13,7 @@ import * as io from "socket.io-client";
   providedIn: "root"
 })
 export class ChartService {
-  //private server = environment.domain;
-  private server = 'http://localhost:4001';
+  private server = environment.domain;
   private socket;
 
   constructor(public http: HttpClient) {
