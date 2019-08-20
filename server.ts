@@ -188,7 +188,7 @@ console.log(__dirname);
     const io = require("socket.io").listen(server);
     io.sockets.on("connection", socket => {
       //setTimeout(function() {
-      universalGetLatestBlockDetails(socket);
+      //universalGetLatestBlockDetails(socket);
     //},1000);
     socket.on("disconnect", () => console.log("Client disconnected"));
     });
