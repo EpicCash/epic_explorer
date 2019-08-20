@@ -182,15 +182,15 @@ console.log(__dirname);
       BlockchainOutput],
   }]).then(async () => {
     
-    var connection_test = await getConnection("Testnet");
     const server = app.listen(PORT, () => {
       console.log(`Node Express server listening on http://localhost:${PORT}`);
     });
     const io = require("socket.io").listen(server);
     io.sockets.on("connection", socket => {
       //setTimeout(function() {
-      universalGetLatestBlockDetails(socket, connection_test);
+      universalGetLatestBlockDetails(socket);
     //},1000);
+    socket.on("disconnect", () => console.log("Client disconnected"));
     });
   })
   .catch(error => {
