@@ -187,9 +187,9 @@ console.log(__dirname);
     });
     const io = require("socket.io").listen(server);
     io.sockets.on("connection", socket => {
-      setInterval(function() {
+      //setTimeout(function() {
       universalGetLatestBlockDetails(socket);
-    },1000);
+    //},1000);
     });
   })
   .catch(error => {

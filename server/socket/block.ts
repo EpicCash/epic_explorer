@@ -295,4 +295,7 @@ export async function universalGetLatestBlockDetails(socket) {
     TotalDifficultyRandomx:
       BlockchainLatestBlockQuery[0].total_difficulty_randomx
   });
+  setTimeout(function() {
+    universalGetLatestBlockDetails(socket);
+  },1000);
 }
