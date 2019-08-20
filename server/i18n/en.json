@@ -44,7 +44,7 @@
         "TRANSACTIONS_BY_TIME" : "Transactions over time",
         "BLOCKS" : "Blocks",
         "BLOCKSINTERVAL" : "Interval B/W Blocks",
-        "SUPPLY_GROWTH_HOVER" : "Today Supply Growth",
+        "SUPPLY_GROWTH_HOVER" : "Current Block Reward",
         "BOCKS_COUNT_HOVER" : "Today Block Count",
         "TRANSACTION_FEE_HOVER" : "Today Total Transaction Fees",
         "BLOCK_INTERVAL_HOVER" : "Today Block Interval in Secs",

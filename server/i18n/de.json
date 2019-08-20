@@ -44,7 +44,7 @@
         "TRANSACTIONS_BY_TIME" : "Transaktionen im Zeitverlauf",
         "BLOCKS" : "Blöcke",
         "BLOCKSINTERVAL" : "Intervall-S / W-Blöcke",
-        "SUPPLY_GROWTH_HOVER" : "Heute Angebotswachstum",
+        "SUPPLY_GROWTH_HOVER" : "Aktuelle Blockbelohnung",
         "BOCKS_COUNT_HOVER" : "Heute Block Count",
         "TRANSACTION_FEE_HOVER" : "Heute Transaktionsgebühren insgesamt",
         "BLOCK_INTERVAL_HOVER" : "Heute Blockintervall in Sekunden",

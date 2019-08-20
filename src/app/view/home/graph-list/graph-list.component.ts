@@ -364,7 +364,8 @@ export class GraphListComponent implements OnInit {
               let gaddedreward = res.response.addedreward;
               let today_date_index = gDate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
               //let today_date_index = gDate.indexOf('2019-08-06');
-              this.gg_last = gReward[today_date_index];
+              //this.gg_last = gReward[today_date_index];
+              this.gg_last = "16";
               //this.gg_last = gReward[gReward.length - 1];
               this.growthFunc(gDate, gReward, gaddedreward);
               resolve();
