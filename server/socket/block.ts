@@ -70,7 +70,7 @@ function convertMinsToHrmin(millseconds, insec) {
 }
 
 
-export async function universalGetLatestBlockDetails(socket) {
+export async function universalGetLatestBlockDetails(socket, connection_test) {
 
 
   let block_height = "",
@@ -78,9 +78,9 @@ export async function universalGetLatestBlockDetails(socket) {
     letest_block_num = "",
     letest_block_duration = "";
 
-  const BlockchainLatestBlockQuery = await getConnection("Testnet").query(
+  const BlockchainLatestBlockQuery = await connection_test.query(
     "SELECT bb.timestamp,bb.proof,bb.height,bb.edge_bits,bb.hash,bb.secondary_scaling, bb.previous_id, bb.total_difficulty_cuckaroo, bb.total_difficulty_cuckatoo, bb.total_difficulty_progpow, bb.total_difficulty_randomx, COUNT(DISTINCT(bi.block_id)) AS input_count, COUNT(DISTINCT(bk.block_id)) AS kernel_count, COUNT(DISTINCT(bo.block_id)) AS output_count FROM blockchain_block bb LEFT JOIN blockchain_input bi ON bi.block_id = bb.hash LEFT JOIN blockchain_kernel bk ON bk.block_id = bb.hash LEFT JOIN blockchain_output bo ON bo.block_id = bb.hash group by bb.hash, bb.timestamp ORDER BY bb.timestamp DESC LIMIT 1");
-  const BlockchainPreviousBlockQuery = await getConnection("Testnet").query(
+  const BlockchainPreviousBlockQuery = await connection_test.query(
     "SELECT total_difficulty_cuckaroo, total_difficulty_cuckatoo, total_difficulty_progpow, total_difficulty_randomx FROM blockchain_block WHERE hash=" +
     "'" +
     BlockchainLatestBlockQuery[0].previous_id +
@@ -296,6 +296,6 @@ export async function universalGetLatestBlockDetails(socket) {
       BlockchainLatestBlockQuery[0].total_difficulty_randomx
   });
   setTimeout(function() {
-    universalGetLatestBlockDetails(socket);
+    universalGetLatestBlockDetails(socket, connection_test);
   },1000);
 }

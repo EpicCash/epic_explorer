@@ -181,14 +181,15 @@ console.log(__dirname);
       BlockchainKernel,
       BlockchainOutput],
   }]).then(async () => {
-
+    
+    var connection_test = await getConnection("Testnet");
     const server = app.listen(PORT, () => {
       console.log(`Node Express server listening on http://localhost:${PORT}`);
     });
     const io = require("socket.io").listen(server);
     io.sockets.on("connection", socket => {
       //setTimeout(function() {
-      universalGetLatestBlockDetails(socket);
+      universalGetLatestBlockDetails(socket, connection_test);
     //},1000);
     });
   })
