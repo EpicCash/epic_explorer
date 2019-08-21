@@ -366,8 +366,12 @@ export class GraphListComponent implements OnInit {
               //let today_date_index = gDate.indexOf('2019-08-06');
               //this.gg_last = gReward[today_date_index];
               this.gg_last = "16";
+              let range = [];
+              if(gaddedreward.length == 1 && gaddedreward[0]!= 0){
+                range = [ (gaddedreward[0] - (gaddedreward[0] * 0.3)), (gaddedreward[0] + (gaddedreward[0] * 0.3)) ];
+              }
               //this.gg_last = gReward[gReward.length - 1];
-              this.growthFunc(gDate, gReward, gaddedreward);
+              this.growthFunc(gDate, gReward, gaddedreward, range);
               resolve();
             }
           },
@@ -918,7 +922,7 @@ export class GraphListComponent implements OnInit {
     };
   }
 
-  growthFunc(gDate, gReward, gaddedreward) {
+  growthFunc(gDate, gReward, gaddedreward, range) {
     this.growthGraphData = {
       data: [
         {
@@ -954,6 +958,7 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
+          range : range,
           //tickformat :".0f",
           tickprefix: '                '
         },
