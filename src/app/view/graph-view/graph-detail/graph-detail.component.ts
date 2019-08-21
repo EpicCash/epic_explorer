@@ -122,13 +122,13 @@ export class GraphDetailComponent implements OnInit {
             );
           });
           break;
-          case 'interval-between-blocks':
+          case 'block-interval':
             this.comp.Blockintervalreq().then(res => {
               this.hashdata = this.comp.barGraphIntevalData;
               this.currenyIntervalDate = this.comp.currenyIntervalDate;
               this.showcurrentIntervalDate =this.comp.showcurrentIntervalDate;
               this.hashdata.layout.height = 300;
-              this.title = 'Interval B/W Blocks';
+              this.title = 'Block Interval';
               this.selectedInteverval = 1;
               this.titleService.setTitle(
                 this.route.snapshot.data.title + ' - ' + this.title,
@@ -178,13 +178,13 @@ export class GraphDetailComponent implements OnInit {
           //   );
           // });
           break;
-        case 'block-interval':
+        case 'avg-block-interval-per-day':
           this.comp.Blockspersecreq().then(res => {
             this.hashdata = this.comp.areaGraphData;
             this.hashdata.layout.height = 300;
             // this.hashdata.layout.width =
             //   window.innerWidth - window.innerWidth / 2.8;
-            this.title = 'Block Interval';
+            this.title = 'Avg Block Interval / Day';
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
             );
@@ -273,13 +273,13 @@ export class GraphDetailComponent implements OnInit {
           this.title = 'Blocks';
         });
         break;
-      case 'interval-between-blocks':
+      case 'block-interval':
       this.comp.Blockintervalreq(p1).then(res => {
         this.hashdata = this.comp.barGraphIntevalData;
         this.currenyIntervalDate = this.comp.currenyIntervalDate;
         this.showcurrentIntervalDate =this.comp.showcurrentIntervalDate;
         this.hashdata.layout.height = 300;
-        this.title = 'Interval B/W Blocks';
+        this.title = 'Block Interval';
       });
       break;  
       case 'blocks-mined':
@@ -312,13 +312,13 @@ export class GraphDetailComponent implements OnInit {
         //   this.title = 'HashRate Growth Chart';
         // });
         break;
-      case 'block-interval':
+      case 'avg-block-interval-per-day':
         this.comp.Blockspersecreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.areaGraphData;
           this.hashdata.layout.height = 300;
           // this.hashdata.layout.width =
           //   window.innerWidth - window.innerWidth / 2.8;
-          this.title = 'Block Interval';
+          this.title = 'Avg Block Interval / Day';
         });
         break;
       case 'blocks-by-algorithm':

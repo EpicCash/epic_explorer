@@ -799,7 +799,7 @@ export class GraphListComponent implements OnInit {
           y: Blockval,
           text: Blockval,
           name: '',
-          hovertemplate: 'Blocks : %{x}<br> Inteval : %{text:,}',
+          hovertemplate: 'Block #%{x}<br> Interval : %{text:,}s',
           type: 'bar',
           marker: {
             color: Blockval,
@@ -815,12 +815,12 @@ export class GraphListComponent implements OnInit {
         xaxis: {
           tickangle: -45,
           showgrid: true,
-          title: 'Blocks Height',
+          title: 'Block Height',
           rangemode: 'nonnegative',
           fixedrange: true
         },
         yaxis: {
-          title: 'Seonds',
+          title: 'Seconds',
           showgrid: true,
           fixedrange: true,
           rangemode: 'nonnegative'

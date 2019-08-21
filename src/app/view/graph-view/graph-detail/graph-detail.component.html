@@ -96,7 +96,7 @@
                     </div> -->
               <epic-explorer-plotly *ngIf="hashdata.data" [data]="hashdata.data" [layout]="hashdata.layout">
               </epic-explorer-plotly>
-              <div class="day_filter" *ngIf="this.title!='Transactions over time' &&  this.title!='Interval B/W Blocks'">
+              <div class="day_filter" *ngIf="this.title!='Transactions over time' &&  this.title!='Block Interval'">
 
                 <a href="JavaScript:void(0);" *ngIf="this.title=='Total Difficulty' || this.title=='Target Difficulty' || this.title == 'Blocks'" (click)="
             ChartFromView('', '', '1 day', comp.Type); selectedItem = 6; comp.difficultyRange = '1 day';comp.TdifficultyRange = '1 day'
@@ -138,7 +138,7 @@
               </div>
 
 
-              <div class="day_filter" *ngIf="this.title=='Interval B/W Blocks'">
+              <div class="day_filter" *ngIf="this.title=='Block Interval'">
                 <a href="JavaScript:void(0);" (click)="
                 ChartFromView('today'); selectedInteverval = 1
                     " id="1" #intevalitem1 [ngClass]="{ active: selectedInteverval == intevalitem1.id, txt_primay: true }">Today</a>
@@ -176,8 +176,8 @@
                 routerLink="/chart/transactions-over-time">{{'home.TRANSACTIONS_BY_TIME' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Blocks'"><a
                 routerLink="/chart/blocks">{{'home.BLOCKS' | translate}}</a></li>
-                <li class="mb-1" *ngIf="this.title!='Interval B/W Blocks'"><a
-                  routerLink="/chart/interval-between-blocks">{{'home.BLOCKSINTERVAL' | translate}}</a></li>    
+                <li class="mb-1" *ngIf="this.title!='Block Interval'"><a
+                  routerLink="/chart/block-interval">{{'home.BLOCKSINTERVAL' | translate}}</a></li>    
             <li class="mb-1" *ngIf="this.title!='Blocks Mined'"><a
                 routerLink="/chart/blocks-mined">{{'home.BLOCKS_MINED' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Transaction Fees'"><a
@@ -185,8 +185,8 @@
             <li class="mb-1" *ngIf="this.title!='Supply Growth'"><a
                 routerLink="/chart/supply-growth">{{'home.SUPPLY_GROWTH' | translate}}</a></li>
             <!-- <li class="mb-1" *ngIf="this.title!='HashRate Growth Chart'"><a routerLink="/chart/hashrate-growth-chart">{{'home.HASHRATE_GROWTH_CHART' | translate}}</a></li> -->
-            <li class="mb-1" *ngIf="this.title!='Transactions over time'"><a
-                routerLink="/chart/block-interval">{{'home.BLOCK_INTERVAL' | translate}}</a></li>
+            <li class="mb-1" *ngIf="this.title!='Avg Block Interval / Day'"><a
+                routerLink="/chart/avg-block-interval-per-day">{{'home.BLOCK_INTERVAL' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Transactions by Date'"><a
                 routerLink="/chart/transactions-by-date">{{'home.TRANSACTIONS_VS_DATE' | translate}}</a></li>
             <li class="mb-1" *ngIf="this.title!='Stackbar Chart'"><a routerLink="/chart/blocks-by-algorithm">Blocks by Algorithm</a>
