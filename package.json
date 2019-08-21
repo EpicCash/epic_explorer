@@ -44,6 +44,7 @@
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
     "ngx-cookie-service": "^2.2.0",
+    "node-cron": "^2.0.3",
     "pg": "^7.11.0",
     "pg-native": "^3.0.0",
     "plotly.js": "^1.48.3",

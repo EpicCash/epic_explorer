@@ -63,6 +63,7 @@ config({ path: resolve(__dirname, "../.env") });
 // const connection = connectionManager.create(dbConfig);
 
 import { join } from "path";
+var cron = require('node-cron');
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
@@ -110,6 +111,8 @@ app.get("/swagger.json", function(req, res) {
     })
   );
 });
+
+
 
 controllers.forEach(controller => {
   app.use("/epic_explorer/v1", controller.router);
@@ -185,12 +188,22 @@ console.log(__dirname);
     const server = app.listen(PORT, () => {
       console.log(`Node Express server listening on http://localhost:${PORT}`);
     });
+
+    cron.schedule('* * * * * *', () => {
+      universalGetLatestBlockDetails('Testnet');
+      universalGetLatestBlockDetails('Floonet');
+    });
     const io = require("socket.io").listen(server);
     io.sockets.on("connection", socket => {
-      //setTimeout(function() {
-      //universalGetLatestBlockDetails(socket);
-    //},1000);
-    socket.on("disconnect", () => console.log("Client disconnected"));
+      //console.log(socket.handshake.query.network);
+      //var network = "Testnet";
+    let key =  process.env.REDIS_KEY + socket.handshake.query.network + 'Latest_Block_details'
+     setInterval(function() {
+      Global.client.get(key, function(err, reply){
+        socket.emit("latestblockdetail", JSON.parse(reply) ); 
+      });    
+    },1000);
+    //socket.on("disconnect", () => console.log("Client disconnected"));
     });
   })
   .catch(error => {

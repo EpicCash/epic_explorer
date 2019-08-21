@@ -15,9 +15,15 @@ import * as io from "socket.io-client";
 export class ChartService {
   private server = environment.domain;
   private socket;
+  private socketnetwork: any;
 
   constructor(public http: HttpClient) {
-        this.socket = io.connect(this.server);
+    if(localStorage.getItem('network') == null){
+      this.socketnetwork = "Testnet"
+    }else{
+      this.socketnetwork = localStorage.getItem('network')
+    }
+        this.socket = io.connect(this.server, {query: 'network='+this.socketnetwork});
   }
 
   // public createSocketConnection() {
