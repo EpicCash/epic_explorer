@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
- domain: '/',
+ domain: 'https://explorer.epic.tech/',
   apiUrl: 'https://explorer.epic.tech/epic_explorer/v1',
 };
 

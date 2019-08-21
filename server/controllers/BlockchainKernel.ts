@@ -1,7 +1,7 @@
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import { getRepository, getConnection } from 'typeorm';
-import { validationMiddleware } from '../middlewares';
+import { validationMiddleware, redisMiddleware } from '../middlewares';
 import { Global } from "../global";
 import * as path from 'path';
 import {
@@ -84,6 +84,7 @@ export class BlockchainKernelController {
     this.router.post(
       `${this.path}`,
       validationMiddleware(BlockchainKernelCreateDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainKernelCreate,
     );
 
@@ -119,6 +120,7 @@ export class BlockchainKernelController {
     this.router.get(
       `${this.path}/transactionfee`,
       validationMiddleware(TransactionFeeDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.TransactionFee,
     );
 
@@ -211,6 +213,7 @@ export class BlockchainKernelController {
     this.router.get(
       `${this.path}/transactionheatmap`,
       validationMiddleware(TransactionFeeDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.HeatmapChart,
     );
 
@@ -246,6 +249,7 @@ export class BlockchainKernelController {
     this.router.get(
       `${this.path}/transactionlinechart`,
       validationMiddleware(TransactionFeeDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.TransactionChart,
     );
 
@@ -284,6 +288,7 @@ export class BlockchainKernelController {
     this.router.get(
       `${this.path}/list`,
       validationMiddleware(BlockchainKernelPaginationDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainKernelPagination,
     );
 
@@ -312,6 +317,7 @@ export class BlockchainKernelController {
     this.router.get(
       `${this.path}/:id`,
       validationMiddleware(BlockchainKernelSingleViewDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainKernelFetch,
     );
 
@@ -341,6 +347,7 @@ export class BlockchainKernelController {
     this.router.patch(
       `${this.path}`,
       validationMiddleware(BlockchainKernelUpdateDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainKernelUpdate,
     );
 
@@ -369,6 +376,7 @@ export class BlockchainKernelController {
     this.router.delete(
       `${this.path}/:id`,
       validationMiddleware(BlockchainKernelSingleViewDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainKernelDelete,
     );
   }

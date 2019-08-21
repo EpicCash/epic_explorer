@@ -1,7 +1,7 @@
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import { getRepository,getConnection } from 'typeorm';
-import { validationMiddleware } from '../middlewares';
+import { validationMiddleware, redisMiddleware } from '../middlewares';
 import {
   InternalServerErrorException,
   NoDataFoundException,
@@ -63,6 +63,7 @@ export class BlockchainInputController {
     this.router.post(
       `${this.path}`,
       validationMiddleware(BlockchainInputCreateDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainInputCreate,
     );
 
@@ -101,6 +102,7 @@ export class BlockchainInputController {
     this.router.get(
       `${this.path}/list`,
       validationMiddleware(BlockchainInputPaginationDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainInputPagination,
     );
 
@@ -129,6 +131,7 @@ export class BlockchainInputController {
     this.router.get(
       `${this.path}/:id`,
       validationMiddleware(BlockchainInputSingleViewDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainInputFetch,
     );
 
@@ -158,6 +161,7 @@ export class BlockchainInputController {
     this.router.patch(
       `${this.path}`,
       validationMiddleware(BlockchainInputUpdateDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainInputUpdate,
     );
 
@@ -186,6 +190,7 @@ export class BlockchainInputController {
     this.router.delete(
       `${this.path}/:id`,
       validationMiddleware(BlockchainInputSingleViewDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainInputDelete,
     );
   }

@@ -1,7 +1,7 @@
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import { getRepository, getConnection } from 'typeorm';
-import { validationMiddleware } from '../middlewares';
+import { validationMiddleware, redisMiddleware } from '../middlewares';
 import { Global } from "../global";
 
 import {
@@ -77,6 +77,7 @@ export class BlockchainOutputController {
     this.router.post(
       `${this.path}`,
       validationMiddleware(BlockchainOutputCreateDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainOutputCreate,
     );
 
@@ -115,6 +116,7 @@ export class BlockchainOutputController {
     this.router.get(
       `${this.path}/list`,
       validationMiddleware(BlockchainOutputPaginationDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainOutputPagination,
     );
 
@@ -143,6 +145,7 @@ export class BlockchainOutputController {
     this.router.get(
       `${this.path}/:id`,
       validationMiddleware(BlockchainOutputSingleViewDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainOutputFetch,
     );
 
@@ -172,6 +175,7 @@ export class BlockchainOutputController {
     this.router.patch(
       `${this.path}`,
       validationMiddleware(BlockchainOutputUpdateDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainOutputUpdate,
     );
 
@@ -200,6 +204,7 @@ export class BlockchainOutputController {
     this.router.delete(
       `${this.path}/:id`,
       validationMiddleware(BlockchainOutputSingleViewDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainOutputDelete,
     );
   }

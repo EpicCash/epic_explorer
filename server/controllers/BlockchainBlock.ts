@@ -2,7 +2,7 @@ import express from 'express';
 import { Global } from "../global";
 import { Request, Response, NextFunction } from 'express';
 import { getRepository, getConnection } from 'typeorm';
-import { validationMiddleware } from '../middlewares';
+import { validationMiddleware, redisMiddleware } from '../middlewares';
 import {
   InternalServerErrorException,
   NoDataFoundException,
@@ -208,6 +208,7 @@ export class BlockchainBlockController {
     this.router.post(
       `${this.path}`,
       validationMiddleware(BlockchainBlockCreateDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainBlockCreate,
     );
 
@@ -251,6 +252,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/totaldiff`,
       validationMiddleware(TotalDifficultyNBlockDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.TotalDifficultyNBlock,
     );
 
@@ -286,6 +288,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/blockcount`,
       validationMiddleware(TotalDifficultyNBlockDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockCount,
     );
 
@@ -315,6 +318,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/blockinterval`,
       validationMiddleware(TotalDifficultyNBlockDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockInterval,
     );
 
@@ -350,6 +354,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/stackblock`,
       validationMiddleware(TotalDifficultyNBlockDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.StackBlock,
     );
 
@@ -385,6 +390,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/blockpiechart`,
       validationMiddleware(TotalDifficultyNBlockDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockPieChart,
     );
 
@@ -420,6 +426,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/hashrate`,
       validationMiddleware(TotalDifficultyNBlockDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.HashRate,
     );
 
@@ -442,6 +449,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/latesblockdetails`,
       validationMiddleware(TotalDifficultyNBlockDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.LatestDifficultyNBlock,
     );
 
@@ -477,6 +485,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/blockspersec`,
       validationMiddleware(TotalDifficultyNBlockDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainBlockPerSecond,
     );
 
@@ -512,6 +521,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/supplygrowth`,
       validationMiddleware(TotalDifficultyNBlockDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.SupplyGrowth,
     );
 
@@ -547,6 +557,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/blockminedchart`,
       validationMiddleware(TotalDifficultyNBlockDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockMineChart,
     );
 
@@ -580,6 +591,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/list`,
       validationMiddleware(BlockchainBlockPaginationDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainBlockPagination,
     );
 
@@ -608,6 +620,7 @@ export class BlockchainBlockController {
     this.router.get(
       `${this.path}/:hash`,
       validationMiddleware(BlockchainBlockSingleViewDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainBlockFetch,
     );
 
@@ -637,6 +650,7 @@ export class BlockchainBlockController {
     this.router.patch(
       `${this.path}`,
       validationMiddleware(BlockchainBlockUpdateDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainBlockUpdate,
     );
 
@@ -665,6 +679,7 @@ export class BlockchainBlockController {
     this.router.delete(
       `${this.path}/:hash`,
       validationMiddleware(BlockchainBlockSingleViewDto),
+      redisMiddleware(process.env.REDIS_EXPIRY),
       this.BlockchainBlockDelete,
     );
   }
