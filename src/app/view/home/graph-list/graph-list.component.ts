@@ -567,7 +567,8 @@ export class GraphListComponent implements OnInit {
               let BlocksChartHeight = res.response.Blocks;
               let Blockval = res.response.alter;
               this.blockinteval_last = Blockval[Blockval.length - 1];
-              this.BlocksIntevalFunc(BlocksChartHeight, Blockval);
+              var range = [ BlocksChartHeight[0], BlocksChartHeight[BlocksChartHeight.length-1] ];
+              this.BlocksIntevalFunc(BlocksChartHeight, Blockval, range);
               resolve();
             }
           },
@@ -791,7 +792,7 @@ export class GraphListComponent implements OnInit {
     };
   }
 
-  BlocksIntevalFunc(BlocksChartHeight, Blockval) {
+  BlocksIntevalFunc(BlocksChartHeight, Blockval, range) {
     this.barGraphIntevalData = {
       data: [
         {
@@ -820,6 +821,7 @@ export class GraphListComponent implements OnInit {
         showlegend: false,
         xaxis: {
           tickangle: -45,
+          range: range,
           showgrid: true,
           title: 'Block Height',
           rangemode: 'nonnegative',

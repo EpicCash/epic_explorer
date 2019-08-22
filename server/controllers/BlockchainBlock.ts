@@ -1224,7 +1224,7 @@ export class BlockchainBlockController {
       } 
       const BlockQuery = await getConnection(Global.network)
         .query(
-          "SELECT bb.height, coalesce(max(bb.alter), 0) as alter, bb.timestamp FROM (SELECT height, EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter, timestamp FROM blockchain_block where timestamp::date = date '"+IntervalDate+"' order by height asc) as bb group by bb.height , bb.timestamp;",
+          "SELECT bb.height, coalesce(max(bb.alter), 0) as alter, bb.timestamp FROM (SELECT height, EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter, timestamp FROM blockchain_block where timestamp::date = date '"+IntervalDate+"' AND height != 0 order by height asc) as bb group by bb.height , bb.timestamp;",
         )
         .catch(err_msg => {
           next(err_msg);
@@ -1944,7 +1944,7 @@ let remaining_height = 0;
           "select date(DATE_TRUNC('day', timestamp)) as date, count(hash) as blocks, 86400/count(hash) as period \
         from blockchain_block where " +
           timeIntervalQry +
-          "group by DATE_TRUNC('day', timestamp) order by date",
+          "AND height != 0 group by DATE_TRUNC('day', timestamp) order by date",
         )
         .catch(err_msg => {
           next(err_msg);
