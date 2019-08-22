@@ -946,7 +946,7 @@ export class GraphListComponent implements OnInit {
           },
           text: gReward,
           hovertemplate:
-            '%{x}<br> Supply Per Day : %{text:,}<br> Total supply : %{y:,}',
+            '%{x}<br> Supply per day : %{text:,}<br> Total supply : %{y:,}',
         },
       ],
       layout: {
