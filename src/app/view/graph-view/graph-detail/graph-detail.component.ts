@@ -178,13 +178,13 @@ export class GraphDetailComponent implements OnInit {
           //   );
           // });
           break;
-        case 'avg-block-interval-per-day':
+        case 'avg-block-interval':
           this.comp.Blockspersecreq().then(res => {
             this.hashdata = this.comp.areaGraphData;
             this.hashdata.layout.height = 300;
             // this.hashdata.layout.width =
             //   window.innerWidth - window.innerWidth / 2.8;
-            this.title = 'Avg Block Interval / Day';
+            this.title = 'Avg Block Interval';
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
             );
@@ -312,13 +312,13 @@ export class GraphDetailComponent implements OnInit {
         //   this.title = 'HashRate Growth Chart';
         // });
         break;
-      case 'avg-block-interval-per-day':
+      case 'avg-block-interval':
         this.comp.Blockspersecreq(p1, p2, p3).then(res => {
           this.hashdata = this.comp.areaGraphData;
           this.hashdata.layout.height = 300;
           // this.hashdata.layout.width =
           //   window.innerWidth - window.innerWidth / 2.8;
-          this.title = 'Avg Block Interval / Day';
+          this.title = 'Avg Block Interval';
         });
         break;
       case 'blocks-by-algorithm':

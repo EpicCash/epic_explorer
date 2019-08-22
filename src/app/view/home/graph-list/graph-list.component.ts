@@ -76,7 +76,7 @@ export class GraphListComponent implements OnInit {
     if (this.router.url == '/all') {
       this.viewchartvar = true;
     } else {
-      this.viewchartvar = false;
+      this.viewchartvar = true;
     }
   }
 
@@ -564,7 +564,7 @@ export class GraphListComponent implements OnInit {
         .subscribe(
           res => {
             if (res['status'] == 200) {
-              let BlocksChartHeight = res.response.height;
+              let BlocksChartHeight = res.response.Blocks;
               let Blockval = res.response.alter;
               this.blockinteval_last = Blockval[Blockval.length - 1];
               this.BlocksIntevalFunc(BlocksChartHeight, Blockval);
@@ -806,6 +806,12 @@ export class GraphListComponent implements OnInit {
             colorscale: 'Viridis',
           },
         },
+        {
+          name: 'Average Block Interval',
+          y: [60],
+          orientation: 'h',
+          type: 'bar'
+        }
       ],
       layout: {
         hovermode: 'closest',
@@ -834,6 +840,7 @@ export class GraphListComponent implements OnInit {
       },
       options: null,
     };
+        console.log(this.barGraphIntevalData.data)
   }
 
 
@@ -937,7 +944,7 @@ export class GraphListComponent implements OnInit {
           },
           text: gReward,
           hovertemplate:
-            '%{x}<br> supply per day : %{text:,}<br> Total supply : %{y:,}',
+            '%{x}<br> Supply Per Day : %{text:,}<br> Total supply : %{y:,}',
         },
       ],
       layout: {

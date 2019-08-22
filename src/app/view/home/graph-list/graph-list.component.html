@@ -170,7 +170,7 @@
       <h2 class="chart_heading d-inline-block">{{'home.SUPPLY_GROWTH' | translate}}</h2>
       <span class="txn_count" title="{{'home.SUPPLY_GROWTH_HOVER' | translate}}" *ngIf="this.gg_last">{{
           this.gg_last | number
-        }}</span>
+        }}Epic</span>
       <div class="chart_show">
         <epic-explorer-plotly *ngIf="growthGraphData.data" [data]="growthGraphData.data" [layout]="growthGraphData.layout">
         </epic-explorer-plotly>
@@ -407,7 +407,7 @@
         <h2 class="chart_heading d-inline-block">{{'home.BLOCKSINTERVAL' | translate}}</h2>
         <span class="txn_count"  title="{{'home.BLOCK_INTERVAL_BW_BLOCKS_HOVER' | translate}}" *ngIf="this.blockinteval_last">{{
             this.blockinteval_last | number
-          }}</span>
+          }}s</span>
         <div class="chart_show">
           <epic-explorer-plotly *ngIf="barGraphIntevalData.data" [data]="barGraphIntevalData.data" [layout]="barGraphIntevalData.layout"></epic-explorer-plotly>
           <div *ngIf="!barGraphIntevalData.data" class="feedback_div news_desc text-center">
@@ -446,7 +446,7 @@
     <div class="box_shadow">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.BLOCK_INTERVAL' | translate}}</h2>
-        <span class="txn_count" title="{{'home.BLOCK_INTERVAL_HOVER' | translate}}" *ngIf="this.ag_last">{{ this.ag_last | number }} sec</span>
+        <span class="txn_count" title="{{'home.BLOCK_INTERVAL_HOVER' | translate}}" *ngIf="this.ag_last">{{ this.ag_last | number }}s</span>
 
         <div class="chart_show">
           <epic-explorer-plotly *ngIf="areaGraphData.data" [data]="areaGraphData.data" [layout]="areaGraphData.layout">
@@ -482,7 +482,7 @@
           [ngClass]="{ active: selectedItem2 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
       </div>
       <div class="explore_all text-right">
-        <a routerLink="/chart/avg-block-interval-per-day"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
+        <a routerLink="/chart/avg-block-interval"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
               class="fa fa-long-arrow-right"></i></span></a>
       </div>
     </div>

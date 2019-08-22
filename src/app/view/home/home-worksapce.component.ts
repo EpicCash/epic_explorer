@@ -27,9 +27,9 @@ import { ActivatedRoute } from '@angular/router';
           routerLink="/all"
           class="text-center my-3"
         >
-          <button class="btn btn_primary align-middle">
+         <!-- <button class="btn btn_primary align-middle">
             View All Charts <i class="fa fa-long-arrow-right ml-3 "></i>
-          </button>
+          </button> -->
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@ export class HomeWorksapceComponent extends Utils
     if (this.router.url == '/all') {
       this.viewchartvar = false;
     } else {
-      this.viewchartvar = true;
+      this.viewchartvar = false;
     }
   }
 
