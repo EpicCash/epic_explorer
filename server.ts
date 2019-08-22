@@ -193,16 +193,20 @@ console.log(__dirname);
       universalGetLatestBlockDetails('Testnet');
       universalGetLatestBlockDetails('Floonet');
     });
+    var interval;
     const io = require("socket.io").listen(server);
     io.sockets.on("connection", socket => {
+      // if (interval) {
+      //   clearInterval(interval);
+      // }
       //console.log(socket.handshake.query.network);
       //var network = "Testnet";
     let key =  process.env.REDIS_KEY + socket.handshake.query.network + 'Latest_Block_details'
-     setInterval(function() {
+    interval = setInterval(function() {
       Global.client.get(key, function(err, reply){
         socket.emit("latestblockdetail", JSON.parse(reply) ); 
       });    
-    },1000);
+    },10000);
     //socket.on("disconnect", () => console.log("Client disconnected"));
     });
   })

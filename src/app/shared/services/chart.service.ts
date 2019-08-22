@@ -58,6 +58,7 @@ export class ChartService {
     return new HttpHeaders().set('network', network);
   }
 
+  
 
   public getLatestblockdetails() {
     if(this.socket==null){

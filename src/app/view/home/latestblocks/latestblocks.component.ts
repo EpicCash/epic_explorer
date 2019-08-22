@@ -65,7 +65,7 @@ export class LatestblocksComponent implements OnInit {
       //console.log(this.blockdetails);
       if (this.lastblock != this.blockdetails.block_height) {
         //console.log('Create');
-        this.createBlock();
+        //this.createBlock();
       }
       this.lastblock = this.blockdetails.block_height;
       //console.log(this.lastblock);
