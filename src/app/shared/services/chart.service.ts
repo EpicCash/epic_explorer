@@ -14,7 +14,7 @@ import * as io from "socket.io-client";
 })
 export class ChartService {
   private server = environment.domain;
-  private socket;
+  private socket=null;
   private socketnetwork: any;
 
   constructor(public http: HttpClient) {
@@ -23,7 +23,7 @@ export class ChartService {
     }else{
       this.socketnetwork = localStorage.getItem('network')
     }
-        this.socket = io.connect(this.server, {query: 'network='+this.socketnetwork});
+      
   }
 
   // public createSocketConnection() {
@@ -60,6 +60,10 @@ export class ChartService {
 
 
   public getLatestblockdetails() {
+    if(this.socket==null){
+      this.socket = io.connect(this.server, {requestTimeout:100000000,query: 'network='+this.socketnetwork});
+      this.socket.heartbeatTimeout = 200000
+    }
     return Observable.create(observer => {
       this.socket.on("latestblockdetail", response => {
         observer.next(response);
