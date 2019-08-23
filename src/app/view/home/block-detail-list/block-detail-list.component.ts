@@ -66,6 +66,7 @@ export class BlockDetailListComponent implements OnInit {
             if (res["status"] == 200) {
               // var hasharray = res.response;
               this.latestblockdetail = res.response;
+              setInterval(() => this.incrementseconds(), 1000);
               this.latestblockdetail["blink"] = false;
               resolve();
             }
@@ -73,6 +74,10 @@ export class BlockDetailListComponent implements OnInit {
           error => {}
         );
     });
+  }
+
+  incrementseconds(){
+    this.latestblockdetail.letest_block_num  = this.latestblockdetail.letest_block_num + 1;
   }
 
   ngOnDestroy() {
