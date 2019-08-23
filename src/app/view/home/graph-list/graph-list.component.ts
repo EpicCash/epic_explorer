@@ -1191,7 +1191,7 @@ export class GraphListComponent implements OnInit {
         {
           type: 'scatter',
           mode: 'lines',
-          name: 'Kernal',
+          name: 'Kernel',
           x: Tdate,
           y: Ttotalkernal,
           text: Ttotalkernal,
