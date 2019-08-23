@@ -62,7 +62,7 @@ export class ChartService {
 
   public getLatestblockdetails() {
     if(this.socket==null){
-      this.socket = io.connect(this.server, {requestTimeout:100000000,query: 'network='+this.socketnetwork});
+      this.socket = io.connect(this.server, {transport: 'websocket', requestTimeout:100000000,query: 'network='+this.socketnetwork});
       this.socket.heartbeatTimeout = 200000
     }
     return Observable.create(observer => {
