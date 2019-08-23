@@ -65,6 +65,8 @@
     .logo_txt{font-size: 35px;}
     .footer_div{text-align: center;}
     .view_txt{font-size: 15px;}
+    .ytitle, .y2tick, .y3tick, .ytick, .y2title, .y3title, .xtitle, .xtick{font-size: 11px !important}
+
 }
 @media(max-width: 575px){
     .mobile_table h6, .mobile_table span.blck_value{font-size: 12px;}
