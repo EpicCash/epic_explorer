@@ -170,7 +170,7 @@
       <h2 class="chart_heading d-inline-block">{{'home.SUPPLY_GROWTH' | translate}}</h2>
       <span class="txn_count" title="{{'home.SUPPLY_GROWTH_HOVER' | translate}}" *ngIf="this.gg_last">{{
           this.gg_last | number
-        }} Epic</span>
+        }} Epic per block</span>
       <div class="chart_show">
         <epic-explorer-plotly *ngIf="growthGraphData.data" [data]="growthGraphData.data" [layout]="growthGraphData.layout">
         </epic-explorer-plotly>
