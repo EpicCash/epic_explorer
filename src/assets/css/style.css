@@ -215,6 +215,7 @@ a:focus {
 .box_shadow {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  border: 1px solid #dadada;
 }
 .filter_shadow {
   filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.1));
@@ -460,10 +461,10 @@ a:focus {
 }
 .link_to_detail{cursor: pointer;color: #c89e61;}
 .link_to_detail:hover{color: #c89e61;text-decoration: underline;}
-.mobile_table, .peer_mobile_table{border-bottom: 1px solid #dee2e6;position: relative;}
+.mobile_table, .peer_mobile_table{border-bottom: 1px solid #686868;position: relative;}
 .mobile_table .tble_col{padding: 0;}
 .mobile_table:nth-child(even), .peer_mobile_table:nth-child(even) {
-  background: #eee;
+  background: #dadada;
 }
 .expnd_blck{display: none;}
 .block_div h5{color: #555;font-size: 16px;}
@@ -644,7 +645,8 @@ body.dark_theme {
   color: #c0d2ff;
 }
 .dark_theme .main-svg:first-child {
-  background: rgb(39, 49, 75) !important;
+  /* background: rgb(39, 49, 75) !important; */
+  background: #1d1d1f !important;
 }
 .dark_theme .g-ytitle text, .dark_theme .g-y2title text, .dark_theme .g-y3title text,
 .dark_theme .xtick text, .dark_theme .x2tick text, .dark_theme .x3tick text,
