@@ -217,6 +217,7 @@ a:focus {
   overflow: hidden;
   border: 1px solid #dadada;
 }
+.box_shadow:hover{box-shadow: 0 1px 10px rgb(200, 158, 97);}
 .filter_shadow {
   filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.1));
 }
