@@ -203,6 +203,7 @@ a:focus {
   border: none;
   background-color: #f3f4f2;
 }
+.bg_gray{background-color: #dadada ;}
 .search_btn {
   position: absolute;
   top: 4px;
@@ -414,6 +415,7 @@ a:focus {
 .view_content{background-color: #eeeeee;min-height: 800px;}
 .mble_view_hdr{display: inline-block;}
 .box_shadow_large{box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2);}
+.box_shadow_large a{color: #BF9B30;}
 .view_txt{color: #acacac;font-size: 17px;}
 .block_rotate {
   animation: rotation 2s infinite linear;
@@ -672,8 +674,8 @@ body.dark_theme {
   color: #a6a6a6;
 }
 .dark_theme .footer_div{border-color: #a5a5a5}
-.dark_theme .view_page_header {background: #1c2437;}
-.dark_theme .view_content {background-color: #222223;}
+.dark_theme .view_page_header {background: #222223;}
+.dark_theme .view_content {background-color: #252525;}
 .js-plotly-plot .plotly .modebar,
 .zerolinelayer {
   display: none;
