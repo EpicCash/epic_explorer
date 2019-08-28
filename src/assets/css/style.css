@@ -20,7 +20,7 @@ body {
   max-width: 75%;
   margin: 0 auto;
 }
-.text_underline{text-decoration: underline;color: #c89e61}
+.text_underline{text-decoration: underline;color: #BF9B30}
 a:hover,
 a:focus {
   text-decoration: none;
@@ -34,7 +34,7 @@ a:focus {
   }
 }
 .loaders {
-  color: #c89e61;
+  color: #BF9B30;
   font-size: 90px;
   text-indent: -9999em;
   overflow: hidden;
@@ -134,7 +134,7 @@ a:focus {
 .nav-item.dropdown.bg-white{background-color: #dadada !important;}
 /************************************************texts*****************************************/
 .txt_primary {
-  color: #c89e61;
+  color: #BF9B30;
 }
 .txt_secondary {
   color: #333333;
@@ -206,7 +206,7 @@ a:focus {
   position: absolute;
   top: 4px;
   right: 10px;
-  color: #c89e61;
+  color: #BF9B30;
 }
 .blocks {
   background: #fff;
@@ -232,7 +232,7 @@ a:focus {
   z-index: 1;
 }
 .txn_count {
-  background: #c89e61;
+  background: #BF9B30;
   vertical-align: middle;
   border-radius: 25px;
   font-size: 13px;
@@ -244,12 +244,12 @@ a:focus {
   z-index: 1;
   float: right;
   margin-top: 5px;
-  border: 1px solid #c89e61;
+  border: 1px solid #BF9B30;
   transition: all 0.3s linear;
 }
 .blocks:hover .txn_count {
   background: #fff;
-  color: #c89e61;
+  color: #BF9B30;
   transition: all 0.3s linear;
 }
 .day_filter {
@@ -273,11 +273,11 @@ a:focus {
   background: #ffffff;
   padding: 15px;
   font-size: 13px;
-  color: #c89e61;
-  border-top: 1px solid #c89e61;
+  color: #BF9B30;
+  border-top: 1px solid #BF9B30;
 }
 .explore_all a {
-  color: #c89e61;
+  color: #BF9B30;
 }
 .explore_all a:hover, .explore_all a:focus {
   color: #777777;
@@ -291,10 +291,10 @@ a:focus {
   font-size: 13px;
 }
 .ip_filter a.active {
-  color: #c89e61;
+  color: #BF9B30;
 }
 .btn_primary {
-  background: #c89e61;
+  background: #BF9B30;
   border-radius: 25px;
   color: #fff !important;
   text-transform: uppercase;
@@ -313,7 +313,7 @@ a:focus {
 }
 .detail_div .count {
   font-size: 25px;
-  color: #c89e61;
+  color: #BF9B30;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -460,8 +460,8 @@ a:focus {
       -webkit-transform: rotate(359deg);
   }
 }
-.link_to_detail{cursor: pointer;color: #c89e61;}
-.link_to_detail:hover{color: #c89e61;text-decoration: underline;}
+.link_to_detail{cursor: pointer;color: #BF9B30;}
+.link_to_detail:hover{color: #BF9B30;text-decoration: underline;}
 .mobile_table, .peer_mobile_table{border-bottom: 1px solid #686868;position: relative;}
 .mobile_table .tble_col{padding: 0;}
 .mobile_table:nth-child(even), .peer_mobile_table:nth-child(even) {
@@ -527,7 +527,7 @@ margin-right: 10px;
   margin-top: -4px;
 }
 .langbut:focus{outline: none;}
-.detail_div .difficulty_datas{font-size: 14px !important; color: #c89e61; margin-bottom: 0px;}
+.detail_div .difficulty_datas{font-size: 14px !important; color: #BF9B30; margin-bottom: 0px;}
 .net_dropdwn{
  position: absolute;
  top: 20px;
@@ -588,7 +588,7 @@ body.dark_theme {
 }
 .dark_theme .day_filter a.active {
   background-color: #1d1d1f;
-  /* border-color: #c89e61 */
+  /* border-color: #BF9B30 */
 }
 .dark_theme .chart_heading {
   color: #ffffff;
@@ -710,7 +710,7 @@ body.dark_theme {
 .sk-cube-grid .sk-cube {
   width: 33%;
   height: 33%;
-  background-color: #c89e61;
+  background-color: #BF9B30;
   float: left;
   -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
           animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 

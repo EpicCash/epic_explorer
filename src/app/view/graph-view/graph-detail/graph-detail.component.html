@@ -14,10 +14,10 @@
               <div class="day_filter diff_margin">
                 <a href="JavaScript:void(0);" (click)="
           totalDifficultyreq('', '', '1 day',''); selectedTarget = 6; TdifficultyRange = '1 day'
-        " id="6" #itemtarget6 [ngClass]="{ active: selectedTarget == itemtarget6.id, txt_primay: true }">1 Day</a>
+        " id="6" #itemtarget6 [ngClass]="{ active: selectedTarget == itemtarget6.id, txt_primary: true }">1 Day</a>
                 <a href="JavaScript:void(0);" (click)="
             totalDifficultyreq('', '', '1 week',''); selectedTarget = 1; TdifficultyRange = '1 week'
-          " id="1" #itemtarget1 [ngClass]="{ active: selectedTarget == itemtarget1.id, txt_primay: true }">1
+          " id="1" #itemtarget1 [ngClass]="{ active: selectedTarget == itemtarget1.id, txt_primary: true }">1
                   {{'home.WEEK' | translate}}</a>
                 <a href="JavaScript:void(0);" (click)="
             totalDifficultyreq('', '', '15 days',''); selectedTarget = 2; TdifficultyRange = '15 days'
@@ -40,15 +40,15 @@
                 <a href="JavaScript:void(0);" (click)="
           totalDifficultyreq('', '', TdifficultyRange,'cuckatoo'); selectedTarget12 = 1
         " id="1" #itemtarget121
-                  [ngClass]="{ active: selectedTarget12 == itemtarget121.id, txt_primay: true }">Cuckoo</a>
+                  [ngClass]="{ active: selectedTarget12 == itemtarget121.id, txt_primary: true }">Cuckoo</a>
                 <a href="JavaScript:void(0);" (click)="
         totalDifficultyreq('', '', TdifficultyRange,'progpow'); selectedTarget12 = 2
         " id="2" #itemtarget122
-                  [ngClass]="{ active: selectedTarget12 == itemtarget122.id, txt_primay: true }">ProgPow</a>
+                  [ngClass]="{ active: selectedTarget12 == itemtarget122.id, txt_primary: true }">ProgPow</a>
                 <a href="JavaScript:void(0);" (click)="
         totalDifficultyreq('', '', TdifficultyRange,'randomx'); selectedTarget12 = 3
         " id="3" #itemtarget123
-                  [ngClass]="{ active: selectedTarget12 == itemtarget123.id, txt_primay: true }">RandomX</a>
+                  [ngClass]="{ active: selectedTarget12 == itemtarget123.id, txt_primary: true }">RandomX</a>
               </div>
 
             </div>
@@ -70,29 +70,29 @@
                 <!-- <div class="day_filter" *ngIf="this.title=='Target Difficulty'">
                     <a href="JavaScript:void(0);" (click)="
                     ChartFromView('', '', comp.difficultyRange,'all'); selectedItem12 = 4
-                  " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primay: true }">All</a>
+                  " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primary: true }">All</a>
                     <a href="JavaScript:void(0);" (click)="
                 ChartFromView('', '', comp.difficultyRange,'cuckatoo'); selectedItem12 = 1
-              " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primay: true }">Cuckoo</a>
+              " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primary: true }">Cuckoo</a>
                     <a href="JavaScript:void(0);" (click)="
               ChartFromView('', '', comp.difficultyRange,'progpow'); selectedItem12 = 2
-              " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primay: true }">ProgPow</a>
+              " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primary: true }">ProgPow</a>
                     <a href="JavaScript:void(0);" (click)="
               ChartFromView('', '', comp.difficultyRange,'randomx'); selectedItem12 = 3
-              " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primay: true }">RandomX</a>
+              " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primary: true }">RandomX</a>
                   </div>
                   <div class="day_filter" *ngIf="this.title=='Total Difficulty'">
                     <a href="JavaScript:void(0);" (click)="
                   ChartFromView('', '', comp.TdifficultyRange,'cuckatoo'); selectedItem12 = 4
-                " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primay: true }">All</a>       <a href="JavaScript:void(0);" (click)="
+                " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primary: true }">All</a>       <a href="JavaScript:void(0);" (click)="
                   ChartFromView('', '', comp.TdifficultyRange,'cuckatoo'); selectedItem12 = 1
-                " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primay: true }">Cuckoo</a>
+                " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primary: true }">Cuckoo</a>
                       <a href="JavaScript:void(0);" (click)="
                 ChartFromView('', '', comp.TdifficultyRange,'progpow'); selectedItem12 = 2
-                " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primay: true }">ProgPow</a>
+                " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primary: true }">ProgPow</a>
                       <a href="JavaScript:void(0);" (click)="
                 ChartFromView('', '', comp.TdifficultyRange,'randomx'); selectedItem12 = 3
-                " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primay: true }">RandomX</a>
+                " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primary: true }">RandomX</a>
                     </div> -->
               <epic-explorer-plotly *ngIf="hashdata.data" [data]="hashdata.data" [layout]="hashdata.layout">
               </epic-explorer-plotly>
@@ -100,10 +100,10 @@
 
                 <a href="JavaScript:void(0);" *ngIf="this.title=='Total Difficulty' || this.title=='Target Difficulty' || this.title == 'Blocks'" (click)="
             ChartFromView('', '', '1 day', comp.Type); selectedItem = 6; comp.difficultyRange = '1 day';comp.TdifficultyRange = '1 day'
-              " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primay: true }">1 Day</a>
+              " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primary: true }">1 Day</a>
                 <a href="JavaScript:void(0);" (click)="
             ChartFromView('', '', '1 week', comp.Type); selectedItem = 1; comp.difficultyRange = '1 week';comp.TdifficultyRange = '1 week'
-              " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1
+              " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primary: true }">1
                   {{'home.WEEK' | translate}}</a>
                 <a href="JavaScript:void(0);" (click)="
             ChartFromView('', '', '15 days', comp.Type); selectedItem = 2; comp.difficultyRange = '15 days';comp.TdifficultyRange = '15 days'
@@ -126,7 +126,7 @@
               <div class="day_filter" *ngIf="this.title=='Transactions over time'">
                 <a href="JavaScript:void(0);"
                   (click)="ChartFromView(GraphtDate, GraphtHour, GraphtInput,'Input'); selectedItem8 = 1" id="1" #item1
-                  [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">{{'home.INPUT' | translate}}</a>
+                  [ngClass]="{ active: selectedItem8 == item1.id, txt_primary: true }">{{'home.INPUT' | translate}}</a>
                 <a href="JavaScript:void(0);"
                   (click)="ChartFromView(GraphtDate, GraphtHour, GraphtKernal,'Kernal'); selectedItem8 = 2" id="2"
                   #item2
@@ -141,10 +141,10 @@
               <div class="day_filter" *ngIf="this.title=='Block Interval'">
                 <a href="JavaScript:void(0);" (click)="
                 ChartFromView('today'); selectedInteverval = 1
-                    " id="1" #intevalitem1 [ngClass]="{ active: selectedInteverval == intevalitem1.id, txt_primay: true }">Today</a>
+                    " id="1" #intevalitem1 [ngClass]="{ active: selectedInteverval == intevalitem1.id, txt_primary: true }">Today</a>
               <a href="JavaScript:void(0);" (click)="
               ChartFromView('yesterday'); selectedInteverval = 2
-                  " id="2" #intevalitem2 [ngClass]="{ active: selectedInteverval == intevalitem2.id, txt_primay: true }">Yesterday</a>
+                  " id="2" #intevalitem2 [ngClass]="{ active: selectedInteverval == intevalitem2.id, txt_primary: true }">Yesterday</a>
                   <a href="JavaScript:void(0);" (click)="ChartFromView('previous'); "><</a>
                   <span>{{showcurrentIntervalDate}}</span>
                   <a href="JavaScript:void(0);" (click)="ChartFromView('next'); ">></a>
