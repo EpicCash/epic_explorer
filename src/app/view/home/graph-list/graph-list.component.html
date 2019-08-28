@@ -11,16 +11,16 @@
             <!-- <div class="difficulty_filter day_filter p-0 bg-transparent mt-2">
                 <a href="JavaScript:void(0);" (click)="
                 Difficultyreq('target', '', '', difficultyRange,'all'); selectedItem12 = 4
-              " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primay: true }">All</a>
+              " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primary: true }">All</a>
                 <a href="JavaScript:void(0);" (click)="
                 Difficultyreq('target', '', '', difficultyRange,'cuckatoo'); selectedItem12 = 1
-              " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primay: true }">Cuckoo</a>
+              " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primary: true }">Cuckoo</a>
               <a href="JavaScript:void(0);" (click)="
                 Difficultyreq('target', '', '', difficultyRange,'progpow'); selectedItem12 = 2
-              " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primay: true }">ProgPow</a>
+              " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primary: true }">ProgPow</a>
               <a href="JavaScript:void(0);" (click)="
                 Difficultyreq('target', '', '', difficultyRange,'randomx'); selectedItem12 = 3
-              " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primay: true }">RandomX</a>
+              " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primary: true }">RandomX</a>
           </div> -->
           <epic-explorer-plotly *ngIf="linearGraphData.data" [data]="linearGraphData.data" [layout]="linearGraphData.layout">
           </epic-explorer-plotly>
@@ -45,10 +45,10 @@
       <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="
           Difficultyreq('target', '', '', '1 day',''); selectedItem = 6; difficultyRange = '1 day'
-        " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primay: true }">1 day</a>
+        " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primary: true }">1 day</a>
         <a href="JavaScript:void(0);" (click)="
             Difficultyreq('target', '', '', '1 week',''); selectedItem = 1; difficultyRange = '1 week'
-          " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+          " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
         <!-- <a href="JavaScript:void(0);" (click)="
             Difficultyreq('target', '', '', '15 days',''); selectedItem = 2; difficultyRange = '15 days'
           " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a> -->
@@ -99,7 +99,7 @@
 
     <div class="day_filter">
       <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tInput,'Input'); selectedItem81 = 1" id="1" #item1
-        [ngClass]="{ active: selectedItem81 == item1.id, txt_primay: true }">{{'home.INPUT' | translate}}</a>
+        [ngClass]="{ active: selectedItem81 == item1.id, txt_primary: true }">{{'home.INPUT' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tKernal,'Kernal'); selectedItem81 = 2" id="2" #item2
         [ngClass]="{ active: selectedItem81 == item2.id, day15_txt: true }">{{'home.KERNEL' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tOutput,'Output'); selectedItem81 = 3" id="3" #item3
@@ -141,10 +141,10 @@
     <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="
         blockreq('', '', '1 day'); selectedItem3 = 2
-            " id="2" #item32 [ngClass]="{ active: selectedItem3 == item32.id, txt_primay: true }">1 day</a>
+            " id="2" #item32 [ngClass]="{ active: selectedItem3 == item32.id, txt_primary: true }">1 day</a>
       <a href="JavaScript:void(0);" (click)="
       blockreq('', '', '1 week'); selectedItem3 = 1
-          " id="1" #item31 [ngClass]="{ active: selectedItem3 == item31.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+          " id="1" #item31 [ngClass]="{ active: selectedItem3 == item31.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
       <!-- <a href="JavaScript:void(0);" (click)="
       blockreq('', '', '15 days'); selectedItem3 = 2
           " id="2" #item32 [ngClass]="{ active: selectedItem3 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a> -->
@@ -194,7 +194,7 @@
     </div>
     <div class="day_filter">
       <a href="JavaScript:void(0);" (click)="Growthreq('', '', '1 week'); selectedItem5 = 1" id="1" #item1
-        [ngClass]="{ active: selectedItem5 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+        [ngClass]="{ active: selectedItem5 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Growthreq('', '', '15 days'); selectedItem5 = 2" id="2" #item2
         [ngClass]="{ active: selectedItem5 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Growthreq('', '', '30 days'); selectedItem5 = 3" id="3" #item3
@@ -242,7 +242,7 @@
 
 <div class="day_filter">
   <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '1 week'); selectedItem4 = 1" id="1" #item1
-    [ngClass]="{ active: selectedItem4 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+    [ngClass]="{ active: selectedItem4 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
   <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '15 days'); selectedItem4 = 2" id="2" #item2
     [ngClass]="{ active: selectedItem4 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
   <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '30 days'); selectedItem4 = 3" id="3" #item3
@@ -289,7 +289,7 @@
     </div>
     <div class="day_filter">
       <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '1 week'); selectedItem7 = 1" id="1" #item1
-        [ngClass]="{ active: selectedItem7 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+        [ngClass]="{ active: selectedItem7 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '15 days'); selectedItem7 = 2" id="2" #item2
         [ngClass]="{ active: selectedItem7 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '30 days'); selectedItem7 = 3" id="3" #item3
@@ -333,7 +333,7 @@
           </div>
           <div class="day_filter">
               <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '1 week'); selectedItem9 = 1" id="1" #item1
-              [ngClass]="{ active: selectedItem9 == item1.id, txt_primay: true }">1 week</a>
+              [ngClass]="{ active: selectedItem9 == item1.id, txt_primary: true }">1 week</a>
             <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '15 days'); selectedItem9 = 2" id="2" #item2
               [ngClass]="{ active: selectedItem9 == item2.id, day15_txt: true }">15 days</a>
             <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '30 days'); selectedItem9 = 3" id="3" #item3
@@ -378,7 +378,7 @@
           </div>
           <div class="day_filter">
             <a href="JavaScript:void(0);" (click)="stackchartreq('', '', '1 week'); selectedItem10 = 1" id="1"
-              #item1 [ngClass]="{ active: selectedItem10 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+              #item1 [ngClass]="{ active: selectedItem10 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
             <a href="JavaScript:void(0);" (click)="
             stackchartreq('', '', '15 days'); selectedItem10 = 2
               " id="2" #item2 [ngClass]="{ active: selectedItem10 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
@@ -431,10 +431,10 @@
       <div class="day_filter">
           <a href="JavaScript:void(0);" (click)="
           Blockintervalreq('today'); selectedInteverval = 1
-              " id="1" #intevalitem1 [ngClass]="{ active: selectedInteverval == intevalitem1.id, txt_primay: true }">Today</a>
+              " id="1" #intevalitem1 [ngClass]="{ active: selectedInteverval == intevalitem1.id, txt_primary: true }">Today</a>
         <a href="JavaScript:void(0);" (click)="
         Blockintervalreq('yesterday'); selectedInteverval = 2
-            " id="2" #intevalitem2 [ngClass]="{ active: selectedInteverval == intevalitem2.id, txt_primay: true }">Yesterday</a>
+            " id="2" #intevalitem2 [ngClass]="{ active: selectedInteverval == intevalitem2.id, txt_primary: true }">Yesterday</a>
             <a href="JavaScript:void(0);" (click)="Blockintervalreq('previous'); "><</a>
             <span>{{showcurrentIntervalDate}}</span>
             <a href="JavaScript:void(0);" (click)="Blockintervalreq('next'); ">></a>
@@ -458,19 +458,19 @@
                 <a href="JavaScript:void(0);" (click)="
                 Difficultyreq('total', '', '', TdifficultyRange,'all'); selectedTarget12 = 4
               " id="4" #itemtarget124
-                        [ngClass]="{ active: selectedTarget12 == itemtarget124.id, txt_primay: true }">All</a>
+                        [ngClass]="{ active: selectedTarget12 == itemtarget124.id, txt_primary: true }">All</a>
                 <a href="JavaScript:void(0);" (click)="
                 Difficultyreq('total', '', '', TdifficultyRange,'cuckatoo'); selectedTarget12 = 1
               " id="1" #itemtarget121
-                        [ngClass]="{ active: selectedTarget12 == itemtarget121.id, txt_primay: true }">Cuckoo</a>
+                        [ngClass]="{ active: selectedTarget12 == itemtarget121.id, txt_primary: true }">Cuckoo</a>
                       <a href="JavaScript:void(0);" (click)="
               Difficultyreq('total', '', '', TdifficultyRange,'progpow'); selectedTarget12 = 2
               " id="2" #itemtarget122
-                        [ngClass]="{ active: selectedTarget12 == itemtarget122.id, txt_primay: true }">ProgPow</a>
+                        [ngClass]="{ active: selectedTarget12 == itemtarget122.id, txt_primary: true }">ProgPow</a>
                       <a href="JavaScript:void(0);" (click)="
               Difficultyreq('total', '', '', TdifficultyRange,'randomx'); selectedTarget12 = 3
               " id="3" #itemtarget123
-                        [ngClass]="{ active: selectedTarget12 == itemtarget123.id, txt_primay: true }">RandomX</a>
+                        [ngClass]="{ active: selectedTarget12 == itemtarget123.id, txt_primary: true }">RandomX</a>
           </div> -->
             <epic-explorer-plotly *ngIf="linearTotalGraphData.data" [data]="linearTotalGraphData.data"
             [layout]="linearTotalGraphData.layout">
@@ -496,10 +496,10 @@
       <div class="day_filter">
           <a href="JavaScript:void(0);" (click)="
     Difficultyreq('total', '', '', '1 day',''); selectedTarget = 6; TdifficultyRange = '1 day'
-  " id="6" #itemtarget6 [ngClass]="{ active: selectedTarget == itemtarget6.id, txt_primay: true }">1 day</a>
+  " id="6" #itemtarget6 [ngClass]="{ active: selectedTarget == itemtarget6.id, txt_primary: true }">1 day</a>
           <a href="JavaScript:void(0);" (click)="
       Difficultyreq('total', '', '', '1 week',''); selectedTarget = 1; TdifficultyRange = '1 week'
-    " id="1" #itemtarget1 [ngClass]="{ active: selectedTarget == itemtarget1.id, txt_primay: true }">1
+    " id="1" #itemtarget1 [ngClass]="{ active: selectedTarget == itemtarget1.id, txt_primary: true }">1
             {{'home.WEEK' | translate}}</a>
           <!-- <a href="JavaScript:void(0);" (click)="
       Difficultyreq('total', '', '', '15 days',''); selectedTarget = 2; TdifficultyRange = '15 days'
@@ -555,7 +555,7 @@
       </div>
       <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '1 week'); selectedItem2 = 1" id="1" #item1
-          [ngClass]="{ active: selectedItem2 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+          [ngClass]="{ active: selectedItem2 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '15 days'); selectedItem2 = 2" id="2" #item2
           [ngClass]="{ active: selectedItem2 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '30 days'); selectedItem2 = 3" id="3" #item3
@@ -602,7 +602,7 @@
       </div>
       <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="Transactionlinechartreq('', '', '1 week'); selectedItem8 = 1" id="1"
-          #item1 [ngClass]="{ active: selectedItem8 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+          #item1 [ngClass]="{ active: selectedItem8 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
             Transactionlinechartreq('', '', '15 days'); selectedItem8 = 2
           " id="2" #item2 [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
@@ -654,7 +654,7 @@
       </div>
       <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="piechartreq('', '', '1 week'); selectedItem10 = 1" id="1"
-          #item1 [ngClass]="{ active: selectedItem11 == item1.id, txt_primay: true }">1 {{'home.WEEK' | translate}}</a>
+          #item1 [ngClass]="{ active: selectedItem11 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
         piechartreq('', '', '15 days'); selectedItem11 = 2
           " id="2" #item2 [ngClass]="{ active: selectedItem11 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
