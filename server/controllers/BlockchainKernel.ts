@@ -191,6 +191,7 @@ export class BlockchainKernelController {
      */
     this.router.get(
       `${this.path}/getpeers`,
+      redisMiddleware(3600),
       this.getPeers,
     );
 
