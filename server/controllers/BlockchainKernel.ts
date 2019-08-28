@@ -720,10 +720,10 @@ sum(bk.block_id_count) AS kernal_count, \
               LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_input group by block_id) as bi  \
                      ON blockchain_block.hash = \
                         bi.block_id  \
-LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_kernel group by block_id) as bk  \
+LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_kernel where features != 'Coinbase' group by block_id) as bk  \
                      ON blockchain_block.hash = \
                         bk.block_id \
-LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_output group by block_id) as bo \
+LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_output where output_type != 'Coinbase' group by block_id) as bo \
                      ON blockchain_block.hash = \
                         bo.block_id WHERE blockchain_block.timestamp >= '" +
           fromdate +
@@ -858,10 +858,10 @@ sum(bk.block_id_count) AS kernal_count, \
               LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_input group by block_id) as bi  \
                      ON blockchain_block.hash = \
                         bi.block_id  \
-LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_kernel group by block_id) as bk  \
+LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_kernel where features != 'Coinbase' group by block_id) as bk  \
                      ON blockchain_block.hash = \
                         bk.block_id \
-LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_output group by block_id) as bo \
+LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_output where output_type != 'Coinbase' group by block_id) as bo \
                      ON blockchain_block.hash = \
                         bo.block_id WHERE " +
           timeIntervalQry +

@@ -394,41 +394,41 @@ export class BlockchainBlockController {
       this.BlockPieChart,
     );
 
-    /**
-     * @swagger
-     * /epic_explorer/v1/blockchain_block/hashrate:
-     *   get:
-     *     tags:
-     *       - name: BLOCKCHAIN_BLOCK | BLOCKCHAIN_BLOCK CONTROLLER
-     *     description: To get Hash Rate of AR29 abd AT31
-     *     summary: To get Hash Rate of AR29 abd AT31
-     *     consumes:
-     *       - application/json
-     *     produces:
-     *       - application/json
-     *     parameters:
-     *       - name: FromDate
-     *         description: Enter the From date
-     *         in: query
-     *         type: string
-     *       - name: ToDate
-     *         description: Enter the To date
-     *         in: query
-     *         type: string
-     *       - name: Interval
-     *         description: Try to give Intevals such as 1 week/ 15 days/ 30 days/ 60 days/ 3 months
-     *         in: query
-     *         type: string
-     *     responses:
-     *       200:
-     *         description: Hash Rate of AR29 abd AT31 fetched successfully
-     */
-    this.router.get(
-      `${this.path}/hashrate`,
-      validationMiddleware(TotalDifficultyNBlockDto, true),
-      redisMiddleware(process.env.REDIS_EXPIRY),
-      this.HashRate,
-    );
+    // /**
+    //  * @swagger
+    //  * /epic_explorer/v1/blockchain_block/hashrate:
+    //  *   get:
+    //  *     tags:
+    //  *       - name: BLOCKCHAIN_BLOCK | BLOCKCHAIN_BLOCK CONTROLLER
+    //  *     description: To get Hash Rate of AR29 abd AT31
+    //  *     summary: To get Hash Rate of AR29 abd AT31
+    //  *     consumes:
+    //  *       - application/json
+    //  *     produces:
+    //  *       - application/json
+    //  *     parameters:
+    //  *       - name: FromDate
+    //  *         description: Enter the From date
+    //  *         in: query
+    //  *         type: string
+    //  *       - name: ToDate
+    //  *         description: Enter the To date
+    //  *         in: query
+    //  *         type: string
+    //  *       - name: Interval
+    //  *         description: Try to give Intevals such as 1 week/ 15 days/ 30 days/ 60 days/ 3 months
+    //  *         in: query
+    //  *         type: string
+    //  *     responses:
+    //  *       200:
+    //  *         description: Hash Rate of AR29 abd AT31 fetched successfully
+    //  */
+    // this.router.get(
+    //   `${this.path}/hashrate`,
+    //   validationMiddleware(TotalDifficultyNBlockDto, true),
+    //   redisMiddleware(process.env.REDIS_EXPIRY),
+    //   this.HashRate,
+    // );
 
     /**
      * @swagger
