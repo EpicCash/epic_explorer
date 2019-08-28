@@ -201,7 +201,9 @@ a:focus {
   padding-right: 45px;
   height: 45px;
   border: none;
+  background-color: #f3f4f2;
 }
+.bg_gray{background-color: #dadada ;}
 .search_btn {
   position: absolute;
   top: 4px;
@@ -209,7 +211,7 @@ a:focus {
   color: #BF9B30;
 }
 .blocks {
-  background: #fff;
+  background: #f3f4f2;
   padding: 10px;
 }
 .box_shadow {
@@ -221,6 +223,7 @@ a:focus {
 .filter_shadow {
   filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.1));
 }
+.bg-white{background-color: #f3f4f2 !important}
 .chart_heading {
   font-size: 23px;
   font-weight: 400;
@@ -236,7 +239,7 @@ a:focus {
   vertical-align: middle;
   border-radius: 25px;
   font-size: 13px;
-  color: #fff;
+  color: #f3f4f2;
   padding: 4px 18px 2px;
   /* display: inline-block; */
   margin-left: 5px;
@@ -248,7 +251,7 @@ a:focus {
   transition: all 0.3s linear;
 }
 .blocks:hover .txn_count {
-  background: #fff;
+  background: #f3f4f2;
   color: #BF9B30;
   transition: all 0.3s linear;
 }
@@ -263,14 +266,14 @@ a:focus {
   display: inline-block;
 }
 .day_filter a.active {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  background: #686868;
+  border: 1px solid #BF9B30;
+  background: #BF9B30;
   padding: 0 5px;
-  color: #ffffff
+  color: #f3f4f2
 }
 .difficulty_filter.day_filter a.active{border-color: #0056b3; color: #0056b3;}
 .explore_all {
-  background: #ffffff;
+  background: #f3f4f2;
   padding: 15px;
   font-size: 13px;
   color: #BF9B30;
@@ -296,13 +299,13 @@ a:focus {
 .btn_primary {
   background: #BF9B30;
   border-radius: 25px;
-  color: #fff !important;
+  color: #f3f4f2 !important;
   text-transform: uppercase;
   padding: 10px 20px;
 }
 .detail_div {
-  background-color: #fff;
-  border: 1px solid #fff;
+  background-color: #f3f4f2;
+  border: 1px solid #f3f4f2;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   padding: 10px ;
   transition: 0.3s linear all;
@@ -326,13 +329,13 @@ a:focus {
   color: #002f5b;
 }
 .detail_div:hover {
-  background-color: #ecf2ff;
-  border-color: #ecf2ff;
+  background-color: #E1DBD1;
+  border-color: #E1DBD1;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   transition: 0.3s linear all;
 }
 .latest_table {
-  background-color: #fff;
+  background-color: #f3f4f2;
   border: 1px solid rgb(220, 228, 245);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -365,7 +368,7 @@ a:focus {
 .item_select select {
   appearance: none;
   -moz-appearance: none;
-  background-color: #fff;
+  background-color: #f3f4f2;
   -webkit-appearance: none;
   border: 1px solid #dee2e6;
   width: 47px;
@@ -412,6 +415,7 @@ a:focus {
 .view_content{background-color: #eeeeee;min-height: 800px;}
 .mble_view_hdr{display: inline-block;}
 .box_shadow_large{box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2);}
+.box_shadow_large a{color: #BF9B30;}
 .view_txt{color: #acacac;font-size: 17px;}
 .block_rotate {
   animation: rotation 2s infinite linear;
@@ -539,8 +543,8 @@ margin-right: 10px;
 /**********************************************Dark Theme CSS********************************/
 body.dark_theme {
   background: url(/assets/img/dark_bg.png);
-  background-color: #1d1d1f;
-  color: #fff;
+  background-color: #222223;
+  color: #f3f4f2;
 }
 .dark_theme .light_theme_display {
   display: none;
@@ -557,27 +561,27 @@ body.dark_theme {
 }
 .dark_theme .logo_txt,
 .dark_theme .ip_filter a {
-  color: #ffffff;
+  color: #f3f4f2;
 }
-.dark_theme .navbar-light .navbar-brand:focus, .dark_theme .navbar-light .navbar-brand:hover{color: #ffffff;}
+.dark_theme .navbar-light .navbar-brand:focus, .dark_theme .navbar-light .navbar-brand:hover{color: #f3f4f2;}
 .dark_theme .search_input {
   background-color: #252525;
 }
 .dark_theme .box_shadow{border: 1px solid #4c4c4c}
 .dark_theme .blocks,
 .dark_theme .explore_all {
-  background-color: #1d1d1f;
+  background-color: #222223;
 }
 .dark_theme .day_filter,
 .dark_theme .detail_div {
   background-color: #252525;
-  border-color: #1d1d1f;
+  border-color: #222223;
 }
 .dark_theme .detail_div .count span {
   color: #a6a6a6;
 }
 .dark_theme .detail_div .desc {
-  color: #ffffff;
+  color: #f3f4f2;
 }
 .dark_theme .day_filter a,
 .dark_theme .table th {
@@ -587,15 +591,16 @@ body.dark_theme {
   color: #c0d2ff;
 }
 .dark_theme .day_filter a.active {
-  background-color: #1d1d1f;
-  /* border-color: #BF9B30 */
+  background-color: #BF9B30;
+  border-color: #BF9B30;
+  color: #f3f4f2;
 }
 .dark_theme .chart_heading {
-  color: #ffffff;
+  color: #f3f4f2;
 }
 .dark_theme .latest_table {
-  background-color: #1d1d1f;
-  border-color: #1d1d1f;
+  background-color: #222223;
+  border-color: #222223;
 }
 .dark_theme .latest_blocks .explore_all {
   background-color: #252525;
@@ -611,11 +616,11 @@ body.dark_theme {
   border-color: #384566;
 }
 .dark_theme .footer_div .chart_heading .txt_secondary {
-  color: #ffffff !important;
+  color: #f3f4f2 !important;
   color: #c0d2ff;
 }
 .dark_theme .blck_value{color: #c0d2ff;}
-.dark_theme .block_div h5{color: #ffffff;}
+.dark_theme .block_div h5{color: #f3f4f2;}
 .dark_theme .ftr_services a,
 .dark_theme .ftr_services {
   color: #c0d2ff;
@@ -629,25 +634,25 @@ body.dark_theme {
 .dark_theme .ftr_dropdown,
 .dark_theme .langbut.ftr_lang,
 .dark_theme .bg-white {
-  background-color: #1d1d1f !important;
-  color: #ffffff !important;
+  background-color: #222223 !important;
+  color: #f3f4f2 !important;
 }
-.dark_theme .news_desc .bg-white{ background-color: #1d1d1f !important;}
+.dark_theme .news_desc .bg-white{ background-color: #222223 !important;}
 .dark_theme footer.bg-white{background-color: transparent !important}
 .dark_theme .nav-item.dropdown .bg-white, .dark_theme .nav-item.dropdown, .dark_theme .langbut, .dark_theme .theme_switch{background-color: #252525 !important}
-.dark_theme .langbut{color: #ffffff !important;}
-.dark_theme .arrow_drpdwn{border-color: #ffffff !important;}
+.dark_theme .langbut{color: #f3f4f2 !important;}
+.dark_theme .arrow_drpdwn{border-color: #f3f4f2 !important;}
 .dark_theme .mobile_table:nth-child(2n), .dark_theme .peer_mobile_table:nth-child(2n){background: #252525;}
-.dark_theme.langbut.ftr_lang{background: #1d1d1f;color: #ffffff;}
+.dark_theme.langbut.ftr_lang{background: #222223;color: #f3f4f2;}
 .dark_theme .dropdown a {
-  color: #ffffff !important;
+  color: #f3f4f2 !important;
 }
 .dark_theme td a.txt_secondary {
   color: #c0d2ff;
 }
 .dark_theme .main-svg:first-child {
   /* background: rgb(39, 49, 75) !important; */
-  background: #1d1d1f !important;
+  background: #222223 !important;
 }
 .dark_theme .g-ytitle text, .dark_theme .g-y2title text, .dark_theme .g-y3title text,
 .dark_theme .xtick text, .dark_theme .x2tick text, .dark_theme .x3tick text,
@@ -660,31 +665,31 @@ body.dark_theme {
   stroke: #384566 !important;
 }
 .dark_theme .page-link {
-  background-color: #1d1d1f;
+  background-color: #222223;
   border-color: #a6a6a6;
 }
 .dark_theme .item_select select {
-  border-color: #1d1d1f;
-  background-color: #1d1d1f;
+  border-color: #222223;
+  background-color: #222223;
   color: #a6a6a6;
 }
 .dark_theme .footer_div{border-color: #a5a5a5}
-.dark_theme .view_page_header {background: #1c2437;}
-.dark_theme .view_content {background-color: #1d1d1f;}
+.dark_theme .view_page_header {background: #222223;}
+.dark_theme .view_content {background-color: #252525;}
 .js-plotly-plot .plotly .modebar,
 .zerolinelayer {
   display: none;
 }
 .dark_theme .bg{fill: transparent !important;}
-.dark_theme .not_found{color: #ffffff;}
-.dark_theme .card, .dark_theme .card-header{background-color: #1d1d1f; border-color: #1d1d1f;}
-.dark_theme .tab_hdng{color: #ffffff;}
+.dark_theme .not_found{color: #f3f4f2;}
+.dark_theme .card, .dark_theme .card-header{background-color: #222223; border-color: #222223;}
+.dark_theme .tab_hdng{color: #f3f4f2;}
 .dark_theme .view_content table{border-color: #384566;}
 .dark_theme .card-body{background-color: #1c2437;}
 .diff_margin{margin-bottom: -10px !important; margin-top: -10px !important;}
 .dark_theme .difficulty_datas .day60_txt{color: #a6a6a6;}
 .dark_theme .legendtext{fill: rgb(255, 255, 255) !important;}
-.dark_theme .background_loading{background: #384566;background-image: linear-gradient( to right, #384566 0%, #1d1d1f 20%, #384566 40%, #384566 100% );}
+.dark_theme .background_loading{background: #384566;background-image: linear-gradient( to right, #384566 0%, #222223 20%, #384566 40%, #384566 100% );}
 .dark_theme .langbut option:disabled { background-color: #384566; color: rgba(255,255,255,.2);}
 @keyframes yellowfade {
   from {

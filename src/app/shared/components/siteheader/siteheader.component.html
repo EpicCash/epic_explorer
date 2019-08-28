@@ -1,7 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light view_page_header">
   <div class="container">
-    <a class="navbar-brand chart_heading d-sm-block d-none" routerLink="/"><span
-        class="txt_primary">Epic </span><span>Explorer</span></a>
+    <a class="navbar-brand chart_heading d-sm-block d-none" routerLink="/">
+      <!-- <span class="txt_primary">Epic </span><span>Explorer</span> -->
+      <div class="logo_img">
+          <a routerLink="/" class="chart_heading d-inline-block p-0">
+        <img src="/assets/img/ftrlogo_light.png" height="50"  class="light_theme_display">
+        <img src="/assets/img/ftrlogo_dark.png" height="50" class="dark_theme_display">
+      </a>
+      </div>
+      </a>
 
 
     <div class="ml-auto ">
@@ -31,7 +38,7 @@
           <!-- <span> Network </span> -->
       </div>
       <div class="position-relative d-none d-sm-inline-block">
-        <input type="text" [(ngModel)]="search" #ctrl="ngModel" class="form-control search_input"
+        <input type="text" [(ngModel)]="search" #ctrl="ngModel" class="form-control search_input bg_gray"
           (keyup.enter)="ctrl.value ? onSearch(ctrl.value) : ''" placeholder="Search by hash or height">
         <button class="btn search_btn" (click)="ctrl.value ? onSearch(ctrl.value) : ''">
           <!-- <a href="/blockdetail/{{ ctrl.value }}"  > -->
@@ -57,7 +64,7 @@
 
     <div class="position-relative d-block d-sm-none w-100 mt-3">
 
-      <input type="text" [(ngModel)]="search" #ctrl="ngModel" class="form-control search_input"
+      <input type="text" [(ngModel)]="search" #ctrl="ngModel" class="form-control search_input bg_gray"
         (keyup.enter)="ctrl.value ? onSearch(ctrl.value) : ''" placeholder="{{'home.SEARCH_TEXT' | translate}}">
       <button class="btn search_btn" (click)="ctrl.value ? onSearch(ctrl.value) : ''">
         <!-- <a href="/blockdetail/{{ ctrl.value }}"  > -->
