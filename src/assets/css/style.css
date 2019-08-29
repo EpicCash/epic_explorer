@@ -384,6 +384,11 @@ a:focus {
 .chart_show {
   min-height: 268px;
 }
+.crisp,
+.xgrid,
+.zerolinelayer path {
+  stroke: #a6a6a6 !important;
+}
 /************************************************Footer*****************************************/
 .footer_div {
   border-top: 1px solid rgba(0, 0, 0, 0.15);
@@ -539,7 +544,7 @@ margin-right: 10px;
 }
 
 .peers_diff .blck_value{word-wrap: break-word;}
-.js-plotly-plot .plotly .main-svg{background: rgb(243, 244, 242) none repeat scroll 0% 0% !important;}
+.main-svg:first-child{background: rgb(243, 244, 242) none repeat scroll 0% 0% !important;}
 .bg{fill: rgb(243, 244, 242) !important;}
 /**********************************************Dark Theme CSS********************************/
 body.dark_theme {
@@ -663,7 +668,7 @@ body.dark_theme {
 .dark_theme .crisp,
 .dark_theme .xgrid,
 .dark_theme .zerolinelayer path {
-  stroke: #384566 !important;
+  stroke: #f3f4f2 !important;
 }
 .dark_theme .page-link {
   background-color: #222223;

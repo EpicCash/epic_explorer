@@ -21,7 +21,7 @@ export class LatestblocksComponent implements OnInit {
   public DifferentList: any = [];
   public blockAppend: any;
   public blockdetails: any;
-  public zibra_color = "#f3f4f2";
+  public zibra_color = "zibra_white";
   public lastblock: any;
   public clickValue: any;
   public clickPeer: any;
@@ -121,10 +121,10 @@ export class LatestblocksComponent implements OnInit {
     this.blockAppend['kernal_count'] = DifferentList.kernal_count;
     this.blockAppend['hashstart'] = DifferentList.hashstart;
     this.blockAppend['zibra_colour'] = this.zibra_color;
-    if(this.zibra_color == "#f3f4f2"){
-         this.zibra_color = "#dadada";
+    if(this.zibra_color == "zibra_white"){
+         this.zibra_color = "zibra_grey";
     }else{
-      this.zibra_color = "#f3f4f2";
+      this.zibra_color = "zibra_white";
     }
     this.blockAppend['hashend'] = DifferentList.hashend;
     this.blockAppend['hasharray'] = DifferentList.hasharray;
