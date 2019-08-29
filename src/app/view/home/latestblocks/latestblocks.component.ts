@@ -92,7 +92,7 @@ export class LatestblocksComponent implements OnInit {
 
         this.DifferentList.forEach(DifferentList => {
           this.FirstPageListData.unshift(DifferentList);
-          this.createBlock(DifferentList)
+          //this.createBlock(DifferentList)
         });
 
         console.log("DifferentList",this.DifferentList);
