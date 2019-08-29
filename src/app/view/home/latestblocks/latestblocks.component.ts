@@ -88,10 +88,11 @@ export class LatestblocksComponent implements OnInit {
 
         console.log("socket result", this.Merged_data);
         console.log("First page result",this.FirstPageListData);
+        this.DifferentList.sort((a, b) => (a.blockchain_block_height) - (b.blockchain_block_height));
 
         this.DifferentList.forEach(DifferentList => {
           this.FirstPageListData.unshift(DifferentList);
-          //this.createBlock(DifferentList)
+          this.createBlock(DifferentList)
         });
 
         console.log("DifferentList",this.DifferentList);
