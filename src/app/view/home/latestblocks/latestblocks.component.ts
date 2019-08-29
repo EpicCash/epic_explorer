@@ -21,7 +21,7 @@ export class LatestblocksComponent implements OnInit {
   public DifferentList: any = [];
   public blockAppend: any;
   public blockdetails: any;
-  public zibra_color = "zibra_grey";
+  public zibra_color = "zibra_white";
   public lastblock: any;
   public clickValue: any;
   public clickPeer: any;
@@ -83,7 +83,7 @@ export class LatestblocksComponent implements OnInit {
 
   
         this.DifferentList.sort((a, b) => (a.blockchain_block_height) - (b.blockchain_block_height));
-
+        this.FirstPageListData = this.Merged_data;
         this.DifferentList.forEach(DifferentList_dub => {
           this.createBlock(DifferentList_dub);
         });
@@ -103,7 +103,7 @@ export class LatestblocksComponent implements OnInit {
   }
 
   public createBlock(DifferentList) {
-    this.FirstPageListData.push(DifferentList);
+    //this.FirstPageListData.push(DifferentList);
     const blockFactory = this.resolver.resolveComponentFactory(
       BlockAppendComponent,
     );
