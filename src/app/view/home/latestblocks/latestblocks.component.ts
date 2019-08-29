@@ -75,18 +75,19 @@ export class LatestblocksComponent implements OnInit {
       if (this.CurrentpageNumber == 1) {
 
         // console.log("Enter If");
-        // console.log(this.blockdetails);
-        console.log(this.FirstPageListData);
+        console.log("socket result", this.blockdetails.BlockchainBlockResult);
+        console.log("First page result",this.FirstPageListData);
 
         var onlyInA = this.FirstPageListData.filter(this.comparer(this.blockdetails.BlockchainBlockResult));
         var onlyInB = this.blockdetails.BlockchainBlockResult.filter(this.comparer(this.FirstPageListData));
 
         this.DifferentList = onlyInA.concat(onlyInB);
         this.DifferentList.forEach(DifferentList => {
-          this.createBlock(DifferentList)
+          this.FirstPageListData.unshift(DifferentList);
+          //this.createBlock(DifferentList)
         });
 
-        console.log(this.DifferentList);
+        console.log("DifferentList",this.DifferentList);
       }
       this.lastblock = this.blockdetails.block_height;
       //console.log(this.lastblock);
@@ -102,7 +103,6 @@ export class LatestblocksComponent implements OnInit {
   }
 
   public createBlock(DifferentList) {
-    this.FirstPageListData.unshift(DifferentList);
     const blockFactory = this.resolver.resolveComponentFactory(
       BlockAppendComponent,
     );
