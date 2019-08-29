@@ -21,7 +21,7 @@ export class LatestblocksComponent implements OnInit {
   public DifferentList: any = [];
   public blockAppend: any;
   public blockdetails: any;
-  public zibra_color = "zibra_white";
+  public zibra_color = "zibra_grey";
   public lastblock: any;
   public clickValue: any;
   public clickPeer: any;
