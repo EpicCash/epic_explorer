@@ -69,36 +69,29 @@ export class LatestblocksComponent implements OnInit {
     this.chartService.getLatestblockdetails().subscribe(response => {
       this.blockdetails = response;
       //console.log(this.blockdetails);
-      if (this.lastblock != this.blockdetails.block_height) {
-        //console.log('Create');
-        //this.createBlock();
-      }
+    
       if (this.CurrentpageNumber == 1) {
 
-        // console.log("Enter If");
       
-        var socket_array = this.blockdetails.BlockchainBlockResult;
-        var ids = new Set(socket_array.map(d => d.blockchain_block_height));
-        this.Merged_data = [...socket_array, ...this.FirstPageListData.filter(d => !ids.has(d.blockchain_block_height))];
+        // var socket_array = this.blockdetails.BlockchainBlockResult;
+        // var ids = new Set(socket_array.map(d => d.blockchain_block_height));
+        // this.Merged_data = [...socket_array, ...this.FirstPageListData.filter(d => !ids.has(d.blockchain_block_height))];
 
-        var onlyInA = this.FirstPageListData.filter(this.comparer(this.Merged_data));
-        var onlyInB = this.Merged_data.filter(this.comparer(this.FirstPageListData));
+        // var onlyInA = this.FirstPageListData.filter(this.comparer(this.Merged_data));
+        // var onlyInB = this.Merged_data.filter(this.comparer(this.FirstPageListData));
 
-        this.DifferentList = onlyInA.concat(onlyInB);
+        // this.DifferentList = onlyInA.concat(onlyInB);
 
-        //console.log("socket result", this.Merged_data);
-        //console.log("First page result",this.FirstPageListData);
-        this.DifferentList.sort((a, b) => (a.blockchain_block_height) - (b.blockchain_block_height));
+  
+        // this.DifferentList.sort((a, b) => (a.blockchain_block_height) - (b.blockchain_block_height));
 
-        this.DifferentList.forEach(DifferentList => {
-          this.FirstPageListData.unshift(DifferentList);
-          //this.createBlock(DifferentList)
-        });
+        // this.DifferentList.forEach(DifferentList => {
+        //   this.FirstPageListData.unshift(DifferentList);
+        //   //this.createBlock(DifferentList)
+        // });
 
-        //console.log("DifferentList",this.DifferentList);
       }
       this.lastblock = this.blockdetails.block_height;
-      //console.log(this.lastblock);
     });
   }
 
