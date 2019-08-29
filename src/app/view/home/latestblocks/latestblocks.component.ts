@@ -59,6 +59,8 @@ export class LatestblocksComponent implements OnInit {
             this.lastblock = res.response.BlockchainBlockResult[0].blockchain_block_height;
             //console.log(this.lastblock);
 
+          }else{
+            this.block.clear();
           }
         }
       },
