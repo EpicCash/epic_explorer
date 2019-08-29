@@ -15,6 +15,7 @@ import { BlockAppendComponent } from '../block-append/block-append.component';
 export class LatestblocksComponent implements OnInit {
   public hashvalues: any;
   public pagedata: any = [];
+  public Merged_data: any = [];
   public CurrentpageNumber: Number;
   public FirstPageListData: any = [];
   public DifferentList: any = [];
@@ -75,13 +76,19 @@ export class LatestblocksComponent implements OnInit {
       if (this.CurrentpageNumber == 1) {
 
         // console.log("Enter If");
-        console.log("socket result", this.blockdetails.BlockchainBlockResult);
-        console.log("First page result",this.FirstPageListData);
+      
 
-        var onlyInA = this.FirstPageListData.filter(this.comparer(this.blockdetails.BlockchainBlockResult));
-        var onlyInB = this.blockdetails.BlockchainBlockResult.filter(this.comparer(this.FirstPageListData));
+        var ids = new Set(this.blockdetails.BlockchainBlockResult.map(d => d.blockchain_block_height));
+        this.Merged_data = [...this.blockdetails.BlockchainBlockResult, ...this.FirstPageListData.filter(d => !ids.has(d.blockchain_block_height))];
+
+        var onlyInA = this.FirstPageListData.filter(this.comparer(this.Merged_data));
+        var onlyInB = this.Merged_data.filter(this.comparer(this.FirstPageListData));
 
         this.DifferentList = onlyInA.concat(onlyInB);
+
+        console.log("socket result", this.Merged_data);
+        console.log("First page result",this.FirstPageListData);
+
         this.DifferentList.forEach(DifferentList => {
           this.FirstPageListData.unshift(DifferentList);
           //this.createBlock(DifferentList)
