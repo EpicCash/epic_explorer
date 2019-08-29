@@ -1,6 +1,8 @@
 import { getConnection } from "typeorm";
 import { Global } from "../global";
-
+import {
+  BlockchainBlock,
+} from '../entities';
 var moment = require("moment");
 moment.updateLocale('en', {
   relativeTime: {
@@ -300,6 +302,105 @@ export async function universalGetLatestBlockDetails(current_network) {
               BlockchainLatestBlockQuery[0].total_difficulty_randomx
           }
 
+
+          const BlockchainBlockPaginationQuery = await getConnection(current_network).getRepository(
+            BlockchainBlock,
+          )
+            .createQueryBuilder('blockchain_block')
+            .select([
+              'blockchain_block.Hash',
+              'blockchain_block.Timestamp',
+              '(blockchain_block.TotalDifficultyCuckaroo + blockchain_block.TotalDifficultyCuckatoo) as TotalCuckoo',
+              'blockchain_block.TotalDifficultyCuckaroo',
+              'blockchain_block.TotalDifficultyCuckatoo',
+              'blockchain_block.TotalDifficultyProgpow',
+              'blockchain_block.TotalDifficultyRandomx',
+              'blockchain_block.previous_id',
+              'blockchain_block.total_difficulty_cuckaroo - LAG(blockchain_block.total_difficulty_cuckaroo) OVER (ORDER BY blockchain_block.total_difficulty_cuckaroo) AS target_difficulty_cuckaroo',
+              'blockchain_block.total_difficulty_cuckatoo - LAG(blockchain_block.total_difficulty_cuckatoo) OVER (ORDER BY blockchain_block.total_difficulty_cuckatoo) AS target_difficulty_cuckatoo',
+              'blockchain_block.total_difficulty_progpow - LAG(blockchain_block.total_difficulty_progpow) OVER (ORDER BY blockchain_block.total_difficulty_progpow) AS target_difficulty_progpow',
+              'blockchain_block.total_difficulty_randomx - LAG(blockchain_block.total_difficulty_randomx) OVER (ORDER BY blockchain_block.total_difficulty_randomx) AS target_difficulty_randomx',
+              'blockchain_block.Height',
+              'blockchain_block.EdgeBits',
+              'COUNT(DISTINCT(blockchain_input.block_id)) AS input_count',
+              'COUNT(DISTINCT(blockchain_kernel.block_id)) AS kernal_count',
+              'COUNT(DISTINCT(blockchain_output.block_id)) AS output_count',
+              'blockchain_block.Proof As PoWAlgo',
+            ])
+            .leftJoin('blockchain_block.BlockchainInputs', 'blockchain_input')
+            .leftJoin('blockchain_block.BlockchainKernels', 'blockchain_kernel')
+            .leftJoin('blockchain_block.BlockchainOutputs', 'blockchain_output')
+            .skip(0)
+            .take(20)
+            .orderBy('blockchain_block.Timestamp', 'DESC')
+            .groupBy('blockchain_block.Hash')
+            .getRawAndEntities();
+
+          //console.log(BlockchainBlockPaginationQuery.raw);
+
+          let BlockchainBlockResult = BlockchainBlockPaginationQuery.raw;
+          let lastElemt =
+            BlockchainBlockResult[BlockchainBlockResult.length - 1];
+          const BlockchainPreviousBlockFetchQuery = await getConnection(Global.network).getRepository(
+            BlockchainBlock,
+          ).findOne({
+            select: ['TotalDifficultyCuckaroo', 'TotalDifficultyCuckatoo', 'TotalDifficultyProgpow', 'TotalDifficultyRandomx'],
+            where: { Hash: lastElemt.previous_id },
+          });
+
+          BlockchainBlockResult[BlockchainBlockResult.length - 1][
+            'target_difficulty_cuckaroo'
+          ] = BlockchainPreviousBlockFetchQuery &&
+            BlockchainPreviousBlockFetchQuery != undefined ?
+              (parseInt(lastElemt.blockchain_block_total_difficulty_cuckaroo)
+                ? parseInt(lastElemt.blockchain_block_total_difficulty_cuckaroo)
+                : 0) -
+              (parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyCuckaroo) ? parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyCuckaroo) : 0)
+              : 0;
+
+          BlockchainBlockResult[BlockchainBlockResult.length - 1][
+            'target_difficulty_cuckatoo'
+          ] = BlockchainPreviousBlockFetchQuery &&
+            BlockchainPreviousBlockFetchQuery != undefined ?
+              (parseInt(lastElemt.blockchain_block_total_difficulty_cuckatoo)
+                ? parseInt(lastElemt.blockchain_block_total_difficulty_cuckatoo)
+                : 0) -
+              (parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyCuckatoo) ? parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyCuckatoo) : 0)
+              : 0;
+
+          BlockchainBlockResult[BlockchainBlockResult.length - 1][
+            'target_difficulty_progpow'
+          ] = BlockchainPreviousBlockFetchQuery &&
+            BlockchainPreviousBlockFetchQuery != undefined ?
+              (parseInt(lastElemt.blockchain_block_total_difficulty_progpow)
+                ? parseInt(lastElemt.blockchain_block_total_difficulty_progpow)
+                : 0) -
+              (parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyProgpow) ? parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyProgpow) : 0)
+              : 0;
+
+          BlockchainBlockResult[BlockchainBlockResult.length - 1][
+            'target_difficulty_randomx'
+          ] = BlockchainPreviousBlockFetchQuery &&
+            BlockchainPreviousBlockFetchQuery != undefined ?
+              (parseInt(lastElemt.blockchain_block_total_difficulty_randomx)
+                ? parseInt(lastElemt.blockchain_block_total_difficulty_randomx)
+                : 0) -
+              (parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyRandomx) ? parseInt(BlockchainPreviousBlockFetchQuery.TotalDifficultyRandomx) : 0)
+              : 0;
+
+          BlockchainBlockResult.forEach(e => {
+            var latest_block = dateDiff(e.blockchain_block_timestamp);
+            e['hashstart'] = e.blockchain_block_hash.slice(0, 2);
+            e['hashend'] = e.blockchain_block_hash.slice(62, 64);
+            let balance = e.blockchain_block_hash.substring(2, 62);
+            let arr = balance.match(/.{1,6}/g);
+            e['hasharray'] = arr.map(i => '#' + i);
+            e['age'] = latest_block;
+          });
+
+          //console.log(BlockchainBlockResult);
+
+          final_result['BlockchainBlockResult']= BlockchainBlockResult;
           Global.client.set(key, JSON.stringify(final_result), 'EX', parseInt(process.env.REDIS_EXPIRY), function(err){
             //client.set(key, JSON.stringify(body));
             });

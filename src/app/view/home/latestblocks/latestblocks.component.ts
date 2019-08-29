@@ -15,6 +15,9 @@ import { BlockAppendComponent } from '../block-append/block-append.component';
 export class LatestblocksComponent implements OnInit {
   public hashvalues: any;
   public pagedata: any = [];
+  public CurrentpageNumber: Number;
+  public FirstPageListData: any = [];
+  public DifferentList: any = [];
   public blockAppend: any;
   public blockdetails: any;
   public lastblock: any;
@@ -41,6 +44,7 @@ export class LatestblocksComponent implements OnInit {
 
   public gettinghashList(CurrentPage, PageSize) {
     let params = new HttpParams();
+    this.CurrentpageNumber = CurrentPage;
     params = params.append('CurrentPage', CurrentPage);
     params = params.append('PageSize', PageSize);
     this.chartService.apiGetRequest(params, '/blockchain_block/list').subscribe(
@@ -49,6 +53,7 @@ export class LatestblocksComponent implements OnInit {
           this.pagedata = res.response;
           this.hashvalues = res.response.BlockchainBlockResult;
           if(CurrentPage == 1){
+            this.FirstPageListData = res.response.BlockchainBlockResult;
             this.lastblock = res.response.BlockchainBlockResult[0].blockchain_block_height;
             //console.log(this.lastblock);
 
@@ -67,30 +72,61 @@ export class LatestblocksComponent implements OnInit {
         //console.log('Create');
         //this.createBlock();
       }
+      if (this.CurrentpageNumber == 1) {
+
+        // console.log("Enter If");
+        // console.log(this.blockdetails);
+        console.log(this.FirstPageListData);
+
+        var onlyInA = this.FirstPageListData.filter(this.comparer(this.blockdetails.BlockchainBlockResult));
+        var onlyInB = this.blockdetails.BlockchainBlockResult.filter(this.comparer(this.FirstPageListData));
+
+        this.DifferentList = onlyInA.concat(onlyInB);
+        this.DifferentList.forEach(DifferentList => {
+          this.createBlock(DifferentList)
+        });
+
+        console.log(this.DifferentList);
+      }
       this.lastblock = this.blockdetails.block_height;
       //console.log(this.lastblock);
     });
   }
 
-  public createBlock() {
+  public comparer(otherArray){
+    return function(current){
+      return otherArray.filter(function(other){
+        return other.blockchain_block_height == current.blockchain_block_height
+      }).length == 0;
+    }
+  }
+
+  public createBlock(DifferentList) {
+    this.FirstPageListData.unshift(DifferentList);
     const blockFactory = this.resolver.resolveComponentFactory(
       BlockAppendComponent,
     );
     const block = this.block.createComponent(blockFactory, 0);
     this.blockAppend = {};
-    this.blockAppend['blockchain_block_hash'] = this.blockdetails.hash;
+    this.blockAppend['blockchain_block_hash'] = DifferentList.blockchain_block_hash;
     this.blockAppend[
       'blockchain_block_height'
-    ] = this.blockdetails.block_height;
-    this.blockAppend['age'] = this.blockdetails.age;
-    this.blockAppend['target_difficulty'] = this.blockdetails.Difficulty;
-    this.blockAppend['PoWAlgo'] = this.blockdetails.proof;
-    this.blockAppend['input_count'] = this.blockdetails.input_count;
-    this.blockAppend['output_count'] = this.blockdetails.output_count;
-    this.blockAppend['kernal_count'] = this.blockdetails.kernel_count;
-    this.blockAppend['hashstart'] = this.blockdetails.hashstart;
-    this.blockAppend['hashend'] = this.blockdetails.hashend;
-    this.blockAppend['hasharray'] = this.blockdetails.hasharray;
+    ] = DifferentList.blockchain_block_height;
+    this.blockAppend['age'] = DifferentList.age;
+    //this.blockAppend['target_difficulty'] = 0;
+    this.blockAppend['PoWAlgo'] = DifferentList.powalgo;
+    this.blockAppend['input_count'] = DifferentList.input_count;
+    this.blockAppend['output_count'] = DifferentList.output_count;
+    this.blockAppend['kernal_count'] = DifferentList.kernal_count;
+    this.blockAppend['hashstart'] = DifferentList.hashstart;
+    this.blockAppend['hashend'] = DifferentList.hashend;
+    this.blockAppend['hasharray'] = DifferentList.hasharray;
+    this.blockAppend['target_difficulty_cuckaroo'] = DifferentList.target_difficulty_cuckaroo;
+    this.blockAppend['target_difficulty_cuckatoo'] = DifferentList.target_difficulty_cuckatoo;
+    this.blockAppend['target_difficulty_progpow'] = DifferentList.target_difficulty_progpow;
+    this.blockAppend['target_difficulty_randomx'] = DifferentList.target_difficulty_randomx;
+
+    //console.log( this.blockAppend);
 
     block.instance.blockdetails = this.blockAppend;
   }

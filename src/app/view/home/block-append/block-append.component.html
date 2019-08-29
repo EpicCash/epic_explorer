@@ -18,7 +18,7 @@
       <div class="block_div"><h6 >Age</h6><span class="blck_value">{{ blockdetails.age }}</span></div>
     </div>
     <div class="col-6 col-md-3 tble_col">
-      <div class="block_div"><h6>Difficulty</h6><span class="blck_value">{{ blockdetails.target_difficulty | number }}</span></div>
+      <div class="block_div"><h6>Difficulty</h6><span class="blck_value">{{(blockdetails.PoWAlgo == 'Cuckoo') ? (blockdetails.target_difficulty_cuckatoo  | number) : (blockdetails.PoWAlgo == 'RandomX') ? (blockdetails.target_difficulty_randomx | number) : (blockdetails.PoWAlgo == 'ProgPow') ? (blockdetails.target_difficulty_progpow | number) : 0}}</span></div>
     </div>
     <div class="col-6 col-sm-6 col-md-3 tble_col">
       <div class="block_div"><h6 class="mb-0">Pow Algo</h6><span class="blck_value">{{ blockdetails.PoWAlgo }}</span></div>

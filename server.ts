@@ -189,7 +189,7 @@ console.log(__dirname);
       console.log(`Node Express server listening on http://localhost:${PORT}`);
     });
 
-    cron.schedule('* * * * * *', () => {
+    cron.schedule('* * * * *', () => {
       universalGetLatestBlockDetails('Testnet');
       universalGetLatestBlockDetails('Floonet');
     });
