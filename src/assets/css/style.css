@@ -539,7 +539,8 @@ margin-right: 10px;
 }
 
 .peers_diff .blck_value{word-wrap: break-word;}
-
+.js-plotly-plot .plotly .main-svg{background: rgb(243, 244, 242) none repeat scroll 0% 0% !important;}
+.bg{fill: rgb(243, 244, 242) !important;}
 /**********************************************Dark Theme CSS********************************/
 body.dark_theme {
   background: url(/assets/img/dark_bg.png);
@@ -617,10 +618,10 @@ body.dark_theme {
 }
 .dark_theme .footer_div .chart_heading .txt_secondary {
   color: #f3f4f2 !important;
-  color: #c0d2ff;
+  color: #BF9B30;
 }
-.dark_theme .blck_value{color: #c0d2ff;}
-.dark_theme .block_div h5{color: #f3f4f2;}
+.dark_theme .blck_value{color: #a6a6a6;}
+.dark_theme .block_div h5{color: #BF9B30;}
 .dark_theme .ftr_services a,
 .dark_theme .ftr_services {
   color: #c0d2ff;
