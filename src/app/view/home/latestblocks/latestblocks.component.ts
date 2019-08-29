@@ -71,24 +71,22 @@ export class LatestblocksComponent implements OnInit {
       //console.log(this.blockdetails);
     
       if (this.CurrentpageNumber == 1) {
+        var socket_array = this.blockdetails.BlockchainBlockResult;
+        var ids = new Set(socket_array.map(d => d.blockchain_block_height));
+        this.Merged_data = [...socket_array, ...this.FirstPageListData.filter(d => !ids.has(d.blockchain_block_height))];
 
-      
-        // var socket_array = this.blockdetails.BlockchainBlockResult;
-        // var ids = new Set(socket_array.map(d => d.blockchain_block_height));
-        // this.Merged_data = [...socket_array, ...this.FirstPageListData.filter(d => !ids.has(d.blockchain_block_height))];
+        var onlyInA = this.FirstPageListData.filter(this.comparer(this.Merged_data));
+        var onlyInB = this.Merged_data.filter(this.comparer(this.FirstPageListData));
 
-        // var onlyInA = this.FirstPageListData.filter(this.comparer(this.Merged_data));
-        // var onlyInB = this.Merged_data.filter(this.comparer(this.FirstPageListData));
-
-        // this.DifferentList = onlyInA.concat(onlyInB);
+        this.DifferentList = onlyInA.concat(onlyInB);
 
   
-        // this.DifferentList.sort((a, b) => (a.blockchain_block_height) - (b.blockchain_block_height));
+        this.DifferentList.sort((a, b) => (a.blockchain_block_height) - (b.blockchain_block_height));
 
-        // this.DifferentList.forEach(DifferentList => {
-        //   this.FirstPageListData.unshift(DifferentList);
-        //   //this.createBlock(DifferentList)
-        // });
+        this.DifferentList.forEach(DifferentList_dub => {
+          this.createBlock(DifferentList_dub);
+        });
+
 
       }
       this.lastblock = this.blockdetails.block_height;
@@ -104,6 +102,7 @@ export class LatestblocksComponent implements OnInit {
   }
 
   public createBlock(DifferentList) {
+    this.FirstPageListData.push(DifferentList);
     const blockFactory = this.resolver.resolveComponentFactory(
       BlockAppendComponent,
     );
