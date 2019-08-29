@@ -496,6 +496,8 @@ a[aria-expanded="true"] > .tab_hdng:after {
 .word_break{word-break: break-all;white-space: normal !important;}
 .view_content .mobile_table{text-align: left; min-width: unset;}
 .alt_color:nth-child(odd){background-color: #f9f9f7}
+.zibra_grey{background: #dadada;}
+.zibra_white{background: #f3f4f2;}
 .test_msg{font-size: 16px;}
 .loader {
   display: flex;
@@ -681,6 +683,8 @@ body.dark_theme {
 .zerolinelayer {
   display: none;
 }
+.dark_theme .zibra_grey{background: #252525;}
+.dark_theme .zibra_white{background: #222223;}
 .dark_theme .bg{fill: transparent !important;}
 .dark_theme .not_found{color: #f3f4f2;}
 .dark_theme .card, .dark_theme .card-header{background-color: #222223; border-color: #222223;}
