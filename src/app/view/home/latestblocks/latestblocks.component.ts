@@ -59,6 +59,8 @@ export class LatestblocksComponent implements OnInit {
             this.lastblock = res.response.BlockchainBlockResult[0].blockchain_block_height;
             //console.log(this.lastblock);
 
+          }else{
+            this.block.clear();
           }
         }
       },
@@ -83,7 +85,7 @@ export class LatestblocksComponent implements OnInit {
 
   
         this.DifferentList.sort((a, b) => (a.blockchain_block_height) - (b.blockchain_block_height));
-
+        this.FirstPageListData = this.Merged_data;
         this.DifferentList.forEach(DifferentList_dub => {
           this.createBlock(DifferentList_dub);
         });
@@ -103,7 +105,7 @@ export class LatestblocksComponent implements OnInit {
   }
 
   public createBlock(DifferentList) {
-    this.FirstPageListData.push(DifferentList);
+    //this.FirstPageListData.push(DifferentList);
     const blockFactory = this.resolver.resolveComponentFactory(
       BlockAppendComponent,
     );
