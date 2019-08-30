@@ -264,6 +264,7 @@ a:focus {
   margin: 0 5px;
   text-decoration: none !important;
   display: inline-block;
+  color: #686868;
 }
 .day_filter a.active {
   border: 1px solid #BF9B30;
