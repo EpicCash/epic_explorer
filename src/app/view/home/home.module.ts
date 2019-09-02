@@ -16,6 +16,7 @@ import { TransServiceService } from '../../shared/services/trans-service.service
 import { ChartService} from '../../shared/services/chart.service';
 import { CustomLoader } from 'src/app/app.module';
 
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CustomLoader } from 'src/app/app.module';
     BlockAppendComponent
   ],
   imports: [
+    NgxPaginationModule,
     CommonModule,
     HomeRoutingModule,
     FormsModule,

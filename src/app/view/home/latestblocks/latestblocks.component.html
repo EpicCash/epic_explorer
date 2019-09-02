@@ -240,7 +240,7 @@
       </div>
     </div> -->
   </div>
-  <div [ngClass]="{peer_mobile_table : true, hght_40: peeritem.id != clickPeer }" id="peer_{{peer.id}}"  #peeritem *ngFor="let peer of peers">
+  <div [ngClass]="{peer_mobile_table : true, hght_40: peeritem.id != clickPeer }" id="peer_{{peer.id}}"  #peeritem *ngFor="let peer of peers | paginate: { itemsPerPage: 10, currentPage: p }">
 
     <div class="row peer_table_data">
       <div class="col-6 col-md-3 tble_col">
@@ -287,6 +287,9 @@
 
 
   </div>
+  <div class="text-right mt-2">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
 
 
 </div>

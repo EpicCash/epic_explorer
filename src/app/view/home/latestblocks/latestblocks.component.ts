@@ -6,6 +6,7 @@ import { TransServiceService } from '../../../shared/services/trans-service.serv
 import { map, catchError } from 'rxjs/operators';
 import { throwError} from 'rxjs';
 import { BlockAppendComponent } from '../block-append/block-append.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'epic-explorer-latestblocks',
@@ -13,6 +14,8 @@ import { BlockAppendComponent } from '../block-append/block-append.component';
   styleUrls: ['./latestblocks.component.css'],
 })
 export class LatestblocksComponent implements OnInit {
+  p: number = 1;
+
   public hashvalues: any;
   public pagedata: any = [];
   public Merged_data: any = [];
