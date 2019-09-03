@@ -18,6 +18,7 @@ import {
 } from '../dtos';
 import { Paginate } from '../utils';
 const http = require('http');
+const request_promise = require('request-promise');
 
 var moment = require('moment');
 
@@ -191,7 +192,7 @@ export class BlockchainKernelController {
      */
     this.router.get(
       `${this.path}/getpeers`,
-      redisMiddleware(3600),
+      redisMiddleware(60),
       this.getPeers,
     );
 
@@ -573,37 +574,53 @@ export class BlockchainKernelController {
       }else{
         var peer_url = process.env.TESTNET_PEER_URL;
       }
-      http.get(peer_url,
-      async (resp) => {
-        // console.log('resp resp respresp',resp);
-        let data = '';
-        let result ;
-
-        // A chunk of data has been recieved.
-        await new Promise((resolve) => {
-        resp.on('data', function (chunk) {
-           data += chunk;
-
-           let dataJson = self.IsJsonString(data);
-           if(dataJson.length > 0){
-
-          result = dataJson.map(function (value, i) {
-              value['id'] = i;
-              return value;
-           });
-         }
-         resolve();
+      let finalresult = await request_promise(peer_url);
+      if(finalresult){
+        var jsonresponse = JSON.parse(finalresult);
+      }
+         let result = jsonresponse.map(function (value, i) {
+            value['id'] = i;
+            return value;
          });
-      });
         response.status(200).json({
-          status: 200,
-          timestamp: Date.now(),
-          message: 'Peers list fetched successfully',
-          response: {
-          dataJson:  result
-          },
-        });
+        status: 200,
+        timestamp: Date.now(),
+        message: 'Peers list fetched successfully',
+        response: {
+        dataJson:  result
+        },
       });
+      // http.get(peer_url,
+      // async (resp) => {
+      //   // console.log('resp resp respresp',resp);
+      //   let data = '';
+      //   let result ;
+
+      //   // A chunk of data has been recieved.
+      //   await new Promise((resolve) => {
+      //   resp.on('data', function (chunk) {
+      //      data += chunk;
+
+      //      let dataJson = self.IsJsonString(data);
+      //      if(dataJson.length > 0){
+
+      //     result = dataJson.map(function (value, i) {
+      //         value['id'] = i;
+      //         return value;
+      //      });
+      //    }
+      //    resolve();
+      //    });
+      // });
+      //   response.status(200).json({
+      //     status: 200,
+      //     timestamp: Date.now(),
+      //     message: 'Peers list fetched successfully',
+      //     response: {
+      //     dataJson:  result
+      //     },
+      //   });
+      // });
     } catch (error) {
       console.log('error 3###########', error);
       next(new InternalServerErrorException(error));
