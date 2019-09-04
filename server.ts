@@ -122,10 +122,24 @@ controllers.forEach(controller => {
 
 app.get("/api", async (req, res) =>  {
     let blockDetails = await latestBlockDetails();
-    let result = { "Name": "Epic Cash", "Symbol": "EPIC", "TotalSupply": 21000000, "CurrentSupply": blockDetails.coin_existence, "CurrentBlockReward": blockDetails.currentReward,
-        "Algorithms": "Cuckoo, RandomX, Pogprow",
-        "Target_Difficulty": { "Cuckoo": blockDetails.targetdifficultycuckaroo + blockDetails.targetdifficultycuckatoo, "RandomX": blockDetails.targetdifficultyrandomx, "Pogprow": blockDetails.targetdifficultyprogpow },
-        "Total_Difficulty": { "Cuckoo": blockDetails.TotalCuckoo, "RandomX": blockDetails.TotalDifficultyRandomx, "Pogprow": blockDetails.TotalDifficultyProgpow },
+    let result = { "Name": "Epic Cash", 
+        "Symbol": "EPIC", 
+        "TotalSupply": 21000000, 
+        "CurrentSupply": blockDetails.coin_existence,
+        "ChainReward": 16,
+        "FoundationContribution" : blockDetails.foundationReward,
+        "CurrentBlockReward": blockDetails.userReward,
+        "Algorithms": "Cuckoo, RandomX, ProgPow",
+        "Target_Difficulty": {
+          "Cuckoo": blockDetails.targetdifficultycuckaroo + blockDetails.targetdifficultycuckatoo, 
+          "RandomX": blockDetails.targetdifficultyrandomx, 
+          "ProgPow": blockDetails.targetdifficultyprogpow 
+        },
+        "Total_Difficulty": { 
+          "Cuckoo": blockDetails.TotalCuckoo,
+          "RandomX": blockDetails.TotalDifficultyRandomx, 
+          "ProgPow": blockDetails.TotalDifficultyProgpow 
+        },
         "BlockHeight": blockDetails.block_height,
         "Blockchain": "MimbleWimble",
         "Homepage": "https://epic.tech",
