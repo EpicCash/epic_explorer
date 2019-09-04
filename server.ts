@@ -56,7 +56,7 @@ BlockchainOutput
 import { universalGetLatestBlockDetails } from "./server/socket";
 import { dbConfig } from "./server/ormconfig";
 import { config } from "dotenv";
-
+import {latestBlockDetails} from './server/utils';
 config({ path: resolve(__dirname, "../.env") });
 
 // const connectionManager = getConnectionManager();
@@ -117,7 +117,33 @@ app.get("/swagger.json", function(req, res) {
 controllers.forEach(controller => {
   app.use("/epic_explorer/v1", controller.router);
 });
+
 // Example Express Rest API endpoints
+
+app.get("/api", async (req, res) =>  {
+    let blockDetails = await latestBlockDetails();
+    let result = { "Name": "Epic Cash", "Symbol": "EPIC", "TotalSupply": 21000000, "CurrentSupply": blockDetails.coin_existence, "CurrentBlockReward": blockDetails.currentReward,
+        "Algorithms": "Cuckoo, RandomX, Pogprow",
+        "Target_Difficulty": { "Cuckoo": blockDetails.targetdifficultycuckaroo + blockDetails.targetdifficultycuckatoo, "RandomX": blockDetails.targetdifficultyrandomx, "Pogprow": blockDetails.targetdifficultyprogpow },
+        "Total_Difficulty": { "Cuckoo": blockDetails.TotalCuckoo, "RandomX": blockDetails.TotalDifficultyRandomx, "Pogprow": blockDetails.TotalDifficultyProgpow },
+        "BlockHeight": blockDetails.block_height,
+        "Blockchain": "MimbleWimble",
+        "Homepage": "https://epic.tech",
+        "Explorer": "https://explorer.epic.tech",
+        "API": "https://explorer.epic.tech/api",
+        "Logo": "https://explorer.epic.tech/assets/img/logo.png",
+        "ICO": "NO",
+        "Premine": "NO",
+        "Mainnet": "YES",
+        "Genesis": "09-03-2019, 02:09:00 UTC",
+        "BlockInterval": 60,
+        "GIT": "https://gitlab.com/epiccash",
+        "Whitepaper":"https://epic.tech/whitepaper",
+        "Colors": { "off-white": "#f3f4f2", "off-black": "#222223", "gold" :"#bf9b30" }
+    };
+    res.status(200).json({...result});
+  });
+
 app.get("/epic_explorer/v1/**", (req, res) => {
   res.send({ msg: "Api works." });
 });
