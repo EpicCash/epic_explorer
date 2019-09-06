@@ -56,7 +56,7 @@ BlockchainOutput
 import { universalGetLatestBlockDetails } from "./server/socket";
 import { dbConfig } from "./server/ormconfig";
 import { config } from "dotenv";
-import {latestBlockDetails, Details} from './server/utils';
+import {latestBlockDetails, Details, GetBlocktime} from './server/utils';
 config({ path: resolve(__dirname, "../.env") });
 
 // const connectionManager = getConnectionManager();
@@ -170,10 +170,21 @@ try {
               }
               
         }
-        else if(option == "getblockheight")
-              result = "";
-        else if(option == "getblocktime")
-              result = 60;
+
+        else if(option == "getblocktime"){
+          let height = req.query.height;
+          if(height) {
+            let blockTime = await GetBlocktime(height);
+            if(blockTime[0].alter)
+                result = blockTime[0].alter;
+            else
+                 result = 'Invalid height';
+          } else if(height < 0) {
+             result = '"height" parameter missing or invalid';
+          } else {
+             result = '"height" parameter missing or invalid';
+          }
+        }
         else if(option == "info")
         {
           result = { 

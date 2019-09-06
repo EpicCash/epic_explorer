@@ -326,7 +326,7 @@ async function GetBlocktime(height){
    if(height){
     const BlockchainLatestBlockQuery3 = await getConnection(Global.network)
     .query(
-      "SELECT height, EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height="+height,
+      "SELECT coalesce(max(bb.alter), 0) as alter FROM (SELECT EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height="+height+" OR height="+(height-1)+") as bb",
     )
     .catch(err_msg => {
       return(err_msg);
@@ -336,4 +336,5 @@ async function GetBlocktime(height){
 }
             
 export  {latestBlockDetails};
+export  {GetBlocktime};
 export  {Details};
