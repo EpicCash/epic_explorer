@@ -658,8 +658,8 @@ export class BlockchainKernelController {
       }
       const TransactionFeeQuery = await getConnection(Global.network)
         .query(
-          "select 1 as hash, date(DATE_TRUNC('day', timestamp)) as date, sum(fee)/1000000 as fee \
-            from blockchain_block t1 join blockchain_kernel t2 on t2.block_id=t1.hash  where " +
+          "select 1 as hash, date(DATE_TRUNC('day', timestamp)) as date, avg(fee)/1000000000 as fee \
+            from blockchain_block t1 join blockchain_kernel t2 on t2.block_id=t1.hash  where fee > 0 and " +
           timeIntervalQry +
           "group by DATE_TRUNC('day', timestamp) order by date",
         )
@@ -670,7 +670,7 @@ export class BlockchainKernelController {
         Fee = [];
       TransactionFeeQuery.forEach(e => {
         date.push(moment(e.date).format('YYYY-MM-DD'));
-        Fee.push(parseInt(e.fee));
+        Fee.push(e.fee);
       });
 
       if(date.length == 0){

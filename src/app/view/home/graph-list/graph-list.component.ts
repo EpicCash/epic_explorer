@@ -940,9 +940,9 @@ export class GraphListComponent implements OnInit {
         {
           x: gDate,
           y: gaddedreward,
-         // type: 'scatter',
-         // mode: 'lines',
-         //fill: 'tozeroy',
+          // type: 'line',
+          //mode: 'lines',
+          //fill: 'tozeroy',
           type: 'line',
           name: '',
           line: {
