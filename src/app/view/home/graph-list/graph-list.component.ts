@@ -441,7 +441,7 @@ export class GraphListComponent implements OnInit {
                         // mode: 'lines+markers',
                         type: 'scatter',
                         name: 'Cuckoo',
-                        // line: { color: '#ac3333' },
+                        line: { color: '#bf9b30' },
                         //hovertemplate: '%{text}<br> Cuckoo : %{y:,}',
                         hovertemplate: 'Cuckoo : %{y:,}',
                         hoverlabel: {namelength : 0}
@@ -455,7 +455,7 @@ export class GraphListComponent implements OnInit {
                         type: 'scatter',
                         name: 'Progpow',
                         yaxis: 'y2',
-                        // line: { color: '#ac3333' },
+                        line: { color: '#e2e2e2' },
                         hovertemplate: 'Progpow : %{y:,}',
                         hoverlabel: {namelength : 0}
                       },
@@ -467,7 +467,7 @@ export class GraphListComponent implements OnInit {
                         type: 'scatter',
                         name: 'RandomX',
                         yaxis: 'y3',
-                        // line: { color: '#ac3333' },
+                        line: { color: '#222223' },
                         hovertemplate: 'RandomX : %{y:,}',
                         hoverlabel: {namelength : 0}
                       },
@@ -484,7 +484,7 @@ export class GraphListComponent implements OnInit {
                         mode: 'lines+markers',
                         type: 'scatter',
                         name: '',
-                        line: { color: '#ac3333' },
+                        line: { color: '#222223' },
                         hovertemplate: '%{text}<br> Difficulty : %{y:,}',
                       }];
                   break;
@@ -676,7 +676,7 @@ export class GraphListComponent implements OnInit {
           hovertemplate: '%{x}<br> Cuckoo : %{text:,}',
           hoverlabel: {namelength : 0},
           marker: {
-            color: '#77817C',
+            color: '#bf9b30',
           },
         },
         // {
@@ -699,7 +699,7 @@ export class GraphListComponent implements OnInit {
           hovertemplate: '%{x}<br> ProgPow : %{text:,}',
           hoverlabel: {namelength : 0},
           marker: {
-            color: '#825f5f',
+            color: '#222223',
           },
         },
         {
@@ -711,7 +711,7 @@ export class GraphListComponent implements OnInit {
           hovertemplate: '%{x}<br> RandomX : %{text:,}',
           hoverlabel: {namelength : 0},
           marker: {
-            color: '#a9df5f',
+            color: '#e2e2e2',
           },
         }
 
@@ -764,7 +764,7 @@ export class GraphListComponent implements OnInit {
       ],
       layout: {
         hovermode: 'closest',
-        //width: 350,
+        width: 350,
         height: 250,
         autosize: false,
         showlegend: false,
@@ -803,7 +803,7 @@ export class GraphListComponent implements OnInit {
           hovertemplate: 'Block #%{x}<br> Interval : %{text:,}s',
           type: 'bar',
           marker: {
-            color: Blockval,
+            color: '#bf9b30',
             colorscale: 'Viridis',
           },
         },
@@ -857,7 +857,7 @@ export class GraphListComponent implements OnInit {
           hovertemplate: '%{x}<br> Block : %{text:,}',
           type: 'bar',
           marker: {
-            color: Blockval,
+            color: "#bf9b30",
             colorscale: 'Viridis',
           },
         },
@@ -901,6 +901,9 @@ export class GraphListComponent implements OnInit {
           name: '',
           hovertemplate: '%{x}<br> Fee : %{text:,}',
           type: 'lines',
+          line: {
+            color: '#bf9b30',
+          },
         },
       ],
       layout: {
@@ -937,13 +940,13 @@ export class GraphListComponent implements OnInit {
         {
           x: gDate,
           y: gaddedreward,
-          // type: 'scatter',
-          // mode: 'lines',
-          fill: 'tozeroy',
+          // type: 'line',
+          //mode: 'lines',
+          //fill: 'tozeroy',
           type: 'line',
           name: '',
           line: {
-            color: '#17BECF',
+            color: '#bf9b30',
             width: 3,
           },
           text: gReward,
@@ -996,7 +999,7 @@ export class GraphListComponent implements OnInit {
           fill: 'tozeroy',
           type: 'line',
           line: {
-            color: 'rgb(100, 0, 160)',
+            color: '#bf9b30',
           },
         },
       ],
@@ -1042,7 +1045,7 @@ export class GraphListComponent implements OnInit {
           fill: 'tozeroy',
           type: 'line',
           line: {
-            color: '#f5ca19',
+            color: '#bf9b30',
           },
         },
         // {
@@ -1067,7 +1070,7 @@ export class GraphListComponent implements OnInit {
           type: 'line',
           name: 'RandomX',
           line: {
-            color: '#1ad5e9',
+            color: '#e2e2e2',
           },
         },
         {
@@ -1080,7 +1083,7 @@ export class GraphListComponent implements OnInit {
           type: 'line',
           name: 'ProgPow',
           line: {
-            color: '#f74f4f',
+            color: '#222223',
           },
         },
       ],
@@ -1127,6 +1130,7 @@ export class GraphListComponent implements OnInit {
             text: hovertext,
             hovertemplate: hovertext + ': %{z:,} ',
             colorscale: 'Rainbow',
+            //colors : colorRamp(c("red", "green")),
             type: 'heatmap',
             visible: true,
             colorbar: { thickness: 3 },
@@ -1188,7 +1192,7 @@ export class GraphListComponent implements OnInit {
           text: Ttotalinput,
           hovertemplate: 'Total Input : %{text:,} ',
           hoverlabel: {namelength : 0},
-          line: { color: '#6ebe58' },
+          line: { color: '#bf9b30' },
         },
         {
           type: 'scatter',
@@ -1199,7 +1203,7 @@ export class GraphListComponent implements OnInit {
           text: Ttotalkernal,
           hovertemplate: 'Total Kernel : %{text:,} ',
           hoverlabel: {namelength : 0},
-          line: { color: '#f57979' },
+          line: { color: '#e2e2e2' },
         },
         {
           type: 'scatter',
@@ -1210,7 +1214,7 @@ export class GraphListComponent implements OnInit {
           text: Ttotaloutput,
           hovertemplate: 'Total Output : %{text:,} ',
           hoverlabel: {namelength : 0},
-          line: { color: '#f7d340' },
+          line: { color: '#222223' },
         },
       ],
       layout: {

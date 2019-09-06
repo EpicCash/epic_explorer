@@ -268,9 +268,10 @@ a:focus {
 }
 .day_filter a.active {
   border: 1px solid #BF9B30;
-  background: #BF9B30;
+  /* background: #BF9B30; */
   padding: 0 5px;
-  color: #f3f4f2
+  /* color: #f3f4f2 */
+  color: #BF9B30
 }
 .difficulty_filter.day_filter a.active{border-color: #0056b3; color: #0056b3;}
 .explore_all {
@@ -600,9 +601,10 @@ body.dark_theme {
   color: #c0d2ff;
 }
 .dark_theme .day_filter a.active {
-  background-color: #BF9B30;
+  /* background-color: #BF9B30; */
   border-color: #BF9B30;
-  color: #f3f4f2;
+  /* color: #f3f4f2; */
+  color: #BF9B30;
 }
 .dark_theme .chart_heading {
   color: #f3f4f2;
