@@ -119,15 +119,50 @@ controllers.forEach(controller => {
 });
 
 // Example Express Rest API endpoints
+import request from 'request-promise';
 
 app.get("/api", async (req, res) =>  {
+try {
+    let option = req.query.q;
     let blockDetails = await latestBlockDetails();
-    let result = { "Name": "Epic Cash", 
-        "Symbol": "EPIC", 
-        "TotalSupply": 21000000, 
-        "CurrentSupply": blockDetails.coin_existence,
-        "ChainReward": 16,
-        "FoundationContribution" : blockDetails.foundationReward,
+    if(option)
+    {
+        let result; //500
+        if(option == "circulating")
+              result= blockDetails.coin_existence;
+        else if(option == "getblockcount")
+              result= blockDetails.block_height;
+        else if(option == "getdifficulty-randomx")
+              result = blockDetails.TotalDifficultyRandomx;
+        else if(option == "getdifficulty-cuckoo")
+              result = blockDetails.TotalCuckoo;
+        else if(option == "getdifficulty-progpow")
+              result = blockDetails.TotalDifficultyProgpow;
+        else if(option == "totalcoins")
+              result = 21000000;
+        else if(option == "getblockhash")
+        {
+              let height = req.query.height;
+              if(height) {
+                let apiresponse = await request('http://116.203.116.37:3413/v1/blocks/'+height);
+                result = "Value soon";
+              } else {
+                 result = '"height" parameter missing or invalid';
+              }
+              
+              result = 21000000;
+        }
+        else if(option == "getblockheight")
+              result = "";
+        else if(option == "getblocktime")
+              result = 60;
+        else if(option == "info")
+        {
+              result = { "Name": "Epic Cash", 
+                        "Symbol": "EPIC", 
+                        "TotalSupply": 21000000, 
+                        "CurrentSupply": blockDetails.coin_existence,
+                        "FoundationContribution" : blockDetails.foundationReward,
         "CurrentBlockReward": blockDetails.userReward,
         "Algorithms": "Cuckoo, RandomX, ProgPow",
         "Target_Difficulty": {
@@ -154,9 +189,33 @@ app.get("/api", async (req, res) =>  {
         "GIT": "https://gitlab.com/epiccash",
         "Whitepaper":"https://epic.tech/whitepaper",
         "Colors": { "off-white": "#f3f4f2", "off-black": "#222223", "gold" :"#bf9b30" }
-    };
-    res.status(200).json({...result});
+        };
+     }
+          else
+              result= "Invalid Option";
+
+          var type = typeof result;
+          console.log("Type of the result is", type);
+          if (type == "object") {
+            res.status(200).json({...result});
+          }
+          else {
+            res.status(200).send(result);
+          }
+     }
+     else
+     {
+           let result= 5;
+     }
+
+}
+catch(err){
+    res.status(200).send("Internal Server Error");
+}
+
   });
+
+
 
 app.get("/epic_explorer/v1/**", (req, res) => {
   res.send({ msg: "Api works." });
