@@ -56,7 +56,7 @@ BlockchainOutput
 import { universalGetLatestBlockDetails } from "./server/socket";
 import { dbConfig } from "./server/ormconfig";
 import { config } from "dotenv";
-import {latestBlockDetails} from './server/utils';
+import {latestBlockDetails, Details} from './server/utils';
 config({ path: resolve(__dirname, "../.env") });
 
 // const connectionManager = getConnectionManager();
@@ -144,13 +144,31 @@ try {
         {
               let height = req.query.height;
               if(height) {
-                let apiresponse = await request('http://116.203.116.37:3413/v1/blocks/'+height);
-                result = "Value soon";
+                let heighthash = await Details(height);
+                if(heighthash[0].hash)
+                    result = heighthash[0].hash;
+                else
+                     result = 'Invalid height';
+              } else if(height <0) {
+                 result = '"height" parameter missing or invalid';
               } else {
                  result = '"height" parameter missing or invalid';
               }
               
-              result = 21000000;
+        }
+        else if(option == "getblockheight")
+        {
+              let hash = req.query.hash;
+              if(hash) {
+                let heighthash = await Details(hash);
+                if(heighthash[0].height)
+                    result = heighthash[0].height;
+                else
+                    result = 'Invalid hash';
+              } else {
+                 result = '"hash" parameter missing or invalid';
+              }
+              
         }
         else if(option == "getblockheight")
               result = "";
@@ -158,59 +176,60 @@ try {
               result = 60;
         else if(option == "info")
         {
-              result = { "Name": "Epic Cash", 
-                        "Symbol": "EPIC", 
-                        "TotalSupply": 21000000, 
-                        "CurrentSupply": blockDetails.coin_existence,
-                        "FoundationContribution" : blockDetails.foundationReward,
-        "CurrentBlockReward": blockDetails.userReward,
-        "Algorithms": "Cuckoo, RandomX, ProgPow",
-        "Target_Difficulty": {
-          "Cuckoo": blockDetails.targetdifficultycuckaroo + blockDetails.targetdifficultycuckatoo, 
-          "RandomX": blockDetails.targetdifficultyrandomx, 
-          "ProgPow": blockDetails.targetdifficultyprogpow 
-        },
-        "Total_Difficulty": { 
-          "Cuckoo": blockDetails.TotalCuckoo,
-          "RandomX": blockDetails.TotalDifficultyRandomx, 
-          "ProgPow": blockDetails.TotalDifficultyProgpow 
-        },
-        "BlockHeight": blockDetails.block_height,
-        "Blockchain": "MimbleWimble",
-        "Homepage": "https://epic.tech",
-        "Explorer": "https://explorer.epic.tech",
-        "API": "https://explorer.epic.tech/api",
-        "Logo": "https://explorer.epic.tech/assets/img/logo.png",
-        "ICO": "NO",
-        "Premine": "NO",
-        "Mainnet": "YES",
-        "Genesis": "09-03-2019, 02:09:00 UTC",
-        "BlockInterval": 60,
-        "GIT": "https://gitlab.com/epiccash",
-        "Whitepaper":"https://epic.tech/whitepaper",
-        "Colors": { "off-white": "#f3f4f2", "off-black": "#222223", "gold" :"#bf9b30" }
-        };
-     }
+          result = { 
+          "Name": "Epic Cash",
+          "Symbol": "EPIC", 
+          "TotalSupply": 21000000, 
+          "CurrentSupply": blockDetails.coin_existence,
+          "MinerCurrentBlockReward": blockDetails.userReward,
+          "Algorithms": "Cuckoo, RandomX, ProgPow",
+          "Target_Difficulty": {
+            "Cuckoo": blockDetails.targetdifficultycuckaroo + blockDetails.targetdifficultycuckatoo, 
+            "RandomX": blockDetails.targetdifficultyrandomx, 
+            "ProgPow": blockDetails.targetdifficultyprogpow 
+          },
+          "Total_Difficulty": { 
+            "Cuckoo": blockDetails.TotalCuckoo,
+            "RandomX": blockDetails.TotalDifficultyRandomx, 
+            "ProgPow": blockDetails.TotalDifficultyProgpow 
+          },
+          "BlockHeight": blockDetails.block_height,
+          "Blockchain": "MimbleWimble",
+          "Homepage": "https://epic.tech",
+          "Explorer": "https://explorer.epic.tech",
+          "API": "https://explorer.epic.tech/api",
+          "Logo": "https://explorer.epic.tech/assets/img/logo.png",
+          "ICO": "NO",
+          "Premine": "NO",
+          "Mainnet": "YES",
+          "Genesis": "09-03-2019, 02:09:00 UTC",
+          "BlockInterval": 60,
+          "GIT": "https://gitlab.com/epiccash",
+          "Whitepaper":"https://epic.tech/whitepaper",
+          "Colors": { "off-white": "#f3f4f2", "off-black": "#222223", "gold" :"#bf9b30" }
+          };
+        }
           else
               result= "Invalid Option";
 
           var type = typeof result;
-          console.log("Type of the result is", type);
+          
           if (type == "object") {
             res.status(200).json({...result});
           }
           else {
-            res.status(200).send(result);
+            res.status(200).json(result);
           }
      }
      else
      {
-           let result= 5;
+           //let result= 5;
+           //window.redirect('/');
      }
 
 }
 catch(err){
-    res.status(200).send("Internal Server Error");
+    res.status(500).send("Internal Server Error");
 }
 
   });

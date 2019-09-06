@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeLayoutComponent } from '../shared/components/layouts/home-layout/home-layout.component';
 import { SiteLayoutComponent } from '../shared/components/layouts/site-layout/site-layout.component';
-
+import {  ApiViewComponent } from '../view/api-view/api-view.component';
 const viewRoutes: Routes = [
   {
     path: '',
@@ -35,6 +35,10 @@ const siteRoutes: Routes = [
       title: 'Epic Explorer',
     },
   },
+  {
+    path: 'api-view',
+    component: ApiViewComponent
+  }
 ];
 
 const routes: Routes = [

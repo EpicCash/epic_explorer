@@ -306,5 +306,34 @@ let currentReward = 16;
         userReward
       };
     }
+
+
+async function Details (height) {
+   if(height){
+
+    const BlockchainLatestBlockQuery2 = await getConnection(Global.network)
+    .query(
+      "Select hash, height from blockchain_block Where height =" +height.replace(/[a-z]/gi, '')+" OR hash ='"+height+"'",
+    )
+    .catch(err_msg => {
+      return(err_msg);
+    });
+    return BlockchainLatestBlockQuery2;
+   }
+}
+
+async function GetBlocktime(height){
+   if(height){
+    const BlockchainLatestBlockQuery3 = await getConnection(Global.network)
+    .query(
+      "SELECT height, EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height="+height,
+    )
+    .catch(err_msg => {
+      return(err_msg);
+    });
+    return BlockchainLatestBlockQuery3;
+   }
+}
             
 export  {latestBlockDetails};
+export  {Details};

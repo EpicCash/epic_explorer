@@ -190,7 +190,7 @@ a:focus {
 .headerbg {
   background: url(/assets/img/body_bg.png);
   overflow: hidden;
-}
+  background-position-y: -22%;}
 .body_bg {
   background: url(/assets/img/body_bg.png);
   background-position-y: -22%;
@@ -567,7 +567,7 @@ body.dark_theme {
 }
 .dark_theme .body_bg {
   background: url(/assets/img/dark_bg1.png);
-  background-position-y: -22%;
+  /* background-position-y: -22%; */
 }
 .dark_theme .logo_txt,
 .dark_theme .ip_filter a {

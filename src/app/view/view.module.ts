@@ -9,10 +9,11 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import { TransServiceService } from '../shared/services/trans-service.service';
 import { ChartService} from '../shared/services/chart.service';
 import { CustomLoader } from '../app.module';
+import { ApiViewComponent } from './api-view/api-view.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ApiViewComponent],
   imports: [CommonModule, ViewRoutingModule, SharedModule,
     TranslateModule.forChild({
       loader: {provide: TranslateLoader, useClass: CustomLoader, deps : [HttpClient]},         
