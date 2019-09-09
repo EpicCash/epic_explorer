@@ -455,7 +455,7 @@ export class GraphListComponent implements OnInit {
                         type: 'scatter',
                         name: 'Progpow',
                         yaxis: 'y2',
-                        line: { color: '#e2e2e2' },
+                        line: { color: '#818787' },
                         hovertemplate: 'Progpow : %{y:,}',
                         hoverlabel: {namelength : 0}
                       },
@@ -711,7 +711,7 @@ export class GraphListComponent implements OnInit {
           hovertemplate: '%{x}<br> RandomX : %{text:,}',
           hoverlabel: {namelength : 0},
           marker: {
-            color: '#e2e2e2',
+            color: '#818787',
           },
         }
 
@@ -1070,7 +1070,7 @@ export class GraphListComponent implements OnInit {
           type: 'line',
           name: 'RandomX',
           line: {
-            color: '#e2e2e2',
+            color: '#818787',
           },
         },
         {
@@ -1203,7 +1203,7 @@ export class GraphListComponent implements OnInit {
           text: Ttotalkernal,
           hovertemplate: 'Total Kernel : %{text:,} ',
           hoverlabel: {namelength : 0},
-          line: { color: '#e2e2e2' },
+          line: { color: '#818787' },
         },
         {
           type: 'scatter',
