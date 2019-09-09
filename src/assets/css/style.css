@@ -760,7 +760,14 @@ body.dark_theme {
 .sk-cube-grid .sk-cube9 {
   -webkit-animation-delay: 0.2s;
           animation-delay: 0.2s; }
-
+.ngx-pagination .current{
+  background: #c09c30 !important;
+}
+.ngx-pagination a, .ngx-pagination button{color: #a6a6a6;}
+.ngx-pagination a:hover, .ngx-pagination button:hover {
+  background: #c09c30;
+  color: #fff;
+}
 @-webkit-keyframes sk-cubeGridScaleDelay {
   0%, 70%, 100% {
     -webkit-transform: scale3D(1, 1, 1);
