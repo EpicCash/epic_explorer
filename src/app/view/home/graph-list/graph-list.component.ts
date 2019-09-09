@@ -441,7 +441,7 @@ export class GraphListComponent implements OnInit {
                         // mode: 'lines+markers',
                         type: 'scatter',
                         name: 'Cuckoo',
-                        line: { color: '#bf9b30' },
+                        line: { color: '#f5c330' },
                         //hovertemplate: '%{text}<br> Cuckoo : %{y:,}',
                         hovertemplate: 'Cuckoo : %{y:,}',
                         hoverlabel: {namelength : 0}
