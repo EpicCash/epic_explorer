@@ -1716,7 +1716,7 @@ export class BlockchainBlockController {
         request.query;
       if (BlockchainBlockPerSecondData.Interval) {
         var timeIntervalQry =
-          "timestamp > (current_date-1) - interval '" +
+          "timestamp > current_date - interval '" +
           BlockchainBlockPerSecondData.Interval +
           "'";
       } else if (
@@ -1733,14 +1733,14 @@ export class BlockchainBlockController {
         var timeIntervalQry =
           'timestamp BETWEEN SYMMETRIC ' + fromdate + ' AND ' + todate;
       } else {
-        var timeIntervalQry = "timestamp > (current_date-1) - interval '30 days'";
+        var timeIntervalQry = "timestamp > current_date - interval '30 days'";
       }
       const BlockchainBlockPerSecondQuery = await getConnection(Global.network)
         .query(
           "select date(DATE_TRUNC('day', timestamp)) as date, count(hash) as blocks, 86400/count(hash) as period \
         from blockchain_block where " +
           timeIntervalQry +
-          "AND height != 0 group by DATE_TRUNC('day', timestamp) order by date",
+          "AND height != 0 AND timestamp < current_date group by DATE_TRUNC('day', timestamp) order by date",
         )
         .catch(err_msg => {
           next(err_msg);
