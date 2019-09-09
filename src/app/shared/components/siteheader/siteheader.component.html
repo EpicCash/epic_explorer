@@ -16,9 +16,9 @@
       <div class=" d-none d-sm-inline-block mr-3 position-relative">
           <span>You are viewing </span>
           <select (change)="onChangeNetwork($event.target.value)" class="langbut py-2 pr-3 pl-1">
-              <option value="Floonet" [selected]="'Floonet' == getNetwork()" >FlooNet</option>
-              <option value="Testnet" [selected]="'Testnet' == getNetwork()">TestNet</option>
-              <option disabled value="Mainnet">MainNet</option>
+              <!-- <option value="Floonet" [selected]="'Floonet' == getNetwork()" >FlooNet</option> -->
+              <option value="Testnet" disabled [selected]="'Testnet' == getNetwork()">MainNet</option>
+              <!-- <option disabled value="Mainnet">MainNet</option> -->
           </select>
           <i class="arrow_drpdwn net_dropdwn" ></i>
           <!-- <ul class="list-unstyled d-inline-block">
@@ -75,9 +75,9 @@
     <div class="d-block d-sm-none text-center mt-3 mx-auto position-relative">
         <span>You are viewing </span>
         <select (change)="onChangeNetwork($event.target.value)" class="langbut py-2 pr-3 pl-1">
-            <option value="Floonet" [selected]="'Floonet' == getNetwork()" >FlooNet</option>
-            <option value="Testnet" [selected]="'Testnet' == getNetwork()">TestNet</option>
-            <option disabled value="Mainnet">MainNet</option>
+            <!-- <option value="Floonet" [selected]="'Floonet' == getNetwork()" >FlooNet</option> -->
+            <option value="Testnet" disabled [selected]="'Testnet' == getNetwork()">MainNet</option>
+            <!-- <option disabled value="Mainnet">MainNet</option> -->
         </select>
         <i class="arrow_drpdwn net_dropdwn" ></i>
         <!-- <ul class="list-unstyled d-inline-block">
