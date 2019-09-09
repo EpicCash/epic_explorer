@@ -1716,7 +1716,7 @@ export class BlockchainBlockController {
         request.query;
       if (BlockchainBlockPerSecondData.Interval) {
         var timeIntervalQry =
-          "timestamp > current_date - interval '" +
+          "timestamp > (current_date-1) - interval '" +
           BlockchainBlockPerSecondData.Interval +
           "'";
       } else if (
@@ -1733,7 +1733,7 @@ export class BlockchainBlockController {
         var timeIntervalQry =
           'timestamp BETWEEN SYMMETRIC ' + fromdate + ' AND ' + todate;
       } else {
-        var timeIntervalQry = "timestamp > current_date - interval '30 days'";
+        var timeIntervalQry = "timestamp > (current_date-1) - interval '30 days'";
       }
       const BlockchainBlockPerSecondQuery = await getConnection(Global.network)
         .query(
