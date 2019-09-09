@@ -763,10 +763,10 @@ body.dark_theme {
 .ngx-pagination .current{
   background: #c09c30 !important;
 }
-.ngx-pagination a, .ngx-pagination button{color: #a6a6a6;}
+.ngx-pagination a, .ngx-pagination button{color: #a6a6a6 !important;}
 .ngx-pagination a:hover, .ngx-pagination button:hover {
-  background: #c09c30;
-  color: #fff;
+  background: #c09c30 !important;
+  color: #fff !important;
 }
 @-webkit-keyframes sk-cubeGridScaleDelay {
   0%, 70%, 100% {
