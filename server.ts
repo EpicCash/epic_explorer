@@ -133,11 +133,11 @@ try {
         else if(option == "getblockcount")
               result= blockDetails.block_height;
         else if(option == "getdifficulty-randomx")
-              result = blockDetails.TotalDifficultyRandomx;
+              result = Number(blockDetails.TotalDifficultyRandomx);
         else if(option == "getdifficulty-cuckoo")
-              result = blockDetails.TotalCuckoo;
+              result = Number(blockDetails.TotalCuckoo);
         else if(option == "getdifficulty-progpow")
-              result = blockDetails.TotalDifficultyProgpow;
+              result = Number(blockDetails.TotalDifficultyProgpow);
         else if(option == "totalcoins")
               result = 21000000;
         else if(option == "getblockhash")
