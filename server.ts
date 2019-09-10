@@ -32,7 +32,7 @@ import { Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 //import { logger } from "./server/utils";
 import swaggerJSDoc from "swagger-jsdoc";
-import { errorMiddleware } from "./server/middlewares";
+import { errorMiddleware, redisMiddleware } from "./server/middlewares";
 import {
   getRepository,
   In,
@@ -121,7 +121,7 @@ controllers.forEach(controller => {
 // Example Express Rest API endpoints
 import request from 'request-promise';
 
-app.get("/api", async (req, res) =>  {
+app.get("/api", redisMiddleware('60'), async (req, res) =>  {
 try {
     let option = req.query.q;
     let blockDetails = await latestBlockDetails();
