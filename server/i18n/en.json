@@ -61,7 +61,7 @@
         "DAYS" : "days",
         "MONTHS" : "months",
         "WEEK" : "week",
-        "SEARCH_TEXT" : "Search by hash, or block height",
+        "SEARCH_TEXT" : "Search by hash, or block height or output commit id",
         "BLOCK_REWARD" : "Block Reward",
         "NOT_FOUND" : "Page Not Found",
         "NOT_FOUND1" : "Page you are looking for is not found",

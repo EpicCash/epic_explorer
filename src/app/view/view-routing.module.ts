@@ -29,13 +29,6 @@ const siteRoutes: Routes = [
       },
   },
   {
-    path: 'outputdetail/:hash',
-    loadChildren: './output-view/output-view.module#OutputViewModule',
-    data: {
-        title: 'Epic Explorer - Block',
-      },
-  },
-  {
     path: 'chart',
     loadChildren: './graph-view/graph-view.module#GraphViewModule',
     data: {
