@@ -711,24 +711,66 @@ export class BlockchainBlockController {
     next: NextFunction,
   ) => {
     try {
-      var BlockchainBlockFetchQuery = await getConnection(Global.network).getRepository(
-        BlockchainBlock,
+      var BlockchainOutputFetchQuery = await getConnection(Global.network).getRepository(
+        BlockchainOutput,
       ).findOne({
         select: [
-          'Hash',
-          'Height',
-          'Timestamp',
-          'TotalDifficultyCuckaroo',
-          'TotalDifficultyCuckatoo',
-          'TotalDifficultyProgpow',
-          'TotalDifficultyRandomx',
-          'PreviousId',
-          'EdgeBits',
-          'SecondaryScaling',
-          'Proof',
+          'BlockId'
         ],
-        where: { Hash: request.params.hash },
+        where: { Commit : request.params.hash },
       });
+     
+       if(BlockchainOutputFetchQuery){
+        var BlockchainBlockFetchQuery = await getConnection(Global.network).getRepository(
+          BlockchainBlock,
+        ).findOne({
+          select: [
+            'Hash',
+            'Height',
+            'Timestamp',
+            'TotalDifficultyCuckaroo',
+            'TotalDifficultyCuckatoo',
+            'TotalDifficultyProgpow',
+            'TotalDifficultyRandomx',
+            'PreviousId',
+            'EdgeBits',
+            'SecondaryScaling',
+            'Proof',
+          ],
+          where: { Hash: BlockchainOutputFetchQuery.BlockId },
+        });
+       }else{
+        var BlockchainBlockFetchQuery = await getConnection(Global.network).getRepository(
+          BlockchainBlock,
+        ).findOne({
+          select: [
+            'Hash',
+            'Height',
+            'Timestamp',
+            'TotalDifficultyCuckaroo',
+            'TotalDifficultyCuckatoo',
+            'TotalDifficultyProgpow',
+            'TotalDifficultyRandomx',
+            'PreviousId',
+            'EdgeBits',
+            'SecondaryScaling',
+            'Proof',
+          ],
+          where: { Hash: request.params.hash },
+        });
+       } 
+
+
+
+
+
+
+
+
+
+
+
+   
       let paramVal = request.params.hash;
       if (
         !BlockchainBlockFetchQuery &&
@@ -768,7 +810,7 @@ export class BlockchainBlockController {
       const BlockchainBlockOutputFetchQuery = await getConnection(Global.network).getRepository(
         BlockchainOutput,
       ).find({
-        select: ['OutputType', 'Commit', 'Spent'],
+        select: ['OutputType', 'Commit', 'Spent', 'MerkleProof', 'MmrIndex', 'ProofHash', 'Proof'],
         where: { BlockId: BlockchainBlockFetchQuery.Hash },
       });
 
@@ -892,6 +934,8 @@ export class BlockchainBlockController {
       let arr = balance.match(/.{1,6}/g);
       BlockchainBlockFetchQuery['hasharray'] = arr.map(i => '#' + i);
 
+      var viewType = BlockchainOutputFetchQuery ? 'Commit' : 'HashHeight';
+
       BlockchainBlockFetchQuery
         ? response.status(200).json({
           status: 200,
@@ -902,6 +946,7 @@ export class BlockchainBlockController {
             BlockchainBlockInputFetchQuery: BlockchainBlockInputFetchQuery,
             BlockchainBlockOutputFetchQuery: BlockchainBlockOutputFetchQuery,
             BlockchainBlockKernalFetchQuery: BlockchainBlockKernalFetchQuery,
+            viewType: viewType
           },
         })
         : next(new NoDataFoundException());
