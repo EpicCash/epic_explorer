@@ -71,6 +71,7 @@
     .ngx-pagination li{display: none;}
     .ngx-pagination li.pagination-previous{display: inline-block;}
     .ngx-pagination li.pagination-next{display: inline-block;}
+    .hashdata_table td{border: 1px solid #a6a6a6;}
 
 }
 @media(max-width: 575px){
@@ -91,12 +92,9 @@
     /* .view_page_header{text-align: center;} */
     .view_page_header .navbar-brand{display: block; margin: 0 auto;}
     .view_page_header .ml-auto{margin: 0 !important; display: inherit;}
-
 }
 @media(max-width: 470px){
-    .navbar-expand .navbar-collapse.home_mble_hdr{display: block !important;}
-    
-
+    .navbar-expand .navbar-collapse.home_mble_hdr{display: block !important;} 
 }
 @media(max-width: 365px){
     .mobile_table .col-6 {flex: 0 0 100%;max-width: 100%;}
