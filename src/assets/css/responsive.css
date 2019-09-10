@@ -66,6 +66,8 @@
     .footer_div{text-align: center;}
     .view_txt{font-size: 15px;}
     .ytitle, .y2tick, .y3tick, .ytick, .y2title, .y3title, .xtitle, .xtick{font-size: 11px !important}
+    .chart_section.mt-4{margin-top: 0px !important;}
+    .logo_img{height: 50px;}
 
 }
 @media(max-width: 575px){
