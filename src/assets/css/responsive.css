@@ -68,6 +68,9 @@
     .ytitle, .y2tick, .y3tick, .ytick, .y2title, .y3title, .xtitle, .xtick{font-size: 11px !important}
     .chart_section.mt-4{margin-top: 0px !important;}
     .logo_img{height: 50px;}
+    .ngx-pagination li{display: none;}
+    .ngx-pagination li.pagination-previous{display: inline-block;}
+    .ngx-pagination li.pagination-next{display: inline-block;}
 
 }
 @media(max-width: 575px){
