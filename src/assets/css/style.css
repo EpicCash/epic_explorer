@@ -391,6 +391,7 @@ a:focus {
 .zerolinelayer path {
   stroke: #a6a6a6 !important;
 }
+.text_break{white-space: normal; word-break: break-all;}
 /************************************************Footer*****************************************/
 .footer_div {
   border-top: 1px solid rgba(0, 0, 0, 0.15);
@@ -598,7 +599,7 @@ body.dark_theme {
   color: #a6a6a6;
 }
 .dark_theme .table td {
-  color: #c0d2ff;
+  color: #f3f4f2;
 }
 .dark_theme .day_filter a.active {
   /* background-color: #BF9B30; */
@@ -634,7 +635,7 @@ body.dark_theme {
 .dark_theme .block_div h5{color: #BF9B30;}
 .dark_theme .ftr_services a,
 .dark_theme .ftr_services {
-  color: #c0d2ff;
+  color: #f3f4f2;
 }
 .dark_theme .ftr_services .gray_txt {
   color: #3b4e7c;
@@ -659,7 +660,7 @@ body.dark_theme {
   color: #f3f4f2 !important;
 }
 .dark_theme td a.txt_secondary {
-  color: #c0d2ff;
+  color: #f3f4f2;
 }
 .dark_theme .main-svg:first-child {
   /* background: rgb(39, 49, 75) !important; */
