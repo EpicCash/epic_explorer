@@ -1053,6 +1053,7 @@ export class BlockchainBlockController {
               'blockchain_block.TotalDifficultyProgpow',
               'blockchain_block.TotalDifficultyRandomx',
               'blockchain_block.previous_id',
+              'EXTRACT(EPOCH FROM (blockchain_block.timestamp - LAG(blockchain_block.timestamp) OVER (ORDER BY blockchain_block.timestamp))) as timetaken',
               'blockchain_block.total_difficulty_cuckaroo - LAG(blockchain_block.total_difficulty_cuckaroo) OVER (ORDER BY blockchain_block.total_difficulty_cuckaroo) AS target_difficulty_cuckaroo',
               'blockchain_block.total_difficulty_cuckatoo - LAG(blockchain_block.total_difficulty_cuckatoo) OVER (ORDER BY blockchain_block.total_difficulty_cuckatoo) AS target_difficulty_cuckatoo',
               'blockchain_block.total_difficulty_progpow - LAG(blockchain_block.total_difficulty_progpow) OVER (ORDER BY blockchain_block.total_difficulty_progpow) AS target_difficulty_progpow',

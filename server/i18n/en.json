@@ -15,6 +15,7 @@
     "home": {
         "HEADER_TEXT": "You are on Beta",
         "COUNTDOWN": "Mainnet Countdown",
+        "TIMETAKEN": "Time Taken(sec)",
         "EXPLORE_IT": "Explore",
         "VIEWALL": "View All Charts",
         "BLOCKCHAIN_HEIGHT": "Blockchain Height",

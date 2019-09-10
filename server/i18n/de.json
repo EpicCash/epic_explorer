@@ -14,6 +14,7 @@
     "avg-block-interval" : "Durchschnittliches Sperrintervall",
     "home": {
         "HEADER_TEXT": "Sie befinden sich in Beta",
+        "TIMETAKEN": "Genomen tijd (sec)",
         "COUNTDOWN": "Mainnet-Countdown",
         "EXPLORE_IT": "Entdecke",
         "VIEWALL": "Alle Diagramme anzeigen",
