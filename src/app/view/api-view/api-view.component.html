@@ -1,29 +1,29 @@
 <div class="view_content py-4">
       <div  class="container">
-<h3>Query API</h3>
+<h3>{{'api-view.query-api' | translate}}</h3>
 
 <p>
-    The API function to call is specified through the <code>q</code> parameter.<br>
-    For instance you can ask the totalcoins of epic cash with "<i>https://explorer.epic.tech/api?q=totalcoins</i>".
+   {{'api-view.query-api-line1' | translate}} <code>q</code> parameter.<br>
+   {{'api-view.query-api-line2' | translate}} "<i>https://explorer.epic.tech/api?q=totalcoins</i>".
  </p>
- <h4>Real-Time Simple Queries</h4>
+ <h4>{{'api-view.real-time-simple-query' | translate}}</h4>
 <ul>
-    <li><b>circulating</b>: returns the number of circulating coins </li>
-    <li><b>getblockcount</b>: returns the current block height as a plain text string</li>
-    <li><b>getdifficulty-randomx</b>: returns the RandomX difficulty as a plain text string</li>
-    <li><b>getdifficulty-progpow</b>: returns the ProgPow difficulty as a plain text string</li>
-    <li><b>getdifficulty-cuckoo</b>: returns the Cuckoo difficulty as a plain text string</li>
-    <li><b>totalcoins</b>: returns the outstanding number of coins</li>
+    <li><b>circulating</b>: {{'api-view.circulating' | translate}} </li>
+    <li><b>getblockcount</b>: {{'api-view.getblockcount' | translate}}</li>
+    <li><b>getdifficulty-randomx</b>: {{'api-view.getdifficulty-randomx' | translate}}</li>
+    <li><b>getdifficulty-progpow</b>: {{'api-view.getdifficulty-progpow' | translate}}</li>
+    <li><b>getdifficulty-cuckoo</b>: {{'api-view.getdifficulty-cuckoo' | translate}}</li>
+    <li><b>totalcoins</b>: {{'api-view.totalcoins' | translate}}</li>
  </ul>
 
- <h4>Block Queries</h4>
+ <h4>{{'api-view.Block-Queries' | translate}}</h4>
  <p>
-    Block APIs only consider blocks in the "main" chain (as determined by the explorer wallet).
+   {{'api-view.block-query-text' | translate}}
  </p>
  <ul>
-    <li><b>getblockhash</b>: takes a <code>height</code> parameter and returns corresponding block hash.</li>
-    <li><b>getblockheight</b>: takes a <code>hash</code> parameter and returns corresponding block height.</li>
-    <li><b>getblocktime</b>: takes a <code>height</code> parameter and returns unixtime of the block.</li>
+    <li><b>getblockhash</b>: takes a <code>height</code> {{'api-view.getblockhash' | translate}}</li>
+    <li><b>getblockheight</b>: takes a <code>hash</code> {{'api-view.getblockheight' | translate}}</li>
+    <li><b>getblocktime</b>: takes a <code>height</code> {{'api-view.getblocktime' | translate}}</li>
  </ul>
  </div>
  </div>
