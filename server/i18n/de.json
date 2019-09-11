@@ -88,7 +88,7 @@
     "api-view": {
         "query-api" : "Abfrage-API",
         "query-api-line1" : "Die aufzurufende API-Funktion wird über den Parameter q angegeben.",
-        "query-api-line2" : "Zum Beispiel können Sie die Gesamtmünzen des epischen Bargeldes mit fragen 'https://explorer.epic.tech/api?q=totalcoins'",
+        "query-api-line2" : "Zum Beispiel können Sie die Gesamtmünzen des epischen Bargeldes mit fragen ",
         "circulating" : "Gibt die Anzahl der umlaufenden Münzen zurück",
         "getblockcount":"Gibt die aktuelle Blockhöhe als reine Textzeichenfolge zurück",
         "getdifficulty-randomx" : "Gibt die RandomX-Schwierigkeit als reine Textzeichenfolge zurück",

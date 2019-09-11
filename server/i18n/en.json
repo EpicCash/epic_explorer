@@ -88,7 +88,7 @@
     "api-view": {
         "query-api" : "Query API",
         "query-api-line1" : "The API function to call is specified through the q parameter.",
-        "query-api-line2" : "For instance you can ask the totalcoins of epic cash with 'https://explorer.epic.tech/api?q=totalcoins'",
+        "query-api-line2" : "For instance you can ask the totalcoins of epic cash with ",
         "circulating" : "returns the number of circulating coins",
         "getblockcount":"returns the current block height as a plain text string",
         "getdifficulty-randomx" : "returns the RandomX difficulty as a plain text string",
