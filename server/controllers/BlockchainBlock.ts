@@ -1012,6 +1012,7 @@ export class BlockchainBlockController {
         // MaxPages,
         PageSize,
       }: BlockchainBlockPaginationDto = request.query;
+      
       if (parseInt(CurrentPage) == NaN) {
         next(new IntegerValidationException('CurrentPage'));
       } else if (parseInt(PageSize) == NaN) {
@@ -1076,14 +1077,14 @@ export class BlockchainBlockController {
             .leftJoin('blockchain_block.BlockchainKernels', 'blockchain_kernel')
             .leftJoin('blockchain_block.BlockchainOutputs', 'blockchain_output')
             .skip(PaginationReponseData.startIndex)
-            .take(PaginationReponseData.pageSize)
+            .take(PaginationReponseData.pageSize+1)
             .orderBy('blockchain_block.Timestamp', 'DESC')
             .groupBy('blockchain_block.Hash')
             .getRawAndEntities();
 
-          //console.log(BlockchainBlockPaginationQuery.raw);
 
           let BlockchainBlockResult = BlockchainBlockPaginationQuery.raw;
+          BlockchainBlockResult.splice(-1,1);
           let lastElemt =
             BlockchainBlockResult[BlockchainBlockResult.length - 1];
           const BlockchainPreviousBlockFetchQuery = await getConnection(Global.network).getRepository(
