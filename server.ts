@@ -320,7 +320,6 @@ console.log(__dirname);
 
     cron.schedule('* * * * * *', () => {
       universalGetLatestBlockDetails('Testnet');
-      universalGetLatestBlockDetails('Floonet');
     });
     var interval;
     const io = require("socket.io").listen(server);
