@@ -235,7 +235,7 @@ try {
      else
      {
            //let result= 5;
-           //window.redirect('/');
+           res.redirect('/api-index');
      }
 
 }
