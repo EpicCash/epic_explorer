@@ -1012,7 +1012,7 @@ export class BlockchainBlockController {
         // MaxPages,
         PageSize,
       }: BlockchainBlockPaginationDto = request.query;
-      console.log("Page size",PageSize);
+      
       if (parseInt(CurrentPage) == NaN) {
         next(new IntegerValidationException('CurrentPage'));
       } else if (parseInt(PageSize) == NaN) {
@@ -1082,7 +1082,6 @@ export class BlockchainBlockController {
             .groupBy('blockchain_block.Hash')
             .getRawAndEntities();
 
-          console.log("page.size", PaginationReponseData.pageSize + 1);
 
           let BlockchainBlockResult = BlockchainBlockPaginationQuery.raw;
           BlockchainBlockResult.splice(-1,1);
