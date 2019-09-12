@@ -1339,7 +1339,7 @@ export class GraphListComponent implements OnInit {
           fixedrange: true,
           // showgrid: true,
           range: range3,
-          overlaying: 'y',
+          // overlaying: 'y',
           rangemode: 'nonnegative',
           side: 'right',
           position: 1.25
