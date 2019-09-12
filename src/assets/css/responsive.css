@@ -72,6 +72,8 @@
     .ngx-pagination li.pagination-previous{display: inline-block;}
     .ngx-pagination li.pagination-next{display: inline-block;}
     .hashdata_table td{border: 1px solid #a6a6a6;}
+	.body_bg.py-4{padding-top: 0px !important}
+     .block_details.mb-5{margin-bottom: 0px !important}
 
 }
 @media(max-width: 575px){
