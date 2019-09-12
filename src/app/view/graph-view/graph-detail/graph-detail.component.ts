@@ -63,8 +63,8 @@ export class GraphDetailComponent implements OnInit {
             this.hashdata = this.comp.linearTotalGraphData;
             console.log('this.comp.linearTotalGraphData',this.comp.linearTotalGraphData);
             this.hashdata.layout.height = 300;
-            this.hashdata.layout.xaxis.domain = [0.1,0.9];
-            this.hashdata.layout.yaxis2.position = 2.25;
+            //this.hashdata.layout.xaxis.domain = [0.1,0.9];
+            //this.hashdata.layout.yaxis2.position = 1.25;
             this.title = 'Total Difficulty';
             this.selectedItem = 6;
             this.titleService.setTitle(
