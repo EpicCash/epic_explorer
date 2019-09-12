@@ -102,5 +102,15 @@
         "getblockheight" : "Nimmt einen Hash-Parameter und gibt die entsprechende Blockhöhe zurück.",
         "getblocktime" : "Nimmt einen Höhenparameter und gibt die unixtime des Blocks zurück.",
         "takes":"nimmt ein"
+    },
+    "commit-id-view": {
+        "output-commit":"Output Commit",
+        "created-at-block":"Erstellt am Block",
+        "created-at":"Hergestellt in",
+        "output-type" : "Ausgabetyp",
+        "proof" : "Beweis",
+        "proof-hash" : "Beweis-Hash",
+        "merkle-proof" : "Merkle Beweis",
+        "mmr-index" : "MMR Index"
     }
 }

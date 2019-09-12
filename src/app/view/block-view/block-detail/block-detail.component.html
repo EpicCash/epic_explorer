@@ -291,50 +291,50 @@
   <div *ngIf="hashdata.viewType == 'Commit'" >
      
           <div class="container">
-                  <h3>&nbsp; Output Commit <span style="font-size:15px"></span></h3>
+                  <h3>&nbsp; {{'commit-id-view.output-commit' | translate}} <span style="font-size:15px"></span></h3>
       
                   <table class="table table-horizontal-bordered table-hover hashdata_table">
                           <tbody>
                             <tr>
-                              <td class="d-none d-md-table-cell">Created at block </td>
+                              <td class="d-none d-md-table-cell">{{'commit-id-view.created-at-block' | translate}} </td>
                               <td>
-                                  <p class="d-md-none">Created at block</p>
+                                  <p class="d-md-none">{{'commit-id-view.created-at-block' | translate}}</p>
                                 {{ hashdata.BlockchainBlockFetchQuery.Height }}</td>
                             </tr>
                            <tr>
-                            <td class="d-none d-md-table-cell">Created At </td>
+                            <td class="d-none d-md-table-cell">{{'commit-id-view.created-at' | translate}} </td>
                             <td>
-                                <p class="d-md-none">Created At</p>
+                                <p class="d-md-none">{{'commit-id-view.created-at' | translate}}</p>
                               {{ hashdata.BlockchainBlockFetchQuery.Timestamp }}</td>
                           </tr>
                           <tr>
-                            <td class="d-none d-md-table-cell">Output Type</td>
+                            <td class="d-none d-md-table-cell">{{'commit-id-view.output-type' | translate}}</td>
                             <td>
-                                <p class="d-md-none">Output Type</p>
+                                <p class="d-md-none">{{'commit-id-view.output-type' | translate}}</p>
                               {{ hashdata.BlockchainBlockOutputFetchQuery[0].OutputType }}</td>
                           </tr>
                           <tr>
-                            <td class="d-none d-md-table-cell">Proof</td>
+                            <td class="d-none d-md-table-cell">{{'commit-id-view.proof' | translate}}</td>
                             <td>
-                                <p class="d-md-none">Proof</p>
+                                <p class="d-md-none">{{'commit-id-view.proof' | translate}}</p>
                               {{ hashdata.BlockchainBlockOutputFetchQuery[0].Proof }}</td>
                           </tr>
                           <tr>
-                            <td class="d-none d-md-table-cell">Proof hash</td>
+                            <td class="d-none d-md-table-cell">{{'commit-id-view.proof-hash' | translate}}</td>
                             <td>
-                                <p class="d-md-none">Proof hash</p>
+                                <p class="d-md-none">{{'commit-id-view.proof-hash' | translate}}</p>
                               {{ hashdata.BlockchainBlockOutputFetchQuery[0].ProofHash }}</td>
                           </tr>
                           <tr>
-                            <td class="d-none d-md-table-cell">Merkle Proof</td>
+                            <td class="d-none d-md-table-cell">{{'commit-id-view.merkle-proof' | translate}}</td>
                             <td class="text_break">
-                                <p class="d-md-none">Merkle Proof</p>
+                                <p class="d-md-none">{{'commit-id-view.merkle-proof' | translate}}</p>
                               {{ hashdata.BlockchainBlockOutputFetchQuery[0].MerkleProof }}</td>
                           </tr>
                           <tr>
-                            <td class="d-none d-md-table-cell">MMR Index</td>
+                            <td class="d-none d-md-table-cell">{{'commit-id-view.mmr-index' | translate}}</td>
                             <td>
-                              <p class="d-md-none">MMR Index</p>
+                              <p class="d-md-none">{{'commit-id-view.mmr-index' | translate}}</p>
                               {{ hashdata.BlockchainBlockOutputFetchQuery[0].MmrIndex }}</td>
                           </tr>
                       </tbody>
