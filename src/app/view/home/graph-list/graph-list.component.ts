@@ -1331,7 +1331,6 @@ export class GraphListComponent implements OnInit {
           title: 'Cuckoo',
           fixedrange: true,
           rangemode: 'nonnegative',
-          automargin: true,
           // showgrid: true,
           range: range1,
         },
@@ -1340,16 +1339,14 @@ export class GraphListComponent implements OnInit {
           fixedrange: true,
           // showgrid: true,
           range: range3,
-          automargin: true,
           // overlaying: 'y',
           rangemode: 'nonnegative',
           side: 'right',
-          // position: 1.25
+          position: 1.25
         },
         yaxis3: {
           title: 'RandomX',
           fixedrange: true,
-          automargin: true,
           // showgrid: true,
           range: range2,
           rangemode: 'nonnegative',
