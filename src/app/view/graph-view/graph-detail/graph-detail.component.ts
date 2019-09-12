@@ -252,6 +252,9 @@ export class GraphDetailComponent implements OnInit {
           this.hashdata = this.comp.linearTotalGraphData;
           this.hashdata.layout.height = 300;
           this.hashdata.layout.xaxis.domain = [0.1,0.9];
+          this.hashdata.layout.yaxis.automargin= true;
+          this.hashdata.layout.yaxis1.automargin= true;
+          this.hashdata.layout.yaxis2.automargin= true;
           this.hashdata.layout.yaxis2.position = 2.25;
           this.title = 'Total Difficulty';
         });
