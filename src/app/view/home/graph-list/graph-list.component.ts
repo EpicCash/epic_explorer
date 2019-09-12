@@ -1341,7 +1341,7 @@ export class GraphListComponent implements OnInit {
           range: range3,
           overlaying: 'y',
           rangemode: 'nonnegative',
-          side: 'left',
+          side: 'right',
           position: 1.25
         },
         yaxis3: {
