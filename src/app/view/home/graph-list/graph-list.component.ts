@@ -1337,7 +1337,7 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           // showgrid: true,
           range: range1,
-          tickangle: 45,
+          tickangle: 'auto',
           tickfont: {            
             size: 14
           }
@@ -1349,7 +1349,7 @@ export class GraphListComponent implements OnInit {
           range: range3,
           // overlaying: 'y',
           rangemode: 'nonnegative',
-          side: 'left',
+          side: 'right',
           position: 1.25,
           tickangle: 'auto',
           tickfont: {            
