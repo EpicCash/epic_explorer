@@ -215,7 +215,7 @@
   <div class="box_shadow">
     <div class="blocks">
       <h2 class="chart_heading d-inline-block">{{'home.TRANSACTION_FEES' | translate}}</h2>
-      <span class="txn_count" title="{{'home.TRANSACTION_FEE_HOVER' | translate}}" *ngIf="this.fg_last">{{this.fg_last |number}}</span>
+      <span style="display:none;" class="txn_count" title="{{'home.TRANSACTION_FEE_HOVER' | translate}}" *ngIf="this.fg_last">{{this.fg_last |number}}</span>
 
       <div class="chart_show">
         <epic-explorer-plotly *ngIf="transcationGraphData.data" [data]="transcationGraphData.data"

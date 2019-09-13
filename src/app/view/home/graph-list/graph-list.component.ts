@@ -1318,6 +1318,19 @@ export class GraphListComponent implements OnInit {
     };
   }
   totaldifficultyChartFunc(DifficultychartDate, data, type, range1, range2, range3, tickformat) {
+    let window_width = window.screen.width;
+    let position;
+    let angle;
+    if(window_width > 700)
+    {
+      position = 0.10;
+      angle = 0;
+    }
+    else
+    {
+      position = 0.00;
+      angle = -45;
+    }
     this.linearTotalGraphData = {
       data: data,
       layout: {
@@ -1328,10 +1341,10 @@ export class GraphListComponent implements OnInit {
         legend: {"orientation": "h",
         x: 0.1, y: -0.5,font :{ 'size': 10}},
         xaxis: {
-          tickangle: -45,
+          tickangle: -40,
           tickformat: tickformat,
           fixedrange: true,
-          domain: [0.2, 0.8]
+          domain: [0.22, 0.9]
           // showgrid: true
         },
         yaxis: {
@@ -1340,9 +1353,9 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           // showgrid: true,
           range: range1,
-          tickangle: 'auto',
+          tickangle: angle,
           tickfont: {            
-            size: 14
+            size: 12
           }
         },
         yaxis2: {
@@ -1351,12 +1364,13 @@ export class GraphListComponent implements OnInit {
           // showgrid: true,
           range: range3,
           // overlaying: 'y',
+          overlaying: 'y',
           rangemode: 'nonnegative',
-          side: 'right',
-          position: 1.25,
-          tickangle: 'auto',
+          // side: 'right',
+          position: position ,
+          tickangle: angle,
           tickfont: {            
-            size: 14
+            size: 12
           }
         },
         yaxis3: {
@@ -1368,9 +1382,10 @@ export class GraphListComponent implements OnInit {
           anchor: 'x',
           overlaying: 'y',
           side: 'right',
-          tickangle: 'auto',
+          position: 0.00 ,
+          tickangle: angle,
           tickfont: {            
-            size: 14
+            size: 12
           }
 
         },
