@@ -241,9 +241,9 @@ export class GraphDetailComponent implements OnInit {
       case 'target-difficulty':
         this.comp.Difficultyreq('target',p1, p2, p3, p4).then(res => {
           this.hashdata = this.comp.linearGraphData;
-          this.hashdata.layout.height = 300;
-          this.hashdata.layout.xaxis.domain = [0.1,0.9];
-          this.hashdata.layout.yaxis2.position = 2.25;
+          // this.hashdata.layout.height = 300;
+          // this.hashdata.layout.xaxis.domain = [0.1,0.9];
+          // this.hashdata.layout.yaxis2.position = 2.25;
           this.title = 'Target Difficulty';
         });
         break;

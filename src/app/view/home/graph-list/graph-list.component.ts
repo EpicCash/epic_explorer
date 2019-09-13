@@ -612,15 +612,18 @@ export class GraphListComponent implements OnInit {
     let window_width = window.screen.width;
     let position = 0.00;
     let angle = 0;
+    let domain_start = 0;
     if(window_width > 700)
     {
       position = 0.10;
       angle = 0;
+      domain_start = 0.26;
     }
     else
     {
       position = 0.00;
       angle = -45;
+      domain_start = 0.34;
     }
 
     // console.log('range rangerangerange',range);
@@ -638,7 +641,7 @@ export class GraphListComponent implements OnInit {
           tickformat: tickformat,
           fixedrange: true,
           rangemode: 'nonnegative',
-          domain: [0.26, 0.9],
+          domain: [domain_start, 0.9],
           // showgrid: true          
           tickfont: {            
             size: 12
@@ -1352,15 +1355,18 @@ export class GraphListComponent implements OnInit {
     let window_width = window.screen.width;
     let position = 0.00;
     let angle = 0;
+    let domain_start = 0;
     if(window_width > 700)
     {
       position = 0.10;
       angle = 0;
+      domain_start = 0.22;
     }
     else
     {
       position = 0.00;
       angle = -45;
+      domain_start = 0.3;
     }
     this.linearTotalGraphData = {
       data: data,
@@ -1375,7 +1381,7 @@ export class GraphListComponent implements OnInit {
           tickangle: -40,
           tickformat: tickformat,
           fixedrange: true,
-          domain: [0.22, 0.9]
+          domain: [domain_start, 0.9]
           // showgrid: true
         },
         yaxis: {
