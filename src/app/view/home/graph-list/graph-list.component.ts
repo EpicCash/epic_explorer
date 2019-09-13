@@ -934,7 +934,7 @@ export class GraphListComponent implements OnInit {
           l: 50,
           r: 50,
           b: 50,
-          t: 0,
+          t: 50,
         },
       },
       options: null,
