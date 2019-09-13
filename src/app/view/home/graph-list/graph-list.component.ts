@@ -51,7 +51,7 @@ export class GraphListComponent implements OnInit {
   public selectedItem5: Number = 3;
   public selectedItem7: Number = 3;
   public selectedItem8: Number = 3;
-  public selectedItem81: Number = 2;
+  public selectedItem81: Number = 1;
   public selectedItem9: Number = 3;
   public selectedItem10: Number = 3;
   public selectedItem11: Number = 3;
@@ -608,6 +608,21 @@ export class GraphListComponent implements OnInit {
   }
 
   difficultyChartFunc(DifficultychartDate, data, Type, range1, range2, range3, tickformat) {
+
+    let window_width = window.screen.width;
+    let position = 0.00;
+    let angle = 0;
+    if(window_width > 700)
+    {
+      position = 0.10;
+      angle = 0;
+    }
+    else
+    {
+      position = 0.00;
+      angle = -45;
+    }
+
     // console.log('range rangerangerange',range);
     this.linearGraphData = {
       data: data,
@@ -623,15 +638,22 @@ export class GraphListComponent implements OnInit {
           tickformat: tickformat,
           fixedrange: true,
           rangemode: 'nonnegative',
-          domain: [0.2, 0.8]
-          // showgrid: true
+          domain: [0.26, 0.9],
+          // showgrid: true          
+          tickfont: {            
+            size: 12
+          }
         },
         yaxis: {
           title: 'Cuckoo',
           fixedrange: true,
           rangemode: 'nonnegative',
           // showgrid: true,
-          range: range1
+          range: range1,
+          tickangle: angle,
+          tickfont: {            
+            size: 12
+          }
         },
         yaxis2: {
           title: 'Progpow',
@@ -640,8 +662,12 @@ export class GraphListComponent implements OnInit {
           range: range3,
           overlaying: 'y',
           rangemode: 'nonnegative',
-          side: 'left',
-          position: 1.25
+          // side: 'left',
+          position: position,
+          tickangle: angle,
+          tickfont: {            
+            size: 12
+          }
         },
         yaxis3: {
           title: 'RandomX',
@@ -651,7 +677,12 @@ export class GraphListComponent implements OnInit {
           anchor: 'x',
           overlaying: 'y',
           rangemode: 'nonnegative',
-          side: 'right'
+          side: 'right',
+          position: 0.00 ,
+          tickangle: angle,
+          tickfont: {            
+            size: 12
+          }
 
         },
         margin: {
@@ -1141,11 +1172,11 @@ export class GraphListComponent implements OnInit {
                 [0.2222222222222222, "rgb(44,187,232)"],
                 [0.3333333333333333, "rgb(97,211,254)"],
                 [0.4444444444444444, "rgb(72,220,107)"],
-                [0.5555555555555556, "rgb(255,72,102)"],
-                [0.6666666666666666, "rgb(254,85,51)"],
-                [0.7777777777777778, "rgb(255,166,0)"],
-                [0.8888888888888888, "rgb(255,209,0)"],
-                [1.0, "rgb(255,209,0)"]],
+                [0.5555555555555556, "rgb(255,209,0)"],
+                [0.6666666666666666, "rgb(255,166,0)"],
+                [0.7777777777777778, "rgb(255,72,102)"],
+                [0.8888888888888888, "rgb(254,85,51)"],
+                [1.0, "rgb(254,85,51)"]],
             //colors : colorRamp(c("red", "green")),
             type: 'heatmap',
             visible: true,
@@ -1319,8 +1350,8 @@ export class GraphListComponent implements OnInit {
   }
   totaldifficultyChartFunc(DifficultychartDate, data, type, range1, range2, range3, tickformat) {
     let window_width = window.screen.width;
-    let position;
-    let angle;
+    let position = 0.00;
+    let angle = 0;
     if(window_width > 700)
     {
       position = 0.10;
