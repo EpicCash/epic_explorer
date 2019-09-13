@@ -1,6 +1,6 @@
 {
 	"difficulty" : "Difficulty",
-    "transactions-over-time" : "Transactions over time",
+    "transactions-over-time" : "Transactions over Time",
     "blocks-by-algorithm" : "Blocks by Algorithm",
 	"blocks" : "Blocks",
 	"transaction-fees" : "Average Transaction Fee",
@@ -43,7 +43,7 @@
         "MINUTE" : "minute",
         "TOTAL_DIFFICULTY" : "Total Difficulty",
         "TARGET_DIFFICULTY" : "Target Difficulty",
-        "TRANSACTIONS_BY_TIME" : "Transactions over time",
+        "TRANSACTIONS_BY_TIME" : "Transactions over Time",
         "BLOCKS" : "Blocks",
         "BLOCKSINTERVAL" : "Block Interval",
         "SUPPLY_GROWTH_HOVER" : "Current Block Reward",
