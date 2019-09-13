@@ -43,7 +43,7 @@
   }
   .diff_span{
     width: 42px;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* max-width: 52px; */
     display: inline-block;
     vertical-align: middle;
