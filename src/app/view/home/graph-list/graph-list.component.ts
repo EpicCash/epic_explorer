@@ -915,23 +915,26 @@ export class GraphListComponent implements OnInit {
           tickformat: '%m-%d',
           rangemode: 'nonnegative',
           fixedrange: true,
-          showgrid: true,
+          showgrid: true,          
+          tickfont: {            
+            size: 13
+          }
         },
         yaxis: {
           title: 'Tx Fee',
           rangemode: 'nonnegative',
           fixedrange: true,
           // showgrid: true,
-          tickangle: 'auto',
+          tickangle: -45,
           tickfont: {            
-            size: 14
+            size: 13
           }
         },
         margin: {
           l: 50,
           r: 50,
           b: 50,
-          t: 50,
+          t: 0,
         },
       },
       options: null,
