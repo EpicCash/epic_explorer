@@ -1203,7 +1203,7 @@ export class BlockchainBlockController {
           var timeIntervalQry =
           "timestamp at time zone '" +
           process.env.TIME_ZONE +
-          "' > current_date - interval '1 day'";
+          "' > current_date - interval '1 week'";
       }
       const BlockQuery = await getConnection(Global.network)
         .query(
