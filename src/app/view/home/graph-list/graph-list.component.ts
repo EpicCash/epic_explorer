@@ -918,11 +918,11 @@ export class GraphListComponent implements OnInit {
           showgrid: true,
         },
         yaxis: {
-          title: 'Tx Fees',
+          title: 'Tx Fee',
           rangemode: 'nonnegative',
           fixedrange: true,
           // showgrid: true,
-          tickangle: 45,
+          tickangle: 'auto',
           tickfont: {            
             size: 14
           }
@@ -1351,7 +1351,7 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           side: 'left',
           position: 1.25,
-          tickangle: 45,
+          tickangle: 'auto',
           tickfont: {            
             size: 14
           }
@@ -1365,7 +1365,7 @@ export class GraphListComponent implements OnInit {
           anchor: 'x',
           overlaying: 'y',
           side: 'right',
-          tickangle: 45,
+          tickangle: 'auto',
           tickfont: {            
             size: 14
           }
