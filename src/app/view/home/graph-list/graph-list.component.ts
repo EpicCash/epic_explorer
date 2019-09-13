@@ -918,10 +918,14 @@ export class GraphListComponent implements OnInit {
           showgrid: true,
         },
         yaxis: {
-          title: 'Tx Fee',
+          title: 'Tx Fees',
           rangemode: 'nonnegative',
           fixedrange: true,
-          showgrid: true,
+          // showgrid: true,
+          tickangle: 45,
+          tickfont: {            
+            size: 14
+          }
         },
         margin: {
           l: 50,
@@ -1161,7 +1165,7 @@ export class GraphListComponent implements OnInit {
             tickangle: screen.width < 767 ? '-90' : 360,
             side: 'top',
             autotick: false,
-            showgrid: true,
+            showgrid: false,
             rangemode: 'nonnegative',
             fixedrange: true,
             autosize: true,
@@ -1171,7 +1175,7 @@ export class GraphListComponent implements OnInit {
             ticksuffix: ' ',
             tickformat: '%m-%d',
             autosize: true,
-            showgrid: true,
+            showgrid: false,
             autotick: false,
             rangemode: 'nonnegative',
             fixedrange: true,
@@ -1333,6 +1337,10 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           // showgrid: true,
           range: range1,
+          tickangle: 45,
+          tickfont: {            
+            size: 14
+          }
         },
         yaxis2: {
           title: 'Progpow',
@@ -1341,8 +1349,12 @@ export class GraphListComponent implements OnInit {
           range: range3,
           // overlaying: 'y',
           rangemode: 'nonnegative',
-          side: 'right',
-          position: 1.25
+          side: 'left',
+          position: 1.25,
+          tickangle: 45,
+          tickfont: {            
+            size: 14
+          }
         },
         yaxis3: {
           title: 'RandomX',
@@ -1352,7 +1364,11 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           anchor: 'x',
           overlaying: 'y',
-          side: 'right'
+          side: 'right',
+          tickangle: 45,
+          tickfont: {            
+            size: 14
+          }
 
         },
         margin: {
