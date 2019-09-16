@@ -130,6 +130,8 @@ try {
         let result; //500
         if(option == "circulating")
               result= blockDetails.coin_existence * 100000000;
+        if(option == "reward")
+              result= blockDetails.currentReward * 100000000;
         else if(option == "getblockcount")
               result= blockDetails.block_height;
         else if(option == "getdifficulty-randomx")
