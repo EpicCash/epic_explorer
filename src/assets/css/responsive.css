@@ -1,5 +1,6 @@
 @media(min-width: 992px){
     .block_div {min-width: 125px; text-align: center;padding: .75rem; }
+    .block_div.inp_div{min-width: 100px;}
     .peer_table .block_div{min-width: 148px;  text-align: center;}
     .mobile_table{border-bottom: 1px solid #dee2e6; padding: 0 15px;display: table;  width: 100%;}
     .view_moble_tble{border-bottom: 1px solid #dee2e6;}
