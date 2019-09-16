@@ -480,8 +480,8 @@ a:focus {
   background: #dadada;
 }
 .expnd_blck{display: none;}
-.block_div h5{color: #555;font-size: 14px;}
-.blck_value{font-size: 13px;}
+.block_div h5{color: #555;font-size: 13px;}
+.blck_value{font-size: 12px;}
 .tab_hdng{
   display: block;
   position: relative;
