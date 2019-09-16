@@ -63,7 +63,7 @@ export class BlockchainBlockController {
     if (fee == 0) {
       return this.epic(0);
     } else if (fee < 1000) {
-      return (fee * 1000000) / 1000000000;
+      return fee / 1000000;
     } else {
       return this.milliEpic(parseFloat(fee) / 1000);
     }
@@ -73,7 +73,7 @@ export class BlockchainBlockController {
     if (fee == 0) {
       return this.epic(0);
     } else if (fee < 1000) {
-      return (fee * 1000) / 1000000000;
+      return fee / 1000;
     } else {
       return this.epic(parseFloat(fee) / 1000);
     }
