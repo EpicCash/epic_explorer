@@ -613,17 +613,20 @@ export class GraphListComponent implements OnInit {
     let position = 0.00;
     let angle = 0;
     let domain_start = 0;
+    let left_margin = 5;
     if(window_width > 700)
     {
       position = 0.10;
       angle = 0;
-      domain_start = 0.26;
+      domain_start = 0.18;
+      left_margin = 5;
     }
     else
     {
-      position = 0.00;
+      position = 0.03;
       angle = -45;
-      domain_start = 0.34;
+      domain_start = 0.23;
+      left_margin = 25;
     }
 
     // console.log('range rangerangerange',range);
@@ -689,8 +692,8 @@ export class GraphListComponent implements OnInit {
 
         },
         margin: {
-          l: 50,
-          r: 50,
+          l: left_margin,
+          r: 5,
           b: 50,
           t: 50,
         },
@@ -1356,17 +1359,23 @@ export class GraphListComponent implements OnInit {
     let position = 0.00;
     let angle = 0;
     let domain_start = 0;
+    let left_margin = 5;
+    let tick_size = 11;
     if(window_width > 700)
     {
       position = 0.10;
       angle = 0;
-      domain_start = 0.22;
+      domain_start = 0.18;
+      left_margin = 5;
+      tick_size = 12;
     }
     else
     {
-      position = 0.00;
+      position = 0.17;
       angle = -45;
-      domain_start = 0.3;
+      domain_start = 0.34;
+      left_margin = 5;
+      tick_size = 10;
     }
     this.linearTotalGraphData = {
       data: data,
@@ -1388,7 +1397,7 @@ export class GraphListComponent implements OnInit {
           title: 'Cuckoo',
           fixedrange: true,
           rangemode: 'nonnegative',
-          // showgrid: true,
+          // position: 0.33,
           range: range1,
           tickangle: angle,
           tickfont: {            
@@ -1407,7 +1416,7 @@ export class GraphListComponent implements OnInit {
           position: position ,
           tickangle: angle,
           tickfont: {            
-            size: 12
+            size: tick_size
           }
         },
         yaxis3: {
@@ -1427,8 +1436,8 @@ export class GraphListComponent implements OnInit {
 
         },
         margin: {
-          l: 50,
-          r: 50,
+          l: left_margin,
+          r: 5,
           b: 50,
           t: 50,
         },
