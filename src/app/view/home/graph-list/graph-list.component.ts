@@ -779,7 +779,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 50,
+          r: 10,
           b: 50,
           t: 50,
         },
@@ -820,7 +820,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 50,
+          r: 10,
           b: 50,
           t: 50,
         },
@@ -872,7 +872,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 50,
+          r: 10,
           b: 50,
           t: 50,
         },
@@ -919,7 +919,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 50,
+          r: 10,
           b: 50,
           t: 50,
         },
@@ -969,7 +969,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 50,
+          r: 10,
           b: 50,
           t: 50,
         },
@@ -1022,7 +1022,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 50,
+          r: 10,
           b: 50,
           t: 50,
         },
@@ -1067,7 +1067,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 50,
+          r: 10,
           b: 50,
           t: 50,
         },
@@ -1153,7 +1153,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 50,
+          r: 10,
           b: 50,
           t: 50,
         },
@@ -1290,7 +1290,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 50,
+          r: 10,
           b: 50,
           t: 50,
         },
@@ -1345,7 +1345,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 50,
+          r: 10,
           b: 50,
           t: 50,
         },
