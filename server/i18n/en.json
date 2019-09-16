@@ -101,7 +101,8 @@
         "getblockhash" : " parameter and returns corresponding block hash.",
         "getblockheight" : " parameter and returns corresponding block height.",
         "getblocktime" : " parameter and returns unixtime of the block.",
-        "takes" : "takes a"
+        "takes" : "takes a",
+        "Note" : "Note"
     },
     "commit-id-view": {
         "output-commit":"Output Commit",

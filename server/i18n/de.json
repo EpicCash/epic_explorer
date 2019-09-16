@@ -101,7 +101,8 @@
         "getblockhash" : "Nimmt einen Höhenparameter und gibt den entsprechenden Block-Hash zurück",
         "getblockheight" : "Nimmt einen Hash-Parameter und gibt die entsprechende Blockhöhe zurück.",
         "getblocktime" : "Nimmt einen Höhenparameter und gibt die unixtime des Blocks zurück.",
-        "takes":"nimmt ein"
+        "takes":"nimmt ein",
+        "Note" : "Hinweis"
     },
     "commit-id-view": {
         "output-commit":"Output Commit",

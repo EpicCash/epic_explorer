@@ -639,7 +639,7 @@ export class GraphListComponent implements OnInit {
         xaxis: {
           tickangle: -45,
           tickformat: tickformat,
-          fixedrange: true,
+          // fixedrange: true,
           rangemode: 'nonnegative',
           domain: [domain_start, 0.9],
           // showgrid: true          
@@ -1380,7 +1380,7 @@ export class GraphListComponent implements OnInit {
         xaxis: {
           tickangle: -40,
           tickformat: tickformat,
-          fixedrange: true,
+          // fixedrange: true,
           domain: [domain_start, 0.9]
           // showgrid: true
         },
