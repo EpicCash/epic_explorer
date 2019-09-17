@@ -15,7 +15,7 @@
     "home": {
         "HEADER_TEXT": "You are on Beta",
         "COUNTDOWN": "Mainnet Countdown",
-        "TIMETAKEN": "Time Taken(sec)",
+        "TIMETAKEN": "Time Taken (sec)",
         "EXPLORE_IT": "Explore",
         "VIEWALL": "View All Charts",
         "BLOCKCHAIN_HEIGHT": "Blockchain Height",
@@ -62,7 +62,7 @@
         "DAYS" : "days",
         "MONTHS" : "months",
         "WEEK" : "week",
-        "SEARCH_TEXT" : "Search by hash, or block height or output commit id",
+        "SEARCH_TEXT" : "Search by hash, or block height or output commit ID",
         "BLOCK_REWARD" : "Block Reward",
         "NOT_FOUND" : "Page Not Found",
         "NOT_FOUND1" : "Page you are looking for is not found",
