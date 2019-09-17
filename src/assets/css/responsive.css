@@ -2,7 +2,7 @@
     .block_div {min-width: 110px; text-align: center;padding: .75rem; }
     /* .block_div.inp_div{min-width: 100px;} */
     .block_div.targ_div{min-width: 200px;}
-    .block_div.targ_div_hdng{min-width: 180px;}
+    .block_div.targ_div_hdng{min-width: 180px; text-align: left;padding-left: 30px;}
     .block_div.addr_div{min-width: 150px;}
     .block_div.addr_hdng{min-width: 140px;}
     .block_div.peers_diff_hdng{min-width: 375px;}
