@@ -103,7 +103,8 @@
         "getblocktime" : " parameter and returns unixtime of the block.",
         "takes" : "takes a",
         "Note" : "Note",
-        "reward" : "returns current block reward"
+        "reward" : "returns current block reward",
+        "averageblocktime" : "returns average block time of past 24 hour"
     },
     "commit-id-view": {
         "output-commit":"Output Commit",

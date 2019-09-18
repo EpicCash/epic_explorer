@@ -358,8 +358,7 @@ const averageblockdifficulty = async() => {
     )
     .catch(err_msg => {
       return(err_msg);
-    });    
-    console.log(BlockchainBlockPerSecondQuery);
+    });        
    return BlockchainBlockPerSecondQuery[0]['period'];
 
 }

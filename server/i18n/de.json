@@ -103,7 +103,8 @@
         "getblocktime" : "Nimmt einen Höhenparameter und gibt die unixtime des Blocks zurück.",
         "takes":"nimmt ein",
         "Note" : "Hinweis",
-        "reward" : "Gibt die aktuelle Blockbelohnung zurück"
+        "reward" : "Gibt die aktuelle Blockbelohnung zurück",
+        "averageblocktime" : "Gibt die durchschnittliche Blockierungszeit der letzten 24 Stunden zurück"
     },
     "commit-id-view": {
         "output-commit":"Output Commit",
