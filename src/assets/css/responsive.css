@@ -38,7 +38,7 @@
     .peer_table_data .block_div {min-width: 105px;}
     .block_div.addr_hdng{min-width: 120px;}
     .hash{height: 8px; width: 3px;}
-    .txn_peers{margin-top: 0px;}
+    .txn_peers{margin-top: 0px;padding:2px 10px 1px;font-size: 12px;}
 
 }
 @media (min-width: 768px) and (max-width: 991px){
