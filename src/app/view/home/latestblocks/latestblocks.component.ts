@@ -122,6 +122,7 @@ export class LatestblocksComponent implements OnInit {
     //this.blockAppend['target_difficulty'] = 0;
     this.blockAppend['PoWAlgo'] = DifferentList.powalgo;
     this.blockAppend['input_count'] = DifferentList.input_count;
+    this.blockAppend['timetaken'] = DifferentList.timetaken;
     this.blockAppend['output_count'] = DifferentList.output_count;
     this.blockAppend['kernal_count'] = DifferentList.kernal_count;
     this.blockAppend['hashstart'] = DifferentList.hashstart;

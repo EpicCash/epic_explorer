@@ -36,7 +36,7 @@ const siteRoutes: Routes = [
     },
   },
   {
-    path: 'api-view',
+    path: 'api-index',
     component: ApiViewComponent
   }
 ];

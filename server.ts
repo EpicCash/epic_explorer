@@ -32,7 +32,7 @@ import { Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 //import { logger } from "./server/utils";
 import swaggerJSDoc from "swagger-jsdoc";
-import { errorMiddleware } from "./server/middlewares";
+import { errorMiddleware, redisMiddleware } from "./server/middlewares";
 import {
   getRepository,
   In,
@@ -121,7 +121,7 @@ controllers.forEach(controller => {
 // Example Express Rest API endpoints
 import request from 'request-promise';
 
-app.get("/api", async (req, res) =>  {
+app.get("/api", redisMiddleware('60'), async (req, res) =>  {
 try {
     let option = req.query.q;
     let blockDetails = await latestBlockDetails();
@@ -129,7 +129,9 @@ try {
     {
         let result; //500
         if(option == "circulating")
-              result= blockDetails.coin_existence;
+              result= blockDetails.coin_existence * 100000000;
+        else if(option == "reward")
+              result= blockDetails.currentReward * 100000000;
         else if(option == "getblockcount")
               result= blockDetails.block_height;
         else if(option == "getdifficulty-randomx")
@@ -139,7 +141,7 @@ try {
         else if(option == "getdifficulty-progpow")
               result = Number(blockDetails.TotalDifficultyProgpow);
         else if(option == "totalcoins")
-              result = 21000000;
+              result = 21000000 * 100000000;
         else if(option == "getblockhash")
         {
               let height = req.query.height;
@@ -235,7 +237,7 @@ try {
      else
      {
            //let result= 5;
-           //window.redirect('/');
+           res.redirect('/api-index');
      }
 
 }
@@ -318,9 +320,8 @@ console.log(__dirname);
       console.log(`Node Express server listening on http://localhost:${PORT}`);
     });
 
-    cron.schedule('* * * * * *', () => {
+    cron.schedule('*/30 * * * * *', () => {
       universalGetLatestBlockDetails('Testnet');
-      universalGetLatestBlockDetails('Floonet');
     });
     var interval;
     const io = require("socket.io").listen(server);

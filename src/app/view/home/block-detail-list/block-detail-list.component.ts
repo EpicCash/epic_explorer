@@ -66,7 +66,7 @@ export class BlockDetailListComponent implements OnInit {
             if (res["status"] == 200) {
               // var hasharray = res.response;
               this.latestblockdetail = res.response;
-              setInterval(() => this.incrementseconds(), 1000);
+              // setInterval(() => this.incrementseconds(), 1000);
               this.latestblockdetail["blink"] = false;
               resolve();
             }

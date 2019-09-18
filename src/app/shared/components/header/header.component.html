@@ -1,11 +1,11 @@
 <header class="headerbg">
     <div class="home_tst_net mt-3 d-block d-sm-none position-relative">
         <a href="https://epic.tech/" target="_blank" class="text_underline mr-2">Epic Cash</a>
-        <a routerLink="/api-view" class="text_underline mr-2">API</a> 
+        <a routerLink="/api-index" class="text_underline mr-2">API</a> 
           <span>You are viewing </span>
-          <select (change)="onChangeNetwork($event.target.value)" class="langbut py-2 pr-3 pl-1">
+          <select (change)="onChangeNetwork($event.target.value)" class="langbut py-2 pr-4 pl-1">
               <!-- <option value="Floonet" [selected]="'Floonet' == getNetwork()" >FlooNet</option> -->
-              <option value="Testnet" disabled [selected]="'Testnet' == getNetwork()">MainNet</option>
+              <option value="Testnet" disabled [selected]="'Testnet' == getNetwork()">MainNet</option> 
               <!-- <option disabled value="Mainnet">MainNet</option> -->
           </select>
           <i class="arrow_drpdwn" style="margin-left: -15px;"></i>
@@ -48,9 +48,9 @@
           </li> -->
           <li class="home_tst_net mr-3 d-none d-sm-inline-block position-relative">
             <a href="https://epic.tech/" target="_blank" class="text_underline mr-2">Epic Cash</a>
-            <a routerLink="/api-view"  class="text_underline mr-2">API</a> 
+            <a routerLink="/api-index"  class="text_underline mr-2">API</a> 
               <span>You are viewing </span>
-              <select (change)="onChangeNetwork($event.target.value)" class="langbut py-2 pr-3 pl-1">
+              <select (change)="onChangeNetwork($event.target.value)" class="langbut py-2 pr-4 pl-1">
                   <!-- <option value="Floonet" [selected]="'Floonet' == getNetwork()" >FlooNet</option> -->
                   <option value="Testnet" disabled [selected]="'Testnet' == getNetwork()">MainNet</option>
                   <!-- <option disabled value="Mainnet">MainNet</option> -->

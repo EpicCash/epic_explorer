@@ -1,29 +1,35 @@
 <div class="view_content py-4">
-      <div  class="container">
-<h3>Query API</h3>
+<div  class="container">
+<h3 class="txt_primary">{{'api-view.query-api' | translate}}</h3>
 
-<p>
-    The API function to call is specified through the <code>q</code> parameter.<br>
-    For instance you can ask the totalcoins of epic cash with "<i>https://explorer.epic.tech/api?q=totalcoins</i>".
+<p class="txt_secondary">
+   {{'api-view.query-api-line1' | translate}} <code>q</code> parameter.<br>
+   {{'api-view.query-api-line2' | translate}} "<i>https://explorer.epic.tech/api?q=totalcoins</i>".
  </p>
- <h4>Real-Time Simple Queries</h4>
-<ul>
-    <li><b>circulating</b>: returns the number of circulating coins </li>
-    <li><b>getblockcount</b>: returns the current block height as a plain text string</li>
-    <li><b>getdifficulty-randomx</b>: returns the RandomX difficulty as a plain text string</li>
-    <li><b>getdifficulty-progpow</b>: returns the ProgPow difficulty as a plain text string</li>
-    <li><b>getdifficulty-cuckoo</b>: returns the Cuckoo difficulty as a plain text string</li>
-    <li><b>totalcoins</b>: returns the outstanding number of coins</li>
+ <h4 class="txt_primary">{{'api-view.real-time-simple-query' | translate}}</h4>
+<ul class="txt_secondary">
+    <li><b><a target="_blank" href="./api?q=circulating" >circulating</a></b>: {{'api-view.circulating' | translate}} </li>
+    <li><b><a target="_blank" href="./api?q=getblockcount"> getblockcount </a></b>: {{'api-view.getblockcount' | translate}}</li>
+    <li><b><a target="_blank" href="./api?q=getdifficulty-randomx">getdifficulty-randomx</a></b>: {{'api-view.getdifficulty-randomx' | translate}}</li>
+    <li><b><a target="_blank" href="./api?q=getdifficulty-progpow">getdifficulty-progpow</a></b>: {{'api-view.getdifficulty-progpow' | translate}}</li>
+    <li><b><a target="_blank" href="./api?q=getdifficulty-cuckoo">getdifficulty-cuckoo</a></b>: {{'api-view.getdifficulty-cuckoo' | translate}}</li>
+    <li><b><a target="_blank" href="./api?q=totalcoins">totalcoins</a></b>: {{'api-view.totalcoins' | translate}}</li>
+    <li><b><a target="_blank" href="./api?q=reward">reward</a></b>: {{'api-view.reward' | translate}}</li>
  </ul>
 
- <h4>Block Queries</h4>
- <p>
-    Block APIs only consider blocks in the "main" chain (as determined by the explorer wallet).
+ <h4 class="txt_primary">{{'api-view.Block-Queries' | translate}}</h4>
+ <p class="txt_secondary">
+   {{'api-view.block-query-text' | translate}}
  </p>
- <ul>
-    <li><b>getblockhash</b>: takes a <code>height</code> parameter and returns corresponding block hash.</li>
-    <li><b>getblockheight</b>: takes a <code>hash</code> parameter and returns corresponding block height.</li>
-    <li><b>getblocktime</b>: takes a <code>height</code> parameter and returns unixtime of the block.</li>
+ <ul class="txt_secondary">
+    <li><b><a target="_blank" href="./api?q=getblockhash&height=1" >getblockhash</a></b>: takes a <code>height</code> {{'api-view.getblockhash' | translate}}</li>
+    <li><b><a target="_blank" href="./api?q=getblockheight&hash=3933f075332670a661d2271218969770c8396a2853777d5912c9ad4797e9c7e6" >getblockheight</a></b>: takes a <code>hash</code> {{'api-view.getblockheight' | translate}}</li>
+    <li><b><a target="_blank" href="./api?q=getblocktime&height=2" >getblocktime</a></b>: takes a <code>height</code> {{'api-view.getblocktime' | translate}}</li>
  </ul>
+ </div>
+ <div class="container">
+    <h4 class="txt_primary">{{'api-view.Note' | translate}}</h4>
+    <span>
+      If you require another API, please request it by sending an email to <a href = {{angerstring}}> {{email}} </a></span>
  </div>
  </div>

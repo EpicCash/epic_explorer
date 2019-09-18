@@ -137,7 +137,7 @@ a:focus {
   color: #BF9B30;
 }
 .txt_secondary {
-  color: #333333;
+  color: #a6a6a6;
 }
 .gray_txt {
   color: #555555;
@@ -242,7 +242,7 @@ a:focus {
   color: #f3f4f2;
   padding: 4px 18px 2px;
   /* display: inline-block; */
-  margin-left: 5px;
+  margin-left: 10px;
   position: relative;
   z-index: 1;
   float: right;
@@ -250,6 +250,7 @@ a:focus {
   border: 1px solid #BF9B30;
   transition: all 0.3s linear;
 }
+.txn_peers{margin-top: 2px;}
 .blocks:hover .txn_count {
   background: #f3f4f2;
   color: #BF9B30;
@@ -391,7 +392,7 @@ a:focus {
 .zerolinelayer path {
   stroke: #a6a6a6 !important;
 }
-.text_break{white-space: normal; word-break: break-all;}
+.text_break{white-space: normal !important; word-break: break-all;}
 /************************************************Footer*****************************************/
 .footer_div {
   border-top: 1px solid rgba(0, 0, 0, 0.15);
@@ -480,8 +481,8 @@ a:focus {
   background: #dadada;
 }
 .expnd_blck{display: none;}
-.block_div h5{color: #555;font-size: 16px;}
-.blck_value{font-size: 15px;}
+.block_div h5{color: #555;font-size: 13px;}
+.blck_value{font-size: 12px;}
 .tab_hdng{
   display: block;
   position: relative;

@@ -63,7 +63,7 @@ export class BlockchainBlockController {
     if (fee == 0) {
       return this.epic(0);
     } else if (fee < 1000) {
-      return (fee * 1000000) / 1000000000;
+      return fee / 1000000;
     } else {
       return this.milliEpic(parseFloat(fee) / 1000);
     }
@@ -73,7 +73,7 @@ export class BlockchainBlockController {
     if (fee == 0) {
       return this.epic(0);
     } else if (fee < 1000) {
-      return (fee * 1000) / 1000000000;
+      return fee / 1000;
     } else {
       return this.epic(parseFloat(fee) / 1000);
     }
@@ -1012,6 +1012,7 @@ export class BlockchainBlockController {
         // MaxPages,
         PageSize,
       }: BlockchainBlockPaginationDto = request.query;
+      
       if (parseInt(CurrentPage) == NaN) {
         next(new IntegerValidationException('CurrentPage'));
       } else if (parseInt(PageSize) == NaN) {
@@ -1053,6 +1054,7 @@ export class BlockchainBlockController {
               'blockchain_block.TotalDifficultyProgpow',
               'blockchain_block.TotalDifficultyRandomx',
               'blockchain_block.previous_id',
+              'EXTRACT(EPOCH FROM (blockchain_block.timestamp - LAG(blockchain_block.timestamp) OVER (ORDER BY blockchain_block.timestamp))) as timetaken',
               'blockchain_block.total_difficulty_cuckaroo - LAG(blockchain_block.total_difficulty_cuckaroo) OVER (ORDER BY blockchain_block.total_difficulty_cuckaroo) AS target_difficulty_cuckaroo',
               'blockchain_block.total_difficulty_cuckatoo - LAG(blockchain_block.total_difficulty_cuckatoo) OVER (ORDER BY blockchain_block.total_difficulty_cuckatoo) AS target_difficulty_cuckatoo',
               'blockchain_block.total_difficulty_progpow - LAG(blockchain_block.total_difficulty_progpow) OVER (ORDER BY blockchain_block.total_difficulty_progpow) AS target_difficulty_progpow',
@@ -1075,14 +1077,14 @@ export class BlockchainBlockController {
             .leftJoin('blockchain_block.BlockchainKernels', 'blockchain_kernel')
             .leftJoin('blockchain_block.BlockchainOutputs', 'blockchain_output')
             .skip(PaginationReponseData.startIndex)
-            .take(PaginationReponseData.pageSize)
+            .take(PaginationReponseData.pageSize+1)
             .orderBy('blockchain_block.Timestamp', 'DESC')
             .groupBy('blockchain_block.Hash')
             .getRawAndEntities();
 
-          //console.log(BlockchainBlockPaginationQuery.raw);
 
           let BlockchainBlockResult = BlockchainBlockPaginationQuery.raw;
+          BlockchainBlockResult.splice(-1,1);
           let lastElemt =
             BlockchainBlockResult[BlockchainBlockResult.length - 1];
           const BlockchainPreviousBlockFetchQuery = await getConnection(Global.network).getRepository(
@@ -1201,7 +1203,7 @@ export class BlockchainBlockController {
           var timeIntervalQry =
           "timestamp at time zone '" +
           process.env.TIME_ZONE +
-          "' > current_date - interval '1 day'";
+          "' > current_date - interval '1 week'";
       }
       const BlockQuery = await getConnection(Global.network)
         .query(

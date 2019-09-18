@@ -1,6 +1,6 @@
 {
 	"difficulty" : "Difficulty",
-    "transactions-over-time" : "Transactions over time",
+    "transactions-over-time" : "Transactions over Time",
     "blocks-by-algorithm" : "Blocks by Algorithm",
 	"blocks" : "Blocks",
 	"transaction-fees" : "Average Transaction Fee",
@@ -15,6 +15,7 @@
     "home": {
         "HEADER_TEXT": "You are on Beta",
         "COUNTDOWN": "Mainnet Countdown",
+        "TIMETAKEN": "Time Taken (sec)",
         "EXPLORE_IT": "Explore",
         "VIEWALL": "View All Charts",
         "BLOCKCHAIN_HEIGHT": "Blockchain Height",
@@ -42,7 +43,7 @@
         "MINUTE" : "minute",
         "TOTAL_DIFFICULTY" : "Total Difficulty",
         "TARGET_DIFFICULTY" : "Target Difficulty",
-        "TRANSACTIONS_BY_TIME" : "Transactions over time",
+        "TRANSACTIONS_BY_TIME" : "Transactions over Time",
         "BLOCKS" : "Blocks",
         "BLOCKSINTERVAL" : "Block Interval",
         "SUPPLY_GROWTH_HOVER" : "Current Block Reward",
@@ -61,7 +62,7 @@
         "DAYS" : "days",
         "MONTHS" : "months",
         "WEEK" : "week",
-        "SEARCH_TEXT" : "Search by hash, or block height or output commit id",
+        "SEARCH_TEXT" : "Search by hash, or block height or output commit ID",
         "BLOCK_REWARD" : "Block Reward",
         "NOT_FOUND" : "Page Not Found",
         "NOT_FOUND1" : "Page you are looking for is not found",
@@ -83,5 +84,35 @@
         "ADDR" : "Addr",
         "DIRECTION" : "Direction",
         "SPENT" : "Spent"
+    },
+    "api-view": {
+        "query-api" : "Query API",
+        "query-api-line1" : "The API function to call is specified through the q parameter.",
+        "query-api-line2" : "For instance you can ask the totalcoins of epic cash with ",
+        "circulating" : "returns the number of circulating coins",
+        "getblockcount":"returns the current block height as a plain text string",
+        "getdifficulty-randomx" : "returns the RandomX difficulty as a plain text string",
+        "getdifficulty-progpow" : "returns the ProgPow difficulty as a plain text string",
+        "getdifficulty-cuckoo" : "returns the Cuckoo difficulty as a plain text string",
+        "totalcoins" : "returns the outstanding number of coins",
+        "Block-Queries": "Block Queries",
+        "real-time-simple-query" : "Real-Time Simple Queries",
+        "block-query-text" : "Block APIs only consider blocks in the 'main' chain (as determined by the explorer wallet).",
+        "getblockhash" : " parameter and returns corresponding block hash.",
+        "getblockheight" : " parameter and returns corresponding block height.",
+        "getblocktime" : " parameter and returns unixtime of the block.",
+        "takes" : "takes a",
+        "Note" : "Note",
+        "reward" : "returns current block reward"
+    },
+    "commit-id-view": {
+        "output-commit":"Output Commit",
+        "created-at-block":"Created at block",
+        "created-at":"Created At",
+        "output-type" : "Output Type",
+        "proof" : "Proof",
+        "proof-hash" : "Proof hash",
+        "merkle-proof" : "Merkle Proof",
+        "mmr-index" : "MMR Index"
     }
 }
