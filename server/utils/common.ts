@@ -352,13 +352,14 @@ const averageblockdifficulty = async() => {
 
   const BlockchainBlockPerSecondQuery = await getConnection(Global.network)
  .query(
-          "select 86400/count(hash) as period \
+          "select count(hash) as mhash, 86400/count(hash) as period \
           from blockchain_block \
-          where height != 0 AND timestamp < NOW() - INTERVAL '24 HOURS' "
+          where height != 0 AND timestamp at time zone '" +process.env.TIME_ZONE+ "' > NOW() - INTERVAL '24 HOURS' "
     )
     .catch(err_msg => {
       return(err_msg);
     });    
+    console.log(BlockchainBlockPerSecondQuery);
    return BlockchainBlockPerSecondQuery[0]['period'];
 
 }
