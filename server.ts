@@ -141,7 +141,7 @@ try {
         else if(option == "getdifficulty-progpow")
               result = Number(blockDetails.TotalDifficultyProgpow);
         else if(option == "totalcoins")
-              result = 21000000;
+              result = 21000000 * 100000000;
         else if(option == "getblockhash")
         {
               let height = req.query.height;
