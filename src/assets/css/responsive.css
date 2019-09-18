@@ -28,6 +28,7 @@
     .blck_value {font-size: 13px; }
     .block_div {min-width: 110px;}
     .peer_table .block_div {min-width: 145px;}
+    .txn_peers{margin-top: 0px;}
 
 }
 @media (min-width: 768px) and (max-width: 991px){
@@ -56,7 +57,7 @@
 }
 @media(max-width:767px){
     .day_filter a{margin: 0 4px; font-size: 11px;}
-    .chart_heading{font-size: 20px;}
+    .chart_heading{font-size: 19px;}
     .txn_count{font-size: 12px;}
     .day_filter{padding: 10px 15px;}
     .explore_all{font-size: 13px; padding: 10px 15px;}
