@@ -270,7 +270,7 @@ export class GraphListComponent implements OnInit {
               this.transactionheatmapFunc(
                 this.tDate,
                 this.tHour,
-                this.tKernal,
+                this.tInput,
                 'Input',
               );
               resolve();
