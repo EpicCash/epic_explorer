@@ -104,7 +104,7 @@
         "takes":"nimmt ein",
         "Note" : "Hinweis",
         "reward" : "Gibt die aktuelle Blockbelohnung zurück",
-        "averageblocktime" : "Gibt die durchschnittliche Blockierungszeit der letzten 24 Stunden zurück"
+        "averageblocktime" : "Gibt die durchschnittliche Sperrzeit der letzten 24 Stunden in Sekunden zurück"
     },
     "commit-id-view": {
         "output-commit":"Output Commit",

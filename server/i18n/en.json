@@ -104,7 +104,7 @@
         "takes" : "takes a",
         "Note" : "Note",
         "reward" : "returns current block reward",
-        "averageblocktime" : "returns average block time of past 24 hour"
+        "averageblocktime" : "returns average block time of past 24 hours in seconds"
     },
     "commit-id-view": {
         "output-commit":"Output Commit",
