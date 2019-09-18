@@ -271,7 +271,7 @@ export class GraphListComponent implements OnInit {
                 this.tDate,
                 this.tHour,
                 this.tKernal,
-                'Kernal',
+                'Input',
               );
               resolve();
             }
