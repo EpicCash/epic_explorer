@@ -56,7 +56,7 @@ BlockchainOutput
 import { universalGetLatestBlockDetails } from "./server/socket";
 import { dbConfig } from "./server/ormconfig";
 import { config } from "dotenv";
-import {latestBlockDetails, Details, GetBlocktime} from './server/utils';
+import {latestBlockDetails, Details, GetBlocktime, averageblockdifficulty} from './server/utils';
 config({ path: resolve(__dirname, "../.env") });
 
 // const connectionManager = getConnectionManager();
@@ -142,6 +142,11 @@ try {
               result = Number(blockDetails.TotalDifficultyProgpow);
         else if(option == "totalcoins")
               result = 21000000 * 100000000;
+        else if(option == "average-blocktime")
+        {
+              let data = await averageblockdifficulty();
+              result = Number(data);              
+        }
         else if(option == "getblockhash")
         {
               let height = req.query.height;

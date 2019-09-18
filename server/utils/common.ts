@@ -1,5 +1,6 @@
 import { getConnection } from "typeorm";
 import { Global } from "../global";
+import { async } from '@angular/core/testing';
 
 function  convertMinsToHrmin (millseconds,insec) {
     var seconds = Math.floor(millseconds / 1000);
@@ -344,7 +345,25 @@ async function GetBlocktime(height){
     return BlockchainLatestBlockQuery3;
    }
 }
-            
+
+
+const averageblockdifficulty = async() => {
+
+
+  const BlockchainBlockPerSecondQuery = await getConnection(Global.network)
+ .query(
+          "select 86400/count(hash) as period \
+          from blockchain_block \
+          where height != 0 AND timestamp < NOW() - INTERVAL '24 HOURS' "
+    )
+    .catch(err_msg => {
+      return(err_msg);
+    });    
+   return BlockchainBlockPerSecondQuery[0]['period'];
+
+}
+         
+export  {averageblockdifficulty};
 export  {latestBlockDetails};
 export  {GetBlocktime};
 export  {Details};
