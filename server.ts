@@ -130,7 +130,7 @@ try {
         let result; //500
         if(option == "circulating")
               result= blockDetails.coin_existence * 100000000;
-        if(option == "reward")
+        else if(option == "reward")
               result= blockDetails.currentReward * 100000000;
         else if(option == "getblockcount")
               result= blockDetails.block_height;
@@ -320,7 +320,7 @@ console.log(__dirname);
       console.log(`Node Express server listening on http://localhost:${PORT}`);
     });
 
-    cron.schedule('* * * * * *', () => {
+    cron.schedule('*/30 * * * * *', () => {
       universalGetLatestBlockDetails('Testnet');
     });
     var interval;

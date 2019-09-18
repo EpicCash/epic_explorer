@@ -250,6 +250,7 @@ a:focus {
   border: 1px solid #BF9B30;
   transition: all 0.3s linear;
 }
+.txn_peers{margin-top: 2px;}
 .blocks:hover .txn_count {
   background: #f3f4f2;
   color: #BF9B30;
