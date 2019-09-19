@@ -56,7 +56,7 @@ BlockchainOutput
 import { universalGetLatestBlockDetails } from "./server/socket";
 import { dbConfig } from "./server/ormconfig";
 import { config } from "dotenv";
-import {latestBlockDetails, Details, GetBlocktime, averageblockdifficulty} from './server/utils';
+import {latestBlockDetails, Details, GetBlocktime, averageblockdifficulty, network_hashrate} from './server/utils';
 config({ path: resolve(__dirname, "../.env") });
 
 // const connectionManager = getConnectionManager();
@@ -146,6 +146,21 @@ try {
         {
               let data = await averageblockdifficulty();
               result = Number(data);              
+        }
+        else if(option == "network-hashrate-cuckoo")
+        {
+          let data = await network_hashrate(blockDetails.block_height,31,blockDetails.targetdifficultycuckatoo);
+          result = data;
+        }
+        else if(option == "network-hashrate-progpow")
+        {
+          let data = await network_hashrate(blockDetails.block_height,16,blockDetails.targetdifficultyprogpow);
+          result = data;
+        }
+        else if(option == "network-hashrate-randomx")
+        {
+          let data = await network_hashrate(blockDetails.block_height,16,blockDetails.targetdifficultyrandomx);
+          result = data;
         }
         else if(option == "getblockhash")
         {

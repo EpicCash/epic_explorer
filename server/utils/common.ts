@@ -1,4 +1,4 @@
-import { getConnection } from "typeorm";
+import { getConnection, AdvancedConsoleLogger } from "typeorm";
 import { Global } from "../global";
 import { async } from '@angular/core/testing';
 
@@ -362,7 +362,45 @@ const averageblockdifficulty = async() => {
    return BlockchainBlockPerSecondQuery[0]['period'];
 
 }
-         
+
+
+
+
+async function network_hashrate(height, edge_bits, difficulty) {
+  let graph_wight = await graph_weight(height, edge_bits)  
+  return (42.0 * (difficulty / graph_wight) / 60.0);
+ }
+  
+  
+  
+  
+ async function graph_weight(height, edge_bits) {
+      let xpr_edge_bits = edge_bits;
+  
+      let min_edge_bits = 19;
+      if(min_edge_bits == 19) {
+          min_edge_bits += 12;
+      }
+      
+      let bits_over_min =Math.max(0, (edge_bits - min_edge_bits));
+      let expiry_height = (1 << bits_over_min) * 524160;
+  
+      if(height >= expiry_height) {
+         xpr_edge_bits = Math.max(0,(xpr_edge_bits-(1 + (height - expiry_height) / 10080)));
+      }
+  
+    let final_val;
+    if(edge_bits > 24) {
+        final_val  = edge_bits - 24;
+    } else {
+        final_val = 24 - edge_bits;
+    }
+
+    return (2 << final_val)  * xpr_edge_bits;
+}
+
+
+export  {network_hashrate};        
 export  {averageblockdifficulty};
 export  {latestBlockDetails};
 export  {GetBlocktime};
