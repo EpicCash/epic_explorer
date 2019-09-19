@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6 col-lg-8 mb-4">
-    <div class="box_shadow">
+    <div class="box_shadow" id="target-difficulty">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.TARGET_DIFFICULTY' | translate}}</h2>
         <!-- <span class="txn_count" *ngIf="this.lg_last.length > 0"><span *ngFor="let l of lg_last">{{
@@ -71,7 +71,7 @@
     </div>
   </div>
   <div class="col-md-6 col-lg-4 mb-4">
-    <div class="box_shadow">
+    <div class="box_shadow" id="transaction-over-time">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_BY_TIME' | translate}}</h2>
         <div class="chart_show heatmapshow">
@@ -112,7 +112,7 @@
   </div>
 </div>
 <div class="col-md-6 col-lg-4 mb-4">
-  <div class="box_shadow">
+  <div class="box_shadow" id="blocks">
     <div class="blocks">
       <h2 class="chart_heading d-inline-block">{{'home.BLOCKS' | translate}}</h2>
       <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.brg_last">{{
@@ -165,7 +165,7 @@
 </div>
 
 <div class="col-md-6 col-lg-4 mb-4">
-  <div class="box_shadow">
+  <div class="box_shadow" id="supply-growth">
     <div class="blocks">
       <h2 class="chart_heading d-inline-block">{{'home.SUPPLY_GROWTH' | translate}}</h2>
       <span class="txn_count" title="{{'home.SUPPLY_GROWTH_HOVER' | translate}}" *ngIf="this.gg_last">{{
@@ -212,7 +212,7 @@
 </div>
 
 <div class="col-md-6 col-lg-4 mb-4">
-  <div class="box_shadow">
+  <div class="box_shadow" id="transaction-fees">
     <div class="blocks">
       <h2 class="chart_heading d-inline-block">{{'home.TRANSACTION_FEES' | translate}}</h2>
       <span style="display:none;" class="txn_count" title="{{'home.TRANSACTION_FEE_HOVER' | translate}}" *ngIf="this.fg_last">{{this.fg_last |number}}</span>
@@ -258,7 +258,7 @@
 </div>
 </div>
 <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
-  <div class="box_shadow">
+  <div class="box_shadow" id="blocks-mined">
     <div class="blocks">
       <h2 class="chart_heading d-inline-block">{{'home.BLOCKS_MINED' | translate}}</h2>
       <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.dg_last">{{
@@ -348,7 +348,7 @@
                   class="fa fa-long-arrow-right"></i></span></a>
           </div>
         </div> -->
-      <div class="box_shadow">
+      <div class="box_shadow" id="blocks-by-algorithm">
           <div class="blocks">
             <h2 class="chart_heading d-inline-block">Blocks by Algorithm</h2>
             <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.sg_last">{{
@@ -402,7 +402,7 @@
 
 
   <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
-    <div class="box_shadow">
+    <div class="box_shadow" id="blocks-interval">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.BLOCKSINTERVAL' | translate}}</h2>
         <span class="txn_count"  title="{{'home.BLOCK_INTERVAL_BW_BLOCKS_HOVER' | translate}}" *ngIf="this.blockinteval_last">{{
@@ -446,7 +446,7 @@
     </div>
   </div>
   <div  *ngIf="viewchartvar" class="col-md-6 col-lg-8 mb-4">
-    <div class="box_shadow">
+    <div class="box_shadow" id="total-difficulty">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.TOTAL_DIFFICULTY' | translate}}</h2>
         <!-- <span class="txn_count" *ngIf="this.lg_last.length > 0"><span *ngFor="let l of lg_last">{{
@@ -527,7 +527,7 @@
     </div>
   </div>
   <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
-    <div class="box_shadow">
+    <div class="box_shadow" id="block-interval">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.BLOCK_INTERVAL' | translate}}</h2>
         <span class="txn_count" title="{{'home.BLOCK_INTERVAL_HOVER' | translate}}" *ngIf="this.ag_last">{{ this.ag_last | number }}s</span>
@@ -572,7 +572,7 @@
     </div>
   </div>
   <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
-    <div class="box_shadow">
+    <div class="box_shadow" id="transaction-vs-date">
       <div class="blocks">
         <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_VS_DATE' | translate}}</h2>
         <span class="txn_count" title="{{'home.TRANSACTION_LINECHAT_HOVER' | translate}}" *ngIf="this.tg_last">{{

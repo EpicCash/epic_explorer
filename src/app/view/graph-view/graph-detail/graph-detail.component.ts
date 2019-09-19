@@ -20,6 +20,7 @@ export class GraphDetailComponent implements OnInit {
   TimeArr: any;
   public hashdata: any = [];
   public title: any;
+  public id:any;
   public chartType : any = [];
   public selectedItem: Number = 3;
   public selectedItem8: Number = 1;
@@ -66,6 +67,7 @@ export class GraphDetailComponent implements OnInit {
             //this.hashdata.layout.xaxis.domain = [0.1,0.9];
             //this.hashdata.layout.yaxis2.position = 1.25;
             this.title = 'Total Difficulty';
+            this.id= 'total-difficulty';
             this.selectedItem = 6;
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
@@ -83,6 +85,7 @@ export class GraphDetailComponent implements OnInit {
                 // this.hashdata.layout.yaxis2.position = 2.25;
                 this.title = 'Target Difficulty';
                 // this.selectedItem = 6;
+                this.id= 'total-difficulty';
                 this.titleService.setTitle(
                   this.route.snapshot.data.title + ' - ' + this.title,
                 );

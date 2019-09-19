@@ -689,10 +689,26 @@ body.dark_theme {
 .dark_theme .footer_div{border-color: #a5a5a5}
 .dark_theme .view_page_header {background: #222223;}
 .dark_theme .view_content {background-color: #252525;}
-.js-plotly-plot .plotly .modebar,
+.js-plotly-plot .plotly .modebar .modebar-group,
 .zerolinelayer {
   display: none;
 }
+/* #total-difficulty .js-plotly-plot .plotly .modebar .modebar-group{display: block;} */
+#target-difficulty .js-plotly-plot .plotly .modebar .modebar-group:nth-child(1){display: block;}
+#target-difficulty .js-plotly-plot .plotly .modebar .modebar-group:nth-child(3){display: block;}
+/* #target-difficulty .js-plotly-plot .plotly .modebar .modebar-group:nth-child(4){display: block;} */
+/* #target-difficulty .js-plotly-plot .plotly .modebar .modebar-group::nth-child(6){display: block;} */
+
+#total-difficulty .js-plotly-plot .plotly .modebar .modebar-group:nth-child(1){display: block;}
+#total-difficulty .js-plotly-plot .plotly .modebar .modebar-group:nth-child(3){display: block;}
+/* #total-difficulty .js-plotly-plot .plotly .modebar .modebar-group:nth-child(4){display: block;}
+#total-difficulty .js-plotly-plot .plotly .modebar .modebar-group::nth-child(5){display: block;} */
+
+
+.modebar-btn svg path{fill: #BF9B30 !important;}
+.dark_theme .modebar .modebar-group{ background:#222324 !important; }
+.modebar .modebar-group{ background:#f3f4f2 !important; }
+
 .dark_theme .zibra_grey{background: #252525;}
 .dark_theme .zibra_white{background: #222223;}
 .dark_theme .bg{fill: transparent !important;}
