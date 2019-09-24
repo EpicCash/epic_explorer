@@ -148,13 +148,14 @@ export class GraphDetailComponent implements OnInit {
             //console.log(this.hashdata);
             this.hashdata.layout.height = 300;
             this.title = 'Transaction Fees';
+            this.selectedItem = 3;
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
             );
           });
           break;
         case 'supply-growth':
-          this.comp.Growthreq().then(res => {
+          this.comp.Growthreq("","","1 week").then(res => {
             this.hashdata = this.comp.growthGraphData;
             this.hashdata.layout.height = 300;
             this.title = 'Supply Growth';
@@ -164,7 +165,7 @@ export class GraphDetailComponent implements OnInit {
           });
           break;
         case 'blocks-mined':
-          this.comp.Blockminedreq().then(res => {
+          this.comp.Blockminedreq('','','1 week').then(res => {
             this.hashdata = this.comp.doubleareaGraphData;
             this.hashdata.layout.height = 300;
             this.title = 'Blocks Mined';
@@ -186,7 +187,7 @@ export class GraphDetailComponent implements OnInit {
           // });
           break;
         case 'avg-block-interval':
-          this.comp.Blockspersecreq().then(res => {
+          this.comp.Blockspersecreq('','','1 week').then(res => {
             this.hashdata = this.comp.areaGraphData;
             this.hashdata.layout.height = 300;
             // this.hashdata.layout.width =
@@ -198,7 +199,7 @@ export class GraphDetailComponent implements OnInit {
           });
           break;
         case 'blocks-by-algorithm':
-        this.comp.stackchartreq().then(res => {
+        this.comp.stackchartreq('','','1 week').then(res => {
           this.hashdata = this.comp.stackGraphData;
           this.hashdata.layout.height = 300;
           this.title = 'Blocks by Algorithm';
@@ -218,7 +219,7 @@ export class GraphDetailComponent implements OnInit {
         });
         break;
         case 'transactions-by-date':
-          this.comp.Transactionlinechartreq().then(res => {
+          this.comp.Transactionlinechartreq('','','1 week').then(res => {
             this.hashdata = this.comp.feeGraphData;
             this.hashdata.layout.height = 300;
             // this.hashdata.layout.width =
