@@ -435,9 +435,9 @@
         <a href="JavaScript:void(0);" (click)="
         Blockintervalreq('yesterday'); selectedInteverval = 2
             " id="2" #intevalitem2 [ngClass]="{ active: selectedInteverval == intevalitem2.id, txt_primary: true }">Yesterday</a>
-            <a href="JavaScript:void(0);" (click)="Blockintervalreq('previous'); "><</a>
+            <a *ngIf ="showcurrentIntervalDatetimestamp >= 1567468800000" href="JavaScript:void(0);" (click)="Blockintervalreq('previous'); "><</a>
             <span>{{showcurrentIntervalDate}}</span>
-            <a href="JavaScript:void(0);" (click)="Blockintervalreq('next'); ">></a>
+            <a *ngIf ="showcurrentIntervalDatetimestamp < todaydate" href="JavaScript:void(0);" (click)="Blockintervalreq('next'); ">></a>
   
       </div>
       <div class="explore_all text-right">

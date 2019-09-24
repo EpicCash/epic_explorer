@@ -29,6 +29,8 @@ export class GraphListComponent implements OnInit {
   public linearTotalGraphData: any = [];
   public currenyIntervalDate: any;
   public showcurrentIntervalDate: any;
+  public showcurrentIntervalDatetimestamp : any;
+  public todaydate = new Date().setDate(new Date().getDate() - 1);
 
   public lg_last: any;
   public ag_last: any = '';
@@ -453,10 +455,10 @@ export class GraphListComponent implements OnInit {
                         text: DifficultychartDate,
                         // mode: 'lines+markers',
                         type: 'scatter',
-                        name: 'Progpow',
+                        name: 'ProgPoW',
                         yaxis: 'y2',
                         line: { color: '#0091ff' },
-                        hovertemplate: 'Progpow : %{y:,}',
+                        hovertemplate: 'ProgPoW : %{y:,}',
                         hoverlabel: {namelength : 0}
                       },
                       {
@@ -538,20 +540,25 @@ export class GraphListComponent implements OnInit {
     if(interval == "today"){
       this.currenyIntervalDate = moment(new Date()).format('YYYY-MM-DD');
       this.showcurrentIntervalDate = moment(new Date()).format('MM-DD-YYYY');
+      this.showcurrentIntervalDatetimestamp = new Date(this.showcurrentIntervalDate).getTime();
     }else if(interval == "yesterday"){
       this.currenyIntervalDate = moment(new Date()).subtract(1, "days").format("YYYY-MM-DD");
       this.showcurrentIntervalDate = moment(new Date()).subtract(1, "days").format("MM-DD-YYYY");
+      this.showcurrentIntervalDatetimestamp = new Date(this.showcurrentIntervalDate).getTime();
     }else if(interval == "previous"){
       var currentdate = this.currenyIntervalDate;
       this.currenyIntervalDate = moment(currentdate).subtract(1, "days").format("YYYY-MM-DD");
       this.showcurrentIntervalDate = moment(currentdate).subtract(1, "days").format("MM-DD-YYYY");
+      this.showcurrentIntervalDatetimestamp = new Date(this.showcurrentIntervalDate).getTime();
     }else if(interval == "next"){
       var currentdate = this.currenyIntervalDate;
       this.currenyIntervalDate = moment(currentdate).add(1, "days").format("YYYY-MM-DD");
       this.showcurrentIntervalDate = moment(currentdate).add(1, "days").format("MM-DD-YYYY");
+      this.showcurrentIntervalDatetimestamp = new Date(this.showcurrentIntervalDate).getTime();
     }else{
       this.currenyIntervalDate = moment(new Date()).format('YYYY-MM-DD');
       this.showcurrentIntervalDate = moment(new Date()).format('MM-DD-YYYY');
+      this.showcurrentIntervalDatetimestamp = new Date(this.showcurrentIntervalDate).getTime();
     }
     // console.log(this.currenyIntervalDate);
     // console.log(this.showcurrentIntervalDate);
@@ -662,7 +669,7 @@ export class GraphListComponent implements OnInit {
           }
         },
         yaxis2: {
-          title: 'Progpow',
+          title: 'ProgPoW',
           fixedrange: true,
           // showgrid: true,
           range: range3,
@@ -730,10 +737,10 @@ export class GraphListComponent implements OnInit {
         {
           x: sDate,
           y: ProgPow,
-          name: 'Progpow',
+          name: 'ProgPoW',
           type: 'bar',
           text: ProgPow,
-          hovertemplate: '%{x}<br> ProgPow : %{text:,}',
+          hovertemplate: '%{x}<br> ProgPoW : %{text:,}',
           hoverlabel: {namelength : 0},
           marker: {
             color: '#48dc6b',
@@ -1121,11 +1128,11 @@ export class GraphListComponent implements OnInit {
           x: mDate,
           y: ProgPowper,
           text: ProgPow,
-          hovertemplate: 'ProgPow : %{y} % ( %{text:,} )',
+          hovertemplate: 'ProgPoW : %{y} % ( %{text:,} )',
           hoverlabel: {namelength : 0},
           fill: 'tozeroy',
           type: 'line',
-          name: 'ProgPow',
+          name: 'ProgPoW',
           line: {
             color: '#48dc6b',
           },
@@ -1405,7 +1412,7 @@ export class GraphListComponent implements OnInit {
           }
         },
         yaxis2: {
-          title: 'Progpow',
+          title: 'ProgPoW',
           fixedrange: true,
           // showgrid: true,
           range: range3,

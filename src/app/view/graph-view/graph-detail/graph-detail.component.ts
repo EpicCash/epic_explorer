@@ -22,7 +22,7 @@ export class GraphDetailComponent implements OnInit {
   public title: any;
   public id:any;
   public chartType : any = [];
-  public selectedItem: Number = 3;
+  public selectedItem: Number = 1;
   public selectedItem8: Number = 1;
   public selectedItem12: Number = 4;
   public Type: any = '';
@@ -31,6 +31,9 @@ export class GraphDetailComponent implements OnInit {
   public selectedInteverval: Number = 1;
   public currenyIntervalDate: any;
   public showcurrentIntervalDate: any;
+  public showcurrentIntervalDatetimestamp : any;
+  // public todaydate = new Date().getMonth()+1+"-"+new Date().getDate()+"-"+new Date().getUTCFullYear();
+  public todaydate = new Date().setDate(new Date().getDate() - 1);
   
   public GraphtInput: any;
   public GraphtOutput: any;
@@ -77,7 +80,7 @@ export class GraphDetailComponent implements OnInit {
           break;
         case 'target-difficulty':
             // this.totalDifficultyreq();
-              this.comp.Difficultyreq('target').then(res => {
+              this.comp.Difficultyreq('target','','','1 week').then(res => {
                 this.hashdata = this.comp.linearGraphData;
                 // console.log('this.comp.linearGraphData',this.comp.linearGraphData);
                 // this.hashdata.layout.height = 300;
@@ -119,7 +122,7 @@ export class GraphDetailComponent implements OnInit {
             this.hashdata = this.comp.barGraphData;
             this.hashdata.layout.height = 300;
             this.title = 'Blocks';
-            this.selectedItem = 6;
+            this.selectedItem = 1;
             this.titleService.setTitle(
               this.route.snapshot.data.title + ' - ' + this.title,
             );
@@ -130,6 +133,7 @@ export class GraphDetailComponent implements OnInit {
               this.hashdata = this.comp.barGraphIntevalData;
               this.currenyIntervalDate = this.comp.currenyIntervalDate;
               this.showcurrentIntervalDate =this.comp.showcurrentIntervalDate;
+              this.showcurrentIntervalDatetimestamp = new Date(this.comp.showcurrentIntervalDate).getTime();
               this.hashdata.layout.height = 300;
               this.title = 'Block Interval';
               this.selectedInteverval = 1;
@@ -284,6 +288,7 @@ export class GraphDetailComponent implements OnInit {
         this.hashdata = this.comp.barGraphIntevalData;
         this.currenyIntervalDate = this.comp.currenyIntervalDate;
         this.showcurrentIntervalDate =this.comp.showcurrentIntervalDate;
+        this.showcurrentIntervalDatetimestamp = new Date(this.comp.showcurrentIntervalDate).getTime();
         this.hashdata.layout.height = 300;
         this.title = 'Block Interval';
       });

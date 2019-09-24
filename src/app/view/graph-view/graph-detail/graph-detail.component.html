@@ -100,7 +100,7 @@
 
                 <a href="JavaScript:void(0);" *ngIf="this.title=='Total Difficulty' || this.title=='Target Difficulty' || this.title == 'Blocks'" (click)="
             ChartFromView('', '', '1 day', comp.Type); selectedItem = 6; comp.difficultyRange = '1 day';comp.TdifficultyRange = '1 day'
-              " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primary: true }">1 Day</a>
+              " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primary: true }">1 day</a>
                 <a href="JavaScript:void(0);" (click)="
             ChartFromView('', '', '1 week', comp.Type); selectedItem = 1; comp.difficultyRange = '1 week';comp.TdifficultyRange = '1 week'
               " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primary: true }">1
@@ -145,9 +145,10 @@
               <a href="JavaScript:void(0);" (click)="
               ChartFromView('yesterday'); selectedInteverval = 2
                   " id="2" #intevalitem2 [ngClass]="{ active: selectedInteverval == intevalitem2.id, txt_primary: true }">Yesterday</a>
-                  <a href="JavaScript:void(0);" (click)="ChartFromView('previous'); "><</a>
-                  <span>{{showcurrentIntervalDate}}</span>
-                  <a href="JavaScript:void(0);" (click)="ChartFromView('next'); ">></a>
+                  <a *ngIf ="showcurrentIntervalDatetimestamp >= 1567468800000" href="JavaScript:void(0);" (click)="ChartFromView('previous'); "><</a>
+                  <span>{{showcurrentIntervalDate}} </span>
+                  <a  *ngIf ="showcurrentIntervalDatetimestamp < todaydate" href="JavaScript:void(0);" (click)="ChartFromView('next'); ">></a>
+                 
               </div>
 
             </div>
