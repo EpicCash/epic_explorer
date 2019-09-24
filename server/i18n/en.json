@@ -92,7 +92,7 @@
         "circulating" : "returns the number of circulating coins",
         "getblockcount":"returns the current block height as a plain text string",
         "getdifficulty-randomx" : "returns the RandomX difficulty as a plain text string",
-        "getdifficulty-progpow" : "returns the ProgPow difficulty as a plain text string",
+        "getdifficulty-progpow" : "returns the ProgPoW difficulty as a plain text string",
         "getdifficulty-cuckoo" : "returns the Cuckoo difficulty as a plain text string",
         "totalcoins" : "returns the outstanding number of coins",
         "Block-Queries": "Block Queries",

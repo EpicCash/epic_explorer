@@ -92,7 +92,7 @@
         "circulating" : "Gibt die Anzahl der umlaufenden Münzen zurück",
         "getblockcount":"Gibt die aktuelle Blockhöhe als reine Textzeichenfolge zurück",
         "getdifficulty-randomx" : "Gibt die RandomX-Schwierigkeit als reine Textzeichenfolge zurück",
-        "getdifficulty-progpow" : "Gibt die Schwierigkeit ProgPow als reine Textzeichenfolge zurück",
+        "getdifficulty-progpow" : "Gibt die Schwierigkeit ProgPoW als reine Textzeichenfolge zurück",
         "getdifficulty-cuckoo" : "returns the Cuckoo difficulty as a plain text string",
         "totalcoins" : "Gibt die Cuckoo-Schwierigkeit als reine Textzeichenfolge zurück",
         "Block-Queries": "Abfragen blockieren",
