@@ -621,12 +621,14 @@ export class GraphListComponent implements OnInit {
     let angle = 0;
     let domain_start = 0;
     let left_margin = 5;
+    let cuckoo_position=null;
     if(window_width > 700)
     {
       position = 0.10;
       angle = 0;
       domain_start = 0.18;
       left_margin = 5;
+      cuckoo_position = null;
     }
     else
     {
@@ -634,6 +636,7 @@ export class GraphListComponent implements OnInit {
       angle = -45;
       domain_start = 0.23;
       left_margin = 25;
+      cuckoo_position= 0.20;
     }
 
     // console.log('range rangerangerange',range);
@@ -663,6 +666,8 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           // showgrid: true,
           range: range1,
+          ticks:'outside',
+          // position:cuckoo_position,
           tickangle: angle,
           tickfont: {            
             size: 12
@@ -687,6 +692,7 @@ export class GraphListComponent implements OnInit {
           fixedrange: true,
           // showgrid: true,
           range: range2,
+          ticks:'outside',
           anchor: 'x',
           overlaying: 'y',
           rangemode: 'nonnegative',
@@ -700,7 +706,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: left_margin,
-          r: 5,
+          r: 20,
           b: 50,
           t: 50,
         },
@@ -961,7 +967,7 @@ export class GraphListComponent implements OnInit {
           fixedrange: true,
           showgrid: true,          
           tickfont: {            
-            size: 13
+            size: 11
           }
         },
         yaxis: {
@@ -969,13 +975,16 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           // showgrid: true,
-          tickangle: -45,
+          tickangle: -15,
+          ticks:'outside',
+          // dtick :0.02,
+          position:0.0001,
           tickfont: {            
-            size: 13
+            size: 11
           }
         },
         margin: {
-          l: 50,
+          l: 60,
           r: 10,
           b: 50,
           t: 50,
@@ -1021,6 +1030,7 @@ export class GraphListComponent implements OnInit {
         yaxis: {
           title: 'Total Reward Supply',
           rangemode: 'nonnegative',
+          ticks:'outside',
           fixedrange: true,
           showgrid: true,
           range : range,
@@ -1028,7 +1038,7 @@ export class GraphListComponent implements OnInit {
           tickprefix: '                '
         },
         margin: {
-          l: 50,
+          l: 60,
           r: 10,
           b: 50,
           t: 50,
@@ -1291,12 +1301,13 @@ export class GraphListComponent implements OnInit {
         yaxis: {
           showline: false,
           title: 'Transactions',
+          ticks:'outside',
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
         },
         margin: {
-          l: 50,
+          l: 60,
           r: 10,
           b: 50,
           t: 50,
@@ -1406,6 +1417,7 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           // position: 0.33,
           range: range1,
+          ticks:'outside',
           tickangle: angle,
           tickfont: {            
             size: 12
@@ -1431,6 +1443,7 @@ export class GraphListComponent implements OnInit {
           fixedrange: true,
           // showgrid: true,
           range: range2,
+          ticks:'outside',
           rangemode: 'nonnegative',
           anchor: 'x',
           overlaying: 'y',
