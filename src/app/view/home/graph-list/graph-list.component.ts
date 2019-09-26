@@ -706,7 +706,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: left_margin,
-          r: 20,
+          r: 10,
           b: 50,
           t: 50,
         },
@@ -792,7 +792,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 10,
+          r: 2,
           b: 50,
           t: 50,
         },
@@ -833,7 +833,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 10,
+          r: 2,
           b: 50,
           t: 50,
         },
@@ -885,7 +885,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 10,
+          r: 2,
           b: 50,
           t: 50,
         },
@@ -932,7 +932,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 10,
+          r: 2,
           b: 50,
           t: 50,
         },
@@ -985,7 +985,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 60,
-          r: 10,
+          r: 2,
           b: 50,
           t: 50,
         },
@@ -1039,7 +1039,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 60,
-          r: 10,
+          r: 2,
           b: 50,
           t: 50,
         },
@@ -1084,7 +1084,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 10,
+          r: 2,
           b: 50,
           t: 50,
         },
@@ -1170,7 +1170,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 10,
+          r: 2,
           b: 50,
           t: 50,
         },
@@ -1238,8 +1238,8 @@ export class GraphListComponent implements OnInit {
             fixedrange: true,
           },
           margin: {
-            l: 30,
-            r: 0,
+            l: 35,
+            r: 2,
             b: 50,
             t: 50,
           },
@@ -1308,7 +1308,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 60,
-          r: 10,
+          r: 5,
           b: 50,
           t: 50,
         },
@@ -1363,7 +1363,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: 50,
-          r: 10,
+          r: 2,
           b: 50,
           t: 50,
         },
@@ -1457,7 +1457,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: left_margin,
-          r: 5,
+          r: 2,
           b: 50,
           t: 50,
         },
