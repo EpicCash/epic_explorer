@@ -622,6 +622,7 @@ export class GraphListComponent implements OnInit {
     let domain_start = 0;
     let left_margin = 5;
     let cuckoo_position=null;
+    let right_margin= 10;
     if(window_width > 700)
     {
       position = 0.10;
@@ -629,6 +630,7 @@ export class GraphListComponent implements OnInit {
       domain_start = 0.18;
       left_margin = 5;
       cuckoo_position = null;
+      right_margin = 10;
     }
     else
     {
@@ -637,6 +639,7 @@ export class GraphListComponent implements OnInit {
       domain_start = 0.23;
       left_margin = 25;
       cuckoo_position= 0.20;
+      right_margin = 20;
     }
 
     // console.log('range rangerangerange',range);
@@ -706,7 +709,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: left_margin,
-          r: 10,
+          r: right_margin,
           b: 50,
           t: 50,
         },
@@ -1379,6 +1382,7 @@ export class GraphListComponent implements OnInit {
     let domain_start = 0;
     let left_margin = 5;
     let tick_size = 11;
+    let right_margin= 10;
     if(window_width > 700)
     {
       position = 0.10;
@@ -1386,6 +1390,7 @@ export class GraphListComponent implements OnInit {
       domain_start = 0.18;
       left_margin = 5;
       tick_size = 12;
+      right_margin= 10;
     }
     else
     {
@@ -1394,6 +1399,7 @@ export class GraphListComponent implements OnInit {
       domain_start = 0.34;
       left_margin = 5;
       tick_size = 10;
+      right_margin= 20;
     }
     this.linearTotalGraphData = {
       data: data,
@@ -1457,7 +1463,7 @@ export class GraphListComponent implements OnInit {
         },
         margin: {
           l: left_margin,
-          r: 2,
+          r: right_margin,
           b: 50,
           t: 50,
         },
