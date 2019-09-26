@@ -1390,7 +1390,7 @@ export class GraphListComponent implements OnInit {
       domain_start = 0.18;
       left_margin = 5;
       tick_size = 12;
-      right_margin= 10;
+      right_margin= 0;
     }
     else
     {
