@@ -1988,7 +1988,7 @@ export class BlockchainBlockController {
                           Count( CASE  WHEN proof = 'Cuckoo' THEN 1 ELSE NULL END) AS Cuckoo,\
                           Count( CASE WHEN proof = 'ProgPow' THEN 1 ELSE NULL END) AS ProgPow \
                  FROM     blockchain_block \
-                 where " +
+                 where height>0 " +
           timeIntervalQry +
           "GROUP BY DATE_TRUNC('day', timestamp at time zone '" +
           process.env.TIME_ZONE +
