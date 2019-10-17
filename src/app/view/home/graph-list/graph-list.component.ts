@@ -1164,6 +1164,8 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
+          tick0:mDate[0],
+          dtick: 4*24*60*60*1000
         },
         yaxis: {
           title: 'Percentage(%)',
@@ -1301,7 +1303,7 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           tick0:Tdate[0],
-          dtick: 3*24*60*60*1000
+          dtick: 4*24*60*60*1000
         },
         yaxis: {
           showline: false,
