@@ -1360,7 +1360,7 @@ export class BlockchainBlockController {
                DATE_TRUNC('minute', timestamp at time zone '" +
               process.env.TIME_ZONE +
               "') as date \
-            from blockchain_block where " +
+            from blockchain_block where height>0 and " +
             timeIntervalQry +
               " order by height) as a WHERE a.total_difficulty_randomx IS NOT NULL AND a.total_difficulty_progpow IS NOT NULL AND a.total_difficulty_cuckatoo IS NOT NULL AND a.total_difficulty_cuckatoo != '0' AND a.total_difficulty_randomx != '0' AND a.total_difficulty_progpow != '0'",
           )
@@ -1374,7 +1374,7 @@ export class BlockchainBlockController {
                DATE_TRUNC('minute', timestamp at time zone '" +
               process.env.TIME_ZONE +
               "') as date \
-            from blockchain_block where " +
+            from blockchain_block where height >0 and " +
             timeIntervalQry +
               " order by height",
           )
@@ -1522,7 +1522,7 @@ export class BlockchainBlockController {
           "')) as date, Count( CASE WHEN proof = 'RandomX' THEN 1 ELSE NULL END) AS RandomX, \
                           Count( CASE  WHEN proof = 'Cuckoo' THEN 1 ELSE NULL END) AS Cuckoo,\
                           Count( CASE WHEN proof = 'ProgPow' THEN 1 ELSE NULL END) AS ProgPow \
-            from blockchain_block where height > 0 " +
+            from blockchain_block where height > 0 and " +
           timeIntervalQry +
           "group by DATE_TRUNC('day', timestamp at time zone '" +
           process.env.TIME_ZONE +
