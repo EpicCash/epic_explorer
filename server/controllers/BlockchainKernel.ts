@@ -829,6 +829,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
     try {
       const TransactionFeeRequestData: TransactionFeeDto = request.query;
       if (TransactionFeeRequestData.Interval) {
+        console.log(TransactionFeeRequestData.Interval);
         var timeIntervalQry =
           "blockchain_block.timestamp > current_date - interval '" +
           TransactionFeeRequestData.Interval +
