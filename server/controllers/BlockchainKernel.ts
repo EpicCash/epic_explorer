@@ -828,8 +828,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
   ) => {
     try {
       const TransactionFeeRequestData: TransactionFeeDto = request.query;
-      if (TransactionFeeRequestData.Interval) {
-        console.log(TransactionFeeRequestData.Interval);
+      if (TransactionFeeRequestData.Interval) {        
         var timeIntervalQry =
           "blockchain_block.timestamp > current_date - interval '" +
           TransactionFeeRequestData.Interval +
@@ -899,10 +898,14 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
         totaloutput = [];
 
       TransactionHeatmapChartQuery.forEach(e => {
-        date.push(moment(e.hour).format('YYYY-MM-DD'));
-        totalinput.push(e.totalinput != null ? e.totalinput : 0);
-        totalkernal.push(e.totalkernal != null ? e.totalkernal : 0);
-        totaloutput.push(e.totaloutput != null ? e.totaloutput : 0);
+        console.log(e)
+        if(moment(e.hour).format('YYYY-MM-DD') > moment('2019-09-02').format('YYYY-MM-DD'))
+        {
+          date.push(moment(e.hour).format('YYYY-MM-DD'));
+          totalinput.push(e.totalinput != null ? e.totalinput : 0);
+          totalkernal.push(e.totalkernal != null ? e.totalkernal : 0);
+          totaloutput.push(e.totaloutput != null ? e.totaloutput : 0);
+        }
       });
 
       response.status(200).json({
