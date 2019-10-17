@@ -1296,7 +1296,7 @@ export class GraphListComponent implements OnInit {
         height: 250,
         xaxis: {
           showgrid: true,
-          zeroline: false,
+          zeroline: true,
           tickformat: '%m-%d',
           rangemode: 'nonnegative',
           fixedrange: true,
