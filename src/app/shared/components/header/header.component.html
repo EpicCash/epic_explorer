@@ -103,8 +103,8 @@
       </div>
     </div>
   </nav>
-  <p class="note_tag text-center">"Mining in August was on testnet; mainnet launched with an initial money supply of precisely zero units on <span class="font-weight-bold">September 2</span>."
-   <span class="float-right font-weight-bold">X</span>
+  <p *ngIf="showContent" class="note_tag text-center">"Mining in August was on testnet; mainnet launched with an initial money supply of precisely zero units on <span class="font-weight-bold">September 2</span>."
+   <span (click)="removeText()" class="float-right font-weight-bold">X</span>
   </p>
  
  <div *ngIf="TimeArr" class="d-sm-none text-center">

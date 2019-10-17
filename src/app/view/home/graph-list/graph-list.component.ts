@@ -1393,6 +1393,7 @@ export class GraphListComponent implements OnInit {
           tickformat: '%m-%d',
           rangemode: 'nonnegative',
           fixedrange: true,
+          tickangle: -45,
           tick0:Tdate[0],
           dtick: dtickval
         },

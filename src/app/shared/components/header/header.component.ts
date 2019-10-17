@@ -11,6 +11,7 @@ import {  HttpParams } from '@angular/common/http';
 })
 export class HeaderComponent implements OnInit {
   TimeArr: any;
+  showContent=true;
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private chartService: ChartService,
@@ -41,5 +42,9 @@ export class HeaderComponent implements OnInit {
 
   public ChangeTheme() {
     this.document.body.classList.toggle('dark_theme');
+  }
+
+  public removeText(){
+    this.showContent=0;
   }
 }

@@ -806,3 +806,6 @@ body.dark_theme {
   } 
 }
 .note_tag{background: #bf9b30; position: fixed; width: 100%;  bottom: 0;  padding: 10px;  color: #fff;  z-index: 2;  margin: 0;}
+.note_tag span{
+  cursor: pointer;
+}
