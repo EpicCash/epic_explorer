@@ -881,7 +881,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ke
                         bk.block_id \
 LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_output where output_type != 'Coinbase' group by block_id) as bo \
                      ON blockchain_block.hash = \
-                        bo.block_id WHERE " +
+                        bo.block_id WHERE blockchain_block.height > 0 And " +
           timeIntervalQry +
           " \
        GROUP  BY blockchain_block.hash \
