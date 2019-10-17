@@ -827,7 +827,6 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
     next: NextFunction,
   ) => {
     try {
-      console.log("I am in")
       const TransactionFeeRequestData: TransactionFeeDto = request.query;
       if (TransactionFeeRequestData.Interval) {        
         var timeIntervalQry =
@@ -882,7 +881,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ke
                         bk.block_id \
 LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_output where output_type != 'Coinbase' group by block_id) as bo \
                      ON blockchain_block.hash = \
-                        bo.block_id WHERE blockchain_block.height > 0 And " +
+                        bo.block_id WHERE " +
           timeIntervalQry +
           " \
        GROUP  BY blockchain_block.hash \
@@ -899,9 +898,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
         totaloutput = [];
 
       TransactionHeatmapChartQuery.forEach(e => {
-        console.log("Chart data")
-        console.log(e)
-        if(moment(e.hour).format('YYYY-MM-DD') > moment('2019-09-02').format('YYYY-MM-DD'))
+        if(moment(e.hour).format('YYYY-MM-DD') >= moment('2019-09-02').format('YYYY-MM-DD'))
         {
           date.push(moment(e.hour).format('YYYY-MM-DD'));
           totalinput.push(e.totalinput != null ? e.totalinput : 0);
