@@ -916,7 +916,9 @@ export class GraphListComponent implements OnInit {
 
     
     let dtickval;
-    if(DifficultychartDate.length <10)
+    if(DifficultychartDate.length <5)
+      dtickval =1*24*60*60*1000
+    else if(DifficultychartDate.length <10)
       dtickval =2*24*60*60*1000
     else if(DifficultychartDate.length <20)
       dtickval =4*24*60*60*1000
