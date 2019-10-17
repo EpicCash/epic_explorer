@@ -1213,7 +1213,7 @@ export class BlockchainBlockController {
           max(total_difficulty_randomx) as total_difficulty_randomx, date(DATE_TRUNC('day', timestamp at time zone '" +
           process.env.TIME_ZONE +
           "')) as date, count(DISTINCT hash) as blocks \
-        from blockchain_block where " +
+        from blockchain_block where height > 0 and " +
         timeIntervalQry +
           "group by DATE_TRUNC('day', timestamp at time zone '" +
           process.env.TIME_ZONE +
