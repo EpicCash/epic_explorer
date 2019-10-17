@@ -827,6 +827,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
     next: NextFunction,
   ) => {
     try {
+      console.log("I am in")
       const TransactionFeeRequestData: TransactionFeeDto = request.query;
       if (TransactionFeeRequestData.Interval) {        
         var timeIntervalQry =
@@ -898,6 +899,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
         totaloutput = [];
 
       TransactionHeatmapChartQuery.forEach(e => {
+        console.log("Chart data")
         console.log(e)
         if(moment(e.hour).format('YYYY-MM-DD') > moment('2019-09-02').format('YYYY-MM-DD'))
         {
