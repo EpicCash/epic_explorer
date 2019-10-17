@@ -718,6 +718,17 @@ export class GraphListComponent implements OnInit {
   }
 
   stackchartFunc(sDate, Cuckoo, ProgPow, RandomX) {
+
+    let dtickval;
+    if(sDate.length <10)
+      dtickval =2*24*60*60*1000
+    else if(sDate.length <20)
+      dtickval =4*24*60*60*1000
+    else if(sDate.length <40)
+      dtickval =6*24*60*60*1000
+    else 
+      dtickval =8*24*60*60*1000
+
     this.stackGraphData = {
       data: [
         {
@@ -785,6 +796,8 @@ export class GraphListComponent implements OnInit {
           tickformat: '%m-%d',
           rangemode: 'nonnegative',
           fixedrange: true,
+          tick0:sDate[0],
+          dtick:dtickval
         },
         yaxis: {
           showline: false,
@@ -900,6 +913,19 @@ export class GraphListComponent implements OnInit {
 
 
   totalBlocksFunc(DifficultychartDate, Blockval) {
+
+    
+    let dtickval;
+    if(DifficultychartDate.length <10)
+      dtickval =2*24*60*60*1000
+    else if(DifficultychartDate.length <20)
+      dtickval =4*24*60*60*1000
+    else if(DifficultychartDate.length <40)
+      dtickval =6*24*60*60*1000
+    else 
+      dtickval =8*24*60*60*1000
+
+
     this.barGraphData = {
       data: [
         {
@@ -925,7 +951,9 @@ export class GraphListComponent implements OnInit {
           tickformat: '%m-%d',
           showgrid: true,
           fixedrange: true,
-          rangemode: 'nonnegative'
+          rangemode: 'nonnegative',
+          tick0:DifficultychartDate[0],
+          dtick:dtickval
         },
         yaxis: {
           title: 'Blocks',
@@ -1052,6 +1080,15 @@ export class GraphListComponent implements OnInit {
   }
 
   blockspersecFunc(bDate, bPeriod) {
+    let dtickval;
+    if(bDate.length <10)
+      dtickval =2*24*60*60*1000
+    else if(bDate.length <20)
+      dtickval =4*24*60*60*1000
+    else if(bDate.length <40)
+      dtickval =6*24*60*60*1000
+    else 
+      dtickval =8*24*60*60*1000
     this.areaGraphData = {
       data: [
         {
@@ -1078,6 +1115,8 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
+          tick0:bDate[0],
+          dtick:dtickval
         },
         yaxis: {
           title: 'Seconds / Block',
