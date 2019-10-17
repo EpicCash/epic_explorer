@@ -1097,6 +1097,17 @@ export class GraphListComponent implements OnInit {
   }
 
   blockminedFunc(mDate, ProgPow, Cuckoo, RandomX, ProgPowper, Cuckooper, RandomXper) {
+
+    let dtickval;
+    if(mDate.length <10)
+      dtickval =2*24*60*60*1000
+    else if(mDate.length <20)
+      dtickval =4*24*60*60*1000
+    else if(mDate.length <40)
+      dtickval =6*24*60*60*1000
+    else 
+      dtickval =8*24*60*60*1000
+
     this.doubleareaGraphData = {
       data: [
         {
@@ -1165,7 +1176,7 @@ export class GraphListComponent implements OnInit {
           fixedrange: true,
           showgrid: true,
           tick0:mDate[0],
-          dtick: 4*24*60*60*1000
+          dtick: dtickval
         },
         yaxis: {
           title: 'Percentage(%)',
@@ -1256,6 +1267,17 @@ export class GraphListComponent implements OnInit {
     });
   }
   transactionlinechartFunc(Tdate, Ttotalinput, Ttotalkernal, Ttotaloutput) {
+
+    let dtickval;
+    if(Tdate.length <10)
+      dtickval =2*24*60*60*1000
+    else if(Tdate.length <20)
+      dtickval =4*24*60*60*1000
+    else if(Tdate.length <40)
+      dtickval =6*24*60*60*1000
+    else 
+      dtickval =8*24*60*60*1000
+
     this.feeGraphData = {
       data: [
         {
@@ -1303,7 +1325,7 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           tick0:Tdate[0],
-          dtick: 4*24*60*60*1000
+          dtick: dtickval
         },
         yaxis: {
           showline: false,
