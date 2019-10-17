@@ -973,6 +973,19 @@ export class GraphListComponent implements OnInit {
   }
 
   transcationfeeFunc(TfDate, TfFee) {
+
+
+    let dtickval;
+    if(TfDate.length <10)
+      dtickval =2*24*60*60*1000
+    else if(TfDate.length <20)
+      dtickval =4*24*60*60*1000
+    else if(TfDate.length <40)
+      dtickval =6*24*60*60*1000
+    else 
+      dtickval =8*24*60*60*1000
+
+
     this.transcationGraphData = {
       data: [
         {
@@ -996,7 +1009,9 @@ export class GraphListComponent implements OnInit {
           tickformat: '%m-%d',
           rangemode: 'nonnegative',
           fixedrange: true,
-          showgrid: true,          
+          showgrid: true,   
+          tick0:TfDate[0],
+          dtick:dtickval,
           tickfont: {            
             size: 11
           }
@@ -1026,6 +1041,17 @@ export class GraphListComponent implements OnInit {
   }
 
   growthFunc(gDate, gReward, gaddedreward, range) {
+
+    let dtickval;
+    if(gDate.length <10)
+      dtickval =2*24*60*60*1000
+    else if(gDate.length <20)
+      dtickval =4*24*60*60*1000
+    else if(gDate.length <40)
+      dtickval =6*24*60*60*1000
+    else 
+      dtickval =8*24*60*60*1000
+
     this.growthGraphData = {
       data: [
         {
@@ -1056,7 +1082,9 @@ export class GraphListComponent implements OnInit {
           tickangle: -45,
           rangemode: 'nonnegative',
           fixedrange: true,
-          showgrid: true
+          showgrid: true,
+          tick0:gDate[0],
+          dtick:dtickval
         },
         yaxis: {
           title: 'Total Reward Supply',
