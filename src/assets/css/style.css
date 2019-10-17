@@ -805,3 +805,4 @@ body.dark_theme {
             transform: scale3D(0, 0, 1);
   } 
 }
+.note_tag{background: #bf9b30; position: fixed; width: 100%;  bottom: 0;  padding: 10px;  color: #fff;  z-index: 2;  margin: 0;}
