@@ -1296,10 +1296,12 @@ export class GraphListComponent implements OnInit {
         height: 250,
         xaxis: {
           showgrid: true,
-          zeroline: true,
+          zeroline: false,
           tickformat: '%m-%d',
           rangemode: 'nonnegative',
           fixedrange: true,
+          tick0:Tdate[0],
+          dtick: 3*24*60*60*1000
         },
         yaxis: {
           showline: false,
