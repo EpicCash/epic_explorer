@@ -45,6 +45,6 @@ export class HeaderComponent implements OnInit {
   }
 
   public removeText(){
-    this.showContent=0;
+    this.showContent=false;
   }
 }
