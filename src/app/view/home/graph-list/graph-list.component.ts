@@ -618,7 +618,7 @@ export class GraphListComponent implements OnInit {
     let dtickval;
     if(tickformat == "%H-%M")
       dtickval = ''
-    else if(DifficultychartDate.length <11712)
+    else if(DifficultychartDate.length <21712)
       dtickval =2*24*60*60*1000
     else 
       dtickval =6*24*60*60*1000
@@ -1485,7 +1485,7 @@ export class GraphListComponent implements OnInit {
     let dtickval;
     if(tickformat == "%H-%M")
       dtickval = ''
-    else if(DifficultychartDate.length <11712)
+    else if(DifficultychartDate.length <22712)
       dtickval =2*24*60*60*1000
     else 
       dtickval =6*24*60*60*1000
