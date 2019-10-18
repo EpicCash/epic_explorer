@@ -898,7 +898,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
         totaloutput = [];
 
       TransactionHeatmapChartQuery.forEach(e => {
-        if(moment(e.hour).format('YYYY-MM-DD') >= moment('2019-09-02').format('YYYY-MM-DD'))
+        if(moment(e.hour).format('YYYY-MM-DD') >= moment('2019-09-03').format('YYYY-MM-DD'))
         {
           date.push(moment(e.hour).format('YYYY-MM-DD'));
           totalinput.push(e.totalinput != null ? e.totalinput : 0);

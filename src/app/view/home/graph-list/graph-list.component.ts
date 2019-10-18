@@ -615,6 +615,13 @@ export class GraphListComponent implements OnInit {
   }
 
   difficultyChartFunc(DifficultychartDate, data, Type, range1, range2, range3, tickformat) {
+    let dtickval;
+    if(tickformat == "%H-%M")
+      dtickval = ''
+    else if(DifficultychartDate.length <11712)
+      dtickval =2*24*60*60*1000
+    else 
+      dtickval =6*24*60*60*1000
 
     let window_width = window.screen.width;
     let position = 0.00;
@@ -658,6 +665,8 @@ export class GraphListComponent implements OnInit {
           // fixedrange: true,
           rangemode: 'nonnegative',
           domain: [domain_start, 0.9],
+          tick0:DifficultychartDate[0],
+          dtick:dtickval,
           // showgrid: true          
           tickfont: {            
             size: 12
@@ -1472,6 +1481,17 @@ export class GraphListComponent implements OnInit {
     };
   }
   totaldifficultyChartFunc(DifficultychartDate, data, type, range1, range2, range3, tickformat) {
+
+    let dtickval;
+    if(tickformat == "%H-%M")
+      dtickval = ''
+    else if(DifficultychartDate.length <11712)
+      dtickval =2*24*60*60*1000
+    else 
+      dtickval =6*24*60*60*1000
+
+      
+
     let window_width = window.screen.width;
     let position = 0.00;
     let angle = 0;
@@ -1509,6 +1529,8 @@ export class GraphListComponent implements OnInit {
         xaxis: {
           tickangle: -40,
           tickformat: tickformat,
+          tick0:DifficultychartDate[0],
+          dtick:dtickval,
           // fixedrange: true,
           domain: [domain_start, 0.9]
           // showgrid: true
