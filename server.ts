@@ -129,7 +129,7 @@ try {
     {
         let result; //500
         if(option == "circulating")
-              result= blockDetails.coin_existence;
+              result= blockDetails.userReward;
         else if(option == "reward")
               result= blockDetails.currentReward;
         else if(option == "getblockcount")
@@ -140,8 +140,10 @@ try {
               result = Number(blockDetails.TotalCuckoo);
         else if(option == "getdifficulty-progpow")
               result = Number(blockDetails.TotalDifficultyProgpow);
+        else if(option == "maxcoins")
+              result = 21000000;
         else if(option == "totalcoins")
-              result = 21000000 * 100000000;
+              result= blockDetails.coin_existence;
         else if(option == "average-blocktime")
         {
               let data = await averageblockdifficulty();
