@@ -157,7 +157,7 @@ export class GraphListComponent implements OnInit {
   ) {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
-
+   
       if(interval == "all") {
         // this.Type=""
         fromDate = "2019-09-29 06:00:00"
@@ -425,10 +425,16 @@ export class GraphListComponent implements OnInit {
   ) {
     
     this.Type = type != '' ? type : this.Type == '' ? 'all' : this.Type;
+    // loader enable while change tab
+    if(difftype == "total")
+      this.linearTotalGraphData = []
+    else if(difftype == "target")
+      this.linearGraphData = []
+
     if(interval == "all") {
       // this.Type=""
-      fromDate = "2019-09-29 00:00:00"
-      ToDate = "2019-11-20 23:29:59"
+      fromDate = "2019-09-03 00:00:00"
+      ToDate =  moment(new Date()).format("YYYY-MM-DD 23:29:59")
     }
 
     return new Promise((resolve, reject) => {
