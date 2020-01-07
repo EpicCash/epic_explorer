@@ -258,8 +258,8 @@ a:focus {
 }
 .day_filter {
   background-color: #dadada;
-  font-size: 14px;
-  padding: 15px;
+  font-size: 13px;
+  padding: 14px;
 }
 .day_filter a {
   margin: 0 5px;
@@ -739,6 +739,7 @@ body.dark_theme {
   -o-animation: yellowfade 5s ;
 }
 .news_desc .bg-white{padding-top: 100px;}
+.news_desc .bg-white.inner_pages{padding: 100px 0;}
 .sk-cube-grid {
   width: 40px;
   height: 40px;
