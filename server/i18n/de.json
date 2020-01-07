@@ -61,6 +61,7 @@
         "TRANSACTIONS_VS_DATE" : "Transaktionen gegen Datum",
         "DAYS" : "Tage",
         "MONTHS" : "Monate",
+        "All": "alle",
         "WEEK" : "Woche",
         "SEARCH_TEXT" : "Suche nach Hash oder Blockhöhe oder Ausgabe-Commit-ID",
         "BLOCK_REWARD" : "Block Belohnung",

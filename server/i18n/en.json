@@ -61,6 +61,7 @@
         "TRANSACTIONS_VS_DATE" : "Transactions by Date",
         "DAYS" : "days",
         "MONTHS" : "months",
+        "All" : "all",
         "WEEK" : "week",
         "SEARCH_TEXT" : "Search by hash, or block height or output commit ID",
         "BLOCK_REWARD" : "Block Reward",

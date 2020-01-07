@@ -157,9 +157,18 @@ export class GraphListComponent implements OnInit {
   ) {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
+
+      if(interval == "all") {
+        // this.Type=""
+        fromDate = "2019-09-29 06:00:00"
+        ToDate = "2019-11-20 20:29:59"
+      }
+  
+
+
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
-      params = params.append('Interval', interval);
+      params = params.append('Interval', (interval == "all")?"":interval);
       this.chartService
         .apiGetRequest(params, '/blockchain_block/stackblock')
         .subscribe(
@@ -414,12 +423,19 @@ export class GraphListComponent implements OnInit {
     interval = '',
     type = ''
   ) {
+    
     this.Type = type != '' ? type : this.Type == '' ? 'all' : this.Type;
+    if(interval == "all") {
+      // this.Type=""
+      fromDate = "2019-09-29 00:00:00"
+      ToDate = "2019-11-20 23:29:59"
+    }
+
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
-      params = params.append('Interval', interval);
+      params = params.append('Interval', (interval == "all")?"":interval);
       params = params.append('Type', this.Type);
       params = params.append('Difftype', difftype);
       this.chartService

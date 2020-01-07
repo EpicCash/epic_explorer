@@ -61,6 +61,13 @@
         <a href="JavaScript:void(0);" (click)="
             Difficultyreq('target', '', '', '3 months',''); selectedItem = 5; difficultyRange = '3 months'
           " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+        
+          <a href="JavaScript:void(0);" (click)="
+          Difficultyreq('target', '', '', 'all',''); selectedItem = 7; difficultyRange = ''
+        " id="7" #item7 [ngClass]="{ active: selectedItem == item7.id, day3m_txt: true }">all {{'home.All' | translate}}</a>
+
+
+
       </div>
 
       <div class="explore_all text-right">
@@ -391,6 +398,14 @@
             <a href="JavaScript:void(0);" (click)="
             stackchartreq('', '', '3 months'); selectedItem10 = 5
               " id="5" #item5 [ngClass]="{ active: selectedItem10 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+
+<!-- 
+              <a href="JavaScript:void(0);" (click)="
+              stackchartreq('', '', 'all'); selectedItem = 7; 
+        " id="7" #item7 [ngClass]="{ active: selectedItem == item7.id, day3m_txt: true }">all {{'home.All' | translate}}</a> -->
+
+
+
           </div>
           <div class="explore_all text-right">
             <a routerLink="/chart/blocks-by-algorithm"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
