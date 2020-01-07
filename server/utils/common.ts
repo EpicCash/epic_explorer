@@ -286,7 +286,7 @@ let currentReward = 16;
         
         let cuckoohashrate = await network_hashrate(block_height,31,targetdifficultycuckatoo);
         let progpowhashrate = await network_hashrate(block_height,16,targetdifficultyprogpow);
-        let randomxashrate = await network_hashrate(block_height,16,targetdifficultyrandomx);
+        let randomxhashrate = await network_hashrate(block_height,16,targetdifficultyrandomx);
 
       return {
         block_height,
@@ -309,7 +309,7 @@ let currentReward = 16;
         userReward,
         cuckoohashrate,
         progpowhashrate,
-        randomxashrate
+        randomxhashrate
       };
     }
 
