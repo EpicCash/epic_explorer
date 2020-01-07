@@ -1309,7 +1309,7 @@ export class BlockchainBlockController {
     try {
       const TotalDifficultyNBlockRequestData: TotalDifficultyNBlockDto =
         request.query;
-      if (TotalDifficultyNBlockRequestData.Interval) {
+      if (TotalDifficultyNBlockRequestData.Interval && TotalDifficultyNBlockRequestData.Interval != "all") {
         var timeIntervalQry =
           "timestamp at time zone '" +
           process.env.TIME_ZONE +

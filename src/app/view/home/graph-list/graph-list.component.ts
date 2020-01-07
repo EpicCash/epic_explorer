@@ -435,7 +435,7 @@ export class GraphListComponent implements OnInit {
       let params = new HttpParams();
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
-      params = params.append('Interval', (interval == "all")?"":interval);
+      params = params.append('Interval', (interval == "all")?"all":interval);
       params = params.append('Type', this.Type);
       params = params.append('Difftype', difftype);
       this.chartService
