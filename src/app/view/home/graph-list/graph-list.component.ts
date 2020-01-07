@@ -362,9 +362,19 @@ export class GraphListComponent implements OnInit {
   Growthreq(fromDate = '', ToDate = '', interval = '') {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
+
+      this.growthGraphData = [] 
+      if(interval == "all") {
+      // this.Type=""
+      fromDate = "2019-09-05 00:00:00"
+      ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
+      }
+
+      params = params.append('Interval', (interval == "all")?"":interval);
+
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
-      params = params.append('Interval', interval);
+      // params = params.append('Interval', interval);
       this.chartService
         .apiGetRequest(params, '/blockchain_block/supplygrowth')
         .subscribe(
@@ -394,9 +404,19 @@ export class GraphListComponent implements OnInit {
   Transcationreq(fromDate = '', ToDate = '', interval = '') {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
+
+
+      this.transcationGraphData = [] 
+      if(interval == "all") {
+        fromDate = "2019-09-03 00:00:00"
+        ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
+      }
+
+      params = params.append('Interval', (interval == "all")?"":interval);
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
-      params = params.append('Interval', interval);
+
+      // params = params.append('Interval', interval);
       this.chartService
         .apiGetRequest(params, '/blockchain_kernel/transactionfee')
         .subscribe(
@@ -613,9 +633,17 @@ export class GraphListComponent implements OnInit {
   ) {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
+      this.barGraphData = [] 
+      if(interval == "all") {
+        // this.Type=""
+        fromDate = "2019-09-03 00:00:00"
+        ToDate =  moment(new Date()).format("YYYY-MM-DD 23:29:59")
+      }
+
+      params = params.append('Interval', (interval == "all")?"":interval);
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
-      params = params.append('Interval', interval);
+      // params = params.append('Interval', interval);
       this.chartService
         .apiGetRequest(params, '/blockchain_block/blockcount')
         .subscribe(

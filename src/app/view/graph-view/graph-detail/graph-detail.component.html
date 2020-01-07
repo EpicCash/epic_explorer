@@ -121,6 +121,14 @@
             ChartFromView('', '', '3 months', comp.Type); selectedItem = 5; comp.difficultyRange = '3 months';comp.TdifficultyRange = '3 months'
               " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3
                   {{'home.MONTHS' | translate}}</a>
+
+
+                  <a href="JavaScript:void(0);" *ngIf="this.title=='Total Difficulty' || this.title=='Target Difficulty'" (click)="
+                  ChartFromView('', '', 'all', comp.Type); selectedItem = 7; comp.difficultyRange = 'all';comp.TdifficultyRange = 'all'
+                    " id="7" #item7 [ngClass]="{ active: selectedItem == item7.id, txt_primary: true }">{{'home.All' | translate}}</a>
+
+
+
               </div>
              
               <div class="day_filter" *ngIf="this.title=='Transactions over time'">

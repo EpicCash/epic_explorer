@@ -164,6 +164,13 @@
       <a href="JavaScript:void(0);" (click)="
       blockreq('', '', '3 months'); selectedItem3 = 5
           " id="5" #item35 [ngClass]="{ active: selectedItem3 == item35.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+
+        <a href="JavaScript:void(0);" (click)="
+        blockreq('', '', 'all',''); selectedItem3 = 7; 
+        " id="7" #item37 [ngClass]="{ active: selectedItem3 == item37.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+
+
+    
     </div>
     <div class="explore_all text-right">
       <a routerLink="/chart/blocks"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
@@ -210,6 +217,13 @@
         [ngClass]="{ active: selectedItem5 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Growthreq('', '', '3 months'); selectedItem5 = 5" id="5" #item5
         [ngClass]="{ active: selectedItem5 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="
+       Growthreq('', '', 'all'); selectedItem5 = 7; 
+        " id="7" #item7 [ngClass]="{ active: selectedItem5 == item7.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+
+      
+      
+
     </div>
     <div class="explore_all text-right">
       <a  routerLink="/chart/supply-growth"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
@@ -258,6 +272,12 @@
     [ngClass]="{ active: selectedItem4 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
   <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '3 months'); selectedItem4 = 5" id="5" #item5
     [ngClass]="{ active: selectedItem4 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+
+    <a href="JavaScript:void(0);" (click)="
+    Transcationreq('', '', 'all'); selectedItem4 = 7; 
+     " id="7" #item7 [ngClass]="{ active: selectedItem4 == item7.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+
+
 </div>
 <div class="explore_all text-right">
   <a routerLink="/chart/transaction-fees"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>

@@ -1668,8 +1668,14 @@ export class BlockchainBlockController {
           .utc()
           .format('YYYY-MM-DD');
 
-        var timeIntervalQry =
-          'timestamp BETWEEN SYMMETRIC ' + fromdate + ' AND ' + todate;
+          var timeIntervalQry =
+          "timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "' BETWEEN SYMMETRIC '" +
+          fromdate +
+          "' AND '" +
+          todate +
+          "'";
 
         var seriesquery = "'" + fromdate + "'::timestamp, '" + todate + "'";
       } else {
@@ -1777,8 +1783,14 @@ export class BlockchainBlockController {
           .utc()
           .format('YYYY-MM-DD');
 
-        var timeIntervalQry =
-          'timestamp BETWEEN SYMMETRIC ' + fromdate + ' AND ' + todate;
+          var timeIntervalQry =
+          "timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "' BETWEEN SYMMETRIC '" +
+          fromdate +
+          "' AND '" +
+          todate +
+          "'";
       } else {
         var timeIntervalQry = "timestamp > current_date - interval '30 days'";
       }
@@ -1842,8 +1854,14 @@ export class BlockchainBlockController {
           .utc()
           .format('YYYY-MM-DD');
 
-        var timeIntervalQry =
-          'timestamp BETWEEN SYMMETRIC ' + fromdate + ' AND ' + todate;
+          var timeIntervalQry =
+          "timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "' BETWEEN SYMMETRIC '" +
+          fromdate +
+          "' AND '" +
+          todate +
+          "'";
       } else {
         var timeIntervalQry = "timestamp > current_date - interval '30 days'";
       }
