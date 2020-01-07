@@ -318,17 +318,19 @@ a:focus {
   justify-content: center;
 }
 .detail_div .count {
-  font-size: 25px;
+  /* font-size: 25px; */
+  font-size: 20px;
   color: #BF9B30;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 .detail_div .desc {
-  font-size: 18px;
+  /* font-size: 18px; */
+  font-size: 15px;
 }
 .detail_div .count span {
-  font-size: 15px;
+  font-size: 14px;
   color: #002f5b;
 }
 .detail_div:hover {

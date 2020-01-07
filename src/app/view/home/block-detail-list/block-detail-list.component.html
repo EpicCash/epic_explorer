@@ -25,7 +25,7 @@
   </div>
 </div> -->
 <div class="row" *ngIf="latestblockdetail">
-  <div class="col-md-3">
+  <div class="col-md-4 col-xl-2">
     <div
       class="text-center detail_div"
     >
@@ -39,7 +39,7 @@
       </p>
     </div>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-4 col-xl-2">
     <div
       class="text-center detail_div"
     >
@@ -92,9 +92,22 @@
       </div>
     </div>
   </div> -->
+  <div class="col-md-4  col-xl-2">
+      <div
+        class="text-center detail_div"
+      >
+        <p class="mb-0 desc">{{ "home.CIRCULATING_SUPPLY" | translate }}</p>
+        <p
+          class="count mb-0"
+          [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
+        >
+          {{ latestblockdetail.coin_existence | number }}
+          <span class="">Epic</span>
+        </p>
+      </div>
+    </div>
 
-
-  <div class="col-md-3">
+  <div class="col-md-6 mt-md-3 mt-xl-0 col-xl-3">
     <div class="text-center detail_div" #minhgt>
       <p class="mb-2 desc">{{ "home.CURRENT_TARGET_DIFF" | translate }}</p>
       <div
@@ -139,27 +152,14 @@
       </div>
     </div>
   </div> -->
-  <div class="col-md-3">
+
+
+
+  <div class="col-md-6 mt-md-3 mt-xl-0 col-xl-3">
     <div
       class="text-center detail_div"
     >
-      <p class="mb-0 desc">{{ "home.CIRCULATING_SUPPLY" | translate }}</p>
-      <p
-        class="count mb-0"
-        [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
-      >
-        {{ latestblockdetail.coin_existence | number }}
-        <span class="">Epic</span>
-      </p>
-    </div>
-  </div>
-
-
-  <div class="col-md-3">
-    <div
-      class="text-center detail_div"
-    >
-      <p class="mb-0 desc">{{ "home.Hashrate" | translate }}</p>
+      <p class="mb-2 desc">{{ "home.HASHRATE" | translate }}</p>
       <p
         class="count mb-0"
         [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
