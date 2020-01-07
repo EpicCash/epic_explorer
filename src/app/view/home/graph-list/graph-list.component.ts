@@ -157,11 +157,11 @@ export class GraphListComponent implements OnInit {
   ) {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
-   
+      this.stackGraphData = []
       if(interval == "all") {
         // this.Type=""
-        fromDate = "2019-09-29 06:00:00"
-        ToDate = "2019-11-20 20:29:59"
+        fromDate = "2019-09-03 06:00:00"
+        ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
       }
   
 
@@ -304,9 +304,20 @@ export class GraphListComponent implements OnInit {
   Blockminedreq(fromDate = '', ToDate = '', interval = '') {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
+
+
+      this.doubleareaGraphData = [] 
+      if(interval == "all") {
+      // this.Type=""
+      fromDate = "2019-09-03 00:00:00"
+      ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
+      }
+
+      params = params.append('Interval', (interval == "all")?"":interval);
+
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
-      params = params.append('Interval', interval);
+      // params = params.append('Interval', interval);
       this.chartService
         .apiGetRequest(params, '/blockchain_block/blockminedchart')
         .subscribe(
@@ -346,9 +357,17 @@ export class GraphListComponent implements OnInit {
   Blockspersecreq(fromDate = '', ToDate = '', interval = '') {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
+      this.areaGraphData = [] 
+      if(interval == "all") {
+      // this.Type=""
+      fromDate = "2019-09-03 00:00:00"
+      ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
+      }
+
+      params = params.append('Interval', (interval == "all")?"":interval);
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
-      params = params.append('Interval', interval);
+      // params = params.append('Interval', interval);
       this.chartService
         .apiGetRequest(params, '/blockchain_block/blockspersec')
         .subscribe(
@@ -375,7 +394,7 @@ export class GraphListComponent implements OnInit {
       this.growthGraphData = [] 
       if(interval == "all") {
       // this.Type=""
-      fromDate = "2019-09-05 00:00:00"
+      fromDate = "2019-09-04 00:00:00"
       ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
       }
 

@@ -325,6 +325,12 @@
         [ngClass]="{ active: selectedItem7 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '3 months'); selectedItem7 = 5" id="5" #item5
         [ngClass]="{ active: selectedItem7 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+
+        <a href="JavaScript:void(0);" (click)="
+        Blockminedreq('', '', 'all'); selectedItem7 = 8; 
+        " id="8" #item8 [ngClass]="{ active: selectedItem7 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+
+
     </div>
     <div class="explore_all text-right">
        <a routerLink="/chart/blocks-mined"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
@@ -419,12 +425,11 @@
             stackchartreq('', '', '3 months'); selectedItem10 = 5
               " id="5" #item5 [ngClass]="{ active: selectedItem10 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
 
-<!-- 
               <a href="JavaScript:void(0);" (click)="
-              stackchartreq('', '', 'all'); selectedItem = 7; 
-        " id="7" #item7 [ngClass]="{ active: selectedItem == item7.id, day3m_txt: true }">all {{'home.All' | translate}}</a> -->
-
-
+              stackchartreq('', '', 'all'); selectedItem10 = 8; 
+              " id="8" #item8 [ngClass]="{ active: selectedItem10 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+      
+    
 
           </div>
           <div class="explore_all text-right">
@@ -608,6 +613,12 @@
           [ngClass]="{ active: selectedItem2 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '3 months'); selectedItem2 = 5" id="5" #item5
           [ngClass]="{ active: selectedItem2 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+
+          <a href="JavaScript:void(0);" (click)="
+          Blockspersecreq('', '', 'all'); selectedItem2 = 8; 
+          " id="8" #item8 [ngClass]="{ active: selectedItem2 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+  
+
       </div>
       <div class="explore_all text-right">
         <a routerLink="/chart/avg-block-interval"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i

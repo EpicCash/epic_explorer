@@ -244,7 +244,7 @@ export class GraphDetailComponent implements OnInit {
     // (p1, p2, p3, p4, p5) for (fromDate, ToDate, interval, fordifficult, forblocks) for difficult and nar chart
     // AND For heatmap and others - It will change
     this.comp.Type = p4 != '' && (p4 == 'cuckatoo' || p4 == 'progpow' || p4 == 'randomx') ? p4 : this.comp.Type == '' ? 'cuckatoo' : this.comp.Type;
-
+    this.hashdata =[]
     switch (this.chartType) {
       case 'target-difficulty':
         this.comp.Difficultyreq('target',p1, p2, p3, p4).then(res => {
