@@ -284,7 +284,9 @@ let currentReward = 16;
             }
         }
         
-
+        let cuckoohashrate = await network_hashrate(block_height,31,targetdifficultycuckatoo);
+        let progpowhashrate = await network_hashrate(block_height,16,targetdifficultyprogpow);
+        let randomxashrate = await network_hashrate(block_height,16,targetdifficultyrandomx);
 
       return {
         block_height,
@@ -304,7 +306,10 @@ let currentReward = 16;
         TotalDifficultyRandomx:BlockchainLatestBlockQuery[0].total_difficulty_randomx,
         currentReward,
         foundationReward,
-        userReward
+        userReward,
+        cuckoohashrate,
+        progpowhashrate,
+        randomxashrate
       };
     }
 

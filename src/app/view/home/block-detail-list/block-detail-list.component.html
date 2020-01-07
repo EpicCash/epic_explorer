@@ -153,4 +153,40 @@
       </p>
     </div>
   </div>
+
+
+  <div class="col-md-3">
+    <div
+      class="text-center detail_div"
+    >
+      <p class="mb-0 desc">{{ "home.Hashrate" | translate }}</p>
+      <p
+        class="count mb-0"
+        [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
+      >
+    </p>
+      <div class="difficulty_datas">
+        <span class="day60_txt">Cuckoo &nbsp;&nbsp;&nbsp;&nbsp;: </span>
+          <span>         {{ latestblockdetail.cuckoohashrate }}          </span>
+      </div>
+
+      <div class="difficulty_datas">
+        <span class="day60_txt">ProgPoW &nbsp;&nbsp;&nbsp;&nbsp;: </span>
+          <span> {{ latestblockdetail.progpowhashrate }}</span>
+      </div>
+
+      <div class="difficulty_datas">
+        <span class="day60_txt">RandomX &nbsp;&nbsp;&nbsp;&nbsp;: </span>
+          <span> 
+            {{ latestblockdetail.randomxhashrate }}
+          </span>
+      </div>
+
+
+
+     
+    </div>
+  </div>
+
+
 </div>
