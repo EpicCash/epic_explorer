@@ -24,6 +24,7 @@
         "CURRENT_TARGET_DIFF": "Aktuelle Zielschwierigkeit",
 				"CURRENT_TOTAL_DIFF": "Aktuelle Gesamtschwierigkeit",
         "CIRCULATING_SUPPLY": "Zirkulierende Versorgung",
+        "HASHRATE": "Netzwerk-Hashrate",
         "HEIGHT": "Höhe",
         "HASH": "Hash",
         "AGE": "Alter",

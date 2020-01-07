@@ -24,6 +24,7 @@
 				"CURRENT_TARGET_DIFF": "Current Target Difficulty",
 				"CURRENT_TOTAL_DIFF": "Current Total Difficulty",
         "CIRCULATING_SUPPLY": "Circulating Supply",
+        "HASHRATE": "Network Hashrate",
         "HEIGHT": "Height",
         "HASH": "Hash",
         "AGE": "Age",
