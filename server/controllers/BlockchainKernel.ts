@@ -651,8 +651,14 @@ export class BlockchainKernelController {
           .utc()
           .format('YYYY-MM-DD');
 
-        var timeIntervalQry =
-          'timestamp BETWEEN SYMMETRIC ' + fromdate + ' AND ' + todate;
+          var timeIntervalQry =
+          "timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "' BETWEEN SYMMETRIC '" +
+          fromdate +
+          "' AND '" +
+          todate +
+          "'";
       } else {
         var timeIntervalQry = "timestamp > current_date - interval '30 days'";
       }
@@ -841,11 +847,21 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
         TransactionFeeRequestData.FromDate ||
         TransactionFeeRequestData.ToDate
       ) {
-        var timeIntervalQry =
-          'blockchain_block.timestamp BETWEEN SYMMETRIC ' +
+        // var timeIntervalQry =
+        //   'blockchain_block.timestamp BETWEEN SYMMETRIC ' +
+        //   TransactionFeeRequestData.FromDate +
+        //   ' AND ' +
+        //   TransactionFeeRequestData.ToDate;
+
+          var timeIntervalQry =
+          "blockchain_block.timestamp at time zone '" +
+          process.env.TIME_ZONE +
+          "' BETWEEN SYMMETRIC '" +
           TransactionFeeRequestData.FromDate +
-          ' AND ' +
-          TransactionFeeRequestData.ToDate;
+          "' AND '" +
+          TransactionFeeRequestData.ToDate +
+          "'";
+        
         var seriesquery =
           "'" +
           TransactionFeeRequestData.FromDate +

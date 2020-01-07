@@ -222,9 +222,18 @@ export class GraphListComponent implements OnInit {
   Transactionlinechartreq(fromDate = '', ToDate = '', interval = '') {
     return new Promise((resolve, reject) => {
       let params = new HttpParams();
+
+      this.feeGraphData = [] 
+      if(interval == "all") {
+      // this.Type=""
+      fromDate = "2019-09-03 00:00:00"
+      ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
+      }
+
+      params = params.append('Interval', (interval == "all")?"":interval);
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
-      params = params.append('Interval', interval);
+      // params = params.append('Interval', interval);
       this.chartService
         .apiGetRequest(params, '/blockchain_kernel/transactionlinechart')
         .subscribe(

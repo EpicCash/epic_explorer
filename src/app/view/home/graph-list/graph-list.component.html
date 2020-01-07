@@ -659,6 +659,12 @@
         <a href="JavaScript:void(0);" (click)="
             Transactionlinechartreq('', '', '3 months'); selectedItem8 = 5
           " id="5" #item5 [ngClass]="{ active: selectedItem8 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+
+        <a href="JavaScript:void(0);" (click)="
+        Transactionlinechartreq('', '', 'all'); selectedItem8 = 8; 
+        " id="8" #item8 [ngClass]="{ active: selectedItem8 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+
+
       </div>
       <div class="explore_all text-right">
         <a routerLink="/chart/transactions-by-date"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
