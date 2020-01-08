@@ -287,7 +287,7 @@ let currentReward = 16;
         let cuckoohashrate = await network_hashrate(block_height,31,targetdifficultycuckatoo);
         let progpowhashrate = await network_hashrate(block_height,16,targetdifficultyprogpow);
         let randomxhashrate = await network_hashrate(block_height,16,targetdifficultyrandomx);
-
+        let test = await avgBlockTime(block_height)
       return {
         block_height,
         letest_block,
@@ -369,6 +369,21 @@ const averageblockdifficulty = async() => {
 }
 
 
+
+
+async function avgBlockTime(height) {
+
+  const blockaveragetime = await getConnection(Global.network)
+        .query(
+          'SELECT  coalesce(avg(bb.alter), 0) as alter, bb.timestamp FROM (SELECT  EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height < 1145 AND height > 2154 ) as bb',
+        )
+        .catch(err_msg => {
+          return(err_msg);
+        });
+
+  console.log("_________________________________");
+  console.log("Block Average time is  ",blockaveragetime)
+}
 
 
 async function network_hashrate(height, edge_bits, difficulty) {

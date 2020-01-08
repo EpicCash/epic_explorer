@@ -142,6 +142,8 @@ try {
               result = Number(blockDetails.TotalDifficultyProgpow);
         else if(option == "totalcoins")
               result = 21000000 * 100000000;
+        else if(option == "maxcoins")
+              result = 21000000;
         else if(option == "average-blocktime")
         {
               let data = await averageblockdifficulty();
