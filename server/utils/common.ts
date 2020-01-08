@@ -284,9 +284,12 @@ let currentReward = 16;
             }
         }
         
-        let cuckoohashrate = await network_hashrate(block_height,31,targetdifficultycuckatoo);
+        let cuckoohashrate = await network_hashrate(block_height,31,targetdifficultycuckatoo+targetdifficultycuckaroo);
         let progpowhashrate = await network_hashrate(block_height,16,targetdifficultyprogpow);
         let randomxhashrate = await network_hashrate(block_height,16,targetdifficultyrandomx);
+        cuckoohashrate = Math.round(cuckoohashrate)
+        progpowhashrate = Math.round(progpowhashrate)
+        randomxhashrate = Math.round(randomxhashrate)
       return {
         block_height,
         letest_block,
