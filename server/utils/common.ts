@@ -287,7 +287,6 @@ let currentReward = 16;
         let cuckoohashrate = await network_hashrate(block_height,31,targetdifficultycuckatoo);
         let progpowhashrate = await network_hashrate(block_height,16,targetdifficultyprogpow);
         let randomxhashrate = await network_hashrate(block_height,16,targetdifficultyrandomx);
-        let test = await avgBlockTime(block_height)
       return {
         block_height,
         letest_block,
@@ -380,7 +379,7 @@ async function avgBlockTime(height) {
         .catch(err_msg => {
           return(err_msg);
         });
-  return blockaveragetime['alter']
+  return blockaveragetime[0]['alter']
 }
 
 
