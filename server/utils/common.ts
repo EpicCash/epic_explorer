@@ -375,9 +375,11 @@ const averageblockdifficulty = async() => {
 
 async function avgBlockTime(height,proof) {
 
+  let query1 = "SELECT  coalesce(avg(bb.alter), 0) as alter FROM (SELECT  EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height > "+(height - 1440)+" AND height < "+height+" ) as bb"
+  let query2 = "SELECT  coalesce(avg(bb.alter), 0) as alter FROM (SELECT  EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height > "+(height - 1440)+" AND height < "+height+" and proof = '"+proof+"'  ) as bb"
   const blockaveragetime = await getConnection(Global.network)
         .query(
-          "SELECT  coalesce(avg(bb.alter), 0) as alter FROM (SELECT  EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height > "+(height - 1440)+" AND height < "+height+" and proof = '"+proof+"'  ) as bb",
+          query1,
         )
         .catch(err_msg => {
           return(err_msg);
