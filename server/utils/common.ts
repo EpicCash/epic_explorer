@@ -284,9 +284,9 @@ let currentReward = 16;
             }
         }
         
-        let cuckoohashrate = await network_hashrate(block_height,31,targetdifficultycuckatoo+targetdifficultycuckaroo);
-        let progpowhashrate = await network_hashrate(block_height,16,targetdifficultyprogpow);
-        let randomxhashrate = await network_hashrate(block_height,16,targetdifficultyrandomx);
+        let cuckoohashrate = await network_hashrate(block_height,31,targetdifficultycuckatoo+targetdifficultycuckaroo,"Cuckoo");
+        let progpowhashrate = await network_hashrate(block_height,16,targetdifficultyprogpow,"ProgPow");
+        let randomxhashrate = await network_hashrate(block_height,16,targetdifficultyrandomx,"RandomX");
         cuckoohashrate = Math.round(cuckoohashrate)
         progpowhashrate = Math.round(progpowhashrate)
         randomxhashrate = Math.round(randomxhashrate)
@@ -373,11 +373,11 @@ const averageblockdifficulty = async() => {
 
 
 
-async function avgBlockTime(height) {
+async function avgBlockTime(height,proof) {
 
   const blockaveragetime = await getConnection(Global.network)
         .query(
-          'SELECT  coalesce(avg(bb.alter), 0) as alter FROM (SELECT  EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height > '+(height - 1440)+' AND height < '+height+' ) as bb',
+          'SELECT  coalesce(avg(bb.alter), 0) as alter FROM (SELECT  EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height > '+(height - 1440)+' AND height < '+height+' and proof = "'+proof+'"  ) as bb',
         )
         .catch(err_msg => {
           return(err_msg);
@@ -386,8 +386,8 @@ async function avgBlockTime(height) {
 }
 
 
-async function network_hashrate(height, edge_bits, difficulty) {
-  let graph_wight = await avgBlockTime(height)  
+async function network_hashrate(height, edge_bits, difficulty,proof) {
+  let graph_wight = await avgBlockTime(height,proof)  
   return (difficulty / graph_wight);
  }
   
