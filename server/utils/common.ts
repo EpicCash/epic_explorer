@@ -377,11 +377,13 @@ async function avgBlockTime(height,proof) {
 
   const blockaveragetime = await getConnection(Global.network)
         .query(
-          'SELECT  coalesce(avg(bb.alter), 0) as alter FROM (SELECT  EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height > '+(height - 1440)+' AND height < '+height+' and proof = "'+proof+'"  ) as bb',
+          "SELECT  coalesce(avg(bb.alter), 0) as alter FROM (SELECT  EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height > "+(height - 1440)+" AND height < "+height+" and proof = '"+proof+"'  ) as bb",
         )
         .catch(err_msg => {
           return(err_msg);
         });
+
+  
   return blockaveragetime[0]['alter']
 }
 
