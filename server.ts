@@ -151,17 +151,17 @@ try {
         }
         else if(option == "network-hashrate-cuckoo")
         {
-          let data = await network_hashrate(blockDetails.block_height,31,blockDetails.targetdifficultycuckatoo);
+          let data = await network_hashrate(blockDetails.block_height,31,blockDetails.targetdifficultycuckatoo,"Cuckoo");
           result = data;
         }
         else if(option == "network-hashrate-progpow")
         {
-          let data = await network_hashrate(blockDetails.block_height,16,blockDetails.targetdifficultyprogpow);
+          let data = await network_hashrate(blockDetails.block_height,16,blockDetails.targetdifficultyprogpow,"ProgPow");
           result = data;
         }
         else if(option == "network-hashrate-randomx")
         {
-          let data = await network_hashrate(blockDetails.block_height,16,blockDetails.targetdifficultyrandomx);
+          let data = await network_hashrate(blockDetails.block_height,16,blockDetails.targetdifficultyrandomx,"RandomX");
           result = data;
         }
         else if(option == "getblockhash")
