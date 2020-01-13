@@ -89,6 +89,7 @@
     },
     "api-view": {
         "query-api" : "Abfrage-API",
+        "maxcoins" : "Maximale Versorgung zurückgeben",
         "query-api-line1" : "Die aufzurufende API-Funktion wird über den Parameter q angegeben.",
         "query-api-line2" : "Zum Beispiel können Sie die Gesamtmünzen des epischen Bargeldes mit fragen ",
         "circulating" : "Gibt die Anzahl der umlaufenden Münzen zurück",

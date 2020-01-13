@@ -141,7 +141,7 @@ try {
         else if(option == "getdifficulty-progpow")
               result = Number(blockDetails.TotalDifficultyProgpow);
         else if(option == "totalcoins")
-              result = 21000000 * 100000000;
+              result = blockDetails.coin_existence;
         else if(option == "maxcoins")
               result = 21000000;
         else if(option == "average-blocktime")
@@ -342,9 +342,9 @@ console.log(__dirname);
       console.log(`Node Express server listening on http://localhost:${PORT}`);
     });
 
-    cron.schedule('*/30 * * * * *', () => {
-      universalGetLatestBlockDetails('Testnet');
-    });
+   // cron.schedule('*/30 * * * * *', () => {
+     // universalGetLatestBlockDetails('Testnet');
+    // });
     var interval;
     const io = require("socket.io").listen(server);
     io.sockets.on("connection", socket => {
@@ -356,7 +356,7 @@ console.log(__dirname);
     let key =  process.env.REDIS_KEY + socket.handshake.query.network + 'Latest_Block_details'
     interval = setInterval(function() {
       Global.client.get(key, function(err, reply){
-        socket.emit("latestblockdetail", JSON.parse(reply) ); 
+      //  socket.emit("latestblockdetail", JSON.parse(reply) ); 
       });    
     },10000);
     //socket.on("disconnect", () => console.log("Client disconnected"));
