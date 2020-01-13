@@ -463,15 +463,15 @@ let currentReward = 16;
         progpowhashrate = Math.round(progpowhashrate)
         randomxhashrate = Math.round(randomxhashrate)
         
-        // Test purpose
-        let test_cuckoo = await testavgBlockTime(block_height,"Cuckoo")
-        let test_randomx = await testavgBlockTime(block_height,"RandomX")
-        let test_progpow = await testavgBlockTime(block_height,"ProgPow")
+        // // Test purpose
+        // let test_cuckoo = await testavgBlockTime(block_height,"Cuckoo")
+        // let test_randomx = await testavgBlockTime(block_height,"RandomX")
+        // let test_progpow = await testavgBlockTime(block_height,"ProgPow")
 
-        console.log("-----------------")
-        console.log("Cuckoo avg block time ", test_cuckoo)
-        console.log("randomx avg block time ", test_randomx)
-        console.log("Progpow avg block time ", test_progpow)
+        // console.log("-----------------")
+        // console.log("Cuckoo avg block time ", test_cuckoo)
+        // console.log("randomx avg block time ", test_randomx)
+        // console.log("Progpow avg block time ", test_progpow)
         
 
 
