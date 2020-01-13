@@ -463,11 +463,20 @@ let currentReward = 16;
         progpowhashrate = Math.round(progpowhashrate)
         randomxhashrate = Math.round(randomxhashrate)
         
+        // Test purpose
+        let test_cuckoo = await testavgBlockTime(block_height,"Cuckoo")
+        let test_randomx = await testavgBlockTime(block_height,"RandomX")
+        let test_progpow = await testavgBlockTime(block_height,"ProgPow")
+
+        console.log("-----------------")
+        console.log("Cuckoo avg block time ", test_cuckoo)
+        console.log("randomx avg block time ", test_randomx)
+        console.log("Progpow avg block time ", test_progpow)
+        
+
+
         // Total foundation reward
         let totalFoundationReward = await circulationsupply(height) 
-
-        console.log("-----------------------------------------------------------------------")
-        console.log("Function is calling")
 
       return {
         block_height,
@@ -551,6 +560,22 @@ const averageblockdifficulty = async() => {
 }
 
 
+
+async function testavgBlockTime(height,proof) {
+
+  // let query1 = "SELECT  coalesce(avg(bb.alter), 0) as alter FROM (SELECT  EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height > "+(height - 1440)+" AND height < "+height+" ) as bb"
+  let query1 = "SELECT  coalesce(avg(bb.alter), 0) as alter FROM (SELECT  EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp))) AS alter FROM blockchain_block where height > "+(height - 1440)+" AND height < "+height+" and proof = '"+proof+"'  ) as bb"
+  const blockaveragetime = await getConnection(Global.network)
+        .query(
+          query1,
+        )
+        .catch(err_msg => {
+          return(err_msg);
+        });
+
+  
+  return blockaveragetime[0]['alter']
+}
 
 
 async function avgBlockTime(height,proof) {
