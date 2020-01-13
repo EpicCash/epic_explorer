@@ -129,7 +129,7 @@ try {
     {
         let result; //500
         if(option == "circulating")
-              result= blockDetails.coin_existence;
+              result= blockDetails.coin_existence - blockDetails.totalFoundationReward;
         else if(option == "reward")
               result= blockDetails.currentReward;
         else if(option == "getblockcount")

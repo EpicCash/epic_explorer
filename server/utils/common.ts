@@ -465,8 +465,6 @@ let currentReward = 16;
         
         // Total foundation reward
         let totalFoundationReward = await circulationsupply(height) 
-        console.log("------------------------------------------------------------------");
-        console.log("Current foundation reward is ", totalFoundationReward)
 
       return {
         block_height,
