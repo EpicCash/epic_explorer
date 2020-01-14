@@ -165,23 +165,24 @@
         [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
       >
     </p>
+    <div class="text-left mx-auto d-inline-block">
       <div class="difficulty_datas">
-        <span class="day60_txt">Cuckoo &nbsp;&nbsp;&nbsp;&nbsp;: </span>
+        <span class="day60_txt">Cuckoo &nbsp;&nbsp;&nbsp;: </span>
           <span>         {{ latestblockdetail.cuckoohashrate | number  }} Gps         </span>
       </div>
 
       <div class="difficulty_datas">
-        <span class="day60_txt">ProgPoW &nbsp;&nbsp;&nbsp;&nbsp;: </span>
+        <span class="day60_txt">ProgPoW &nbsp;: </span>
           <span> {{ latestblockdetail.progpowhashrate | number  }} Hps</span>
       </div>
 
       <div class="difficulty_datas">
-        <span class="day60_txt">RandomX &nbsp;&nbsp;&nbsp;&nbsp;: </span>
+        <span class="day60_txt">RandomX : </span>
           <span> 
             {{ latestblockdetail.randomxhashrate | number }} Hps
           </span>
       </div>
-
+      </div>
 
 
      
