@@ -185,7 +185,7 @@
           <div class="row peer_table_data">
             <div class="col-6 col-md-3  tble_col">
               <div class="block_div">
-                  <h5 class="mb-0">Capabilities</h5>
+                  <h5 class="mb-0">{{'home.CAPABILITIES' | translate}}</h5>
                 </div>
             </div>
             <div class="col-6 col-md-3  tble_col">
@@ -205,12 +205,12 @@
             </div>
             <div class="col-6 col-md-3  tble_col">
               <div class="block_div dir_div">
-                <h5 class="mb-0">Direction</h5>
+                <h5 class="mb-0">{{'home.DIRECTION' | translate}}</h5>
               </div>
             </div>
             <div class="col-6 col-md-3 tble_col">
               <div class="block_div peers_diff_hdng">
-                <h5 class="mb-0">Total Difficulty</h5>
+                <h5 class="mb-0">{{'home.TOTAL_DIFFICULTY' | translate}}</h5>
               </div>
             </div>
 
@@ -259,7 +259,7 @@
             (click)="onClickPeerPlus(peer.id);" class="expnd_blck"><i class="fa fa-plus"></i></span>
             <span *ngIf="peeritem.id == clickPeer" (click)="onClickPeerMinus(peer.id);"
             class="expnd_blck"><i class="fa fa-minus"></i></span>
-            <h6>Capabilities</h6>
+            <h6>{{'home.CAPABILITIES' | translate}}</h6>
           <span class="blck_value">{{ peer.capabilities.bits }} bits</span>
         </div>
       </div>
@@ -283,13 +283,13 @@
       </div>
       <div class="col-6 col-md-3 tble_col">
         <div class="block_div ">
-            <h6>Direction</h6>
+            <h6>{{'home.DIRECTION' | translate}}</h6>
           <span class="blck_value">{{ peer.direction }}</span>
         </div>
       </div>
       <div class="col-6 col-md-3 tble_col">
         <div class="block_div peers_diff text-left" title="Cuckaroo : {{ peer.total_difficulty.cuckaroo | number }}, Cuckatoo :  {{ peer.total_difficulty.cuckatoo | number }}, Progpow : {{ peer.total_difficulty.progpow | number }}, Randomx : {{ peer.total_difficulty.randomx | number }}">
-            <h6>Total Difficulty</h6>
+            <h6>{{'home.TOTAL_DIFFICULTY' | translate}}</h6>
           <span class="blck_value ">{{ peer.total_difficulty.cuckaroo  | number }} / {{ peer.total_difficulty.cuckatoo  | number}} / {{ peer.total_difficulty.progpow  | number}} / {{ peer.total_difficulty.randomx  | number}}</span>
         </div>
       </div>

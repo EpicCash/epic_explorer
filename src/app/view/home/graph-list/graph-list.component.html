@@ -45,7 +45,7 @@
       <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="
           Difficultyreq('target', '', '', '1 day',''); selectedItem = 6; difficultyRange = '1 day'
-        " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primary: true }">1 day</a>
+        " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primary: true }">1 {{'home.day' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
             Difficultyreq('target', '', '', '1 week',''); selectedItem = 1; difficultyRange = '1 week'
           " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
@@ -148,7 +148,7 @@
     <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="
         blockreq('', '', '1 day'); selectedItem3 = 2
-            " id="2" #item32 [ngClass]="{ active: selectedItem3 == item32.id, txt_primary: true }">1 day</a>
+            " id="2" #item32 [ngClass]="{ active: selectedItem3 == item32.id, txt_primary: true }">1 {{'home.day' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
       blockreq('', '', '1 week'); selectedItem3 = 1
           " id="1" #item31 [ngClass]="{ active: selectedItem3 == item31.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
@@ -383,7 +383,7 @@
         </div> -->
       <div class="box_shadow" id="blocks-by-algorithm">
           <div class="blocks">
-            <h2 class="chart_heading d-inline-block">Blocks by Algorithm</h2>
+            <h2 class="chart_heading d-inline-block">{{'home.blocks-by-algorithm' | translate}}</h2>
             <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.sg_last">{{
               this.sg_last | number
             }}</span>
@@ -536,7 +536,7 @@
       <div class="day_filter">
           <a href="JavaScript:void(0);" (click)="
     Difficultyreq('total', '', '', '1 day',''); selectedTarget = 6; TdifficultyRange = '1 day'
-  " id="6" #itemtarget6 [ngClass]="{ active: selectedTarget == itemtarget6.id, txt_primary: true }">1 day</a>
+  " id="6" #itemtarget6 [ngClass]="{ active: selectedTarget == itemtarget6.id, txt_primary: true }">1 {{'home.day' | translate}}</a>
           <a href="JavaScript:void(0);" (click)="
       Difficultyreq('total', '', '', '1 week',''); selectedTarget = 1; TdifficultyRange = '1 week'
     " id="1" #itemtarget1 [ngClass]="{ active: selectedTarget == itemtarget1.id, txt_primary: true }">1
