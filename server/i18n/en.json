@@ -17,7 +17,7 @@
         "COUNTDOWN": "Mainnet Countdown",
         "TIMETAKEN": "Time Taken (sec)",
         "EXPLORE_IT": "Explore",
-        "blocks-by-algorithm" : "Blöcke nach Algorithmus",
+        "blocks-by-algorithm" : "Blocks by Algorithm",
         "VIEWALL": "View All Charts",
         "BLOCKCHAIN_HEIGHT": "Blockchain Height",
         "LATEST_BLOCKS" : "Latest Blocks",
@@ -111,7 +111,8 @@
         "takes" : "takes a",
         "Note" : "Note",
         "reward" : "returns current block reward",
-        "averageblocktime" : "returns average block time of past 24 hours in seconds"
+        "averageblocktime" : "returns average block time of past 24 hours in seconds",
+        "msg" : "If you require another API, please request it by contacting an admin at "
     },
     "commit-id-view": {
         "output-commit":"Output Commit",
