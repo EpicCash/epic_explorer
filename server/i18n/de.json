@@ -17,6 +17,7 @@
         "TIMETAKEN": "Verbrachte Zeit (sek)",
         "COUNTDOWN": "Mainnet-Countdown",
         "EXPLORE_IT": "MEHR",
+        "EXCESS":"Überschuss",
         "blocks-by-algorithm" : "Blöcke nach Algorithmus",
         "VIEWALL": "Alle Diagramme anzeigen",
         "BLOCKCHAIN_HEIGHT": "Blockchain Höhe",

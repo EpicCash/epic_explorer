@@ -817,7 +817,7 @@ export class BlockchainBlockController {
       const BlockchainBlockKernalFetchQuery = await getConnection(Global.network).getRepository(
         BlockchainKernel,
       ).find({
-        select: ['Features', 'Fee', 'LockHeight'],
+        select: ['Features', 'Fee', 'LockHeight' , 'Excess'],
         where: { BlockId: BlockchainBlockFetchQuery.Hash },
       });
 

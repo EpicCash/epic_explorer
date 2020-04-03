@@ -16,6 +16,7 @@
         "HEADER_TEXT": "You are on Beta",
         "COUNTDOWN": "Mainnet Countdown",
         "TIMETAKEN": "Time Taken (sec)",
+        "EXCESS":"Excess",
         "EXPLORE_IT": "Explore",
         "blocks-by-algorithm" : "Blocks by Algorithm",
         "VIEWALL": "View All Charts",

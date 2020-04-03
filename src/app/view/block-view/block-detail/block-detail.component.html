@@ -232,10 +232,13 @@
             <div class="card-body">
                 <div class="view_moble_tble web_hdng">
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-2">
                          <div class="block_div"><h5 class="mb-0">{{'home.FEATURES' | translate}}</h5></div>
                         </div>
-                        <div class="col-lg-4 ">
+                        <div class="col-lg-4">
+                          <div class="block_div"><h5 class="mb-0">{{'home.EXCESS' | translate}}</h5></div>
+                         </div>
+                        <div class="col-lg-2 ">
                           <div class="block_div"><h5 class="mb-0">{{'home.BLOCK' | translate}} {{'home.HEIGHT' | translate}}</h5></div>
                         </div>
                         <div class="col-lg-4 ">
@@ -244,17 +247,21 @@
 
                       </div>
                 </div>
-                  <div class="view_moble_tble"  *ngFor="let hashkernel of hashdata.BlockchainBlockKernalFetchQuery">
+                  <div class="view_moble_tble"  *ngFor="let hashkernel  of hashdata.BlockchainBlockKernalFetchQuery">
                       <div class="row">
-                        <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                         <div class="block_div"><h6>{{'home.FEATURES' | translate}}</h6><span class="blck_value">{{ hashkernel.Features }}</span></div>
+                        <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+                         <div class="block_div"><h6>{{'home.FEATURES' | translate}}</h6><span class="blck_value">{{ hashkernel .Features }}</span></div>
                         </div>
 
                         <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                          <div class="block_div"><h6>{{'home.BLOCK' | translate}} {{'home.HEIGHT' | translate}}</h6><span class="blck_value">{{ hashkernel.LockHeight }}</span></div>
+                          <div class="block_div"><h6>{{'home.EXCESS' | translate}} </h6><span class="blck_value">{{ hashkernel | json }}</span></div>
+                        </div>
+
+                        <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+                          <div class="block_div"><h6>{{'home.BLOCK' | translate}} {{'home.HEIGHT' | translate}}</h6><span class="blck_value">{{ hashkernel .LockHeight }}</span></div>
                         </div>
                         <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                            <div class="block_div"><h6>{{'home.FEE' | translate}}</h6><span class="blck_value">{{ hashkernel.Fee }} Epic</span></div>
+                            <div class="block_div"><h6>{{'home.FEE' | translate}}</h6><span class="blck_value">{{ hashkernel .Fee }} Epic</span></div>
                           </div>
 
 
@@ -268,12 +275,12 @@
                       <td>Fee</td>
                       <td>Lock Height</td>
                     </tr>
-                    <tr *ngFor="let hashkernel of hashdata.BlockchainBlockKernalFetchQuery">
-                      <td>{{ hashkernel.Features }}</td>
+                    <tr *ngFor="let hashkernel  of hashdata.BlockchainBlockKernalFetchQuery">
+                      <td>{{ hashkernel .Features }}</td>
                       <td>
-                        {{ hashkernel.Fee }}
+                        {{ hashkernel .Fee }}
                       </td>
-                      <td>{{ hashkernel.LockHeight }}</td>
+                      <td>{{ hashkernel .LockHeight }}</td>
                     </tr>
                   </tbody>
                 </table>
