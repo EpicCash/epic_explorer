@@ -922,7 +922,7 @@ export class BlockchainBlockController {
       BlockchainBlockFetchQuery['Timestamp'] = moment
         .utc(BlockchainBlockFetchQuery['Timestamp'])
         .utc()
-        .format('MM-DD-YYYY, HH:MM:SS UTC');
+        .format('MM-DD-YYYY, HH:mm:ss UTC');
 
       BlockchainBlockFetchQuery['hashstart'] = BlockchainBlockFetchQuery[
         'Hash'
@@ -1061,9 +1061,9 @@ export class BlockchainBlockController {
               'blockchain_block.total_difficulty_randomx - LAG(blockchain_block.total_difficulty_randomx) OVER (ORDER BY blockchain_block.total_difficulty_randomx) AS target_difficulty_randomx',
               'blockchain_block.Height',
               'blockchain_block.EdgeBits',
-              'COUNT(DISTINCT(blockchain_input.block_id)) AS input_count',
-              'COUNT(DISTINCT(blockchain_kernel.block_id)) AS kernal_count',
-              'COUNT(DISTINCT(blockchain_output.block_id)) AS output_count',
+              'COUNT(DISTINCT(blockchain_input.data)) AS input_count',
+              'COUNT(DISTINCT(blockchain_kernel.excess_sig)) AS kernal_count',
+              'COUNT(DISTINCT(blockchain_output.commit)) AS output_count',
               'blockchain_block.Proof As PoWAlgo',
             ])
             // .addSelect(

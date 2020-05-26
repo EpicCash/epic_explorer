@@ -2,6 +2,9 @@ import { getConnection, AdvancedConsoleLogger } from "typeorm";
 import { Global } from "../global";
 import { async } from '@angular/core/testing';
 
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec)
+
 function  convertMinsToHrmin (millseconds,insec) {
     var seconds = Math.floor(millseconds / 1000);
     if(insec){
@@ -245,6 +248,9 @@ const latestBlockDetails = async()=> {
         .catch(err_msg => {
           return(err_msg);
         });
+
+      const space = await exec('du -sh /root/.epic/main/');
+      let disk_space = space.stdout.split('\t')[0];
 
       let height = BlockchainLatestBlockQuery[0].height;
       var coin_existence;
@@ -500,7 +506,8 @@ let currentReward = 16;
         cuckoohashrate,
         progpowhashrate,
         randomxhashrate,
-        totalFoundationReward
+        totalFoundationReward,
+        diskSpace:disk_space
       };
     }
 
