@@ -21,6 +21,7 @@
         "blocks-by-algorithm" : "Blocks by Algorithm",
         "VIEWALL": "View All Charts",
         "BLOCKCHAIN_HEIGHT": "Blockchain Height",
+        "BLOCKCHAIN_SIZE":"Blockchain Size",
         "LATEST_BLOCKS" : "Latest Blocks",
         "LATEST_BLOCK_AGE": "Latest Block",
 				"CURRENT_TARGET_DIFF": "Current Target Difficulty",

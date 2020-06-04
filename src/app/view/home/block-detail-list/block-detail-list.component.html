@@ -37,6 +37,14 @@
         {{ latestblockdetail.block_height | number }}
         <span class="">Blocks</span>
       </p>
+      <p class="mb-0 desc">{{ "home.BLOCKCHAIN_SIZE" | translate }}</p>
+      <p
+        class="count mb-0"
+        [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
+      >
+        {{ latestblockdetail.diskSpace  }}
+       
+      </p>
     </div>
   </div>
   <div class="col-md-4 col-xl-2">

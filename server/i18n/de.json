@@ -21,6 +21,7 @@
         "blocks-by-algorithm" : "Blöcke nach Algorithmus",
         "VIEWALL": "Alle Diagramme anzeigen",
         "BLOCKCHAIN_HEIGHT": "Blockchain Höhe",
+        "BLOCKCHAIN_SIZE":"Blockchain Größe",
         "LATEST_BLOCKS" : "Letzter Block",
         "LATEST_BLOCK_AGE": "Letzter Block",
         "CURRENT_TARGET_DIFF": "Aktuelle Zielschwierigkeit",
