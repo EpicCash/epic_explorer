@@ -252,6 +252,9 @@ const latestBlockDetails = async()=> {
       const space = await exec('du -sh /root/.epic/main/');
       let disk_space = space.stdout.split('\t')[0];
 
+      const space_new = await exec('du -sk /root/.epic/main/');
+      let disk_space_kb = space_new.stdout.split('\t')[0];
+
       let height = BlockchainLatestBlockQuery[0].height;
       var coin_existence;
       // if (height > 12960) {
@@ -507,7 +510,8 @@ let currentReward = 16;
         progpowhashrate,
         randomxhashrate,
         totalFoundationReward,
-        diskSpace:disk_space
+        diskSpace:disk_space,
+        diskSpaceKb : disk_space_kb
       };
     }
 
