@@ -254,7 +254,7 @@ const latestBlockDetails = async()=> {
 
       const space_new = await exec('du -sk /root/.epic/main/');
       //let disk_space_kb = space_new.stdout.split('\t')[0];
-      let disk_space_kb = (space_new.stdout.split('\t')[0] / 100000).toFixed(2)+"G";
+      let disk_space_kb = (space_new.stdout.split('\t')[0] / 1000000).toFixed(2)+"G";
       let height = BlockchainLatestBlockQuery[0].height;
       var coin_existence;
       // if (height > 12960) {
