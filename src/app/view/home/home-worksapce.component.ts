@@ -24,7 +24,7 @@ import { ChartService } from 'src/app/shared/services/chart.service';
 <div class="col-md-12">
     <div class="text-center detail_div">
       <p class="count mb-0">
-      <span class="">Countdown to Halving</span> {{countDownDate}} <span class="">Blocks to go</span> {{demo}}</p>
+      <span class="">Countdown to Halving</span> {{targetBlock}} <span class="">Blocks to go</span> {{demo}}</p>
     </div>
   </div>
   </div>
@@ -62,6 +62,7 @@ export class HomeWorksapceComponent extends Utils
   viewchartvar: boolean;
   countDownDate: any;
   demo: any;
+  targetBlock;
   constructor(@Inject(DOCUMENT) public document: Document,
   private router: Router,private route: ActivatedRoute,private titleService: Title, private chartService: ChartService) {
     super(document);
@@ -70,6 +71,7 @@ export class HomeWorksapceComponent extends Utils
     } else {
       this.viewchartvar = false;
     }
+    this.targetBlock = environment.TARGETBLOCK;
   }
 
   ngOnInit() {
