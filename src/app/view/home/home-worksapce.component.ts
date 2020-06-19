@@ -9,51 +9,52 @@ import { ChartService } from 'src/app/shared/services/chart.service';
 
 @Component({
   selector: 'epic-explorer-home-worksapce',
-  template: `
-  <div class="body_bg py-4">
-      <div class="chart_section mt-4">
-        <div class="container">
-        <div class="block_details mb-3">
-      
-        <app-block-detail-list></app-block-detail-list>
-      
+  template: `<div class="body_bg py-4">
+  <div class="chart_section mt-4">
+    <div class="container">
+
+
+    <div class="row mb-3 pb-3">
+    <div class="col-md-12">
+        <div class="text-center detail_div countdownbox">
+          <p class="count mb-0"><span class="">Countdown to Halving</span> {{countDownDate}} <span class="">Blocks to go</span> {{demo}}</p>
+        </div>
+    </div>
     </div>
 
-    
-<div class="row">
-<div class="col-md-12">
-    <div class="text-center detail_div">
-      <p class="count mb-0">
-      <span class="">Countdown to Halving</span> {{countDownDate}} <span class="">Blocks to go</span> {{demo}}</p>
-    </div>
-  </div>
-  </div>
+    <div class="block_details mb-3">
+  
+    <app-block-detail-list></app-block-detail-list>
+  
+</div>
 
-          <div class="explore_charts pt-3">
-            <epic-explorer-graph-list
-              [viewchart]="viewchartvar"
-            ></epic-explorer-graph-list>
-          </div>
-        </div>
-        <div
-          *ngIf="viewchartvar"
-          routerLink="/all"
-          class="text-center my-3"
-        >
-         <!-- <button class="btn btn_primary align-middle">
-            View All Charts <i class="fa fa-long-arrow-right ml-3 "></i>
-          </button> -->
-        </div>
+
+
+      <div class="explore_charts pt-3">
+        <epic-explorer-graph-list
+          [viewchart]="viewchartvar"
+        ></epic-explorer-graph-list>
       </div>
     </div>
-
-    <div class="latest_blocks my-5">
-      <div class="container">
-        <div class="filter_shadow">
-          <epic-explorer-latestblocks></epic-explorer-latestblocks>
-        </div>
-      </div>
+    <div
+      *ngIf="viewchartvar"
+      routerLink="/all"
+      class="text-center my-3"
+    >
+     <!-- <button class="btn btn_primary align-middle">
+        View All Charts <i class="fa fa-long-arrow-right ml-3 "></i>
+      </button> -->
     </div>
+  </div>
+</div>
+
+<div class="latest_blocks my-5">
+  <div class="container">
+    <div class="filter_shadow">
+      <epic-explorer-latestblocks></epic-explorer-latestblocks>
+    </div>
+  </div>
+</div>
   `,
   styles: [],
 })
