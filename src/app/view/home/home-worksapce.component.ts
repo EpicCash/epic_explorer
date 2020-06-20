@@ -16,7 +16,7 @@ import { ChartService } from 'src/app/shared/services/chart.service';
 
     <div class="row mb-3 pb-3">
     <div class="col-md-12">
-        <div class="text-center detail_div countdownbox">
+        <div class="text-center detail_div countdownbox d-none">
           <p class="count mb-0"><span class="">Countdown to Halving</span> {{countDownDate}} <span class="">Blocks to go</span> {{demo}}</p>
         </div>
     </div>
