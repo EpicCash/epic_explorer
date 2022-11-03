@@ -249,10 +249,10 @@ const latestBlockDetails = async()=> {
           return(err_msg);
         });
 
-      const space = await exec('du -sh /root/.epic/main/');
+      const space = await exec('du -sh /root/.epic/main/chain_data/ --exclude=*.zip');
       let disk_space = space.stdout.split('\t')[0];
 
-      const space_new = await exec('du -sk /root/.epic/main/');
+      const space_new = await exec('du -sk /root/.epic/main/chain_data/ --exclude=*.zip');
       //let disk_space_kb = space_new.stdout.split('\t')[0];
       let disk_space_kb = (space_new.stdout.split('\t')[0] / 1000000).toFixed(2)+"G";
       let height = BlockchainLatestBlockQuery[0].height;
