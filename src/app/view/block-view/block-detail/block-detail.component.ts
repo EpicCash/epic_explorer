@@ -43,7 +43,7 @@ export class BlockDetailComponent implements OnInit {
         : false;
     }, 1000);
     this.titleService.setTitle(this.route.snapshot.data.title);
-    this.latestcomp.gettinglatesthashList().then(res => {
+    this.latestcomp.gettinglatesthashList(true).then(res => {
       this.latestblockHeight = this.latestcomp.latestblockdetail.block_height;
     });
    }

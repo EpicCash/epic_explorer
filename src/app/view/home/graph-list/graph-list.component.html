@@ -1,43 +1,31 @@
 <div class="row">
-  <div class="col-md-6 col-lg-8 mb-4">
+  <div class="col-md-6 col-lg-6 mb-2">
     <div class="box_shadow" id="target-difficulty">
       <div class="blocks">
-        <h2 class="chart_heading d-inline-block">{{'home.TARGET_DIFFICULTY' | translate}}</h2>
-        <!-- <span class="txn_count" *ngIf="this.lg_last.length > 0"><span *ngFor="let l of lg_last">{{
-          this.l | number</span>
-        }}</span> -->
-        
-        <div class="chart_show">
-            <!-- <div class="difficulty_filter day_filter p-0 bg-transparent mt-2">
+        <div class="col-sm-121">
+          <p class="block_heading">{{'home.TARGET_DIFFICULTY' | translate}}</p>
+          <!-- <span class="txn_count" *ngIf="this.lg_last.length > 0"><span *ngFor="let l of lg_last">{{
+            this.l | number</span>
+          }}</span> -->
+          <div class="chart_show">
+              <!-- <div class="difficulty_filter day_filter p-0 bg-transparent mt-2">
+                  <a href="JavaScript:void(0);" (click)="
+                  Difficultyreq('target', '', '', difficultyRange,'all'); selectedItem12 = 4
+                " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primary: true }">All</a>
+                  <a href="JavaScript:void(0);" (click)="
+                  Difficultyreq('target', '', '', difficultyRange,'cuckatoo'); selectedItem12 = 1
+                " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primary: true }">Cuckoo</a>
                 <a href="JavaScript:void(0);" (click)="
-                Difficultyreq('target', '', '', difficultyRange,'all'); selectedItem12 = 4
-              " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primary: true }">All</a>
+                  Difficultyreq('target', '', '', difficultyRange,'progpow'); selectedItem12 = 2
+                " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primary: true }">ProgPow</a>
                 <a href="JavaScript:void(0);" (click)="
-                Difficultyreq('target', '', '', difficultyRange,'cuckatoo'); selectedItem12 = 1
-              " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primary: true }">Cuckoo</a>
-              <a href="JavaScript:void(0);" (click)="
-                Difficultyreq('target', '', '', difficultyRange,'progpow'); selectedItem12 = 2
-              " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primary: true }">ProgPow</a>
-              <a href="JavaScript:void(0);" (click)="
-                Difficultyreq('target', '', '', difficultyRange,'randomx'); selectedItem12 = 3
-              " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primary: true }">RandomX</a>
-          </div> -->
-          <epic-explorer-plotly *ngIf="linearGraphData.data" [data]="linearGraphData.data" [layout]="linearGraphData.layout">
-          </epic-explorer-plotly>
-          <div *ngIf="!linearGraphData.data" class="feedback_div news_desc text-center">
-            <div class="graph_img background_loading mx-auto mb-3"></div>
-            <div class="bg-white">
-              <div class="sk-cube-grid">
-                <div class="sk-cube sk-cube1"></div>
-                <div class="sk-cube sk-cube2"></div>
-                <div class="sk-cube sk-cube3"></div>
-                <div class="sk-cube sk-cube4"></div>
-                <div class="sk-cube sk-cube5"></div>
-                <div class="sk-cube sk-cube6"></div>
-                <div class="sk-cube sk-cube7"></div>
-                <div class="sk-cube sk-cube8"></div>
-                <div class="sk-cube sk-cube9"></div>
-              </div>
+                  Difficultyreq('target', '', '', difficultyRange,'randomx'); selectedItem12 = 3
+                " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primary: true }">RandomX</a>
+            </div> -->
+            <epic-explorer-plotly *ngIf="linearGraphData.data" [data]="linearGraphData.data" [layout]="linearGraphData.layout">
+            </epic-explorer-plotly>
+            <div *ngIf="!linearGraphData.data" class="feedback_div news_desc text-center">
+              <epic-explorer-loading></epic-explorer-loading>
             </div>
           </div>
         </div>
@@ -45,7 +33,7 @@
       <div class="day_filter">
         <a href="JavaScript:void(0);" (click)="
           Difficultyreq('target', '', '', '1 day',''); selectedItem = 6; difficultyRange = '1 day'
-        " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primary: true }">1 {{'home.day' | translate}}</a>
+        " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primary: true }">1 {{'day' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
             Difficultyreq('target', '', '', '1 week',''); selectedItem = 1; difficultyRange = '1 week'
           " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
@@ -65,83 +53,54 @@
           <a href="JavaScript:void(0);" (click)="
           Difficultyreq('target', '', '', 'all',''); selectedItem = 7; difficultyRange = ''
         " id="7" #item7 [ngClass]="{ active: selectedItem == item7.id, day3m_txt: true }">{{'home.All' | translate}}</a>
-
-
-
       </div>
-
       <div class="explore_all text-right">
-         
-        <a routerLink="/chart/target-difficulty"><span class="text-uppercase">{{'home.EXPLORE_IT' | translate}} <i
-          class="fa fa-long-arrow-right"></i></span></a>
+        <a routerLink="/chart/target-difficulty"><span class="text-uppercase">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
       </div>
     </div>
   </div>
-  <div class="col-md-6 col-lg-4 mb-4">
+  <div class="col-md-6 col-lg-6 mb-2">
     <div class="box_shadow" id="transaction-over-time">
-      <div class="blocks">
-        <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_BY_TIME' | translate}}</h2>
-        <div class="chart_show heatmapshow">
-          <epic-explorer-plotly *ngIf="heatMapGrowthData.data" [data]="heatMapGrowthData.data"
-            [layout]="heatMapGrowthData.layout"></epic-explorer-plotly>
-          <div *ngIf="!heatMapGrowthData.data" class="feedback_div news_desc text-center">
-            <div class="graph_img background_loading mx-auto mb-3"></div>
-            <div class=" bg-white">
-              <div class="sk-cube-grid">
-                <div class="sk-cube sk-cube1"></div>
-                <div class="sk-cube sk-cube2"></div>
-                <div class="sk-cube sk-cube3"></div>
-                <div class="sk-cube sk-cube4"></div>
-                <div class="sk-cube sk-cube5"></div>
-                <div class="sk-cube sk-cube6"></div>
-                <div class="sk-cube sk-cube7"></div>
-                <div class="sk-cube sk-cube8"></div>
-                <div class="sk-cube sk-cube9"></div>
-              </div>
+      <div class="col-sm-121">
+        <div class="blocks">
+          <p class="block_heading">{{'home.TRANSACTIONS_BY_TIME' | translate}}</p>
+          <div class="chart_show heatmapshow">
+            <epic-explorer-plotly 
+              *ngIf="heatMapGrowthData.data" 
+              [data]="heatMapGrowthData.data"
+              [layout]="heatMapGrowthData.layout"
+            ></epic-explorer-plotly>
+            <div *ngIf="!heatMapGrowthData.data" class="feedback_div news_desc text-center">
+              <epic-explorer-loading></epic-explorer-loading>
             </div>
           </div>
         </div>
+        <div class="day_filter">
+          <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tInput,'Input'); selectedItem81 = 1" id="1" #item1
+            [ngClass]="{ active: selectedItem81 == item1.id, txt_primary: true }">{{'home.INPUT' | translate}}</a>
+          <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tKernal,'Kernel'); selectedItem81 = 2" id="2" #item2
+            [ngClass]="{ active: selectedItem81 == item2.id, day15_txt: true }">{{'home.KERNEL' | translate}}</a>
+          <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tOutput,'Output'); selectedItem81 = 3" id="3" #item3
+            [ngClass]="{ active: selectedItem81 == item3.id, day30_txt: true }">{{'home.OUTPUT' | translate}}</a>
+        </div>
+        <div class="explore_all text-right">
+          <a routerLink="/chart/transactions-over-time"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
+        </div>
       </div>
-
-
-    <div class="day_filter">
-      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tInput,'Input'); selectedItem81 = 1" id="1" #item1
-        [ngClass]="{ active: selectedItem81 == item1.id, txt_primary: true }">{{'home.INPUT' | translate}}</a>
-      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tKernal,'Kernel'); selectedItem81 = 2" id="2" #item2
-        [ngClass]="{ active: selectedItem81 == item2.id, day15_txt: true }">{{'home.KERNEL' | translate}}</a>
-      <a href="JavaScript:void(0);" (click)="transactionheatmapFunc(tDate, tHour, tOutput,'Output'); selectedItem81 = 3" id="3" #item3
-        [ngClass]="{ active: selectedItem81 == item3.id, day30_txt: true }">{{'home.OUTPUT' | translate}}</a>
-    </div>
-    <div class="explore_all text-right">
-      <a routerLink="/chart/transactions-over-time"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
-            class="fa fa-long-arrow-right"></i></span></a>
     </div>
   </div>
-</div>
-<div class="col-md-6 col-lg-4 mb-4">
+
+<div class="col-md-6 col-lg-6 mb-2">
   <div class="box_shadow" id="blocks">
     <div class="blocks">
-      <h2 class="chart_heading d-inline-block">{{'home.BLOCKS' | translate}}</h2>
+      <p class="block_heading">{{'home.BLOCKS' | translate}}</p>
       <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.brg_last">{{
           this.brg_last | number
         }}</span>
       <div class="chart_show">
         <epic-explorer-plotly *ngIf="barGraphData.data" [data]="barGraphData.data" [layout]="barGraphData.layout"></epic-explorer-plotly>
         <div *ngIf="!barGraphData.data" class="feedback_div news_desc text-center">
-          <div class="graph_img background_loading mx-auto mb-3"></div>
-          <div class=" bg-white">
-            <div class="sk-cube-grid">
-              <div class="sk-cube sk-cube1"></div>
-              <div class="sk-cube sk-cube2"></div>
-              <div class="sk-cube sk-cube3"></div>
-              <div class="sk-cube sk-cube4"></div>
-              <div class="sk-cube sk-cube5"></div>
-              <div class="sk-cube sk-cube6"></div>
-              <div class="sk-cube sk-cube7"></div>
-              <div class="sk-cube sk-cube8"></div>
-              <div class="sk-cube sk-cube9"></div>
-            </div>
-          </div>
+          <epic-explorer-loading></epic-explorer-loading>
         </div>
       </div>
     </div>
@@ -168,9 +127,6 @@
         <a href="JavaScript:void(0);" (click)="
         blockreq('', '', 'all'); selectedItem3 = 7; 
         " id="7" #item37 [ngClass]="{ active: selectedItem3 == item37.id, day3m_txt: true }">{{'home.All' | translate}}</a>
-
-
-    
     </div>
     <div class="explore_all text-right">
       <a routerLink="/chart/blocks"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
@@ -178,10 +134,10 @@
   </div>
 </div>
 
-<div class="col-md-6 col-lg-4 mb-4">
+<div class="col-md-6 col-lg-6 mb-2">
   <div class="box_shadow" id="supply-growth">
     <div class="blocks">
-      <h2 class="chart_heading d-inline-block">{{'home.SUPPLY_GROWTH' | translate}}</h2>
+      <p class="block_heading">{{'home.SUPPLY_GROWTH' | translate}}</p>
       <span class="txn_count" title="{{'home.SUPPLY_GROWTH_HOVER' | translate}}" *ngIf="this.gg_last">{{
           this.gg_last | number
         }} Epic per block</span>
@@ -189,20 +145,7 @@
         <epic-explorer-plotly *ngIf="growthGraphData.data" [data]="growthGraphData.data" [layout]="growthGraphData.layout">
         </epic-explorer-plotly>
         <div *ngIf="!growthGraphData.data" class="feedback_div news_desc text-center">
-          <div class="graph_img background_loading mx-auto mb-3"></div>
-          <div class=" bg-white">
-            <div class="sk-cube-grid">
-              <div class="sk-cube sk-cube1"></div>
-              <div class="sk-cube sk-cube2"></div>
-              <div class="sk-cube sk-cube3"></div>
-              <div class="sk-cube sk-cube4"></div>
-              <div class="sk-cube sk-cube5"></div>
-              <div class="sk-cube sk-cube6"></div>
-              <div class="sk-cube sk-cube7"></div>
-              <div class="sk-cube sk-cube8"></div>
-              <div class="sk-cube sk-cube9"></div>
-            </div>
-          </div>
+          <epic-explorer-loading></epic-explorer-loading>
         </div>
       </div>
     </div>
@@ -220,10 +163,6 @@
       <a href="JavaScript:void(0);" (click)="
        Growthreq('', '', 'all'); selectedItem5 = 7; 
         " id="7" #item7 [ngClass]="{ active: selectedItem5 == item7.id, day3m_txt: true }">{{'home.All' | translate}}</a>
-
-      
-      
-
     </div>
     <div class="explore_all text-right">
       <a  routerLink="/chart/supply-growth"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
@@ -231,86 +170,60 @@
     </div>
   </div>
 </div>
-
-<div class="col-md-6 col-lg-4 mb-4">
-  <div class="box_shadow" id="transaction-fees">
-    <div class="blocks">
-      <h2 class="chart_heading d-inline-block">{{'home.TRANSACTION_FEES' | translate}}</h2>
-      <span style="display:none;" class="txn_count" title="{{'home.TRANSACTION_FEE_HOVER' | translate}}" *ngIf="this.fg_last">{{this.fg_last |number}}</span>
-
-      <div class="chart_show">
-        <epic-explorer-plotly *ngIf="transcationGraphData.data" [data]="transcationGraphData.data"
-          [layout]="transcationGraphData.layout">
-        </epic-explorer-plotly>
-        <div *ngIf="!transcationGraphData.data" class="feedback_div news_desc text-center">
-          <div class="graph_img background_loading mx-auto mb-3"></div>
-          <div class=" bg-white">
-            <div class="sk-cube-grid">
-              <div class="sk-cube sk-cube1"></div>
-              <div class="sk-cube sk-cube2"></div>
-              <div class="sk-cube sk-cube3"></div>
-              <div class="sk-cube sk-cube4"></div>
-              <div class="sk-cube sk-cube5"></div>
-              <div class="sk-cube sk-cube6"></div>
-              <div class="sk-cube sk-cube7"></div>
-              <div class="sk-cube sk-cube8"></div>
-              <div class="sk-cube sk-cube9"></div>
-            </div>
+<div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-6 mb-2' : true, 'd-none' : viewchart}">
+  <div class="box_shadow" id="blocks-by-algorithm">
+      <div class="blocks">
+        <p class="block_heading">{{'home.blocks-by-algorithm' | translate}}</p>
+        <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.sg_last">{{
+          this.sg_last | number
+        }}</span>
+        <div class="chart_show">
+          <epic-explorer-plotly *ngIf="stackGraphData.data" [data]="stackGraphData.data" [layout]="stackGraphData.layout">
+          </epic-explorer-plotly>
+          <div *ngIf="!stackGraphData.data" class="feedback_div news_desc text-center">
+            <epic-explorer-loading></epic-explorer-loading>
           </div>
         </div>
       </div>
+      <div class="day_filter">
+        <a href="JavaScript:void(0);" (click)="stackchartreq('', '', '1 week'); selectedItem10 = 1" id="1"
+          #item1 [ngClass]="{ active: selectedItem10 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
+        <a href="JavaScript:void(0);" (click)="
+        stackchartreq('', '', '15 days'); selectedItem10 = 2
+          " id="2" #item2 [ngClass]="{ active: selectedItem10 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
+        <a href="JavaScript:void(0);" (click)="
+        stackchartreq('', '', '30 days'); selectedItem10 = 3
+          " id="3" #item3 [ngClass]="{ active: selectedItem10 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
+        <a href="JavaScript:void(0);" (click)="
+        stackchartreq('', '', '60 days'); selectedItem10 = 4
+          " id="4" #item4 [ngClass]="{ active: selectedItem10 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
+        <a href="JavaScript:void(0);" (click)="
+        stackchartreq('', '', '3 months'); selectedItem10 = 5
+          " id="5" #item5 [ngClass]="{ active: selectedItem10 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+
+          <a href="JavaScript:void(0);" (click)="
+          stackchartreq('', '', 'all'); selectedItem10 = 8; 
+          " id="8" #item8 [ngClass]="{ active: selectedItem10 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+      </div>
+      <div class="explore_all text-right">
+        <a routerLink="/chart/blocks-by-algorithm"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
+      </div>
     </div>
-
-<div class="day_filter">
-  <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '1 week'); selectedItem4 = 1" id="1" #item1
-    [ngClass]="{ active: selectedItem4 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
-  <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '15 days'); selectedItem4 = 2" id="2" #item2
-    [ngClass]="{ active: selectedItem4 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
-  <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '30 days'); selectedItem4 = 3" id="3" #item3
-    [ngClass]="{ active: selectedItem4 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
-  <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '60 days'); selectedItem4 = 4" id="4" #item4
-    [ngClass]="{ active: selectedItem4 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
-  <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '3 months'); selectedItem4 = 5" id="5" #item5
-    [ngClass]="{ active: selectedItem4 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
-
-    <a href="JavaScript:void(0);" (click)="
-    Transcationreq('', '', 'all'); selectedItem4 = 7; 
-     " id="7" #item7 [ngClass]="{ active: selectedItem4 == item7.id, day3m_txt: true }">{{'home.All' | translate}}</a>
-
-
 </div>
-<div class="explore_all text-right">
-  <a routerLink="/chart/transaction-fees"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
-</div>
-</div>
-</div>
-<div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+
+<div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-6 mb-2' : true, 'd-none' : viewchart}">
   <div class="box_shadow" id="blocks-mined">
     <div class="blocks">
-      <h2 class="chart_heading d-inline-block">{{'home.BLOCKS_MINED' | translate}}</h2>
-      <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.dg_last">{{
-          this.dg_last | number
-        }}</span>
-
+      <p class="block_heading">{{'home.BLOCKS_MINED' | translate}}</p>
+      <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.dg_last">
+        {{ this.dg_last | number }}
+      </span>
       <div class="chart_show">
         <epic-explorer-plotly *ngIf="doubleareaGraphData.data" [data]="doubleareaGraphData.data"
           [layout]="doubleareaGraphData.layout">
         </epic-explorer-plotly>
         <div *ngIf="!doubleareaGraphData.data" class="feedback_div news_desc text-center">
-          <div class="graph_img background_loading mx-auto mb-3"></div>
-          <div class=" bg-white">
-            <div class="sk-cube-grid">
-              <div class="sk-cube sk-cube1"></div>
-              <div class="sk-cube sk-cube2"></div>
-              <div class="sk-cube sk-cube3"></div>
-              <div class="sk-cube sk-cube4"></div>
-              <div class="sk-cube sk-cube5"></div>
-              <div class="sk-cube sk-cube6"></div>
-              <div class="sk-cube sk-cube7"></div>
-              <div class="sk-cube sk-cube8"></div>
-              <div class="sk-cube sk-cube9"></div>
-            </div>
-          </div>
+          <epic-explorer-loading></epic-explorer-loading>
         </div>
       </div>
     </div>
@@ -325,415 +238,193 @@
         [ngClass]="{ active: selectedItem7 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="Blockminedreq('', '', '3 months'); selectedItem7 = 5" id="5" #item5
         [ngClass]="{ active: selectedItem7 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
-
-        <a href="JavaScript:void(0);" (click)="
+      <a href="JavaScript:void(0);" (click)="
         Blockminedreq('', '', 'all'); selectedItem7 = 8; 
         " id="8" #item8 [ngClass]="{ active: selectedItem7 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
-
-
     </div>
     <div class="explore_all text-right">
        <a routerLink="/chart/blocks-mined"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
             class="fa fa-long-arrow-right"></i></span></a>
     </div>
   </div>
-
 </div>
 
-  <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
-      <!-- <div [ngClass]="{'box_shadow' : true, 'invisible h-0' : viewchart}">
-          <div [ngClass]="{'blocks' : true, 'invisible h-0' : viewchart}">
-            <h2 class="chart_heading d-inline-block"><a routerLink="/chart/hashrate-growth-chart">HashRate Growth Chart</a></h2>
-            <span class="txn_count" *ngIf="this.hg_last">{{
-              this.hg_last | number
-            }}</span>
-            <div class="chart_show">
-              <plotly-plot *ngIf="blockGraphData.data" [data]="blockGraphData.data" [layout]="blockGraphData.layout">
-              </plotly-plot>
-              <div *ngIf="!blockGraphData.data" class="feedback_div news_desc text-center">
-                <div class="graph_img background_loading mx-auto mb-3"></div>
-                <div class=" p-3 bg-white">
-                  <p class="mb-2 background_loading para_load"></p>
-                  <p class="mb-2 background_loading para_load"></p>
-                  <p class="mb-2 background_loading para_load"></p>
-                  <p class="mb-2 background_loading para_load"></p>
-                  <p class="mb-2 background_loading para_load"></p>
-                  <p class="mb-2 background_loading para_load"></p>
-                  <p class="mb-2 background_loading para_load"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="day_filter">
-              <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '1 week'); selectedItem9 = 1" id="1" #item1
-              [ngClass]="{ active: selectedItem9 == item1.id, txt_primary: true }">1 week</a>
-            <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '15 days'); selectedItem9 = 2" id="2" #item2
-              [ngClass]="{ active: selectedItem9 == item2.id, day15_txt: true }">15 days</a>
-            <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '30 days'); selectedItem9 = 3" id="3" #item3
-              [ngClass]="{ active: selectedItem9 == item3.id, day30_txt: true }">30 days</a>
-            <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '60 days'); selectedItem9 = 4" id="4" #item4
-              [ngClass]="{ active: selectedItem9 == item4.id, day60_txt: true }">60 days</a>
-            <a href="JavaScript:void(0);" (click)="Transactiondoublelinechartreq('', '', '3 months'); selectedItem9 = 5" id="5" #item5
-              [ngClass]="{ active: selectedItem9 == item5.id, day3m_txt: true }">3 months</a>
-          </div>
-          <div class="explore_all text-right">
-            <a routerLink="/chart/hashrate-growth-chart"><span class="text-uppercase d-block">explore it <i
-                  class="fa fa-long-arrow-right"></i></span></a>
-          </div>
-        </div> -->
-      <div class="box_shadow" id="blocks-by-algorithm">
-          <div class="blocks">
-            <h2 class="chart_heading d-inline-block">{{'home.blocks-by-algorithm' | translate}}</h2>
-            <span class="txn_count" title="{{'home.BOCKS_COUNT_HOVER' | translate}}" *ngIf="this.sg_last">{{
-              this.sg_last | number
-            }}</span>
-    
-            <div class="chart_show">
-              <epic-explorer-plotly *ngIf="stackGraphData.data" [data]="stackGraphData.data" [layout]="stackGraphData.layout">
-              </epic-explorer-plotly>
-              <div *ngIf="!stackGraphData.data" class="feedback_div news_desc text-center">
-                <div class="graph_img background_loading mx-auto mb-3"></div>
-                <div class="bg-white">
-                  <div class="sk-cube-grid">
-                    <div class="sk-cube sk-cube1"></div>
-                    <div class="sk-cube sk-cube2"></div>
-                    <div class="sk-cube sk-cube3"></div>
-                    <div class="sk-cube sk-cube4"></div>
-                    <div class="sk-cube sk-cube5"></div>
-                    <div class="sk-cube sk-cube6"></div>
-                    <div class="sk-cube sk-cube7"></div>
-                    <div class="sk-cube sk-cube8"></div>
-                    <div class="sk-cube sk-cube9"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="day_filter">
-            <a href="JavaScript:void(0);" (click)="stackchartreq('', '', '1 week'); selectedItem10 = 1" id="1"
-              #item1 [ngClass]="{ active: selectedItem10 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
-            <a href="JavaScript:void(0);" (click)="
-            stackchartreq('', '', '15 days'); selectedItem10 = 2
-              " id="2" #item2 [ngClass]="{ active: selectedItem10 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
-            <a href="JavaScript:void(0);" (click)="
-            stackchartreq('', '', '30 days'); selectedItem10 = 3
-              " id="3" #item3 [ngClass]="{ active: selectedItem10 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
-            <a href="JavaScript:void(0);" (click)="
-            stackchartreq('', '', '60 days'); selectedItem10 = 4
-              " id="4" #item4 [ngClass]="{ active: selectedItem10 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
-            <a href="JavaScript:void(0);" (click)="
-            stackchartreq('', '', '3 months'); selectedItem10 = 5
-              " id="5" #item5 [ngClass]="{ active: selectedItem10 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
-
-              <a href="JavaScript:void(0);" (click)="
-              stackchartreq('', '', 'all'); selectedItem10 = 8; 
-              " id="8" #item8 [ngClass]="{ active: selectedItem10 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
-      
-    
-
-          </div>
-          <div class="explore_all text-right">
-            <a routerLink="/chart/blocks-by-algorithm"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
-                  class="fa fa-long-arrow-right"></i></span></a>
-          </div>
+<div class="col-md-6 col-lg-4 mb-2">
+  <div class="box_shadow" id="transaction-fees">
+    <div class="blocks">
+      <p class="block_heading">{{'home.TRANSACTION_FEES' | translate}}</p>
+      <span style="display:none;" class="txn_count" title="{{'home.TRANSACTION_FEE_HOVER' | translate}}" *ngIf="this.fg_last">{{this.fg_last |number}}</span>
+      <div class="chart_show">
+        <epic-explorer-plotly *ngIf="transcationGraphData.data" [data]="transcationGraphData.data"
+          [layout]="transcationGraphData.layout">
+        </epic-explorer-plotly>
+        <div *ngIf="!transcationGraphData.data" class="feedback_div news_desc text-center">
+          <epic-explorer-loading></epic-explorer-loading>
         </div>
-  </div>
-
-
-
-  <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
-    <div class="box_shadow" id="blocks-interval">
-      <div class="blocks">
-        <h2 class="chart_heading d-inline-block">{{'home.BLOCKSINTERVAL' | translate}}</h2>
-        <span class="txn_count"  title="{{'home.BLOCK_INTERVAL_BW_BLOCKS_HOVER' | translate}}" *ngIf="this.blockinteval_last">{{
-            this.blockinteval_last | number
-          }}s</span>
-        <div class="chart_show">
-          <epic-explorer-plotly *ngIf="barGraphIntevalData.data" [data]="barGraphIntevalData.data" [layout]="barGraphIntevalData.layout"></epic-explorer-plotly>
-          <div *ngIf="!barGraphIntevalData.data" class="feedback_div news_desc text-center">
-            <div class="graph_img background_loading mx-auto mb-3"></div>
-            <div class=" bg-white">
-              <div class="sk-cube-grid">
-                <div class="sk-cube sk-cube1"></div>
-                <div class="sk-cube sk-cube2"></div>
-                <div class="sk-cube sk-cube3"></div>
-                <div class="sk-cube sk-cube4"></div>
-                <div class="sk-cube sk-cube5"></div>
-                <div class="sk-cube sk-cube6"></div>
-                <div class="sk-cube sk-cube7"></div>
-                <div class="sk-cube sk-cube8"></div>
-                <div class="sk-cube sk-cube9"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="day_filter">
-          <a href="JavaScript:void(0);" (click)="
-          Blockintervalreq('today'); selectedInteverval = 1
-              " id="1" #intevalitem1 [ngClass]="{ active: selectedInteverval == intevalitem1.id, txt_primary: true }">Today</a>
-        <a href="JavaScript:void(0);" (click)="
-        Blockintervalreq('yesterday'); selectedInteverval = 2
-            " id="2" #intevalitem2 [ngClass]="{ active: selectedInteverval == intevalitem2.id, txt_primary: true }">Yesterday</a>
-            <a *ngIf ="showcurrentIntervalDatetimestamp >= 1567468800000" href="JavaScript:void(0);" (click)="Blockintervalreq('previous'); "><</a>
-            <span>{{showcurrentIntervalDate}}</span>
-            <a *ngIf ="showcurrentIntervalDatetimestamp < todaydate" href="JavaScript:void(0);" (click)="Blockintervalreq('next'); ">></a>
-  
-      </div>
-      <div class="explore_all text-right">
-        <a routerLink="/chart/block-interval"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
       </div>
     </div>
-  </div>
-  <div  *ngIf="viewchartvar" class="col-md-6 col-lg-8 mb-4">
-    <div class="box_shadow" id="total-difficulty">
-      <div class="blocks">
-        <h2 class="chart_heading d-inline-block">{{'home.TOTAL_DIFFICULTY' | translate}}</h2>
-        <!-- <span class="txn_count" *ngIf="this.lg_last.length > 0"><span *ngFor="let l of lg_last">{{
-          this.l | number</span>
-        }}</span> -->
-        
-        <div class="chart_show">
-            <!-- <div class="difficulty_filter day_filter p-0 bg-transparent mt-2">
-                <a href="JavaScript:void(0);" (click)="
-                Difficultyreq('total', '', '', TdifficultyRange,'all'); selectedTarget12 = 4
-              " id="4" #itemtarget124
-                        [ngClass]="{ active: selectedTarget12 == itemtarget124.id, txt_primary: true }">All</a>
-                <a href="JavaScript:void(0);" (click)="
-                Difficultyreq('total', '', '', TdifficultyRange,'cuckatoo'); selectedTarget12 = 1
-              " id="1" #itemtarget121
-                        [ngClass]="{ active: selectedTarget12 == itemtarget121.id, txt_primary: true }">Cuckoo</a>
-                      <a href="JavaScript:void(0);" (click)="
-              Difficultyreq('total', '', '', TdifficultyRange,'progpow'); selectedTarget12 = 2
-              " id="2" #itemtarget122
-                        [ngClass]="{ active: selectedTarget12 == itemtarget122.id, txt_primary: true }">ProgPow</a>
-                      <a href="JavaScript:void(0);" (click)="
-              Difficultyreq('total', '', '', TdifficultyRange,'randomx'); selectedTarget12 = 3
-              " id="3" #itemtarget123
-                        [ngClass]="{ active: selectedTarget12 == itemtarget123.id, txt_primary: true }">RandomX</a>
-          </div> -->
-            <epic-explorer-plotly *ngIf="linearTotalGraphData.data" [data]="linearTotalGraphData.data"
-            [layout]="linearTotalGraphData.layout">
-          </epic-explorer-plotly>
-          <div *ngIf="!linearTotalGraphData.data" class="feedback_div news_desc text-center">
-            <div class="graph_img background_loading mx-auto mb-3"></div>
-            <div class=" bg-white">
-              <div class="sk-cube-grid">
-                <div class="sk-cube sk-cube1"></div>
-                <div class="sk-cube sk-cube2"></div>
-                <div class="sk-cube sk-cube3"></div>
-                <div class="sk-cube sk-cube4"></div>
-                <div class="sk-cube sk-cube5"></div>
-                <div class="sk-cube sk-cube6"></div>
-                <div class="sk-cube sk-cube7"></div>
-                <div class="sk-cube sk-cube8"></div>
-                <div class="sk-cube sk-cube9"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="day_filter">
-          <a href="JavaScript:void(0);" (click)="
-    Difficultyreq('total', '', '', '1 day',''); selectedTarget = 6; TdifficultyRange = '1 day'
-  " id="6" #itemtarget6 [ngClass]="{ active: selectedTarget == itemtarget6.id, txt_primary: true }">1 {{'home.day' | translate}}</a>
-          <a href="JavaScript:void(0);" (click)="
-      Difficultyreq('total', '', '', '1 week',''); selectedTarget = 1; TdifficultyRange = '1 week'
-    " id="1" #itemtarget1 [ngClass]="{ active: selectedTarget == itemtarget1.id, txt_primary: true }">1
-            {{'home.WEEK' | translate}}</a>
-          <!-- <a href="JavaScript:void(0);" (click)="
-      Difficultyreq('total', '', '', '15 days',''); selectedTarget = 2; TdifficultyRange = '15 days'
-    " id="2" #itemtarget2 [ngClass]="{ active: selectedTarget == itemtarget2.id, day15_txt: true }">15
-            {{'home.DAYS' | translate}}</a> -->
-          <a href="JavaScript:void(0);" (click)="
-      Difficultyreq('total', '', '', '30 days',''); selectedTarget = 3; TdifficultyRange = '30 days'
-    " id="3" #itemtarget3 [ngClass]="{ active: selectedTarget == itemtarget3.id, day30_txt: true }">30
-            {{'home.DAYS' | translate}}</a>
-          <a href="JavaScript:void(0);" (click)="
-      Difficultyreq('total', '', '', '60 days',''); selectedTarget = 4; TdifficultyRange = '60 days'
-    " id="4" #itemtarget4 [ngClass]="{ active: selectedTarget == itemtarget4.id, day60_txt: true }">60
-            {{'home.DAYS' | translate}}</a>
-          <a href="JavaScript:void(0);" (click)="
-      Difficultyreq('total', '', '', '3 months',''); selectedTarget = 5; TdifficultyRange = '3 months'
-    " id="5" #itemtarget5 [ngClass]="{ active: selectedTarget == itemtarget5.id, day3m_txt: true }">3
-            {{'home.MONTHS' | translate}}</a>
-
-
-            <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('total', '', '', 'all',''); selectedTarget = 7; TdifficultyRange = ''
-          " id="7" #itemtarget7 [ngClass]="{ active: selectedTarget == itemtarget7.id, dayall_txt: true }">{{'home.All' | translate}}</a>
-  
-  
-
-
-        </div>
-
-      <div class="explore_all text-right">
-          
-        <a routerLink="/chart/total-difficulty"><span class="text-uppercase">{{'home.EXPLORE_IT' | translate}} <i
-          class="fa fa-long-arrow-right"></i></span></a>
-      </div>
+    <div class="day_filter">
+    <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '1 week'); selectedItem4 = 1" id="1" #item1
+      [ngClass]="{ active: selectedItem4 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
+    <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '15 days'); selectedItem4 = 2" id="2" #item2
+      [ngClass]="{ active: selectedItem4 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
+    <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '30 days'); selectedItem4 = 3" id="3" #item3
+      [ngClass]="{ active: selectedItem4 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
+    <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '60 days'); selectedItem4 = 4" id="4" #item4
+      [ngClass]="{ active: selectedItem4 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
+    <a href="JavaScript:void(0);" (click)="Transcationreq('', '', '3 months'); selectedItem4 = 5" id="5" #item5
+      [ngClass]="{ active: selectedItem4 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+    <a href="JavaScript:void(0);" (click)="Transcationreq('', '', 'all'); selectedItem4 = 7;" id="7" #item7 [ngClass]="{ active: selectedItem4 == item7.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+    </div>
+    <div class="explore_all text-right">
+    <a routerLink="/chart/transaction-fees"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
     </div>
   </div>
-  <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
-    <div class="box_shadow" id="block-interval">
-      <div class="blocks">
-        <h2 class="chart_heading d-inline-block">{{'home.BLOCK_INTERVAL' | translate}}</h2>
-        <span class="txn_count" title="{{'home.BLOCK_INTERVAL_HOVER' | translate}}" *ngIf="this.ag_last">{{ this.ag_last | number }}s</span>
+</div>
 
-        <div class="chart_show">
-          <epic-explorer-plotly *ngIf="areaGraphData.data" [data]="areaGraphData.data" [layout]="areaGraphData.layout">
-          </epic-explorer-plotly>
-          <div *ngIf="!areaGraphData.data" class="feedback_div news_desc text-center">
-            <div class="graph_img background_loading mx-auto mb-3"></div>
-            <div class="bg-white">
-              <div class="sk-cube-grid">
-                <div class="sk-cube sk-cube1"></div>
-                <div class="sk-cube sk-cube2"></div>
-                <div class="sk-cube sk-cube3"></div>
-                <div class="sk-cube sk-cube4"></div>
-                <div class="sk-cube sk-cube5"></div>
-                <div class="sk-cube sk-cube6"></div>
-                <div class="sk-cube sk-cube7"></div>
-                <div class="sk-cube sk-cube8"></div>
-                <div class="sk-cube sk-cube9"></div>
-              </div>
-            </div>
-          </div>
+<div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-2' : true, 'd-none' : viewchart}">
+  <div class="box_shadow" id="blocks-interval">
+    <div class="blocks">
+      <p class="block_heading">{{'home.BLOCKSINTERVAL' | translate}}</p>
+      <span class="txn_count"  title="{{'home.BLOCK_INTERVAL_BW_BLOCKS_HOVER' | translate}}" *ngIf="this.blockinteval_last">{{
+          this.blockinteval_last | number
+        }}s</span>
+      <div class="chart_show">
+        <epic-explorer-plotly *ngIf="barGraphIntevalData.data" [data]="barGraphIntevalData.data" [layout]="barGraphIntevalData.layout"></epic-explorer-plotly>
+        <div *ngIf="!barGraphIntevalData.data" class="feedback_div news_desc text-center">
+          <epic-explorer-loading></epic-explorer-loading>
         </div>
       </div>
-      <div class="day_filter">
-        <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '1 week'); selectedItem2 = 1" id="1" #item1
-          [ngClass]="{ active: selectedItem2 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '15 days'); selectedItem2 = 2" id="2" #item2
-          [ngClass]="{ active: selectedItem2 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '30 days'); selectedItem2 = 3" id="3" #item3
-          [ngClass]="{ active: selectedItem2 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '60 days'); selectedItem2 = 4" id="4" #item4
-          [ngClass]="{ active: selectedItem2 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '3 months'); selectedItem2 = 5" id="5" #item5
-          [ngClass]="{ active: selectedItem2 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+    </div>
+    <div class="day_filter">
+      <a href="JavaScript:void(0);" (click)="Blockintervalreq('today'); selectedInteverval = 1" id="1" #intevalitem1 [ngClass]="{ active: selectedInteverval == intevalitem1.id, txt_primary: true }">Today</a>
+      <a href="JavaScript:void(0);" (click)="Blockintervalreq('yesterday'); selectedInteverval = 2" id="2" #intevalitem2 [ngClass]="{ active: selectedInteverval == intevalitem2.id, txt_primary: true }">Yesterday</a>
+        <a *ngIf ="showcurrentIntervalDatetimestamp >= 1567468800000" href="JavaScript:void(0);" (click)="Blockintervalreq('previous'); "><</a>
+        <span>{{showcurrentIntervalDate}}</span>
+        <a *ngIf ="showcurrentIntervalDatetimestamp < todaydate" href="JavaScript:void(0);" (click)="Blockintervalreq('next'); ">></a>
+    </div>
+    <div class="explore_all text-right">
+      <a routerLink="/chart/block-interval"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
+    </div>
+  </div>
+</div>
 
+<div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+  <div class="box_shadow" id="block-interval">
+    <div class="blocks">
+      <p class="block_heading">{{'home.BLOCK_INTERVAL' | translate}}</p>
+      <span class="txn_count" title="{{'home.BLOCK_INTERVAL_HOVER' | translate}}" *ngIf="this.ag_last">{{ this.ag_last | number }}s</span>
+      <div class="chart_show">
+        <epic-explorer-plotly *ngIf="areaGraphData.data" [data]="areaGraphData.data" [layout]="areaGraphData.layout">
+        </epic-explorer-plotly>
+        <div *ngIf="!areaGraphData.data" class="feedback_div news_desc text-center">
+          <epic-explorer-loading></epic-explorer-loading>
+        </div>
+      </div>
+    </div>
+    <div class="day_filter">
+      <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '1 week'); selectedItem2 = 1" id="1" #item1
+        [ngClass]="{ active: selectedItem2 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '15 days'); selectedItem2 = 2" id="2" #item2
+        [ngClass]="{ active: selectedItem2 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '30 days'); selectedItem2 = 3" id="3" #item3
+        [ngClass]="{ active: selectedItem2 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '60 days'); selectedItem2 = 4" id="4" #item4
+        [ngClass]="{ active: selectedItem2 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="Blockspersecreq('', '', '3 months'); selectedItem2 = 5" id="5" #item5
+        [ngClass]="{ active: selectedItem2 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+
+        <a href="JavaScript:void(0);" (click)="
+        Blockspersecreq('', '', 'all'); selectedItem2 = 8; 
+        " id="8" #item8 [ngClass]="{ active: selectedItem2 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+    </div>
+    <div class="explore_all text-right">
+      <a routerLink="/chart/avg-block-interval"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
+    </div>
+  </div>
+</div>
+
+<div  *ngIf="viewchartvar" class="col-md-6 col-lg-8 mb-4">
+  <div class="box_shadow" id="total-difficulty">
+    <div class="blocks">
+      <p class="block_heading">{{'home.TOTAL_DIFFICULTY' | translate}}</p>
+      <div class="chart_show">
+        <epic-explorer-plotly *ngIf="linearTotalGraphData.data" [data]="linearTotalGraphData.data"
+          [layout]="linearTotalGraphData.layout">
+        </epic-explorer-plotly>
+        <div *ngIf="!linearTotalGraphData.data" class="feedback_div news_desc text-center">
+          <epic-explorer-loading></epic-explorer-loading>
+        </div>
+      </div>
+    </div>
+    <div class="day_filter">
+        <a href="JavaScript:void(0);" (click)="Difficultyreq('total', '', '', '1 day',''); selectedTarget = 6; TdifficultyRange = '1 day'" id="6" #itemtarget6 [ngClass]="{ active: selectedTarget == itemtarget6.id, txt_primary: true }">1 {{'home.day' | translate}}</a>
+        <a href="JavaScript:void(0);" (click)="Difficultyreq('total', '', '', '1 week',''); selectedTarget = 1; TdifficultyRange = '1 week'" id="1" #itemtarget1 [ngClass]="{ active: selectedTarget == itemtarget1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
+        <!-- <a href="JavaScript:void(0);" (click)="
+        Difficultyreq('total', '', '', '15 days',''); selectedTarget = 2; TdifficultyRange = '15 days'
+      " id="2" #itemtarget2 [ngClass]="{ active: selectedTarget == itemtarget2.id, day15_txt: true }">15
+          {{'home.DAYS' | translate}}</a> -->
+        <a href="JavaScript:void(0);" (click)="
+        Difficultyreq('total', '', '', '30 days',''); selectedTarget = 3; TdifficultyRange = '30 days'
+      " id="3" #itemtarget3 [ngClass]="{ active: selectedTarget == itemtarget3.id, day30_txt: true }">30
+          {{'home.DAYS' | translate}}</a>
+        <a href="JavaScript:void(0);" (click)="
+        Difficultyreq('total', '', '', '60 days',''); selectedTarget = 4; TdifficultyRange = '60 days'
+      " id="4" #itemtarget4 [ngClass]="{ active: selectedTarget == itemtarget4.id, day60_txt: true }">60
+          {{'home.DAYS' | translate}}</a>
+        <a href="JavaScript:void(0);" (click)="
+        Difficultyreq('total', '', '', '3 months',''); selectedTarget = 5; TdifficultyRange = '3 months'
+      " id="5" #itemtarget5 [ngClass]="{ active: selectedTarget == itemtarget5.id, day3m_txt: true }">3
+          {{'home.MONTHS' | translate}}</a>
           <a href="JavaScript:void(0);" (click)="
-          Blockspersecreq('', '', 'all'); selectedItem2 = 8; 
-          " id="8" #item8 [ngClass]="{ active: selectedItem2 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
-  
-
-      </div>
-      <div class="explore_all text-right">
-        <a routerLink="/chart/avg-block-interval"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
-              class="fa fa-long-arrow-right"></i></span></a>
-      </div>
+          Difficultyreq('total', '', '', 'all',''); selectedTarget = 7; TdifficultyRange = ''
+        " id="7" #itemtarget7 [ngClass]="{ active: selectedTarget == itemtarget7.id, dayall_txt: true }">{{'home.All' | translate}}</a>
+    </div>
+    <div class="explore_all text-right">
+      <a routerLink="/chart/total-difficulty"><span class="text-uppercase">{{'home.EXPLORE_IT' | translate}} <i
+        class="fa fa-long-arrow-right"></i></span></a>
     </div>
   </div>
-  <div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
-    <div class="box_shadow" id="transaction-vs-date">
-      <div class="blocks">
-        <h2 class="chart_heading d-inline-block">{{'home.TRANSACTIONS_VS_DATE' | translate}}</h2>
-        <span class="txn_count" title="{{'home.TRANSACTION_LINECHAT_HOVER' | translate}}" *ngIf="this.tg_last">{{
-          this.tg_last | number
-        }}</span>
+</div>
 
-        <div class="chart_show">
-          <epic-explorer-plotly *ngIf="feeGraphData.data" [data]="feeGraphData.data" [layout]="feeGraphData.layout">
-          </epic-explorer-plotly>
-          <div *ngIf="!feeGraphData.data" class="feedback_div news_desc text-center">
-            <div class="graph_img background_loading mx-auto mb-3"></div>
-            <div class=" bg-white">
-              <div class="sk-cube-grid">
-                <div class="sk-cube sk-cube1"></div>
-                <div class="sk-cube sk-cube2"></div>
-                <div class="sk-cube sk-cube3"></div>
-                <div class="sk-cube sk-cube4"></div>
-                <div class="sk-cube sk-cube5"></div>
-                <div class="sk-cube sk-cube6"></div>
-                <div class="sk-cube sk-cube7"></div>
-                <div class="sk-cube sk-cube8"></div>
-                <div class="sk-cube sk-cube9"></div>
-              </div>
-            </div>
-          </div>
+
+<div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
+  <div class="box_shadow" id="transaction-vs-date">
+    <div class="blocks">
+      <p class="block_heading">{{'home.TRANSACTIONS_VS_DATE' | translate}}</p>
+      <span class="txn_count" title="{{'home.TRANSACTION_LINECHAT_HOVER' | translate}}" *ngIf="this.tg_last">{{
+        this.tg_last | number
+      }}</span>
+      <div class="chart_show">
+        <epic-explorer-plotly *ngIf="feeGraphData.data" [data]="feeGraphData.data" [layout]="feeGraphData.layout">
+        </epic-explorer-plotly>
+        <div *ngIf="!feeGraphData.data" class="feedback_div news_desc text-center">
+          <epic-explorer-loading></epic-explorer-loading>
         </div>
       </div>
-      <div class="day_filter">
-        <a href="JavaScript:void(0);" (click)="Transactionlinechartreq('', '', '1 week'); selectedItem8 = 1" id="1"
-          #item1 [ngClass]="{ active: selectedItem8 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="
-            Transactionlinechartreq('', '', '15 days'); selectedItem8 = 2
-          " id="2" #item2 [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="
-            Transactionlinechartreq('', '', '30 days'); selectedItem8 = 3
-          " id="3" #item3 [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="
-            Transactionlinechartreq('', '', '60 days'); selectedItem8 = 4
-          " id="4" #item4 [ngClass]="{ active: selectedItem8 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="
-            Transactionlinechartreq('', '', '3 months'); selectedItem8 = 5
-          " id="5" #item5 [ngClass]="{ active: selectedItem8 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+    </div>
+    <div class="day_filter">
+      <a href="JavaScript:void(0);" (click)="Transactionlinechartreq('', '', '1 week'); selectedItem8 = 1" id="1"
+        #item1 [ngClass]="{ active: selectedItem8 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="
+          Transactionlinechartreq('', '', '15 days'); selectedItem8 = 2
+        " id="2" #item2 [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="
+          Transactionlinechartreq('', '', '30 days'); selectedItem8 = 3
+        " id="3" #item3 [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="
+          Transactionlinechartreq('', '', '60 days'); selectedItem8 = 4
+        " id="4" #item4 [ngClass]="{ active: selectedItem8 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
+      <a href="JavaScript:void(0);" (click)="
+          Transactionlinechartreq('', '', '3 months'); selectedItem8 = 5
+        " id="5" #item5 [ngClass]="{ active: selectedItem8 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
 
-        <a href="JavaScript:void(0);" (click)="
-        Transactionlinechartreq('', '', 'all'); selectedItem8 = 8; 
-        " id="8" #item8 [ngClass]="{ active: selectedItem8 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
-
-
-      </div>
-      <div class="explore_all text-right">
-        <a routerLink="/chart/transactions-by-date"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
-              class="fa fa-long-arrow-right"></i></span></a>
-      </div>
+      <a href="JavaScript:void(0);" (click)="
+      Transactionlinechartreq('', '', 'all'); selectedItem8 = 8; 
+      " id="8" #item8 [ngClass]="{ active: selectedItem8 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+    </div>
+    <div class="explore_all text-right">
+      <a routerLink="/chart/transactions-by-date"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
     </div>
   </div>
-
-  <!-- <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
-   
-  </div> -->
-
-  <!-- <div [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
-    <div class="box_shadow">
-      <div class="blocks">
-        <h2 class="chart_heading d-inline-block">Pie Chart</h2>
-        <span class="txn_count" *ngIf="this.pg_last">{{
-          this.pg_last | number
-        }}</span>
-
-        <div class="chart_show">
-          <epic-explorer-plotly *ngIf="pieGraphData.data" [data]="pieGraphData.data" [layout]="pieGraphData.layout">
-          </epic-explorer-plotly>
-          <div *ngIf="!pieGraphData.data" class="feedback_div news_desc text-center">
-            <div class="graph_img background_loading mx-auto mb-3"></div>
-            <div class=" p-3 bg-white">
-              <p class="mb-2 background_loading para_load"></p>
-              <p class="mb-2 background_loading para_load"></p>
-              <p class="mb-2 background_loading para_load"></p>
-              <p class="mb-2 background_loading para_load"></p>
-              <p class="mb-2 background_loading para_load"></p>
-              <p class="mb-2 background_loading para_load"></p>
-              <p class="mb-2 background_loading para_load"></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="day_filter">
-        <a href="JavaScript:void(0);" (click)="piechartreq('', '', '1 week'); selectedItem10 = 1" id="1"
-          #item1 [ngClass]="{ active: selectedItem11 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="
-        piechartreq('', '', '15 days'); selectedItem11 = 2
-          " id="2" #item2 [ngClass]="{ active: selectedItem11 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="
-        piechartreq('', '', '30 days'); selectedItem10 = 3
-          " id="3" #item3 [ngClass]="{ active: selectedItem11 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="
-        piechartreq('', '', '60 days'); selectedItem10 = 4
-          " id="4" #item4 [ngClass]="{ active: selectedItem11 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
-        <a href="JavaScript:void(0);" (click)="
-        piechartreq('', '', '3 months'); selectedItem10 = 5
-          " id="5" #item5 [ngClass]="{ active: selectedItem11 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
-      </div>
-      <div class="explore_all text-right">
-        <a routerLink="/chart/piechart"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i
-              class="fa fa-long-arrow-right"></i></span></a>
-      </div>
-    </div>
-  </div> -->
-  
 </div>

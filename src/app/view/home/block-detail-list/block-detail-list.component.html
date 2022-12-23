@@ -24,7 +24,190 @@
     </div>
   </div>
 </div> -->
-<div class="row" *ngIf="latestblockdetail">
+<div class="row">
+
+
+  <div class="col-sm-7  col-md-8 mb-4">
+    <div class="position-relative">
+      <epic-explorer-search></epic-explorer-search>
+    </div>
+  </div>
+  <div class="col-sm-5  col-md-4">
+    <div class="blockchain_firstrow alignltp">
+
+      <div class="detailsloading" *ngIf="!epicData">
+        <epic-explorer-loading></epic-explorer-loading>
+      </div>
+     
+          <div class="epbbox" *ngIf="epicData">
+          <div class="epicbrandlogo">
+            <a href="https://x.vite.net/trade?symbol=EPIC-002_USDT-000" target="_blank">
+              <img src="assets/img/vite.png" class="exchangelogo" alt=""/>
+            </a>
+          </div>
+        <p class="block_value_v2 epicprice ml-3">
+          <span class="epicpricetxt">1 <span class="small">Epic</span> = </span><span class="small">$</span>{{epicData.lastPrice}}
+        </p>
+     
+      </div>
+    </div>
+
+    <!-- <div class="col-sm-4" *ngIf="epicData.highPrice">
+      <p class="block_heading">{{ "High" | translate }}</p>
+        <p
+          class="block_value_v2 hidezero"
+        >
+          <ng2-odometer [number]="epicData.highPrice" [config]="{ format:'(,ddd).dd' }"></ng2-odometer>
+        </p>
+    </div>
+    <div class="col-sm-4" *ngIf="epicData.lowPrice">
+      <p class="block_heading">{{ "Low" | translate }}</p>
+        <p
+          class="block_value_v2 hidezero"
+        >
+          <ng2-odometer [number]="epicData.lowPrice" [config]="{ format:'(,ddd).dd' }"></ng2-odometer>
+        </p>
+    </div> -->
+  </div>
+
+  <div class="col-md-12">
+    <div class="blockchain_firstrow">
+      <div class="detailsloading" *ngIf="!latestblockdetail.block_height">
+        <epic-explorer-loading></epic-explorer-loading>
+      </div>
+      <div class="row" *ngIf="latestblockdetail.block_height">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-6 col-md-7 drawline">
+              <!-- <p class="block_heading">{{ "home.BLOCKCHAIN_HEIGHT" | translate }}</p> -->
+              <p class="block_heading">{{ "home.BLOCKCHAIN_HEIGHT" | translate }}</p>
+              <p class="block_value lgtxtwid" [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''">
+                <ng2-odometer [number]="Block_height" [config]="{ }"></ng2-odometer>
+                <!-- {{ latestblockdetail.block_height | number }} -->
+              </p>
+            </div>
+            <!-- <div class="col-md-3">
+            <p class="block_heading">{{ "home.BLOCKCHAIN_SIZE" | translate }}</p>
+            <p
+              class="block_value_v2"
+              [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
+            >
+              {{ latestblockdetail.diskSpace  }}
+            </p>
+          </div> -->
+            <div class="col-6 col-md-5 drawline">
+              <p class="block_heading">Blockchain Size</p>
+              <p class="block_value_v2 mt-1 medtxtwid" [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''">
+                <ng2-odometer [number]="3.71" [config]="{ format:'(,ddd).dd' }"></ng2-odometer>G
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-6 drawline">
+              <p class="block_heading">{{ "home.LATEST_BLOCK_AGE" | translate }}</p>
+              <p class="block_value_v2 medtxtwid" [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''">
+                <ng2-odometer [number]="Block_latest" [config]="{ }"></ng2-odometer>
+                <!-- {{ latestblockdetail.letest_block_num  | number }}  -->
+              </p>
+              <span class="smalltext">{{ latestblockdetail.letest_block_duration }}</span>
+            </div>
+            <div class="col-6">
+              <p class="block_heading">{{ "home.CIRCULATING_SUPPLY" | translate }}</p>
+              <p class="block_value_v2 medtxtwid" [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''">
+                <ng2-odometer [number]="Block_supply" [config]="{ }"></ng2-odometer>
+                <!-- {{ latestblockdetail.coin_existence | number }} -->
+              </p>
+              <span class="smalltext">Epic</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12 targetandhashrate">
+    <div class="blockchain_firstrow bc_sixcls">
+      <div class="detailsloading" *ngIf="!latestblockdetail.targetdifficultycuckatoo || !ShowSecondBlock">
+        <epic-explorer-loading></epic-explorer-loading>
+      </div>
+      <div class="row" *ngIf="latestblockdetail.targetdifficultycuckatoo && ShowSecondBlock">
+        <div class="col-md-6">
+          <p class="block_heading">{{ "home.CURRENT_TARGET_DIFF" | translate }}</p>
+          <div class="row">
+            <div class="col-sm-4 col-md-3 drawline">
+              <p class="subheading">
+                Cuckoo
+              </p>
+              <p class="subvalue smatxtwid">               
+                <ng2-odometer [number]="CTD_1" [config]="{ }"></ng2-odometer>
+                <!-- {{ latestblockdetail.targetdifficultycuckatoo | number }} -->
+              </p>
+            </div>
+            <div class="col-sm-4 col-md-5 drawline">
+              <p class="subheading">
+                ProgPoW
+              </p>
+              <epic-explorer-subloading *ngIf="!CTD_2"></epic-explorer-subloading>
+              <p class="subvalue smatxtwid" *ngIf="CTD_2">
+                <ng2-odometer [number]="CTD_2" [config]="{ }"></ng2-odometer>
+                <!-- {{ latestblockdetail.targetdifficultyprogpow | number }} -->
+              </p>
+            </div>
+            <div class="col-sm-4 col-md-4 drawline">
+              <p class="subheading">
+                RandomX
+              </p>
+              <epic-explorer-subloading *ngIf="!CTD_3"></epic-explorer-subloading>
+              <p class="subvalue smatxtwid" *ngIf="CTD_3">
+                <ng2-odometer [number]="CTD_3" [config]="{ }"></ng2-odometer>
+                <!-- {{ latestblockdetail.targetdifficultyrandomx | number }} -->
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p class="block_heading">{{ "home.HASHRATE" | translate }}</p>
+          <div class="row">
+            <div class="col-sm-4 col-md-3 drawline">
+              <p class="subheading">
+                Cuckoo
+              </p>
+              <p class="subvalue smatxtwid">
+                <ng2-odometer [number]="NW_1" [config]="{ }"></ng2-odometer> Gps
+                <!-- {{ latestblockdetail.cuckoohashrate | number  }} Gps -->
+              </p>
+            </div>
+            <div class="col-sm-4 col-md-5 drawline">
+              <p class="subheading">
+                ProgPoW
+              </p>
+              <epic-explorer-subloading *ngIf="!NW_2"></epic-explorer-subloading>
+              <p class="subvalue smatxtwid" *ngIf="NW_2">
+                <ng2-odometer [number]="NW_2" [config]="{ }"></ng2-odometer> Hps
+                <!-- {{ latestblockdetail.progpowhashrate | number  }} Hps -->
+              </p>
+            </div>
+            <div class="col-sm-4 col-md-4">
+              <p class="subheading">
+                RandomX
+              </p>
+              <epic-explorer-subloading *ngIf="!NW_3"></epic-explorer-subloading>
+              <p class="subvalue smatxtwid" *ngIf="NW_3">
+                <ng2-odometer [number]="NW_3" [config]="{ }"></ng2-odometer> Hps
+                <!-- {{ latestblockdetail.randomxhashrate | number }} Hps -->
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- <div class="row" *ngIf="latestblockdetail">
   <div class="col-md-4 col-xl-2">
     <div
       class="text-center detail_div"
@@ -61,45 +244,6 @@
      
     </div>
   </div>
-  <!-- <div class="col-md-3">
-    <div class="text-center detail_div" #minhgt>
-      <p class="mb-2 desc">{{ "home.CURRENT_TARGET_DIFF" | translate }}</p>
-      <div
-        class=" text-center d-inline-block"
-        [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
-      >
-
-        <p class="difficulty_datas">Cuckaroo : {{latestblockdetail.targetdifficultycuckaroo | number}} / {{latestblockdetail.TotalDifficultyCuckatoo | number}}</p>
-        <div class="difficulty_datas">
-          <span class="day60_txt">Cuckoo : </span>
-            <span>Target:</span>
-            <span>{{ latestblockdetail.targetdifficultycuckatoo | number }}</span>
-            <span>Total :</span><span>{{ latestblockdetail.TotalDifficultyCuckatoo | number }}</span>
-
-        </div>
-        <div class="difficulty_datas">
-            <span class="day60_txt">ProgPow : </span>
-              <span>Target:</span>
-              <span class="diff_span" style="width:85px;" title="{{ latestblockdetail.targetdifficultyprogpow | number }}">{{ latestblockdetail.targetdifficultyprogpow | number }}</span>
-              <span>Total:</span><span class="diff_span" title="{{ latestblockdetail.TotalDifficultyProgpow | number }}">{{ latestblockdetail.TotalDifficultyProgpow | number }}</span>
-          </div>
-          <div class="difficulty_datas">
-             <span class="day60_txt"> RandomX : </span>
-                <span>Target:</span>
-                <span>{{ latestblockdetail.targetdifficultyrandomx | number }}</span>
-                <span>Total:</span><span>{{ latestblockdetail.TotalDifficultyRandomx | number }}</span>
-            </div>
-        <p class="difficulty_datas">
-          ProgPow : {{ latestblockdetail.targetdifficultyprogpow | number }} /
-          {{ latestblockdetail.TotalDifficultyProgpow | number }}
-        </p>
-        <p class="difficulty_datas">
-          RandomX : {{ latestblockdetail.targetdifficultyrandomx | number }} /
-          {{ latestblockdetail.TotalDifficultyRandomx | number }}
-        </p>
-      </div>
-    </div>
-  </div> -->
   <div class="col-md-4  col-xl-2">
       <div
         class="text-center detail_div"
@@ -137,31 +281,6 @@
       </div>
     </div>
   </div>
-  
-  <!-- <div class="col-md-3">
-    <div class="text-center detail_div" #minhgt>
-      <p class="mb-2 desc">{{ "home.CURRENT_TOTAL_DIFF" | translate }}</p>
-      <div
-        class=" text-left mx-auto d-inline-block"
-        [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''"
-      >
-        <div class="difficulty_datas">
-          <span class="day60_txt">Cuckoo &nbsp;&nbsp;&nbsp;&nbsp;: </span>
-            <span> {{ latestblockdetail.TotalDifficultyCuckatoo | number }}</span>
-        </div>
-        <div class="difficulty_datas">
-            <span class="day60_txt">ProgPow &nbsp;&nbsp;: </span>
-              <span class="diff_span" style="width:110px;" title="{{ latestblockdetail.TotalDifficultyProgpow | number }}"> {{ latestblockdetail.TotalDifficultyProgpow | number }}</span>
-          </div>
-          <div class="difficulty_datas">
-             <span class="day60_txt"> RandomX &nbsp;: </span>
-                <span > {{ latestblockdetail.TotalDifficultyRandomx | number }}</span>
-            </div>
-      </div>
-    </div>
-  </div> -->
-
-
 
   <div class="col-md-6 mt-md-3 mt-xl-0 col-xl-3">
     <div
@@ -198,4 +317,4 @@
   </div>
 
 
-</div>
+</div> -->

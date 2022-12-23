@@ -1,6 +1,95 @@
+<div class="row">
+  <div class="col-md-12 margin0auto mb-4">
+    <div class="blockchain_firstrow">
+      <div class="detailsloading" *ngIf="!pool51_hashrateCuckoo">
+        <epic-explorer-loading></epic-explorer-loading>
+      </div>
+      <div class="row" *ngIf="pool51_hashrateCuckoo">
+        <div class="col-12 drawline">
+          <p class="block_heading mb-1">Mining Pool 
+            <select class="langbut py-2 pr-4 pl-2 miningpoolborder">
+              <option value="Testnet" selected> 51pool </option>
+            </select>
+          <a href="https://51pool.online/" class="text-white pl-3" target="_blank">
+            <i class="fa fa-link goldcolortxt"></i>
+          </a> 
+        </p>
+          <div class="row">
+            <div class="col-md-6 col-6">
+              <div class="row">
+                <div class="col-md-4 drawline">
+                  <p class="subheading">
+                    Cuckoo Hashrate 
+                  </p>
+                  <p class="subvalue smatxtwid">               
+                    {{ pool51_hashrateCuckoo }}
+                    <!-- <ng2-odometer [number]="CTD_1" [config]="{ }"></ng2-odometer> -->
+                  </p>
+                </div>
+                <div class="col-md-4 drawline">
+                  <p class="subheading">
+                    ProgPow Hashrate 
+                  </p>
+                  <p class="subvalue smatxtwid">               
+                    {{ pool51_hashrateProgPow }}
+                    <!-- <ng2-odometer [number]="CTD_1" [config]="{ }"></ng2-odometer> -->
+                  </p>
+                </div>
+                <div class="col-md-4 drawline">
+                  <p class="subheading">
+                    RandomX Hashrate 
+                  </p>
+                  <p class="subvalue smatxtwid">               
+                    {{ pool51_hashrateRandomX }}
+                    <!-- <ng2-odometer [number]="CTD_1" [config]="{ }"></ng2-odometer> -->
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-6">
+              <div class="row">
+                <div class="col-md-4 drawline">
+                  <p class="subheading">
+                    Online Cuckoo
+                  </p>
+                  <p class="subvalue smatxtwid">               
+                    {{ pool51_onlineCuckoo }}
+                    <!-- <ng2-odometer [number]="CTD_1" [config]="{ }"></ng2-odometer> -->
+                  </p>
+                </div>
+                <div class="col-md-4 drawline">
+                  <p class="subheading">
+                    Online ProgPow
+                  </p>
+                  <p class="subvalue smatxtwid">               
+                    {{ pool51_onlineProgPow }}
+                    <!-- <ng2-odometer [number]="CTD_1" [config]="{ }"></ng2-odometer> -->
+                  </p>
+                </div>
+                <div class="col-md-4 drawline">
+                  <p class="subheading">
+                    Online RandomX
+                  </p>
+                  <p class="subvalue smatxtwid">               
+                    {{ pool51_onlineRandomX }}
+                    <!-- <ng2-odometer [number]="CTD_1" [config]="{ }"></ng2-odometer> -->
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="latest_table">
-  <h2 class="mb-3 chart_heading px-0">{{'home.LATEST_BLOCKS' | translate}}</h2>
-  <div class="mobile_table web_hdng">
+  <div class="col-sm-121">
+  <p class="block_heading">{{'home.LATEST_BLOCKS' | translate}}</p>
+  <div *ngIf="!hashvalues">
+    <epic-explorer-loading></epic-explorer-loading>
+  </div>
+  <div *ngIf="hashvalues" class="mobile_table web_hdng">
 
     <div class="row">
       <div class="col-6 col-md-4 tble_col">
@@ -51,10 +140,15 @@
     </div>
   </div>
   <div #block></div>
+  <div class="tableminheight">
+  <div *ngIf="hashvalues">
   <ng-container *ngFor="let hashvalue of hashvalues">
-  <div *ngIf="hashvalue.target_difficulty_cuckatoo != '0'" [ngClass]="{mobile_table : true, hght_40: item.id != clickValue }"
-    id="hash_{{hashvalue.blockchain_block_height}}" #item >
-
+  <div 
+    *ngIf="hashvalue.target_difficulty_cuckatoo != '0'" 
+    [ngClass]="{mobile_table : true, hght_40: item.id != clickValue, highlighttableData : hashvalue.blockchain_highlight }"
+    id="hash_{{hashvalue.blockchain_block_height}}" 
+    #item 
+  >
     <div class="row">
       <div class="col-6 col-md-3 tble_col ">
         <div class="block_div mble_hght"> <span *ngIf="item.id != clickValue"
@@ -119,60 +213,61 @@
     </div>
   </div>
 </ng-container>
-
+</div>
+</div>
 </div>
 
-<div class="explore_all text-right">
+<div class="explore_all text-right" *ngIf="hashvalues">
   <form [formGroup]="paginationForm">
     <div class="d-inline-block float-left mt-2">
       <span>{{'home.BLOCKS_PER_PAGE' | translate}}:</span>&nbsp;&nbsp;
       <div class="item_select d-inline-block position-relative">
         <select class="" formControlName="pagesize"
-          (change)="gettinghashList(pagedata.currentPage, $event.target.value)">
+          (change)="gettinghashListFunc(pagedata.currentPage, $event.target.value)">
+          <option value="10">10</option>
           <option value="20">20</option>
           <option value="50">50</option>
           <option value="100">100</option>
-          <option value="250">250</option>
           <option value="500">500</option>
-          <option value="1000">1000</option>
         </select>
       </div>
     </div>
     <ul class="pagination justify-content-end m-0 d-inline-flex">
       <li class="page-item d-none d-md-inline-flex" (click)="
-          gettinghashList(pagedata.startPage, paginationForm.value.pagesize)
-        ">
+        gettinghashListFunc(pagedata.startPage, paginationForm.value.pagesize)
+      ">
         <a class="page-link"><i class="fa fa-angle-double-left"></i></a>
       </li>
       <li class="page-item" (click)="
-          gettinghashList(
-            pagedata.currentPage - 1,
-            paginationForm.value.pagesize
-          )
-        ">
+        gettinghashListFunc(
+          pagedata.currentPage - 1,
+          paginationForm.value.pagesize
+        )
+      ">
         <a class="page-link"><i class="fa fa-angle-left"></i></a>
       </li>
       <li class="page-item d-none d-md-inline-flex">
         <a class="page-link">{{ pagedata.currentPage }} / {{ pagedata.totalPages }}</a>
       </li>
       <li class="page-item" (click)="
-          gettinghashList(
-            pagedata.currentPage + 1,
-            paginationForm.value.pagesize
-          )
-        ">
+        gettinghashListFunc(
+          pagedata.currentPage + 1,
+          paginationForm.value.pagesize
+        )
+      ">
         <a class="page-link"><i class="fa fa-angle-right"></i></a>
       </li>
       <li class="page-item d-none d-md-inline-flex" (click)="
-          gettinghashList(pagedata.totalPages, paginationForm.value.pagesize)
-        ">
+        gettinghashListFunc(pagedata.totalPages, paginationForm.value.pagesize)
+      ">
         <a class="page-link"><i class="fa fa-angle-double-right"></i></a>
       </li>
     </ul>
   </form>
+  </div>
 </div>
 
-<div class="latest_table mt-3">
+<!-- <div class="latest_table mt-3">
   <h2 class="mb-3 chart_heading px-0 d-inline-block">Peers  
     <span *ngIf="peers && peers.length > 0" class="txn_count txn_peers" >{{
       peers.length | number
@@ -217,38 +312,6 @@
           </div>
         </div>
 
-    <!-- <div class="row">
-      <div class="col-6 col-md-4 tble_col">
-        <div class="block_div">
-          <h5 class="mb-0">{{'home.CAPABILITIES' | translate}}</h5>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 tble_col">
-        <div class="block_div">
-          <h5 class="mb-0">{{'home.USER_AGENT' | translate}}</h5>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 tble_col">
-        <div class="block_div">
-          <h5 class="mb-0">{{'home.VERSION' | translate}}</h5>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 tble_col">
-        <div class="block_div">
-          <h5 class="mb-0">{{'home.ADDR' | translate}}</h5>
-        </div>
-      </div>
-      <div class="col-7 col-sm-6 col-md-4 tble_col">
-        <div class="block_div">
-          <h5 class="mb-0">{{'home.DIRECTION' | translate}}</h5>
-        </div>
-      </div>
-      <div class="col-5 col-sm-6 col-md-4 tble_col">
-        <div class="block_div">
-          <h5 class="mb-0">{{'home.TOTAL_DIFFICULTY' | translate}}</h5>
-        </div>
-      </div>
-    </div> -->
   </div>
   <div [ngClass]="{peer_mobile_table : true, hght_40: peeritem.id != clickPeer }" id="peer_{{peer.id}}"  #peeritem *ngFor="let peer of peers | paginate: { itemsPerPage: 10, currentPage: p }">
 
@@ -302,4 +365,4 @@
 </div>
 
 
-</div>
+</div> -->

@@ -1,45 +1,59 @@
- <footer class="bg-white bg-transparent">
-    <div class="footer">
-      <div class="container">
-        <div class="footer_div py-4">
-          <div class="row">
-            <!-- <div class="col-md-4"> -->
-                <div class="col-sm-6">
-              
-                <!-- <span class="txt_primary">Epic </span><span
+<footer class="bg-white bg-transparent">
+  <div class="footer">
+    <div class="container">
+      <div class="footer_div py-4">
+        <div class="row">
+          <!-- <div class="col-md-4"> -->
+          <div class="col-sm-12">
+            <!-- <span class="txt_primary">Epic </span><span
                   class="txt_secondary">Explorer</span> -->
-                  <div class="logo_img">
-                      <a routerLink="/" class="chart_heading d-inline-block">
-                    <img src="/assets/img/ftrlogo_light.png" height="50"  class="light_theme_display">
-                    <img src="/assets/img/ftrlogo_dark.png" height="50" class="dark_theme_display">
-                  </a>
-                  </div>
-                
-            </div>
-            <div class="col-md-5 col-lg-6 ftr_services d-none">
-              <p><span class="gray_txt">Services:</span> <a href="#">Compare </a> | <a href="#">Charts New </a> | <a href="#">Feed </a> |
-                <a href="#">Broadcast </a> | <a href="#">Markets </a> | <a href="#">Dumps </a> <span class="ftr_links"><a href="#">About </a> | <a href="#">Issues and Requests </a> |
-                <a href="#">API </a> | <a href="#">Contacts </a> | <a href="#">Status </a></span></p>
-            </div>
-            <div class="col-md-4 d-none">
-              <p class="txt_primary privacy_txt mb-0 mt-2 pt-1 ">We care about your Privacy! <a href="#">Read Our Privacy Policy</a></p>
-
-            </div>
-            <!-- <div class="col-md-3 col-lg-4 text-right"> -->
-                <div class="col-sm-6 text-right ftr_lng">
-                    <a  routerLink="/api-index" class="text_underline mr-2" style="font-size: 1rem">API</a>   
-              <div class="dropdown ftr_dropdown pr-2 d-inline-block py-2">
-                <span class="flag" [ngStyle]="{ 'background-image': 'url(assets/img/' + translate.getCurrentLang() + '.jpg)'}"></span> 
-                <!--<span class="flag"  ngIf="translate.getCurrentLang() =='de'" style="background-image: url('assets/img/german.jpg')"></span>-->
-                <select class="langbut ftr_lang mx-1" #langSelect (change)="translate.changeLang(langSelect.value)">
-                  <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}}</option>
-                </select>
-                <i class="arrow_drpdwn"></i>
-              </div>
-              <button (click)="ChangeTheme()" class="theme_switch btn"><img src="assets/img/dark_theme.webp" height="20" class="light_theme_display"><img src="assets/img/light_theme.webp" height="19"  class="dark_theme_display"></button>
+            <div class="logo_img">
+              <a routerLink="/" class="chart_heading d-inline-block">
+                <img src="/assets/img/ftrlogo_light.png" height="50" class="light_theme_display">
+                <img src="/assets/img/ftrlogo_dark.png" height="50" class="dark_theme_display">
+              </a>
             </div>
           </div>
+          <div class="col-md-12 ftr_services">
+            <p><a href="#">Compare </a> | <a href="#">Charts New </a> | <a href="#">Feed </a> |
+              <a href="#">Broadcast </a> | <a href="#">Markets </a> | <a href="#">Dumps </a> <span class="ftr_links d-block"><a
+                  href="#">About </a> | <a href="#">Issues and Requests </a> |
+                <a href="#">API </a> | <a href="#">Contacts </a> | <a href="#">Status </a></span>
+            </p>
+          </div>
+          <div class="col-md-12">
+            <p class="privacy_txt mb-0 mt-2 pt-1 ">We care about your Privacy! <a href="#">Read Our Privacy
+                Policy</a></p>
+          </div>
+          <!-- <div class="col-md-3 col-lg-4 text-right"> -->
+          <!-- <div class="mble_view_hdr ml-auto">
+                <button (click)="ChangeTheme()" class="theme_switch mr-2 btn order-2 order-sm-3"><img
+                  src="assets/img/dark_theme.png" height="20" class="light_theme_display"><img
+                  src="assets/img/light_theme.png" height="20" class="dark_theme_display"></button>
+                  <div class="d-inline-block order-1 order-sm-2 bg-transparent position-relative"> -->
+          <!-- <span class="flag " [ngStyle]="{ 'background-image': 'url(assets/img/' + translate.getCurrentLang() + '.jpg)'}"></span> -->
+          <!--<span class="flag"  ngIf="translate.getCurrentLang() =='de'" style="background-image: url('assets/img/german.jpg')"></span>-->
+          <!-- <select class="langbut py-2 pr-4 pl-2" #langSelect (change)="translate.changeLang(langSelect.value)">
+                      <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}}</option>
+                    </select>
+                    <i class="arrow_drpdwn net_dropdwn"></i>
+                  </div>
+                 
+                </div> -->
+
+                <div class="mble_view_hdr mobfix">
+                  <button (click)="ChangeTheme()" class="theme_switch mr-2 btn"><img
+                    src="assets/img/dark_theme.png" height="20" class="light_theme_display"><img
+                    src="assets/img/light_theme.png" height="20" class="dark_theme_display"></button>
+                    <div class="d-inline-block bg-transparent position-relative">                     
+                      <select class="langbut py-2 pr-4 pl-2" #langSelect (change)="translate.changeLang(langSelect.value)">
+                        <option *ngFor="let lang of translate.getLanguage()" [value]="lang" [selected]="lang == translate.getCurrentLang()">{{translate.langLabel[lang]}}</option>
+                      </select>                      
+                    </div>
+                   
+                  </div>
         </div>
       </div>
-      </div>
-  </footer>
+    </div>
+  </div>
+</footer>

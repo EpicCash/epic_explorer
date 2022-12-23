@@ -1,0 +1,18 @@
+
+ #wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    height: 100%;
+}
+
+#mapdiv {
+    margin: auto;
+    position: relative;
+    top: 0;
+    width: 98%;
+    height: 100%;
+    border: 1px solid #fff;
+    border-radius: 0rem;
+}

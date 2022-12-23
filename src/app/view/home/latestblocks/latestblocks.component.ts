@@ -31,9 +31,21 @@ export class LatestblocksComponent implements OnInit {
   public beforeClick: boolean = false;
   public clickonMobile: boolean = true;
   public peers: any;
+  first = true;
+  currentBlockHeight;
+  apiBlockInterval;
+  CurrentPage;
+  PageSize;
+  pool51_hashrateCuckoo;
+  pool51_hashrateProgPow;
+  pool51_hashrateRandomX;
+  pool51_onlineCuckoo;
+  pool51_onlineProgPow;
+  pool51_onlineRandomX;
+  pool51_currentHeight;
 
   paginationForm = new FormGroup({
-    pagesize: new FormControl(20),
+    pagesize: new FormControl(10),
   });
 
   @ViewChild('block', { read: ViewContainerRef,static: true }) block: ViewContainerRef;
@@ -42,12 +54,70 @@ export class LatestblocksComponent implements OnInit {
   constructor(private chartService: ChartService,public translate: TransServiceService,public http: HttpClient, private resolver: ComponentFactoryResolver) {}
 
   ngOnInit() {
-    this. getpeersList();
-    this.gettinghashList(1, 20);
+    // this. getpeersList();
+    this.gettinghashList(1, 10, this.first);
     this.getLastCeatedBlock();
+    this.get51poolAPI();
   }
 
-  public gettinghashList(CurrentPage, PageSize) {
+  ngAfterViewInit() {
+    this.apiBlockInterval = setInterval(() => {
+      console.log('getLastCeatedBlock called');
+      this.get51poolAPI();
+      // let current_page = localStorage.getItem('CurrentPage');
+      // let page_size = localStorage.getItem('PageSize');
+      let current_page = this.CurrentPage;
+      let page_size = this.PageSize;
+      if( current_page && page_size){
+        this.gettinghashList(current_page, page_size);
+      }else{
+        this.gettinghashList(1, 10);
+      }
+    }, 60 * 1000);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.apiBlockInterval);
+  }
+
+  public get51poolAPI() {
+    return new Promise<void>((resolve, reject) => {
+      this.chartService.apiGetRequest('','/blockchain_block/get51poolapi').subscribe(
+        res => {
+          console.log('get51poolAPI');
+          console.log(res);
+          if (res['status'] == 200) {
+            let json = res.response;
+            // console.log(json.data);
+            let poolStats = json.data.poolStats;
+            this.pool51_hashrateCuckoo = poolStats.hashrateCuckoo;
+            this.pool51_hashrateProgPow = poolStats.hashrateProgPow;
+            this.pool51_hashrateRandomX = poolStats.hashrateRandomX;
+            this.pool51_onlineCuckoo = poolStats.onlineCuckoo;
+            this.pool51_onlineProgPow = poolStats.onlineProgPow;
+            this.pool51_onlineRandomX = poolStats.onlineRandomX;
+            this.pool51_currentHeight = poolStats.currentHeight;
+          }
+        },
+        error => {},
+      );
+    });
+  }
+
+  public gettinghashListFunc(currentPage,pagesize){
+    this.hashvalues = "";
+    this.gettinghashList(
+      currentPage,
+      pagesize
+    )
+  }
+
+  public gettinghashList(CurrentPage, PageSize, first = false) {
+    console.log(CurrentPage, PageSize,this.first);
+    this.CurrentPage = CurrentPage;
+    this.PageSize = PageSize;
+    // localStorage.setItem('CurrentPage',CurrentPage);
+    // localStorage.setItem('PageSize',PageSize);
     let params = new HttpParams();
     this.CurrentpageNumber = CurrentPage;
     params = params.append('CurrentPage', CurrentPage);
@@ -56,6 +126,24 @@ export class LatestblocksComponent implements OnInit {
       res => {
         if (res['status'] == 200) {
           this.pagedata = res.response;
+          if(this.first){
+            console.log('init gettinghashList');
+            res.response.BlockchainBlockResult.shift();
+            this.currentBlockHeight = res.response.BlockchainBlockResult[0].blockchain_block_height;
+            this.first = false;
+            // console.log("this.currentBlockHeight-"+this.currentBlockHeight);
+          }else{
+            console.log('multi gettinghashList');
+            if(this.currentBlockHeight && res.response.BlockchainBlockResult[0].blockchain_block_height){
+              if(res.response.BlockchainBlockResult[0].blockchain_block_height > this.currentBlockHeight){
+                let sizediff = res.response.BlockchainBlockResult[0].blockchain_block_height - this.currentBlockHeight;
+                res.response.BlockchainBlockResult[0].blockchain_highlight = true;
+                console.log(sizediff);
+              }
+            }
+          }
+          // console.log('datas');
+          // console.log(res.response.BlockchainBlockResult);
           this.hashvalues = res.response.BlockchainBlockResult;
           if(CurrentPage == 1){
             this.FirstPageListData = res.response.BlockchainBlockResult;

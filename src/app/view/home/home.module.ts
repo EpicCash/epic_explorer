@@ -15,6 +15,7 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import { TransServiceService } from '../../shared/services/trans-service.service';
 import { ChartService} from '../../shared/services/chart.service';
 import { CustomLoader } from 'src/app/app.module';
+import { Ng2OdometerModule } from 'ng2-odometer';
 
 import {NgxPaginationModule} from 'ngx-pagination';
 
@@ -33,6 +34,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    Ng2OdometerModule,
     TranslateModule.forChild({
       loader: {provide: TranslateLoader, useClass: CustomLoader, deps : [HttpClient]},
   })

@@ -16,6 +16,8 @@ import { ChartService} from '../shared/services/chart.service';
 
 import { PlotlyComponent } from './components/plotly/plotly.component';
 import { CustomLoader } from '../app.module';
+import { LoadingComponent } from './components/loading/loading.component';
+import { SubloadingComponent } from './components/subloading/subloading.component';
 
 
 const components = [
@@ -25,6 +27,8 @@ const components = [
   SearchComponent,
   SiteLayoutComponent,
   SiteheaderComponent,
+  LoadingComponent,
+  SubloadingComponent,
   PlotlyComponent
 ];
 

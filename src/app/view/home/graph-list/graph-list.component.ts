@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { TransServiceService } from '../../../shared/services/trans-service.service';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+declare var OpenLayers: any;
 
 @Component({
   selector: 'epic-explorer-graph-list',
@@ -29,7 +30,7 @@ export class GraphListComponent implements OnInit {
   public linearTotalGraphData: any = [];
   public currenyIntervalDate: any;
   public showcurrentIntervalDate: any;
-  public showcurrentIntervalDatetimestamp : any;
+  public showcurrentIntervalDatetimestamp: any;
   public todaydate = new Date().setDate(new Date().getDate() - 1);
 
   public lg_last: any;
@@ -72,7 +73,8 @@ export class GraphListComponent implements OnInit {
   public TdifficultyRange: any = '1 day';
 
   viewchartvar: boolean;
-
+  public getJSONData: any;// = (geoData as any).default;
+  public map;
   constructor(private chartService: ChartService, private http: HttpClient, public translate: TransServiceService, private router: Router,
   ) {
     if (this.router.url == '/all') {
@@ -115,8 +117,46 @@ export class GraphListComponent implements OnInit {
     this.stackchartreq();
 
     /* Pie chart fetching */
-    this.piechartreq();
+    // this.piechartreq();
+    /*
+    this.chartService.apiGetRequest({}, '/blockchain_kernel/getpeerslocation')
+      .subscribe(res => {
+        if (res['status'] == 200) {
+          const ips = res.response.dataJson.locations;
+          const map = new OpenLayers.Map({
+            div: 'mapdiv'
+          });
 
+          map.addLayer(new OpenLayers.Layer.OSM(
+            'OpenStreetMap',
+            // Official OSM tileset as protocol-independent URLs
+            [
+              '//a.tile.openstreetmap.org/${z}/${x}/${y}.png',
+              '//b.tile.openstreetmap.org/${z}/${x}/${y}.png',
+              '//c.tile.openstreetmap.org/${z}/${x}/${y}.png'
+            ], null));
+          const markers = new OpenLayers.Layer.Markers('Markers');
+          const zoom = 1;
+          map.addLayer(markers);
+
+          if (ips.length > 0) {
+            for (let i = 0; i < ips.length; i++) {
+              const lonLat = new OpenLayers.LonLat(ips[i].longitude, ips[i].latitude)
+                .transform(
+                  new OpenLayers.Projection('EPSG:4326'), // transform from WGS 1984
+                  map.getProjectionObject() // to Spherical Mercator Projection
+                );
+              markers.addMarker(new OpenLayers.Marker(lonLat));
+            }
+          }
+
+          map.setCenter(new OpenLayers.LonLat(0, 0), zoom);
+          map.zoomToMaxExtent();
+        }
+      },
+      error => { },
+    );
+    */
   }
 
   piechartreq(
@@ -124,7 +164,7 @@ export class GraphListComponent implements OnInit {
     ToDate = '',
     interval = '',
   ) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       let params = new HttpParams();
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
@@ -145,7 +185,9 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
+
           error => { },
+
         );
     });
   }
@@ -155,20 +197,20 @@ export class GraphListComponent implements OnInit {
     ToDate = '',
     interval = '',
   ) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       let params = new HttpParams();
       this.stackGraphData = []
-      if(interval == "all") {
+      if (interval == "all") {
         // this.Type=""
         fromDate = "2019-09-03 06:00:00"
         ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
       }
-  
+
 
 
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
-      params = params.append('Interval', (interval == "all")?"":interval);
+      params = params.append('Interval', (interval == "all") ? "" : interval);
       this.chartService
         .apiGetRequest(params, '/blockchain_block/stackblock')
         .subscribe(
@@ -179,7 +221,7 @@ export class GraphListComponent implements OnInit {
               let ProgPow = res.response.ProgPow;
               let RandomX = res.response.RandomX;
               let today_date_index = sDate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
-              this.sg_last = RandomX[today_date_index] +  ProgPow[today_date_index] +  Cuckoo[today_date_index];
+              this.sg_last = RandomX[today_date_index] + ProgPow[today_date_index] + Cuckoo[today_date_index];
               //this.sg_last = RandomX[RandomX.length - 1];
               this.stackchartFunc(
                 sDate,
@@ -190,7 +232,9 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
+
           error => { },
+
         );
     });
   }
@@ -214,23 +258,25 @@ export class GraphListComponent implements OnInit {
       //         resolve();
       //       }
       //     },
+
       //     error => {},
+
       //   );
     });
   }
 
   Transactionlinechartreq(fromDate = '', ToDate = '', interval = '') {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       let params = new HttpParams();
 
-      this.feeGraphData = [] 
-      if(interval == "all") {
-      // this.Type=""
-      fromDate = "2019-09-03 00:00:00"
-      ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
+      this.feeGraphData = []
+      if (interval == "all") {
+        // this.Type=""
+        fromDate = "2019-09-03 00:00:00"
+        ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
       }
 
-      params = params.append('Interval', (interval == "all")?"":interval);
+      params = params.append('Interval', (interval == "all") ? "" : interval);
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
       // params = params.append('Interval', interval);
@@ -254,13 +300,15 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
+
           error => { },
+
         );
     });
   }
 
   Transactionheatmapreq() {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       this.chartService
         .apiGetRequest('', '/blockchain_kernel/transactionheatmap')
         .subscribe(
@@ -296,24 +344,26 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
+
           error => { },
+
         );
     });
   }
 
   Blockminedreq(fromDate = '', ToDate = '', interval = '') {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       let params = new HttpParams();
 
 
-      this.doubleareaGraphData = [] 
-      if(interval == "all") {
-      // this.Type=""
-      fromDate = "2019-09-03 00:00:00"
-      ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
+      this.doubleareaGraphData = []
+      if (interval == "all") {
+        // this.Type=""
+        fromDate = "2019-09-03 00:00:00"
+        ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
       }
 
-      params = params.append('Interval', (interval == "all")?"":interval);
+      params = params.append('Interval', (interval == "all") ? "" : interval);
 
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
@@ -333,7 +383,7 @@ export class GraphListComponent implements OnInit {
               let RandomXper = res.response.RandomXper;
 
               let today_date_index = mDate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
-              
+
               this.dg_last = ProgPow[today_date_index] + Cuckoo[today_date_index] + RandomX[today_date_index];
 
               //this.dg_last = RandomXper[RandomXper.length - 1];
@@ -349,22 +399,24 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
+
           error => { },
+
         );
     });
   }
 
   Blockspersecreq(fromDate = '', ToDate = '', interval = '') {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       let params = new HttpParams();
-      this.areaGraphData = [] 
-      if(interval == "all") {
-      // this.Type=""
-      fromDate = "2019-09-03 00:00:00"
-      ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
+      this.areaGraphData = []
+      if (interval == "all") {
+        // this.Type=""
+        fromDate = "2019-09-03 00:00:00"
+        ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
       }
 
-      params = params.append('Interval', (interval == "all")?"":interval);
+      params = params.append('Interval', (interval == "all") ? "" : interval);
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
       // params = params.append('Interval', interval);
@@ -382,23 +434,25 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
+
           error => { },
+
         );
     });
   }
 
   Growthreq(fromDate = '', ToDate = '', interval = '') {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       let params = new HttpParams();
 
-      this.growthGraphData = [] 
-      if(interval == "all") {
-      // this.Type=""
-      fromDate = "2019-09-04 00:00:00"
-      ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
+      this.growthGraphData = []
+      if (interval == "all") {
+        // this.Type=""
+        fromDate = "2019-09-04 00:00:00"
+        ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
       }
 
-      params = params.append('Interval', (interval == "all")?"":interval);
+      params = params.append('Interval', (interval == "all") ? "" : interval);
 
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
@@ -416,31 +470,33 @@ export class GraphListComponent implements OnInit {
               //this.gg_last = gReward[today_date_index];
               this.gg_last = "4";
               let range = [];
-              if(gaddedreward.length == 1 && gaddedreward[0]!= 0){
-                range = [ (gaddedreward[0] - (gaddedreward[0] * 0.3)), (gaddedreward[0] + (gaddedreward[0] * 0.3)) ];
+              if (gaddedreward.length == 1 && gaddedreward[0] != 0) {
+                range = [(gaddedreward[0] - (gaddedreward[0] * 0.3)), (gaddedreward[0] + (gaddedreward[0] * 0.3))];
               }
               //this.gg_last = gReward[gReward.length - 1];
               this.growthFunc(gDate, gReward, gaddedreward, range);
               resolve();
             }
           },
+
           error => { },
+
         );
     });
   }
 
   Transcationreq(fromDate = '', ToDate = '', interval = '') {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       let params = new HttpParams();
 
 
-      this.transcationGraphData = [] 
-      if(interval == "all") {
+      this.transcationGraphData = []
+      if (interval == "all") {
         fromDate = "2019-09-03 00:00:00"
         ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
       }
 
-      params = params.append('Interval', (interval == "all")?"":interval);
+      params = params.append('Interval', (interval == "all") ? "" : interval);
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
 
@@ -459,7 +515,9 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
+
           error => { },
+
         );
     });
   }
@@ -471,25 +529,25 @@ export class GraphListComponent implements OnInit {
     interval = '',
     type = ''
   ) {
-    
+
     this.Type = type != '' ? type : this.Type == '' ? 'all' : this.Type;
     // loader enable while change tab
-    if(difftype == "total")
+    if (difftype == "total")
       this.linearTotalGraphData = []
-    else if(difftype == "target")
+    else if (difftype == "target")
       this.linearGraphData = []
 
-    if(interval == "all") {
+    if (interval == "all") {
       // this.Type=""
       fromDate = "2019-09-03 00:00:00"
-      ToDate =  moment(new Date()).format("YYYY-MM-DD 23:29:59")
+      ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
     }
 
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       let params = new HttpParams();
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
-      params = params.append('Interval', (interval == "all")?"all":interval);
+      params = params.append('Interval', (interval == "all") ? "all" : interval);
       params = params.append('Type', this.Type);
       params = params.append('Difftype', difftype);
       this.chartService
@@ -514,11 +572,13 @@ export class GraphListComponent implements OnInit {
                         type: 'scatter',
                         name: 'Cuckoo',
                         line: { color: '#f5c330' },
+
                         //hovertemplate: '%{text}<br> Cuckoo : %{y:,}',
                         hovertemplate: 'Cuckoo : %{y:,}',
-                        hoverlabel: {namelength : 0}
+                        hoverlabel: { namelength: 0 }
 
                       },
+
                       {
                         x: DifficultychartDate,
                         y: DifficultyProgpow,
@@ -527,10 +587,12 @@ export class GraphListComponent implements OnInit {
                         type: 'scatter',
                         name: 'ProgPoW',
                         yaxis: 'y2',
-                        line: { color: '#0091ff' },
+                        line: { color: '#C0C0C0' },
+
                         hovertemplate: 'ProgPoW : %{y:,}',
-                        hoverlabel: {namelength : 0}
+                        hoverlabel: { namelength: 0 }
                       },
+
                       {
                         x: DifficultychartDate,
                         y: DifficultyRandomx,
@@ -539,10 +601,12 @@ export class GraphListComponent implements OnInit {
                         type: 'scatter',
                         name: 'RandomX',
                         yaxis: 'y3',
-                        line: { color: '#48dc6b' },
+                        line: { color: '#B87333' },
+
                         hovertemplate: 'RandomX : %{y:,}',
-                        hoverlabel: {namelength : 0}
+                        hoverlabel: { namelength: 0 }
                       },
+
                     ];
                   break;
                 default:
@@ -557,6 +621,7 @@ export class GraphListComponent implements OnInit {
                         type: 'scatter',
                         name: '',
                         line: { color: '#48dc6b' },
+
                         hovertemplate: '%{text}<br> Difficulty : %{y:,}',
                       }];
                   break;
@@ -564,10 +629,10 @@ export class GraphListComponent implements OnInit {
               let range1 = [];
               let range2 = [];
               let range3 = [];              // res.response.Minrange, res.response.Maxrange
-              if(DifficultychartDate.length == 1 && DifficultyCuckatoo[0] != 0 && DifficultyRandomx[0] != 0 && DifficultyProgpow[0] != 0){
-                    range1 = [ (DifficultyCuckatoo[0] - (DifficultyCuckatoo[0] * 0.3)), (DifficultyCuckatoo[0] + (DifficultyCuckatoo[0] * 0.3)) ];
-                    range2 = [ (DifficultyRandomx[0] - (DifficultyRandomx[0] * 0.3)), (DifficultyRandomx[0] + (DifficultyRandomx[0] * 0.3)) ];
-                    range3 = [ (DifficultyProgpow[0] - (DifficultyProgpow[0] * 0.3)), (DifficultyProgpow[0] + (DifficultyProgpow[0] * 0.3)) ];
+              if (DifficultychartDate.length == 1 && DifficultyCuckatoo[0] != 0 && DifficultyRandomx[0] != 0 && DifficultyProgpow[0] != 0) {
+                range1 = [(DifficultyCuckatoo[0] - (DifficultyCuckatoo[0] * 0.3)), (DifficultyCuckatoo[0] + (DifficultyCuckatoo[0] * 0.3))];
+                range2 = [(DifficultyRandomx[0] - (DifficultyRandomx[0] * 0.3)), (DifficultyRandomx[0] + (DifficultyRandomx[0] * 0.3))];
+                range3 = [(DifficultyProgpow[0] - (DifficultyProgpow[0] * 0.3)), (DifficultyProgpow[0] + (DifficultyProgpow[0] * 0.3))];
               }
               let tickformat = res.response.tickFormat;
               // this.lg_last =
@@ -600,32 +665,34 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
+
           error => { },
+
         );
     });
   }
 
-  Blockintervalreq(interval = ''){
+  Blockintervalreq(interval = '') {
     //interval = '2019-08-11';
-    if(interval == "today"){
+    if (interval == "today") {
       this.currenyIntervalDate = moment(new Date()).format('YYYY-MM-DD');
       this.showcurrentIntervalDate = moment(new Date()).format('MM-DD-YYYY');
       this.showcurrentIntervalDatetimestamp = new Date(this.showcurrentIntervalDate).getTime();
-    }else if(interval == "yesterday"){
+    } else if (interval == "yesterday") {
       this.currenyIntervalDate = moment(new Date()).subtract(1, "days").format("YYYY-MM-DD");
       this.showcurrentIntervalDate = moment(new Date()).subtract(1, "days").format("MM-DD-YYYY");
       this.showcurrentIntervalDatetimestamp = new Date(this.showcurrentIntervalDate).getTime();
-    }else if(interval == "previous"){
+    } else if (interval == "previous") {
       var currentdate = this.currenyIntervalDate;
       this.currenyIntervalDate = moment(currentdate).subtract(1, "days").format("YYYY-MM-DD");
       this.showcurrentIntervalDate = moment(currentdate).subtract(1, "days").format("MM-DD-YYYY");
       this.showcurrentIntervalDatetimestamp = new Date(this.showcurrentIntervalDate).getTime();
-    }else if(interval == "next"){
+    } else if (interval == "next") {
       var currentdate = this.currenyIntervalDate;
       this.currenyIntervalDate = moment(currentdate).add(1, "days").format("YYYY-MM-DD");
       this.showcurrentIntervalDate = moment(currentdate).add(1, "days").format("MM-DD-YYYY");
       this.showcurrentIntervalDatetimestamp = new Date(this.showcurrentIntervalDate).getTime();
-    }else{
+    } else {
       this.currenyIntervalDate = moment(new Date()).format('YYYY-MM-DD');
       this.showcurrentIntervalDate = moment(new Date()).format('MM-DD-YYYY');
       this.showcurrentIntervalDatetimestamp = new Date(this.showcurrentIntervalDate).getTime();
@@ -633,7 +700,7 @@ export class GraphListComponent implements OnInit {
     // console.log(this.currenyIntervalDate);
     // console.log(this.showcurrentIntervalDate);
     interval = this.currenyIntervalDate;
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       let params = new HttpParams();
       params = params.append('Interval', interval);
       this.chartService
@@ -644,12 +711,14 @@ export class GraphListComponent implements OnInit {
               let BlocksChartHeight = res.response.Blocks;
               let Blockval = res.response.alter;
               this.blockinteval_last = Blockval[Blockval.length - 1];
-              var range = [ BlocksChartHeight[0], BlocksChartHeight[BlocksChartHeight.length-1] ];
+              var range = [BlocksChartHeight[0], BlocksChartHeight[BlocksChartHeight.length - 1]];
               this.BlocksIntevalFunc(BlocksChartHeight, Blockval, range);
               resolve();
             }
           },
+
           error => { },
+
         );
     });
   }
@@ -659,16 +728,16 @@ export class GraphListComponent implements OnInit {
     ToDate = '',
     interval = '',
   ) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       let params = new HttpParams();
-      this.barGraphData = [] 
-      if(interval == "all") {
+      this.barGraphData = []
+      if (interval == "all") {
         // this.Type=""
         fromDate = "2019-09-03 00:00:00"
-        ToDate =  moment(new Date()).format("YYYY-MM-DD 23:29:59")
+        ToDate = moment(new Date()).format("YYYY-MM-DD 23:29:59")
       }
 
-      params = params.append('Interval', (interval == "all")?"":interval);
+      params = params.append('Interval', (interval == "all") ? "" : interval);
       params = params.append('FromDate', fromDate);
       params = params.append('ToDate', ToDate);
       // params = params.append('Interval', interval);
@@ -687,29 +756,30 @@ export class GraphListComponent implements OnInit {
               resolve();
             }
           },
+
           error => { },
+
         );
     });
   }
 
   difficultyChartFunc(DifficultychartDate, data, Type, range1, range2, range3, tickformat) {
     let dtickval;
-    if(tickformat == "%H-%M")
+    if (tickformat == "%H-%M")
       dtickval = ''
-    else if(DifficultychartDate.length <21712)
-      dtickval =2*24*60*60*1000
-    else 
-      dtickval =6*24*60*60*1000
+    else if (DifficultychartDate.length < 21712)
+      dtickval = 2 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 6 * 24 * 60 * 60 * 1000
 
     let window_width = window.screen.width;
     let position = 0.00;
     let angle = 0;
     let domain_start = 0;
     let left_margin = 5;
-    let cuckoo_position=null;
-    let right_margin= 10;
-    if(window_width > 700)
-    {
+    let cuckoo_position = null;
+    let right_margin = 10;
+    if (window_width > 700) {
       position = 0.10;
       angle = 0;
       domain_start = 0.18;
@@ -717,13 +787,12 @@ export class GraphListComponent implements OnInit {
       cuckoo_position = null;
       right_margin = 10;
     }
-    else
-    {
+    else {
       position = 0.03;
       angle = -45;
       domain_start = 0.23;
       left_margin = 25;
-      cuckoo_position= 0.20;
+      cuckoo_position = 0.20;
       right_margin = 20;
     }
 
@@ -735,34 +804,39 @@ export class GraphListComponent implements OnInit {
         height: 250,
         autosize: true,
         showlegend: true,
-        legend: {"orientation": "h",
-               x: 0.1, y: -0.5,font :{ 'size': 10}},
+        legend: {
+          "orientation": "h",
+          x: 0.1, y: -0.5, font: { 'size': 10 }
+        },
+
         xaxis: {
           tickangle: -45,
           tickformat: tickformat,
           // fixedrange: true,
           rangemode: 'nonnegative',
           domain: [domain_start, 0.9],
-          tick0:DifficultychartDate[0],
-          dtick:dtickval,
+          tick0: DifficultychartDate[0],
+          dtick: dtickval,
           // showgrid: true          
-          tickfont: {            
+          tickfont: {
             size: 12
           }
         },
+
         yaxis: {
           title: 'Cuckoo',
           fixedrange: true,
           rangemode: 'nonnegative',
           // showgrid: true,
           range: range1,
-          ticks:'outside',
+          ticks: 'outside',
           // position:cuckoo_position,
           tickangle: angle,
-          tickfont: {            
+          tickfont: {
             size: 12
           }
         },
+
         yaxis2: {
           title: 'ProgPoW',
           fixedrange: true,
@@ -773,48 +847,52 @@ export class GraphListComponent implements OnInit {
           // side: 'left',
           position: position,
           tickangle: angle,
-          tickfont: {            
+          tickfont: {
             size: 12
           }
         },
+
         yaxis3: {
           title: 'RandomX',
           fixedrange: true,
           // showgrid: true,
           range: range2,
-          ticks:'outside',
+          ticks: 'outside',
           anchor: 'x',
           overlaying: 'y',
           rangemode: 'nonnegative',
           side: 'right',
-          position: 0.00 ,
+          position: 0.00,
           tickangle: angle,
-          tickfont: {            
+          tickfont: {
             size: 12
           }
 
         },
+
         margin: {
           l: left_margin,
           r: right_margin,
           b: 50,
           t: 50,
         },
+
       },
+
     };
   }
 
   stackchartFunc(sDate, Cuckoo, ProgPow, RandomX) {
 
     let dtickval;
-    if(sDate.length <10)
-      dtickval =2*24*60*60*1000
-    else if(sDate.length <20)
-      dtickval =4*24*60*60*1000
-    else if(sDate.length <40)
-      dtickval =6*24*60*60*1000
-    else 
-      dtickval =8*24*60*60*1000
+    if (sDate.length < 10)
+      dtickval = 2 * 24 * 60 * 60 * 1000
+    else if (sDate.length < 20)
+      dtickval = 4 * 24 * 60 * 60 * 1000
+    else if (sDate.length < 40)
+      dtickval = 6 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 8 * 24 * 60 * 60 * 1000
 
     this.stackGraphData = {
       data: [
@@ -825,11 +903,14 @@ export class GraphListComponent implements OnInit {
           type: 'bar',
           text: Cuckoo,
           hovertemplate: '%{x}<br> Cuckoo : %{text:,}',
-          hoverlabel: {namelength : 0},
+          hoverlabel: { namelength: 0 },
+
           marker: {
             color: '#bf9b30',
           },
+
         },
+
         // {
         //   x: sDate,
         //   y: Cuckatoo,
@@ -840,7 +921,9 @@ export class GraphListComponent implements OnInit {
         //   marker: {
         //     color: '#54CFDC',
         //   },
+
         // },
+
         {
           x: sDate,
           y: ProgPow,
@@ -848,11 +931,14 @@ export class GraphListComponent implements OnInit {
           type: 'bar',
           text: ProgPow,
           hovertemplate: '%{x}<br> ProgPoW : %{text:,}',
-          hoverlabel: {namelength : 0},
+          hoverlabel: { namelength: 0 },
+
           marker: {
             color: '#48dc6b',
           },
+
         },
+
         {
           x: sDate,
           y: RandomX,
@@ -860,10 +946,12 @@ export class GraphListComponent implements OnInit {
           type: 'bar',
           text: RandomX,
           hovertemplate: '%{x}<br> RandomX : %{text:,}',
-          hoverlabel: {namelength : 0},
+          hoverlabel: { namelength: 0 },
+
           marker: {
             color: '#0091ff',
           },
+
         }
 
       ],
@@ -873,8 +961,11 @@ export class GraphListComponent implements OnInit {
         height: 250,
         autosize: true,
         showlegend: true,
-        legend: {"orientation": "h",
-        x: 0.35, y: -0.5,font :{ 'size': 10}},
+        legend: {
+          "orientation": "h",
+          x: 0.35, y: -0.5, font: { 'size': 10 }
+        },
+
         barmode: 'relative',
         xaxis: {
           showgrid: true,
@@ -883,9 +974,10 @@ export class GraphListComponent implements OnInit {
           tickformat: '%m-%d',
           rangemode: 'nonnegative',
           fixedrange: true,
-          tick0:sDate[0],
-          dtick:dtickval
+          tick0: sDate[0],
+          dtick: dtickval
         },
+
         yaxis: {
           showline: false,
           title: 'Blocks',
@@ -893,13 +985,16 @@ export class GraphListComponent implements OnInit {
           fixedrange: true,
           showgrid: true
         },
+
         margin: {
           l: 50,
           r: 2,
           b: 50,
           t: 50,
         },
+
       },
+
       options: null,
     };
   }
@@ -928,19 +1023,23 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true
         },
+
         yaxis: {
           title: 'Blocks',
           showgrid: true,
           fixedrange: true,
           rangemode: 'nonnegative'
         },
+
         margin: {
           l: 50,
           r: 2,
           b: 50,
           t: 50,
         },
+
       },
+
       options: null,
     };
   }
@@ -959,7 +1058,9 @@ export class GraphListComponent implements OnInit {
             color: '#bf9b30',
             colorscale: 'Viridis',
           },
+
         },
+
         {
           name: 'Average Block Interval',
           y: [60],
@@ -980,39 +1081,43 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true
         },
+
         yaxis: {
           title: 'Seconds',
           showgrid: true,
           fixedrange: true,
           rangemode: 'nonnegative'
         },
+
         margin: {
           l: 50,
           r: 2,
           b: 50,
           t: 50,
         },
+
       },
+
       options: null,
     };
-        console.log(this.barGraphIntevalData.data)
+    console.log(this.barGraphIntevalData.data)
   }
 
 
   totalBlocksFunc(DifficultychartDate, Blockval) {
 
-    
+
     let dtickval;
-    if(DifficultychartDate.length <5)
-      dtickval =1*24*60*60*1000
-    else if(DifficultychartDate.length <10)
-      dtickval =2*24*60*60*1000
-    else if(DifficultychartDate.length <20)
-      dtickval =4*24*60*60*1000
-    else if(DifficultychartDate.length <40)
-      dtickval =6*24*60*60*1000
-    else 
-      dtickval =8*24*60*60*1000
+    if (DifficultychartDate.length < 5)
+      dtickval = 1 * 24 * 60 * 60 * 1000
+    else if (DifficultychartDate.length < 10)
+      dtickval = 2 * 24 * 60 * 60 * 1000
+    else if (DifficultychartDate.length < 20)
+      dtickval = 4 * 24 * 60 * 60 * 1000
+    else if (DifficultychartDate.length < 40)
+      dtickval = 6 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 8 * 24 * 60 * 60 * 1000
 
 
     this.barGraphData = {
@@ -1028,7 +1133,9 @@ export class GraphListComponent implements OnInit {
             color: "#bf9b30",
             colorscale: 'Viridis',
           },
+
         },
+
       ],
       layout: {
         hovermode: 'closest',
@@ -1041,22 +1148,26 @@ export class GraphListComponent implements OnInit {
           showgrid: true,
           fixedrange: true,
           rangemode: 'nonnegative',
-          tick0:DifficultychartDate[0],
-          dtick:dtickval
+          tick0: DifficultychartDate[0],
+          dtick: dtickval
         },
+
         yaxis: {
           title: 'Blocks',
           rangemode: 'nonnegative',
           showgrid: true,
           fixedrange: true
         },
+
         margin: {
           l: 50,
           r: 2,
           b: 50,
           t: 50,
         },
+
       },
+
       options: null,
     };
   }
@@ -1065,14 +1176,14 @@ export class GraphListComponent implements OnInit {
 
 
     let dtickval;
-    if(TfDate.length <10)
-      dtickval =2*24*60*60*1000
-    else if(TfDate.length <20)
-      dtickval =4*24*60*60*1000
-    else if(TfDate.length <40)
-      dtickval =6*24*60*60*1000
-    else 
-      dtickval =8*24*60*60*1000
+    if (TfDate.length < 10)
+      dtickval = 2 * 24 * 60 * 60 * 1000
+    else if (TfDate.length < 20)
+      dtickval = 4 * 24 * 60 * 60 * 1000
+    else if (TfDate.length < 40)
+      dtickval = 6 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 8 * 24 * 60 * 60 * 1000
 
 
     this.transcationGraphData = {
@@ -1087,7 +1198,9 @@ export class GraphListComponent implements OnInit {
           line: {
             color: '#bf9b30',
           },
+
         },
+
       ],
       layout: {
         hovermode: 'closest',
@@ -1098,33 +1211,37 @@ export class GraphListComponent implements OnInit {
           tickformat: '%m-%d',
           rangemode: 'nonnegative',
           fixedrange: true,
-          showgrid: true,   
-          tick0:TfDate[0],
-          dtick:dtickval,
-          tickfont: {            
+          showgrid: true,
+          tick0: TfDate[0],
+          dtick: dtickval,
+          tickfont: {
             size: 11
           }
         },
+
         yaxis: {
           title: 'Tx Fee',
           rangemode: 'nonnegative',
           fixedrange: true,
           // showgrid: true,
           tickangle: -15,
-          ticks:'outside',
+          ticks: 'outside',
           // dtick :0.02,
-          position:0.0001,
-          tickfont: {            
+          position: 0.0001,
+          tickfont: {
             size: 11
           }
         },
+
         margin: {
           l: 60,
           r: 2,
           b: 50,
           t: 50,
         },
+
       },
+
       options: null,
     };
   }
@@ -1132,14 +1249,14 @@ export class GraphListComponent implements OnInit {
   growthFunc(gDate, gReward, gaddedreward, range) {
 
     let dtickval;
-    if(gDate.length <10)
-      dtickval =2*24*60*60*1000
-    else if(gDate.length <20)
-      dtickval =4*24*60*60*1000
-    else if(gDate.length <40)
-      dtickval =6*24*60*60*1000
-    else 
-      dtickval =8*24*60*60*1000
+    if (gDate.length < 10)
+      dtickval = 2 * 24 * 60 * 60 * 1000
+    else if (gDate.length < 20)
+      dtickval = 4 * 24 * 60 * 60 * 1000
+    else if (gDate.length < 40)
+      dtickval = 6 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 8 * 24 * 60 * 60 * 1000
 
     this.growthGraphData = {
       data: [
@@ -1155,10 +1272,12 @@ export class GraphListComponent implements OnInit {
             color: '#bf9b30',
             width: 3,
           },
+
           text: gReward,
           hovertemplate:
             '%{x}<br> Supply per day : %{text:,}<br> Total supply : %{y:,}',
         },
+
       ],
       layout: {
         hovermode: 'closest',
@@ -1172,40 +1291,44 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
-          tick0:gDate[0],
-          dtick:dtickval
+          tick0: gDate[0],
+          dtick: dtickval
         },
+
         yaxis: {
           title: 'Total Reward Supply',
           rangemode: 'nonnegative',
-          ticks:'outside',
+          ticks: 'outside',
           fixedrange: true,
           showgrid: true,
-          range : range,
+          range: range,
           //tickformat :".0f",
           tickprefix: '                '
         },
+
         margin: {
           l: 60,
           r: 2,
           b: 50,
           t: 50,
         },
+
       },
+
       options: null,
     };
   }
 
   blockspersecFunc(bDate, bPeriod) {
     let dtickval;
-    if(bDate.length <10)
-      dtickval =2*24*60*60*1000
-    else if(bDate.length <20)
-      dtickval =4*24*60*60*1000
-    else if(bDate.length <40)
-      dtickval =6*24*60*60*1000
-    else 
-      dtickval =8*24*60*60*1000
+    if (bDate.length < 10)
+      dtickval = 2 * 24 * 60 * 60 * 1000
+    else if (bDate.length < 20)
+      dtickval = 4 * 24 * 60 * 60 * 1000
+    else if (bDate.length < 40)
+      dtickval = 6 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 8 * 24 * 60 * 60 * 1000
     this.areaGraphData = {
       data: [
         {
@@ -1219,7 +1342,9 @@ export class GraphListComponent implements OnInit {
           line: {
             color: '#bf9b30',
           },
+
         },
+
       ],
       layout: {
         hovermode: 'closest',
@@ -1232,22 +1357,26 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
-          tick0:bDate[0],
-          dtick:dtickval
+          tick0: bDate[0],
+          dtick: dtickval
         },
+
         yaxis: {
           title: 'Seconds / Block',
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
         },
+
         margin: {
           l: 50,
           r: 2,
           b: 50,
           t: 50,
         },
+
       },
+
       options: null,
     };
   }
@@ -1255,14 +1384,14 @@ export class GraphListComponent implements OnInit {
   blockminedFunc(mDate, ProgPow, Cuckoo, RandomX, ProgPowper, Cuckooper, RandomXper) {
 
     let dtickval;
-    if(mDate.length <10)
-      dtickval =2*24*60*60*1000
-    else if(mDate.length <20)
-      dtickval =4*24*60*60*1000
-    else if(mDate.length <40)
-      dtickval =6*24*60*60*1000
-    else 
-      dtickval =8*24*60*60*1000
+    if (mDate.length < 10)
+      dtickval = 2 * 24 * 60 * 60 * 1000
+    else if (mDate.length < 20)
+      dtickval = 4 * 24 * 60 * 60 * 1000
+    else if (mDate.length < 40)
+      dtickval = 6 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 8 * 24 * 60 * 60 * 1000
 
     this.doubleareaGraphData = {
       data: [
@@ -1271,14 +1400,17 @@ export class GraphListComponent implements OnInit {
           y: Cuckooper,
           text: Cuckoo,
           hovertemplate: 'Cuckoo : %{y} % ( %{text:,} )',
-          hoverlabel: {namelength : 0},
+          hoverlabel: { namelength: 0 },
+
           name: 'Cuckoo',
           fill: 'tozeroy',
           type: 'line',
           line: {
             color: '#bf9b30',
           },
+
         },
+
         // {
         //   x: mDate,
         //   y: Cuckatooper,
@@ -1290,69 +1422,84 @@ export class GraphListComponent implements OnInit {
         //   line: {
         //     color: '#f5c1a9',
         //   },
+
         // },
+
         {
           x: mDate,
           y: RandomXper,
           text: RandomX,
           hovertemplate: 'RandomX : %{y} % ( %{text:,} )',
-          hoverlabel: {namelength : 0},
+          hoverlabel: { namelength: 0 },
+
           fill: 'tozeroy',
           type: 'line',
           name: 'RandomX',
           line: {
             color: '#0091ff',
           },
+
         },
+
         {
           x: mDate,
           y: ProgPowper,
           text: ProgPow,
           hovertemplate: 'ProgPoW : %{y} % ( %{text:,} )',
-          hoverlabel: {namelength : 0},
+          hoverlabel: { namelength: 0 },
+
           fill: 'tozeroy',
           type: 'line',
           name: 'ProgPoW',
           line: {
             color: '#48dc6b',
           },
+
         },
+
       ],
       layout: {
         hovermode: 'closest',
         height: 250,
         autosize: true,
         showlegend: true,
-        legend: {"orientation": "h",
-        x: 0.35, y: -0.5,font :{ 'size': 10}},
+        legend: {
+          "orientation": "h",
+          x: 0.35, y: -0.5, font: { 'size': 10 }
+        },
+
         xaxis: {
           tickformat: '%m-%d',
           tickangle: -45,
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
-          tick0:mDate[0],
+          tick0: mDate[0],
           dtick: dtickval
         },
+
         yaxis: {
           title: 'Percentage(%)',
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
         },
+
         margin: {
           l: 50,
           r: 2,
           b: 50,
           t: 50,
         },
+
       },
+
       options: null,
     };
   }
 
   transactionheatmapFunc(tDate, tHour, tInput, hovertext) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       this.heatMapGrowthData = {
         data: [
           {
@@ -1363,22 +1510,24 @@ export class GraphListComponent implements OnInit {
             text: hovertext,
             hovertemplate: hovertext + ': %{z:,} ',
             colorscale: [[0.0, "rgb(107,113,229"],
-                [0.1111111111111111, "rgb(0,145,255)"],
-                [0.2222222222222222, "rgb(44,187,232)"],
-                [0.3333333333333333, "rgb(97,211,254)"],
-                [0.4444444444444444, "rgb(72,220,107)"],
-                [0.5555555555555556, "rgb(255,209,0)"],
-                [0.6666666666666666, "rgb(255,166,0)"],
-                [0.7777777777777778, "rgb(255,72,102)"],
-                [0.8888888888888888, "rgb(254,85,51)"],
-                [1.0, "rgb(254,85,51)"]],
+            [0.1111111111111111, "rgb(0,145,255)"],
+            [0.2222222222222222, "rgb(44,187,232)"],
+            [0.3333333333333333, "rgb(97,211,254)"],
+            [0.4444444444444444, "rgb(72,220,107)"],
+            [0.5555555555555556, "rgb(255,209,0)"],
+            [0.6666666666666666, "rgb(255,166,0)"],
+            [0.7777777777777778, "rgb(255,72,102)"],
+            [0.8888888888888888, "rgb(254,85,51)"],
+            [1.0, "rgb(254,85,51)"]],
             //colors : colorRamp(c("red", "green")),
             type: 'heatmap',
             visible: true,
             colorbar: { thickness: 3 },
+
             xgap: 1,
             ygap: 1,
           },
+
         ],
         layout: {
           hovermode: 'closest',
@@ -1389,6 +1538,7 @@ export class GraphListComponent implements OnInit {
           font: {
             size: 8.5,
           },
+
           xaxis: {
             ticks: '',
             tickangle: screen.width < 767 ? '-90' : 360,
@@ -1399,6 +1549,7 @@ export class GraphListComponent implements OnInit {
             fixedrange: true,
             autosize: true,
           },
+
           yaxis: {
             ticks: '',
             ticksuffix: ' ',
@@ -1409,14 +1560,17 @@ export class GraphListComponent implements OnInit {
             rangemode: 'nonnegative',
             fixedrange: true,
           },
+
           margin: {
             l: 35,
             r: 2,
             b: 50,
             t: 50,
           },
+
           showlegend: false,
         },
+
         options: null,
       };
       resolve();
@@ -1425,14 +1579,14 @@ export class GraphListComponent implements OnInit {
   transactionlinechartFunc(Tdate, Ttotalinput, Ttotalkernal, Ttotaloutput) {
 
     let dtickval;
-    if(Tdate.length <10)
-      dtickval =2*24*60*60*1000
-    else if(Tdate.length <20)
-      dtickval =4*24*60*60*1000
-    else if(Tdate.length <40)
-      dtickval =6*24*60*60*1000
-    else 
-      dtickval =8*24*60*60*1000
+    if (Tdate.length < 10)
+      dtickval = 2 * 24 * 60 * 60 * 1000
+    else if (Tdate.length < 20)
+      dtickval = 4 * 24 * 60 * 60 * 1000
+    else if (Tdate.length < 40)
+      dtickval = 6 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 8 * 24 * 60 * 60 * 1000
 
     this.feeGraphData = {
       data: [
@@ -1444,9 +1598,12 @@ export class GraphListComponent implements OnInit {
           y: Ttotalinput,
           text: Ttotalinput,
           hovertemplate: 'Total Input : %{text:,} ',
-          hoverlabel: {namelength : 0},
+          hoverlabel: { namelength: 0 },
+
           line: { color: '#bf9b30' },
+
         },
+
         {
           type: 'scatter',
           mode: 'lines',
@@ -1455,9 +1612,12 @@ export class GraphListComponent implements OnInit {
           y: Ttotalkernal,
           text: Ttotalkernal,
           hovertemplate: 'Total Kernel : %{text:,} ',
-          hoverlabel: {namelength : 0},
+          hoverlabel: { namelength: 0 },
+
           line: { color: '#0091ff' },
+
         },
+
         {
           type: 'scatter',
           mode: 'lines',
@@ -1466,9 +1626,12 @@ export class GraphListComponent implements OnInit {
           y: Ttotaloutput,
           text: Ttotaloutput,
           hovertemplate: 'Total Output : %{text:,} ',
-          hoverlabel: {namelength : 0},
+          hoverlabel: { namelength: 0 },
+
           line: { color: '#48dc6b' },
+
         },
+
       ],
       layout: {
         autosize: true,
@@ -1481,27 +1644,33 @@ export class GraphListComponent implements OnInit {
           rangemode: 'nonnegative',
           fixedrange: true,
           tickangle: -45,
-          tick0:Tdate[0],
+          tick0: Tdate[0],
           dtick: dtickval
         },
+
         yaxis: {
           showline: false,
           title: 'Transactions',
-          ticks:'outside',
+          ticks: 'outside',
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
         },
+
         margin: {
           l: 60,
           r: 5,
           b: 50,
           t: 50,
         },
+
         showlegend: true,
-        legend: {"orientation": "h",
-        x: 0.05, y: -0.5,font :{ 'size': 10}}
+        legend: {
+          "orientation": "h",
+          x: 0.05, y: -0.5, font: { 'size': 10 }
+        }
       },
+
       options: null,
     };
   }
@@ -1517,7 +1686,9 @@ export class GraphListComponent implements OnInit {
           text: H29,
           hovertemplate: 'cuckARoo29 : %{text:,} GH/s',
           line: { color: '#2a4bf7' },
+
         },
+
         {
           type: 'scatter',
           mode: 'lines',
@@ -1527,7 +1698,9 @@ export class GraphListComponent implements OnInit {
           text: H31,
           hovertemplate: 'cuckAToo31 : %{text:,} GH/s',
           line: { color: '#3ff367' },
+
         },
+
       ],
       layout: {
         autosize: false,
@@ -1540,6 +1713,7 @@ export class GraphListComponent implements OnInit {
           fixedrange: true,
           rangemode: 'nonnegative'
         },
+
         yaxis: {
           showline: false,
           title: 'Estimated Hashrate (GH/s)',
@@ -1547,28 +1721,31 @@ export class GraphListComponent implements OnInit {
           fixedrange: true,
           rangemode: 'nonnegative',
         },
+
         margin: {
           l: 50,
           r: 2,
           b: 50,
           t: 50,
         },
+
         showlegend: false,
       },
+
       options: null,
     };
   }
   totaldifficultyChartFunc(DifficultychartDate, data, type, range1, range2, range3, tickformat) {
 
     let dtickval;
-    if(tickformat == "%H-%M")
+    if (tickformat == "%H-%M")
       dtickval = ''
-    else if(DifficultychartDate.length <22712)
-      dtickval =2*24*60*60*1000
-    else 
-      dtickval =6*24*60*60*1000
+    else if (DifficultychartDate.length < 22712)
+      dtickval = 2 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 6 * 24 * 60 * 60 * 1000
 
-      
+
 
     let window_width = window.screen.width;
     let position = 0.00;
@@ -1576,24 +1753,22 @@ export class GraphListComponent implements OnInit {
     let domain_start = 0;
     let left_margin = 5;
     let tick_size = 11;
-    let right_margin= 10;
-    if(window_width > 700)
-    {
+    let right_margin = 10;
+    if (window_width > 700) {
       position = 0.10;
       angle = 0;
       domain_start = 0.18;
       left_margin = 5;
       tick_size = 12;
-      right_margin= 10;
+      right_margin = 10;
     }
-    else
-    {
+    else {
       position = 0.17;
       angle = -45;
       domain_start = 0.34;
       left_margin = 5;
       tick_size = 10;
-      right_margin= 20;
+      right_margin = 20;
     }
     this.linearTotalGraphData = {
       data: data,
@@ -1602,29 +1777,34 @@ export class GraphListComponent implements OnInit {
         height: 250,
         autosize: true,
         showlegend: true,
-        legend: {"orientation": "h",
-        x: 0.1, y: -0.5,font :{ 'size': 10}},
+        legend: {
+          "orientation": "h",
+          x: 0.1, y: -0.5, font: { 'size': 10 }
+        },
+
         xaxis: {
           tickangle: -40,
           tickformat: tickformat,
-          tick0:DifficultychartDate[0],
-          dtick:dtickval,
+          tick0: DifficultychartDate[0],
+          dtick: dtickval,
           // fixedrange: true,
           domain: [domain_start, 0.9]
           // showgrid: true
         },
+
         yaxis: {
           title: 'Cuckoo',
           fixedrange: true,
           rangemode: 'nonnegative',
           // position: 0.33,
           range: range1,
-          ticks:'outside',
+          ticks: 'outside',
           tickangle: angle,
-          tickfont: {            
+          tickfont: {
             size: 12
           }
         },
+
         yaxis2: {
           title: 'ProgPoW',
           fixedrange: true,
@@ -1634,36 +1814,40 @@ export class GraphListComponent implements OnInit {
           overlaying: 'y',
           rangemode: 'nonnegative',
           // side: 'right',
-          position: position ,
+          position: position,
           tickangle: angle,
-          tickfont: {            
+          tickfont: {
             size: tick_size
           }
         },
+
         yaxis3: {
           title: 'RandomX',
           fixedrange: true,
           // showgrid: true,
           range: range2,
-          ticks:'outside',
+          ticks: 'outside',
           rangemode: 'nonnegative',
           anchor: 'x',
           overlaying: 'y',
           side: 'right',
-          position: 0.00 ,
+          position: 0.00,
           tickangle: angle,
-          tickfont: {            
+          tickfont: {
             size: 12
           }
 
         },
+
         margin: {
           l: left_margin,
           r: right_margin,
           b: 50,
           t: 50,
         },
+
       },
+
     };
   }
 }

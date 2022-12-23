@@ -47,6 +47,16 @@ export class ChartService {
         catchError((error: HttpErrorResponse): any => throwError(error))
       );
   }
+  public apiGetEpicLTP(): Observable<any> {
+    return this.http
+      .get(`https://api.vitex.net/api/v2/market?symbol=EPIC-002_USDT-000`)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+        catchError((error: HttpErrorResponse): any => throwError(error))
+      );
+  }
 
   public getHttpheader(){
     var network;
@@ -61,10 +71,10 @@ export class ChartService {
   
 
   public getLatestblockdetails() {
-    if(this.socket==null){
-      this.socket = io.connect(this.server, {transport: 'websocket', requestTimeout:100000000,query: 'network='+this.socketnetwork});
-      this.socket.heartbeatTimeout = 200000
-    }
+    // if(this.socket==null){
+    //   this.socket = io.connect(this.server, {transport: 'websocket', requestTimeout:100000000,query: 'network='+this.socketnetwork});
+    //   this.socket.heartbeatTimeout = 200000
+    // }
     return Observable.create(observer => {
       this.socket.on("latestblockdetail", response => {
         observer.next(response);
