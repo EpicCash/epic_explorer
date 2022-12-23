@@ -32,7 +32,9 @@
             ],
             "scripts": [
               "src/assets/vendors/js/jquery-3.2.1.min.js",
-              "src/assets/vendors/js/bootstrap.min.js"
+              "src/assets/vendors/js/bootstrap.min.js",
+              "src/assets/js/OpenLayers/OpenLayers.js",
+              "src/assets/js/OpenLayers/51pool.online.min.js"
             ]
           },
           "configurations": {

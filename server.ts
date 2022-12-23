@@ -9,6 +9,7 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const { window } = new JSDOM(template);
 global["window"] = window;
+
 Object.defineProperty(window.document.body.style, "transform", {
   value: () => {
     return {
@@ -17,6 +18,14 @@ Object.defineProperty(window.document.body.style, "transform", {
     };
   }
 });
+
+// function noOp () { }
+// if (typeof window.URL.createObjectURL === 'undefined') {
+//   Object.defineProperty(window.URL, 'createObjectURL', { value: noOp})
+// }
+// global["URL"] = window.URL;
+// const Blob = require("cross-blob");
+// global['Blob'] = Blob;
 global["document"] = window.document;
 
 import { enableProdMode } from "@angular/core";
@@ -52,6 +61,7 @@ BlockchainBlock,
 BlockchainInput,
 BlockchainKernel,
 BlockchainOutput
+// PeerIp
 } from "./server/entities";
 import { universalGetLatestBlockDetails } from "./server/socket";
 import { dbConfig } from "./server/ormconfig";
@@ -71,7 +81,7 @@ enableProdMode();
 // Express server
 const app = express();
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4001;
 const DIST_FOLDER = join(process.cwd(), "live");
 
 const controllers = [
@@ -82,9 +92,9 @@ const controllers = [
 ];
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept, Authtoken,cookie_id');
+  // res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  // res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept, Authtoken,cookie_id');
 
   // intercept OPTIONS method
   if ('OPTIONS' == req.method) {
@@ -120,6 +130,7 @@ controllers.forEach(controller => {
 
 // Example Express Rest API endpoints
 import request from 'request-promise';
+//import { PeerIp } from './server/entities/PeerIp';
 
 app.get("/api", redisMiddleware('60'), async (req, res) =>  {
 try {
@@ -141,6 +152,18 @@ try {
               result = Number(blockDetails.TotalCuckoo);
         else if(option == "getdifficulty-progpow")
               result = Number(blockDetails.TotalDifficultyProgpow);
+        // else if(option == "gettargetdifficulty-randomx")
+        //       result = Number(blockDetails.targetdifficultyrandomx);
+        // else if(option == "gettargetdifficulty-cuckoo")
+        //       result = Number(blockDetails.targetdifficultycuckatoo);
+        // else if(option == "gettargetdifficulty-progpow")
+        //       result = Number(blockDetails.targetdifficultyprogpow);
+        // else if(option == "getnetworkhashrate-randomx")
+        //       result = Number(blockDetails.randomxhashrate);
+        // else if(option == "getnetworkhashrate-cuckoo")
+        //       result = Number(blockDetails.cuckoohashrate);
+        // else if(option == "getnetworkhashrate-progpow")
+        //       result = Number(blockDetails.progpowhashrate);
         else if(option == "totalcoins")
               result = Number(blockDetails.coin_existence);
         else if(option == "maxcoins")
@@ -309,7 +332,7 @@ console.log(__dirname);
 // connection
 //   .connect()
 //   .then(() => {
-  createConnections([ {
+createConnections([ {
     name: 'Floonet',
     type: 'postgres',
     host: process.env.FLOONET_DB_HOST,
@@ -338,7 +361,7 @@ console.log(__dirname);
       BlockchainKernel,
       BlockchainOutput],
   }]).then(async () => {
-    
+
     const server = app.listen(PORT, () => {
       console.log(`Node Express server listening on http://localhost:${PORT}`);
     });

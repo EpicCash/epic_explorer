@@ -14,7 +14,8 @@
     "removeComments": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+	"skipLibCheck": true
   },
-  "include": ["server.ts", "prerender.ts"]
+  "include": ["server.ts", "prerender.ts"],
 }
