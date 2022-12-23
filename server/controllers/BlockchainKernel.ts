@@ -32,9 +32,9 @@ export class BlockchainKernelController {
 
   IsJsonString(str) {
     try {
-     var dataJson = JSON.parse(str);
+      var dataJson = JSON.parse(str);
     } catch (e) {
-        return [];
+      return [];
     }
     return dataJson;
   }
@@ -149,28 +149,29 @@ export class BlockchainKernelController {
     );
 
 
-     /**
-     * @swagger
-     * /epic_explorer/v1/network:
-     *   get:
-     *     tags:
-     *       - name: Network | Network CONTROLLER
-     *     summary: change a network
-     *     description: change a network
-     *     consumes:
-     *       - application/json
-     *     produces:
-     *       - application/json
-     *     parameters:
-     *       - name: network
-     *     responses:
-     *       200:
-     *         description: Network Changed successfully
-     */
+    /**
+    * @swagger
+    * /epic_explorer/v1/network:
+    *   get:
+    *     tags:
+    *       - name: Network | Network CONTROLLER
+    *     summary: change a network
+    *     description: change a network
+    *     consumes:
+    *       - application/json
+    *     produces:
+    *       - application/json
+    *     parameters:
+    *       - name: network
+    *     responses:
+    *       200:
+    *         description: Network Changed successfully
+    */
     this.router.get(
       `${this.path}/network`,
       this.changeNetwok,
     );
+
 
     /**
      * @swagger
@@ -562,6 +563,212 @@ export class BlockchainKernelController {
     }
   };
 
+  /*
+  private getPeersLocation = async (
+    request: Request,
+    response: Response,
+    next: NextFunction,
+  ) => {
+    var self = this;
+    try {
+      if (Global.network == "Floonet") {
+        var peer_url = process.env.FLOONET_PEER_URL;
+      } else {
+        var peer_url = process.env.TESTNET_PEER_URL;
+      }
+      let finalresult = await request_promise(peer_url);
+      if (finalresult) {
+        var jsonresponse = JSON.parse(finalresult);
+      }
+
+
+      let getAllIp = [];
+      let getExistingIp = [];
+      let result = jsonresponse.map(function (value, i) {
+        value['id'] = i;
+        let getIP = value['addr'].split(':')[0];
+        getAllIp.push(getIP);
+        return value;
+      });
+
+      const fetchAllIps = await getConnection(Global.network).query(`SELECT ip, longitude, latitude FROM public.peer_ip`);
+
+      // const fetchAllIps = await getConnection(Global.network).getRepository(
+      //   PeerIp,
+      // ).find({
+      //   select: ['IpAddress']
+      // });
+
+      let markers = [];
+      for (let ip = 0; ip < fetchAllIps.length; ip++) {
+        getExistingIp.push(fetchAllIps[ip]['ip'].replace(/['"]+/g, ''));
+        const mapMarker = {
+          "longitude": fetchAllIps[ip]['longitude'],
+          "latitude": fetchAllIps[ip]['latitude']
+        };
+
+        markers.push(mapMarker);
+      }
+      let users = {};
+      users['locations'] = markers;
+      response.status(200).json({
+        status: 200,
+        timestamp: Date.now(),
+        message: 'Peers location list fetched successfully',
+        response: {
+          dataJson: users
+        },
+      });
+    }
+    catch (error) {
+      console.log('getpeerslocation-error', error);
+      next(new InternalServerErrorException(error));
+    }
+  }
+  */
+
+  /*
+  private getPeers = async (
+    request: Request,
+    response: Response,
+    next: NextFunction,
+  ) => {
+    var self = this;
+    try {
+      if (Global.network == "Floonet") {
+        var peer_url = process.env.FLOONET_PEER_URL;
+      } else {
+        var peer_url = process.env.TESTNET_PEER_URL;
+      }
+      let finalresult = await request_promise(peer_url);
+      if (finalresult) {
+        var jsonresponse = JSON.parse(finalresult);
+      }
+
+
+      let getAllIp = [];
+      let getExistingIp = [];
+      let result = jsonresponse.map(function (value, i) {
+        value['id'] = i;
+        let getIP = value['addr'].split(':')[0];
+        getAllIp.push(getIP);
+        return value;
+      });
+
+      const fetchAllIps = await getConnection(Global.network).query(`SELECT ip, longitude, latitude FROM public.peer_ip`);
+
+      // const fetchAllIps = await getConnection(Global.network).getRepository(
+      //   PeerIp,
+      // ).find({
+      //   select: ['IpAddress']
+      // });
+
+      let markers = [];
+      for (let ip = 0; ip < fetchAllIps.length; ip++) {
+        getExistingIp.push(fetchAllIps[ip]['ip'].replace(/['"]+/g, ''));
+        const mapMarker = {
+          "longitude": fetchAllIps[ip]['longitude'],
+          "latitude": fetchAllIps[ip]['latitude']
+        };
+
+        markers.push(mapMarker);
+      }
+      let users = {};
+      users['locations'] = markers;
+      fs.writeFile(path.join(__dirname, "../../", "browser", "assets/geojson.json"), JSON.stringify(users), err => {
+        // Checking for errors
+        if (err) { throw err; }
+      });
+
+
+      const missingIp = getAllIp.filter(item => getExistingIp.indexOf(item) < 0);
+
+      if (missingIp.length > 0) {
+        fs.readFile(path.join(__dirname, "../../", "browser", "assets/geojson.json"), (err, data) => {
+          if (err) { throw err; }
+          const users = JSON.parse(data);
+
+          for (let i = 0; i < missingIp.length; i++) {
+            const markers = [];
+            const ips = missingIp[i];
+            httpRequest(`https://api.ipgeolocationapi.com/geolocate/${ips}`, async (error, response, resp) => {
+              if (error) { throw error; }
+              const ipResp = JSON.parse(resp);
+              const ipLatitude = ipResp.geo.latitude;
+              const ipLongitude = ipResp.geo.longitude;
+
+              const insertQuery = await getConnection(Global.network)
+                .query(`INSERT INTO public.peer_ip(ip, longitude, latitude) VALUES ('${ips}', '${ipLongitude}', '${ipLatitude}');`);
+
+              //   let mapMarker = {
+              //     "type": "Feature",
+              //     "geometry": {
+              //         "type": "Point",
+              //         "coordinates": [ipLongitude, ipLatitude]
+              //     }
+              // }
+              const mapMarker = {
+                "longitude": ipLongitude,
+                "latitude": ipLatitude
+              };
+
+              markers.push(mapMarker);
+              users.locations = markers;
+              fs.writeFile(path.join(__dirname, "../../", "browser", "assets/geojson.json"), JSON.stringify(users), err => {
+                // Checking for errors
+                if (err) { throw err; }
+              });
+            });
+          }
+        });
+      }
+
+      response.status(200).json({
+        status: 200,
+        timestamp: Date.now(),
+        message: 'Peers list fetched successfully',
+        response: {
+          dataJson: result
+        },
+      });
+      // http.get(peer_url,
+      // async (resp) => {
+      //   // console.log('resp resp respresp',resp);
+      //   let data = '';
+      //   let result ;
+
+      //   // A chunk of data has been recieved.
+      //   await new Promise((resolve) => {
+      //   resp.on('data', function (chunk) {
+      //      data += chunk;
+
+      //      let dataJson = self.IsJsonString(data);
+      //      if(dataJson.length > 0){
+
+      //     result = dataJson.map(function (value, i) {
+      //         value['id'] = i;
+      //         return value;
+      //      });
+      //    }
+      //    resolve();
+      //    });
+      // });
+      //   response.status(200).json({
+      //     status: 200,
+      //     timestamp: Date.now(),
+      //     message: 'Peers list fetched successfully',
+      //     response: {
+      //     dataJson:  result
+      //     },
+      //   });
+      // });
+    } catch (error) {
+      console.log('error 3###########', error);
+      next(new InternalServerErrorException(error));
+    }
+  };
+  */
+ 
   private getPeers = async (
     request: Request,
     response: Response,
@@ -651,7 +858,7 @@ export class BlockchainKernelController {
           .utc()
           .format('YYYY-MM-DD');
 
-          var timeIntervalQry =
+        var timeIntervalQry =
           "timestamp at time zone '" +
           process.env.TIME_ZONE +
           "' BETWEEN SYMMETRIC '" +
@@ -679,7 +886,7 @@ export class BlockchainKernelController {
         Fee.push(e.fee);
       });
 
-      if(date.length == 0){
+      if (date.length == 0) {
         date = [moment(Date.now()).format('YYYY-MM-DD')];
         Fee = [0];
       }
@@ -834,7 +1041,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
   ) => {
     try {
       const TransactionFeeRequestData: TransactionFeeDto = request.query;
-      if (TransactionFeeRequestData.Interval) {        
+      if (TransactionFeeRequestData.Interval) {
         var timeIntervalQry =
           "blockchain_block.timestamp > current_date - interval '" +
           TransactionFeeRequestData.Interval +
@@ -853,7 +1060,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
         //   ' AND ' +
         //   TransactionFeeRequestData.ToDate;
 
-          var timeIntervalQry =
+        var timeIntervalQry =
           "blockchain_block.timestamp at time zone '" +
           process.env.TIME_ZONE +
           "' BETWEEN SYMMETRIC '" +
@@ -861,7 +1068,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
           "' AND '" +
           TransactionFeeRequestData.ToDate +
           "'";
-        
+
         var seriesquery =
           "'" +
           TransactionFeeRequestData.FromDate +
@@ -914,8 +1121,7 @@ LEFT JOIN (select block_id, count(block_id) as block_id_count from blockchain_ou
         totaloutput = [];
 
       TransactionHeatmapChartQuery.forEach(e => {
-        if(moment(e.hour).format('YYYY-MM-DD') >= moment('2019-09-03').format('YYYY-MM-DD'))
-        {
+        if (moment(e.hour).format('YYYY-MM-DD') >= moment('2019-09-03').format('YYYY-MM-DD')) {
           date.push(moment(e.hour).format('YYYY-MM-DD'));
           totalinput.push(e.totalinput != null ? e.totalinput : 0);
           totalkernal.push(e.totalkernal != null ? e.totalkernal : 0);

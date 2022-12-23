@@ -22,7 +22,10 @@ import {
   TotalDifficultyNBlockDto,
 } from '../dtos';
 import { Paginate } from '../utils';
-import {latestBlockDetails} from '../utils/common';
+import { 
+  latestBlockDetails,
+  previousBlockDetails
+} from '../utils/common';
 var moment = require('moment');
 moment.updateLocale('en', {
   relativeTime: {
@@ -256,6 +259,12 @@ export class BlockchainBlockController {
       this.TotalDifficultyNBlock,
     );
 
+    this.router.get(
+      `${this.path}/get51poolapi`,
+      redisMiddleware(process.env.REDIS_EXPIRY),
+      this.get51poolapi,
+    );
+
        /**
      * @swagger
      * /epic_explorer/v1/blockchain_block/blockcount:
@@ -446,11 +455,20 @@ export class BlockchainBlockController {
      *       200:
      *         description: Total Difficulty and No. of blocks   fetched successfully
      */
+    // Last Block home page function
     this.router.get(
       `${this.path}/latesblockdetails`,
       validationMiddleware(TotalDifficultyNBlockDto, true),
       redisMiddleware(process.env.REDIS_EXPIRY),
       this.LatestDifficultyNBlock,
+    );
+
+    // Previous Block home page function
+    this.router.get(
+      `${this.path}/previousblockdetails`,
+      validationMiddleware(TotalDifficultyNBlockDto, true),
+      redisMiddleware(process.env.REDIS_EXPIRY),
+      this.PreviousDifficultyNBlock,
     );
 
     /**
@@ -683,6 +701,33 @@ export class BlockchainBlockController {
       this.BlockchainBlockDelete,
     );
   }
+
+  // get 51poolapi 
+  private get51poolapi = ( request: Request,res: Response) => {
+    // var request = require('request');
+    var axios = require('axios');
+    try {
+      var config = {
+        method: 'get',
+        url: 'https://51pool.online/api',
+        headers: { }
+      };
+      axios(config).then(function (response) {
+        console.log('response.body----------');
+        console.log(JSON.stringify(response.data));
+        res.status(200).json({
+          status: 200,
+          response: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log('axios-error');
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   private BlockchainBlockCreate = async (
     request: Request,
@@ -1738,7 +1783,8 @@ export class BlockchainBlockController {
       next(new InternalServerErrorException(error));
     }
   };
- 
+
+  // Last Block home page function
   private LatestDifficultyNBlock = async (
     request: Request,
     response: Response,
@@ -1758,6 +1804,28 @@ export class BlockchainBlockController {
       next(new InternalServerErrorException(error));
     }
   };
+    // Previous Block home page function
+    private PreviousDifficultyNBlock = async (
+      request: Request,
+      response: Response,
+      next: NextFunction,
+    ) => {
+      try {
+        let result = await previousBlockDetails()
+        response.status(200).json({
+          status: 200,
+          timestamp: Date.now(),
+          message: 'Previous Block Details fetched Successfully',
+          response: {
+            ...result
+          },
+        });
+      } catch (error) {
+        next(new InternalServerErrorException(error));
+      }
+    };
+  
+  
 
   private BlockchainBlockPerSecond = async (
     request: Request,
