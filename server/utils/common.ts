@@ -88,7 +88,7 @@ const getTotalRewardByHeight= async(height) => {
       currentReward = 8;
     } else if (height <= BLOCK_ERA_3) {
       remaining_height = height - BLOCK_ERA_2;
-      coin_existence =  (16 * BLOCK_ERA_1) + (8 * BLOCK_ERA_2) + 4 * remaining_height;
+      coin_existence = (16 * BLOCK_ERA_1) + (8 *  (BLOCK_ERA_2 - BLOCK_ERA_1 )) + 4 * remaining_height;
       currentReward = 4;
     } else if (height <= BLOCK_ERA_4) {
       remaining_height = height - BLOCK_ERA_3;
@@ -362,7 +362,7 @@ let currentReward = 16;
     currentReward = 8;
   } else if (height <= BLOCK_ERA_3) {
     remaining_height = height - BLOCK_ERA_2;
-    coin_existence =  (16 * BLOCK_ERA_1) + (8 * BLOCK_ERA_2) + 4 * remaining_height;
+    coin_existence = (16 * BLOCK_ERA_1) + (8 *  (BLOCK_ERA_2 - BLOCK_ERA_1 )) + 4 * remaining_height;
     currentReward = 4;
   } else if (height <= BLOCK_ERA_4) {
     remaining_height = height - BLOCK_ERA_3;
