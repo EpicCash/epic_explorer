@@ -68,12 +68,12 @@ p.block_value_v2 {font-size: 30px;height: 35px;}
 .web_hdng{display: none;}
 .mobile_table, .peer_mobile_table{padding: 10px 0;padding-left: 30px;}
 /* .view_moble_tble .col-md-4{padding: 0;} */
-.mobile_table h6, .view_moble_tble h6, .peer_mobile_table h6{color: #434542; font-size: 13px; display: inline-block;}
+.mobile_table h6, .view_moble_tble h6, .peer_mobile_table h6{color: #434542; font-size: 11px; display: inline-block;}
 .mobile_table span.blck_value, .view_moble_tble span.blck_value,  .peer_mobile_table span.blck_value{font-size: 13px;}
 .mobile_table span.blck_value::before, .view_moble_tble span.blck_value::before,  .peer_mobile_table span.blck_value::before{content: ' - ';}
 .view_moble_tble{border-bottom: 1px solid #dee2e6;padding-bottom: 10px;  margin-bottom: 10px;}
 .expnd_blck {font-size: 13px; margin-right: 5px; color: green;position: absolute;  left: -8px;  top: 5px; display: inline-block;}
-.mble_hght{padding-left: 8px;}
+.mble_hght{padding-left: 0px;}
 .peer_mobile_table .expnd_blck{left: -8px;}
 /* .blockchain_firstrow .col-md-3, .blockchain_firstrow .col-md-5, .blockchain_firstrow .col-md-4 {flex: 0 0 50%;max-width: 50%;} */
 p.block_value {font-size: 35px;}
@@ -124,6 +124,15 @@ p.block_heading, p.subheading{font-size: 12px;}
 epic-explorer-search{ margin-top: 10px;}
 }
 @media(max-width: 575px){
+.tableminheight .mobile_table h6 {
+    margin-bottom: 0px;
+}
+.tableminheight .mobile_table .tble_col .block_div {
+    height: 18px;
+}
+.tableminheight .mobile_table {
+    padding-left: 22px;
+}
 .mobile_table h6, .mobile_table span.blck_value{font-size: 12px;}
 .view_page_header .ml-auto{margin: 0 !important; display: inherit;}
 .mble_view_hdr{margin-left: auto;}
@@ -161,6 +170,15 @@ p.block_value_v2 {font-size: 18px;height: 25px;}
 .blockchain_firstrow .row .col-md-6 .row .col-6{ flex: 0 0 100%;max-width: 100%; text-align: center;}
 .mble_view_hdr.mobfix {display: block !important;position: fixed;bottom: 20px;right: 20px;}
 .privacy_txt { width: 190px;margin: 0px auto !important;}
+}
+@media(max-width: 400px){
+    .tableminheight .mobile_table {
+        padding-left: 10px;
+    }
+    .tableminheight .mobile_table h6,
+    .mobile_table span.blck_value {
+        font-size: 11px;
+    }
 }
 @media(max-width: 365px){
 .mobile_table .col-6 {flex: 0 0 100%;max-width: 100%;}
