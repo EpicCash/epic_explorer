@@ -28,6 +28,7 @@ export class BlockDetailListComponent implements OnInit {
   Block_height;
   Block_latest;
   Block_supply;
+  Block_size;
   timeout_1;
   timeout_2;
   timeout_3;
@@ -37,6 +38,7 @@ export class BlockDetailListComponent implements OnInit {
   timeout_7;
   timeout_8;
   timeout_9;
+  timeout_10;
   @ViewChild("minhgt", { static: false }) elementView: ElementRef;
 
   minHeight: number;
@@ -122,6 +124,8 @@ export class BlockDetailListComponent implements OnInit {
                 this.Block_height = res.response.block_height;
                 this.Block_latest = res.response.letest_block_num;
                 this.Block_supply = res.response.coin_existence;
+                let blockSize = (res.response.diskSpaceKb).replace(/G/g, '');
+                this.Block_size = blockSize;
                 this.CTD_1 = res.response.targetdifficultycuckatoo;
                 this.NW_1 = res.response.cuckoohashrate;
                 setTimeout(() => {
@@ -158,6 +162,8 @@ export class BlockDetailListComponent implements OnInit {
                 this.Block_height = res.response.block_height;
                 this.Block_latest = res.response.letest_block_num;
                 this.Block_supply = res.response.coin_existence;
+                let blockSize = (res.response.diskSpaceKb).replace(/G/g, '');
+                this.Block_size = blockSize;
                 this.CTD_1 = res.response.targetdifficultycuckatoo;
                 this.NW_1 = res.response.cuckoohashrate;
                 setTimeout(() => {
@@ -196,6 +202,10 @@ export class BlockDetailListComponent implements OnInit {
                 this.timeout_9 = setTimeout(() => {
                   this.CTD_3 = res.response.targetdifficultyrandomx;
                 }, 45*1000);
+                this.timeout_10 = setTimeout(() => {
+                  let blockSize = (res.response.diskSpaceKb).replace(/G/g, '');
+                  this.Block_size = blockSize;
+                }, 50*1000);
               }
               resolve();
             }

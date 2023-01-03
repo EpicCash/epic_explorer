@@ -769,8 +769,10 @@ export class GraphListComponent implements OnInit {
       dtickval = ''
     else if (DifficultychartDate.length < 21712)
       dtickval = 2 * 24 * 60 * 60 * 1000
-    else
+    else if (DifficultychartDate.length < 100571)
       dtickval = 6 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
 
     let window_width = window.screen.width;
     let position = 0.00;
@@ -891,8 +893,10 @@ export class GraphListComponent implements OnInit {
       dtickval = 4 * 24 * 60 * 60 * 1000
     else if (sDate.length < 40)
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else
+    else if (sDate.length < 70)
       dtickval = 8 * 24 * 60 * 60 * 1000
+    else 
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
 
     this.stackGraphData = {
       data: [
@@ -934,7 +938,7 @@ export class GraphListComponent implements OnInit {
           hoverlabel: { namelength: 0 },
 
           marker: {
-            color: '#48dc6b',
+            color: '#C0C0C0',
           },
 
         },
@@ -949,7 +953,7 @@ export class GraphListComponent implements OnInit {
           hoverlabel: { namelength: 0 },
 
           marker: {
-            color: '#0091ff',
+            color: '#B87333',
           },
 
         }
@@ -1116,8 +1120,10 @@ export class GraphListComponent implements OnInit {
       dtickval = 4 * 24 * 60 * 60 * 1000
     else if (DifficultychartDate.length < 40)
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else
+    else if (DifficultychartDate.length < 70)
       dtickval = 8 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
 
 
     this.barGraphData = {
@@ -1182,8 +1188,10 @@ export class GraphListComponent implements OnInit {
       dtickval = 4 * 24 * 60 * 60 * 1000
     else if (TfDate.length < 40)
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else
+    else if (TfDate.length < 70)
       dtickval = 8 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
 
 
     this.transcationGraphData = {
@@ -1255,8 +1263,10 @@ export class GraphListComponent implements OnInit {
       dtickval = 4 * 24 * 60 * 60 * 1000
     else if (gDate.length < 40)
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else
+    else if (gDate.length < 70)
       dtickval = 8 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
 
     this.growthGraphData = {
       data: [
@@ -1327,8 +1337,10 @@ export class GraphListComponent implements OnInit {
       dtickval = 4 * 24 * 60 * 60 * 1000
     else if (bDate.length < 40)
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else
+    else if (bDate.length < 70)
       dtickval = 8 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
     this.areaGraphData = {
       data: [
         {
@@ -1390,8 +1402,10 @@ export class GraphListComponent implements OnInit {
       dtickval = 4 * 24 * 60 * 60 * 1000
     else if (mDate.length < 40)
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else
+    else if (mDate.length < 70)
       dtickval = 8 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
 
     this.doubleareaGraphData = {
       data: [
@@ -1427,22 +1441,6 @@ export class GraphListComponent implements OnInit {
 
         {
           x: mDate,
-          y: RandomXper,
-          text: RandomX,
-          hovertemplate: 'RandomX : %{y} % ( %{text:,} )',
-          hoverlabel: { namelength: 0 },
-
-          fill: 'tozeroy',
-          type: 'line',
-          name: 'RandomX',
-          line: {
-            color: '#0091ff',
-          },
-
-        },
-
-        {
-          x: mDate,
           y: ProgPowper,
           text: ProgPow,
           hovertemplate: 'ProgPoW : %{y} % ( %{text:,} )',
@@ -1452,7 +1450,23 @@ export class GraphListComponent implements OnInit {
           type: 'line',
           name: 'ProgPoW',
           line: {
-            color: '#48dc6b',
+            color: '#C0C0C0',
+          },
+
+        },
+
+        {
+          x: mDate,
+          y: RandomXper,
+          text: RandomX,
+          hovertemplate: 'RandomX : %{y} % ( %{text:,} )',
+          hoverlabel: { namelength: 0 },
+
+          fill: 'tozeroy',
+          type: 'line',
+          name: 'RandomX',
+          line: {
+            color: '#B87333',
           },
 
         },
@@ -1509,16 +1523,16 @@ export class GraphListComponent implements OnInit {
             name: '',
             text: hovertext,
             hovertemplate: hovertext + ': %{z:,} ',
-            colorscale: [[0.0, "rgb(107,113,229"],
-            [0.1111111111111111, "rgb(0,145,255)"],
-            [0.2222222222222222, "rgb(44,187,232)"],
-            [0.3333333333333333, "rgb(97,211,254)"],
-            [0.4444444444444444, "rgb(72,220,107)"],
-            [0.5555555555555556, "rgb(255,209,0)"],
-            [0.6666666666666666, "rgb(255,166,0)"],
-            [0.7777777777777778, "rgb(255,72,102)"],
-            [0.8888888888888888, "rgb(254,85,51)"],
-            [1.0, "rgb(254,85,51)"]],
+            colorscale: [[0.0, "rgb(211,211,211)"],
+            [0.1111111111111111, "rgb(192,192,192)"],
+            [0.2222222222222222, "rgb(169,169,169)"],
+            [0.3333333333333333, "rgb(255,215,0)"],
+            [0.4444444444444444, "rgb(218,165,32)"],
+            [0.5555555555555556, "rgb(213, 140, 75)"],
+            [0.6666666666666666, "rgb(184, 115, 51)"],
+            [0.7777777777777778, "rgb(156, 91, 27)"],
+            [0.8888888888888888, "rgb(89, 58, 30)"],
+            [1.0, "rgb(61, 40, 23)"]],
             //colors : colorRamp(c("red", "green")),
             type: 'heatmap',
             visible: true,
@@ -1585,8 +1599,10 @@ export class GraphListComponent implements OnInit {
       dtickval = 4 * 24 * 60 * 60 * 1000
     else if (Tdate.length < 40)
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else
+    else if (Tdate.length < 100)
       dtickval = 8 * 24 * 60 * 60 * 1000
+    else
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
 
     this.feeGraphData = {
       data: [
@@ -1614,7 +1630,7 @@ export class GraphListComponent implements OnInit {
           hovertemplate: 'Total Kernel : %{text:,} ',
           hoverlabel: { namelength: 0 },
 
-          line: { color: '#0091ff' },
+          line: { color: '#C0C0C0' },
 
         },
 
@@ -1628,7 +1644,7 @@ export class GraphListComponent implements OnInit {
           hovertemplate: 'Total Output : %{text:,} ',
           hoverlabel: { namelength: 0 },
 
-          line: { color: '#48dc6b' },
+          line: { color: '#B87333' },
 
         },
 
@@ -1742,10 +1758,10 @@ export class GraphListComponent implements OnInit {
       dtickval = ''
     else if (DifficultychartDate.length < 22712)
       dtickval = 2 * 24 * 60 * 60 * 1000
-    else
+    else if (DifficultychartDate.length < 100000)
       dtickval = 6 * 24 * 60 * 60 * 1000
-
-
+    else
+      dtickval = 3 * 30 * 24 * 60 * 60 * 1000
 
     let window_width = window.screen.width;
     let position = 0.00;

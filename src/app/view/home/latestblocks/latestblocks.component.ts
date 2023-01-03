@@ -56,7 +56,7 @@ export class LatestblocksComponent implements OnInit {
   ngOnInit() {
     // this. getpeersList();
     this.gettinghashList(1, 10, this.first);
-    this.getLastCeatedBlock();
+    // this.getLastCeatedBlock();
     this.get51poolAPI();
   }
 
@@ -84,7 +84,7 @@ export class LatestblocksComponent implements OnInit {
     return new Promise<void>((resolve, reject) => {
       this.chartService.apiGetRequest('','/blockchain_block/get51poolapi').subscribe(
         res => {
-          console.log('get51poolAPI');
+          // console.log('get51poolAPI');
           console.log(res);
           if (res['status'] == 200) {
             let json = res.response;
@@ -159,6 +159,7 @@ export class LatestblocksComponent implements OnInit {
     );
   }
 
+  /*
   getLastCeatedBlock() {
     this.chartService.getLatestblockdetails().subscribe(response => {
       this.blockdetails = response;
@@ -186,6 +187,7 @@ export class LatestblocksComponent implements OnInit {
       this.lastblock = this.blockdetails.block_height;
     });
   }
+  */
 
   public comparer(otherArray){
     return function(current){

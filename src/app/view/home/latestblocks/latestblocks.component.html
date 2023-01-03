@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-md-12 margin0auto mb-4">
     <div class="blockchain_firstrow">
-      <div class="detailsloading" *ngIf="!pool51_hashrateCuckoo">
+      <div class="detailsloading" *ngIf="!pool51_currentHeight">
         <epic-explorer-loading></epic-explorer-loading>
       </div>
-      <div class="row" *ngIf="pool51_hashrateCuckoo">
+      <div class="row" *ngIf="pool51_currentHeight">
         <div class="col-12 drawline">
           <p class="block_heading mb-1">Mining Pool 
             <select class="langbut py-2 pr-4 pl-2 miningpoolborder">
@@ -145,17 +145,17 @@
   <ng-container *ngFor="let hashvalue of hashvalues">
   <div 
     *ngIf="hashvalue.target_difficulty_cuckatoo != '0'" 
-    [ngClass]="{mobile_table : true, hght_40: item.id != clickValue, highlighttableData : hashvalue.blockchain_highlight }"
+    [ngClass]="{mobile_table : true, hght_401: item.id != clickValue, highlighttableData : hashvalue.blockchain_highlight }"
     id="hash_{{hashvalue.blockchain_block_height}}" 
     #item 
   >
     <div class="row">
       <div class="col-6 col-md-3 tble_col ">
-        <div class="block_div mble_hght"> <span *ngIf="item.id != clickValue"
+        <div class="block_div mble_hght"> <!-- <span *ngIf="item.id != clickValue"
             (click)="onClickPlus(hashvalue.blockchain_block_height);" class="expnd_blck"><i
               class="fa fa-plus"></i></span>
           <span *ngIf="item.id == clickValue" (click)="onClickMinus(hashvalue.blockchain_block_height);"
-            class="expnd_blck"><i class="fa fa-minus"></i></span>
+            class="expnd_blck"><i class="fa fa-minus"></i></span> -->
           <h6>{{'home.HEIGHT' | translate}}</h6><span class="blck_value link_to_detail"
             routerLink="/blockdetail/{{ hashvalue.blockchain_block_height }}">{{ hashvalue.blockchain_block_height }}</span>
         </div>

@@ -1,4 +1,4 @@
-<div class="view_content py-4">
+<div class="view_content">
   <div *ngIf="hasdata"  class="container">
     <div *ngIf="hashdata.viewType == 'HashHeight' " >
 	  <div *ngIf="TimeArr" class="box_shadow_large detail_div p-3 mb-4">
@@ -14,7 +14,7 @@
         </div>
     <div *ngIf="hashdata?.BlockchainBlockFetchQuery" class="box_shadow_large bg-white p-3 mb-4">
       <h3 class="mb-0">
-        <img src="assets/img/block.png" height="30" class="block_rotate float-left mr-2" />
+        <img src="assets/img/block.png" height="30" class="block_rotate imagegoldcolor float-left mr-2" />
         Block {{ hashdata.BlockchainBlockFetchQuery.Height }}
       </h3>
       <ul class="pagination justify-content-end m-0 d-inline-flex float-right">
@@ -38,7 +38,7 @@
       </ul>
       <div class="row mb-3">
         <div class="col-sm-6 col-md-4 mt-4">
-          <div class="d-inline-block align-middle">
+          <div class="d-inline-block align-middle blockdetailicon">
             <img src="assets/img/fee.png" height="60" />
           </div>
           <div class="d-inline-block align-middle ml-2">
@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="col-sm-6 col-md-4 mt-4">
-          <div class="d-inline-block align-middle">
+          <div class="d-inline-block align-middle blockdetailicon">
             <img src="assets/img/hash.png" height="60" />
           </div>
           <div [title]="hashdata.BlockchainBlockFetchQuery.Hash" class="d-inline-block align-middle ml-2">
@@ -65,18 +65,18 @@
           </div>
         </div>
         <div class="col-sm-6 col-md-4 mt-4">
-          <div class="d-inline-block align-middle">
+          <div class="d-inline-block align-middle blockdetailicon">
             <img src="assets/img/difficulty.png" height="60" />
           </div>
           <div class="d-inline-block align-middle ml-2">
             <!-- <h6 class="">Target Difficulty<span class="view_txt">
               {{(hashdata.BlockchainBlockFetchQuery.Proof == 'Cuckoo') ? (hashdata.BlockchainBlockFetchQuery.TargetDifficultyCuckatoo | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'RandomX') ? (hashdata.BlockchainBlockFetchQuery.TargetDifficultyRandomx | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'ProgPow') ? (hashdata.BlockchainBlockFetchQuery.TargetDifficultyProgpow | number) : 0}}</span></h6> -->
-              <h6 class="">Total Difficulty<span class="view_txt">
-                  {{(hashdata.BlockchainBlockFetchQuery.Proof == 'Cuckoo') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyCuckatoo | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'RandomX') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyRandomx | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'ProgPow') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyProgpow | number) : 0}}</span></h6>
+              <span class="">Total Difficulty</span><h6 class="view_txt">
+                  {{(hashdata.BlockchainBlockFetchQuery.Proof == 'Cuckoo') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyCuckatoo | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'RandomX') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyRandomx | number) : (hashdata.BlockchainBlockFetchQuery.Proof == 'ProgPow') ? (hashdata.BlockchainBlockFetchQuery.TotalDifficultyProgpow | number) : 0}}</h6>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 mt-4 pt-2">
-          <div class="d-inline-block align-middle">
+          <div class="d-inline-block align-middle blockdetailicon">
             <img src="assets/img/block_reward.png" height="60" />
           </div>
           <div class="d-inline-block align-middle ml-2">
@@ -85,7 +85,7 @@
           </div>
         </div>
         <div class="col-sm-6 col-md-4 mt-4 pt-2">
-          <div class="d-inline-block align-middle">
+          <div class="d-inline-block align-middle blockdetailicon">
             <img src="assets/img/age.png" height="60" />
           </div>
           <div class="d-inline-block align-middle ml-2">
@@ -94,7 +94,7 @@
           </div>
         </div>
         <div class="col-sm-6 col-md-4 mt-4 pt-2">
-          <div class="d-inline-block align-middle">
+          <div class="d-inline-block align-middle blockdetailicon">
             <img src="assets/img/algorithm.png" height="60" />
           </div>
           <div class="d-inline-block align-middle ml-2">
@@ -328,7 +328,7 @@
                           </tr>
                           <tr>
                             <td class="d-none d-md-table-cell">{{'commit-id-view.proof-hash' | translate}}</td>
-                            <td>
+                            <td class="text_break">
                                 <p class="d-md-none">{{'commit-id-view.proof-hash' | translate}}</p>
                               {{ hashdata.BlockchainBlockOutputFetchQuery[0].ProofHash }}</td>
                           </tr>
