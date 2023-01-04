@@ -160,6 +160,19 @@ p.block_value_v2 {font-size: 18px;height: 25px;}
 /* .view_page_header{text-align: center;} */
 .view_page_header .navbar-brand{display: block; margin: 0 auto;}
 .view_page_header .ml-auto{margin: 0 !important; display: inherit;}
+.blockchain_firstrow .subloader {
+    margin: 0 auto;
+}
+.text-mobile-center {
+    text-align: center;
+}
+.ednalogoMobile {
+    margin: 0 auto!important;
+    margin-bottom: 18px!important;
+}
+.footer_div .logo_img {
+    margin-bottom: 15px
+}
 }
 @media(max-width: 470px){
 .navbar-expand .navbar-collapse.home_mble_hdr{display: block !important;} 

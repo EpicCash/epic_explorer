@@ -296,7 +296,12 @@ button.search_btn {
   color: #BF9B30;
   border-top: 1px solid #BF9B30;
 }
-
+.blockdetailicon {
+  filter: invert(55%) sepia(84%) saturate(326%) hue-rotate(7deg) brightness(94%) contrast(99%);
+}
+.imagegoldcolor {
+  filter: invert(55%) sepia(84%) saturate(326%) hue-rotate(7deg) brightness(94%) contrast(99%);
+}
 .explore_all a {
   color: #BF9B30;
 }

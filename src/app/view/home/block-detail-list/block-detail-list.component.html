@@ -128,12 +128,12 @@
   </div>
 
   <div class="col-md-12 targetandhashrate">
-    <div class="blockchain_firstrow bc_sixcls">
+    <div class="blockchain_firstrow">
       <div class="detailsloading" *ngIf="!latestblockdetail.targetdifficultycuckatoo || !ShowSecondBlock">
         <epic-explorer-loading></epic-explorer-loading>
       </div>
       <div class="row" *ngIf="latestblockdetail.targetdifficultycuckatoo && ShowSecondBlock">
-        <div class="col-md-6">
+        <div class="col-md-6 text-mobile-center">
           <p class="block_heading">{{ "home.CURRENT_TARGET_DIFF" | translate }}</p>
           <div class="row">
             <div class="col-sm-4 col-md-3 drawline">
@@ -167,7 +167,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 text-mobile-center">
           <p class="block_heading">{{ "home.HASHRATE" | translate }}</p>
           <div class="row">
             <div class="col-sm-4 col-md-3 drawline">

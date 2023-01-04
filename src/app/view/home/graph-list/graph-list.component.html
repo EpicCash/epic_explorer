@@ -1,61 +1,41 @@
 <div class="row">
   <div class="col-md-6 col-lg-6 mb-2">
-    <div class="box_shadow" id="target-difficulty">
+    <div class="box_shadow" id="transaction-vs-date">
       <div class="blocks">
-        <div class="col-sm-121">
-          <p class="block_heading">{{'home.TARGET_DIFFICULTY' | translate}}</p>
-          <!-- <span class="txn_count" *ngIf="this.lg_last.length > 0"><span *ngFor="let l of lg_last">{{
-            this.l | number</span>
-          }}</span> -->
-          <div class="chart_show">
-              <!-- <div class="difficulty_filter day_filter p-0 bg-transparent mt-2">
-                  <a href="JavaScript:void(0);" (click)="
-                  Difficultyreq('target', '', '', difficultyRange,'all'); selectedItem12 = 4
-                " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primary: true }">All</a>
-                  <a href="JavaScript:void(0);" (click)="
-                  Difficultyreq('target', '', '', difficultyRange,'cuckatoo'); selectedItem12 = 1
-                " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primary: true }">Cuckoo</a>
-                <a href="JavaScript:void(0);" (click)="
-                  Difficultyreq('target', '', '', difficultyRange,'progpow'); selectedItem12 = 2
-                " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primary: true }">ProgPow</a>
-                <a href="JavaScript:void(0);" (click)="
-                  Difficultyreq('target', '', '', difficultyRange,'randomx'); selectedItem12 = 3
-                " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primary: true }">RandomX</a>
-            </div> -->
-            <epic-explorer-plotly *ngIf="linearGraphData.data" [data]="linearGraphData.data" [layout]="linearGraphData.layout">
-            </epic-explorer-plotly>
-            <div *ngIf="!linearGraphData.data" class="feedback_div news_desc text-center">
-              <epic-explorer-loading></epic-explorer-loading>
-            </div>
+        <p class="block_heading">{{'home.TRANSACTIONS_VS_DATE' | translate}}</p>
+        <span class="txn_count" title="{{'home.TRANSACTION_LINECHAT_HOVER' | translate}}" *ngIf="this.tg_last">{{
+          this.tg_last | number
+        }}</span>
+        <div class="chart_show">
+          <epic-explorer-plotly *ngIf="feeGraphData.data" [data]="feeGraphData.data" [layout]="feeGraphData.layout">
+          </epic-explorer-plotly>
+          <div *ngIf="!feeGraphData.data" class="feedback_div news_desc text-center">
+            <epic-explorer-loading></epic-explorer-loading>
           </div>
         </div>
       </div>
       <div class="day_filter">
+        <a href="JavaScript:void(0);" (click)="Transactionlinechartreq('', '', '1 week'); selectedItem8 = 1" id="1"
+          #item1 [ngClass]="{ active: selectedItem8 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
-          Difficultyreq('target', '', '', '1 day',''); selectedItem = 6; difficultyRange = '1 day'
-        " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primary: true }">1 {{'day' | translate}}</a>
+            Transactionlinechartreq('', '', '15 days'); selectedItem8 = 2
+          " id="2" #item2 [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('target', '', '', '1 week',''); selectedItem = 1; difficultyRange = '1 week'
-          " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
-        <!-- <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('target', '', '', '15 days',''); selectedItem = 2; difficultyRange = '15 days'
-          " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a> -->
+            Transactionlinechartreq('', '', '30 days'); selectedItem8 = 3
+          " id="3" #item3 [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('target', '', '', '30 days',''); selectedItem = 3; difficultyRange = '30 days'
-          " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
+            Transactionlinechartreq('', '', '60 days'); selectedItem8 = 4
+          " id="4" #item4 [ngClass]="{ active: selectedItem8 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
         <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('target', '', '', '60 days',''); selectedItem = 4; difficultyRange = '60 days'
-          " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
+            Transactionlinechartreq('', '', '3 months'); selectedItem8 = 5
+          " id="5" #item5 [ngClass]="{ active: selectedItem8 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+  
         <a href="JavaScript:void(0);" (click)="
-            Difficultyreq('target', '', '', '3 months',''); selectedItem = 5; difficultyRange = '3 months'
-          " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
-        
-          <a href="JavaScript:void(0);" (click)="
-          Difficultyreq('target', '', '', 'all',''); selectedItem = 7; difficultyRange = ''
-        " id="7" #item7 [ngClass]="{ active: selectedItem == item7.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+        Transactionlinechartreq('', '', 'all'); selectedItem8 = 8; 
+        " id="8" #item8 [ngClass]="{ active: selectedItem8 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
       </div>
       <div class="explore_all text-right">
-        <a routerLink="/chart/target-difficulty"><span class="text-uppercase">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
+        <a routerLink="/chart/transactions-by-date"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
       </div>
     </div>
   </div>
@@ -138,7 +118,7 @@
   <div class="box_shadow" id="supply-growth">
     <div class="blocks">
       <p class="block_heading">{{'home.SUPPLY_GROWTH' | translate}}</p>
-      <span class="txn_count" title="{{'home.SUPPLY_GROWTH_HOVER' | translate}}" *ngIf="this.gg_last">{{
+      <span class="txn_count mt-0" title="{{'home.SUPPLY_GROWTH_HOVER' | translate}}" *ngIf="this.gg_last">{{
           this.gg_last | number
         }} Epic per block</span>
       <div class="chart_show">
@@ -344,7 +324,7 @@
   </div>
 </div>
 
-<div  *ngIf="viewchartvar" class="col-md-6 col-lg-8 mb-4">
+<div  *ngIf="viewchartvar" class="col-md-12 mb-4">
   <div class="box_shadow" id="total-difficulty">
     <div class="blocks">
       <p class="block_heading">{{'home.TOTAL_DIFFICULTY' | translate}}</p>
@@ -388,43 +368,63 @@
 </div>
 
 
-<div *ngIf="viewchartvar" [ngClass]="{'col-md-6 col-lg-4 mb-4' : true, 'd-none' : viewchart}">
-  <div class="box_shadow" id="transaction-vs-date">
+<div *ngIf="viewchartvar" [ngClass]="{'col-md-12 mb-4' : true, 'd-none' : viewchart}">
+  <div class="box_shadow" id="target-difficulty">
     <div class="blocks">
-      <p class="block_heading">{{'home.TRANSACTIONS_VS_DATE' | translate}}</p>
-      <span class="txn_count" title="{{'home.TRANSACTION_LINECHAT_HOVER' | translate}}" *ngIf="this.tg_last">{{
-        this.tg_last | number
-      }}</span>
-      <div class="chart_show">
-        <epic-explorer-plotly *ngIf="feeGraphData.data" [data]="feeGraphData.data" [layout]="feeGraphData.layout">
-        </epic-explorer-plotly>
-        <div *ngIf="!feeGraphData.data" class="feedback_div news_desc text-center">
-          <epic-explorer-loading></epic-explorer-loading>
+      <div class="col-sm-121">
+        <p class="block_heading">{{'home.TARGET_DIFFICULTY' | translate}}</p>
+        <!-- <span class="txn_count" *ngIf="this.lg_last.length > 0"><span *ngFor="let l of lg_last">{{
+          this.l | number</span>
+        }}</span> -->
+        <div class="chart_show">
+            <!-- <div class="difficulty_filter day_filter p-0 bg-transparent mt-2">
+                <a href="JavaScript:void(0);" (click)="
+                Difficultyreq('target', '', '', difficultyRange,'all'); selectedItem12 = 4
+              " id="4" #item124 [ngClass]="{ active: selectedItem12 == item124.id, txt_primary: true }">All</a>
+                <a href="JavaScript:void(0);" (click)="
+                Difficultyreq('target', '', '', difficultyRange,'cuckatoo'); selectedItem12 = 1
+              " id="1" #item121 [ngClass]="{ active: selectedItem12 == item121.id, txt_primary: true }">Cuckoo</a>
+              <a href="JavaScript:void(0);" (click)="
+                Difficultyreq('target', '', '', difficultyRange,'progpow'); selectedItem12 = 2
+              " id="2" #item122 [ngClass]="{ active: selectedItem12 == item122.id, txt_primary: true }">ProgPow</a>
+              <a href="JavaScript:void(0);" (click)="
+                Difficultyreq('target', '', '', difficultyRange,'randomx'); selectedItem12 = 3
+              " id="3" #item123 [ngClass]="{ active: selectedItem12 == item123.id, txt_primary: true }">RandomX</a>
+          </div> -->
+          <epic-explorer-plotly *ngIf="linearGraphData.data" [data]="linearGraphData.data" [layout]="linearGraphData.layout">
+          </epic-explorer-plotly>
+          <div *ngIf="!linearGraphData.data" class="feedback_div news_desc text-center">
+            <epic-explorer-loading></epic-explorer-loading>
+          </div>
         </div>
       </div>
     </div>
     <div class="day_filter">
-      <a href="JavaScript:void(0);" (click)="Transactionlinechartreq('', '', '1 week'); selectedItem8 = 1" id="1"
-        #item1 [ngClass]="{ active: selectedItem8 == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
-          Transactionlinechartreq('', '', '15 days'); selectedItem8 = 2
-        " id="2" #item2 [ngClass]="{ active: selectedItem8 == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a>
+        Difficultyreq('target', '', '', '1 day',''); selectedItem = 6; difficultyRange = '1 day'
+      " id="6" #item6 [ngClass]="{ active: selectedItem == item6.id, txt_primary: true }">1 {{'day' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
-          Transactionlinechartreq('', '', '30 days'); selectedItem8 = 3
-        " id="3" #item3 [ngClass]="{ active: selectedItem8 == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
+          Difficultyreq('target', '', '', '1 week',''); selectedItem = 1; difficultyRange = '1 week'
+        " id="1" #item1 [ngClass]="{ active: selectedItem == item1.id, txt_primary: true }">1 {{'home.WEEK' | translate}}</a>
+      <!-- <a href="JavaScript:void(0);" (click)="
+          Difficultyreq('target', '', '', '15 days',''); selectedItem = 2; difficultyRange = '15 days'
+        " id="2" #item2 [ngClass]="{ active: selectedItem == item2.id, day15_txt: true }">15 {{'home.DAYS' | translate}}</a> -->
       <a href="JavaScript:void(0);" (click)="
-          Transactionlinechartreq('', '', '60 days'); selectedItem8 = 4
-        " id="4" #item4 [ngClass]="{ active: selectedItem8 == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
+          Difficultyreq('target', '', '', '30 days',''); selectedItem = 3; difficultyRange = '30 days'
+        " id="3" #item3 [ngClass]="{ active: selectedItem == item3.id, day30_txt: true }">30 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
-          Transactionlinechartreq('', '', '3 months'); selectedItem8 = 5
-        " id="5" #item5 [ngClass]="{ active: selectedItem8 == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
-
+          Difficultyreq('target', '', '', '60 days',''); selectedItem = 4; difficultyRange = '60 days'
+        " id="4" #item4 [ngClass]="{ active: selectedItem == item4.id, day60_txt: true }">60 {{'home.DAYS' | translate}}</a>
       <a href="JavaScript:void(0);" (click)="
-      Transactionlinechartreq('', '', 'all'); selectedItem8 = 8; 
-      " id="8" #item8 [ngClass]="{ active: selectedItem8 == item8.id, day3m_txt: true }">{{'home.All' | translate}}</a>
+          Difficultyreq('target', '', '', '3 months',''); selectedItem = 5; difficultyRange = '3 months'
+        " id="5" #item5 [ngClass]="{ active: selectedItem == item5.id, day3m_txt: true }">3 {{'home.MONTHS' | translate}}</a>
+      
+        <a href="JavaScript:void(0);" (click)="
+        Difficultyreq('target', '', '', 'all',''); selectedItem = 7; difficultyRange = ''
+      " id="7" #item7 [ngClass]="{ active: selectedItem == item7.id, day3m_txt: true }">{{'home.All' | translate}}</a>
     </div>
     <div class="explore_all text-right">
-      <a routerLink="/chart/transactions-by-date"><span class="text-uppercase d-block">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
+      <a routerLink="/chart/target-difficulty"><span class="text-uppercase">{{'home.EXPLORE_IT' | translate}} <i class="fa fa-long-arrow-right"></i></span></a>
     </div>
   </div>
 </div>

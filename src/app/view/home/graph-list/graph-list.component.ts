@@ -765,14 +765,16 @@ export class GraphListComponent implements OnInit {
 
   difficultyChartFunc(DifficultychartDate, data, Type, range1, range2, range3, tickformat) {
     let dtickval;
-    if (tickformat == "%H-%M")
+    if (tickformat == "%H-%M"){
       dtickval = ''
-    else if (DifficultychartDate.length < 21712)
+    }else if (DifficultychartDate.length < 21712){
       dtickval = 2 * 24 * 60 * 60 * 1000
-    else if (DifficultychartDate.length < 100571)
+    }else if (DifficultychartDate.length < 100571){
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else
-      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
+    }else {
+      tickformat = "%b %Y";
+      dtickval = 5 * 30 * 24 * 60 * 60 * 1000
+    }
 
     let window_width = window.screen.width;
     let position = 0.00;
@@ -782,7 +784,7 @@ export class GraphListComponent implements OnInit {
     let cuckoo_position = null;
     let right_margin = 10;
     if (window_width > 700) {
-      position = 0.10;
+      position = 0.11;
       angle = 0;
       domain_start = 0.18;
       left_margin = 5;
@@ -887,16 +889,19 @@ export class GraphListComponent implements OnInit {
   stackchartFunc(sDate, Cuckoo, ProgPow, RandomX) {
 
     let dtickval;
-    if (sDate.length < 10)
+    let tickformat = '%m-%d';
+    if (sDate.length < 10){
       dtickval = 2 * 24 * 60 * 60 * 1000
-    else if (sDate.length < 20)
+    } else if (sDate.length < 20) {
       dtickval = 4 * 24 * 60 * 60 * 1000
-    else if (sDate.length < 40)
+    } else if (sDate.length < 40) {
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else if (sDate.length < 70)
+    } else if (sDate.length < 70) {
       dtickval = 8 * 24 * 60 * 60 * 1000
-    else 
-      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
+    } else { 
+      tickformat = "%b %Y";
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000;
+    }
 
     this.stackGraphData = {
       data: [
@@ -975,7 +980,7 @@ export class GraphListComponent implements OnInit {
           showgrid: true,
           zeroline: false,
           tickangle: -45,
-          tickformat: '%m-%d',
+          tickformat: tickformat,
           rangemode: 'nonnegative',
           fixedrange: true,
           tick0: sDate[0],
@@ -1110,20 +1115,22 @@ export class GraphListComponent implements OnInit {
 
   totalBlocksFunc(DifficultychartDate, Blockval) {
 
-
+    let tickformat = '%m-%d';
     let dtickval;
-    if (DifficultychartDate.length < 5)
+    if (DifficultychartDate.length < 5) {
       dtickval = 1 * 24 * 60 * 60 * 1000
-    else if (DifficultychartDate.length < 10)
+    }else if (DifficultychartDate.length < 10) {
       dtickval = 2 * 24 * 60 * 60 * 1000
-    else if (DifficultychartDate.length < 20)
+    }else if (DifficultychartDate.length < 20) {
       dtickval = 4 * 24 * 60 * 60 * 1000
-    else if (DifficultychartDate.length < 40)
+    }else if (DifficultychartDate.length < 40) {
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else if (DifficultychartDate.length < 70)
+    }else if (DifficultychartDate.length < 70) {
       dtickval = 8 * 24 * 60 * 60 * 1000
-    else
-      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
+    }else {
+      tickformat = "%b %Y";
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000;
+    }
 
 
     this.barGraphData = {
@@ -1150,7 +1157,7 @@ export class GraphListComponent implements OnInit {
         showlegend: false,
         xaxis: {
           tickangle: -45,
-          tickformat: '%m-%d',
+          tickformat: tickformat,
           showgrid: true,
           fixedrange: true,
           rangemode: 'nonnegative',
@@ -1180,19 +1187,20 @@ export class GraphListComponent implements OnInit {
 
   transcationfeeFunc(TfDate, TfFee) {
 
-
+    let tickformat = '%m-%d';
     let dtickval;
-    if (TfDate.length < 10)
-      dtickval = 2 * 24 * 60 * 60 * 1000
-    else if (TfDate.length < 20)
-      dtickval = 4 * 24 * 60 * 60 * 1000
-    else if (TfDate.length < 40)
-      dtickval = 6 * 24 * 60 * 60 * 1000
-    else if (TfDate.length < 70)
-      dtickval = 8 * 24 * 60 * 60 * 1000
-    else
-      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
-
+    if (TfDate.length < 10) {
+      dtickval = 2 * 24 * 60 * 60 * 1000;
+    }else if (TfDate.length < 20) {
+      dtickval = 4 * 24 * 60 * 60 * 1000;
+    }else if (TfDate.length < 40) {
+      dtickval = 6 * 24 * 60 * 60 * 1000;
+    }else if (TfDate.length < 70) {
+      dtickval = 8 * 24 * 60 * 60 * 1000;
+    }else {
+      tickformat = "%b %Y";
+      dtickval = 5 * 30 * 24 * 60 * 60 * 1000;
+    }
 
     this.transcationGraphData = {
       data: [
@@ -1216,7 +1224,7 @@ export class GraphListComponent implements OnInit {
         autosize: true,
         xaxis: {
           tickangle: -45,
-          tickformat: '%m-%d',
+          tickformat: tickformat,
           rangemode: 'nonnegative',
           fixedrange: true,
           showgrid: true,
@@ -1256,17 +1264,20 @@ export class GraphListComponent implements OnInit {
 
   growthFunc(gDate, gReward, gaddedreward, range) {
 
+    let tickformat = '%m-%d';
     let dtickval;
-    if (gDate.length < 10)
+    if (gDate.length < 10) {
       dtickval = 2 * 24 * 60 * 60 * 1000
-    else if (gDate.length < 20)
+    }else if (gDate.length < 20) {
       dtickval = 4 * 24 * 60 * 60 * 1000
-    else if (gDate.length < 40)
+    }else if (gDate.length < 40) {
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else if (gDate.length < 70)
+    }else if (gDate.length < 70) {
       dtickval = 8 * 24 * 60 * 60 * 1000
-    else
-      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
+    }else {
+      tickformat = "%b %Y";
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000;
+    }
 
     this.growthGraphData = {
       data: [
@@ -1295,8 +1306,8 @@ export class GraphListComponent implements OnInit {
         autosize: true,
         xaxis: {
           linecolor: 'rgb(204,204,204)',
-          linewidth: 2,
-          tickformat: '%m-%d',
+          linewidth: 1,
+          tickformat: tickformat,
           tickangle: -45,
           rangemode: 'nonnegative',
           fixedrange: true,
@@ -1330,17 +1341,20 @@ export class GraphListComponent implements OnInit {
   }
 
   blockspersecFunc(bDate, bPeriod) {
+    let tickformat = '%m-%d';
     let dtickval;
-    if (bDate.length < 10)
+    if (bDate.length < 10) {
       dtickval = 2 * 24 * 60 * 60 * 1000
-    else if (bDate.length < 20)
+    }else if (bDate.length < 20) {
       dtickval = 4 * 24 * 60 * 60 * 1000
-    else if (bDate.length < 40)
+    }else if (bDate.length < 40) {
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else if (bDate.length < 70)
+    }else if (bDate.length < 70) {
       dtickval = 8 * 24 * 60 * 60 * 1000
-    else
-      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
+    }else {
+      tickformat = "%b %Y";
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000;
+    }
     this.areaGraphData = {
       data: [
         {
@@ -1364,7 +1378,7 @@ export class GraphListComponent implements OnInit {
         height: 250,
         autosize: true,
         xaxis: {
-          tickformat: '%m-%d',
+          tickformat: tickformat,
           tickangle: -45,
           rangemode: 'nonnegative',
           fixedrange: true,
@@ -1395,17 +1409,20 @@ export class GraphListComponent implements OnInit {
 
   blockminedFunc(mDate, ProgPow, Cuckoo, RandomX, ProgPowper, Cuckooper, RandomXper) {
 
+    let tickformat = '%m-%d';
     let dtickval;
-    if (mDate.length < 10)
+    if (mDate.length < 10) {
       dtickval = 2 * 24 * 60 * 60 * 1000
-    else if (mDate.length < 20)
+    }else if (mDate.length < 20) {
       dtickval = 4 * 24 * 60 * 60 * 1000
-    else if (mDate.length < 40)
+    }else if (mDate.length < 40) {
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else if (mDate.length < 70)
+    }else if (mDate.length < 70) {
       dtickval = 8 * 24 * 60 * 60 * 1000
-    else
-      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
+    }else {
+      tickformat = "%b %Y";
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000;
+    }
 
     this.doubleareaGraphData = {
       data: [
@@ -1483,7 +1500,7 @@ export class GraphListComponent implements OnInit {
         },
 
         xaxis: {
-          tickformat: '%m-%d',
+          tickformat: tickformat,
           tickangle: -45,
           rangemode: 'nonnegative',
           fixedrange: true,
@@ -1592,17 +1609,20 @@ export class GraphListComponent implements OnInit {
   }
   transactionlinechartFunc(Tdate, Ttotalinput, Ttotalkernal, Ttotaloutput) {
 
+    let tickformat = '%m-%d';
     let dtickval;
-    if (Tdate.length < 10)
+    if (Tdate.length < 10) {
       dtickval = 2 * 24 * 60 * 60 * 1000
-    else if (Tdate.length < 20)
+    } else if (Tdate.length < 20) {
       dtickval = 4 * 24 * 60 * 60 * 1000
-    else if (Tdate.length < 40)
+    }else if (Tdate.length < 40) {
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else if (Tdate.length < 100)
+    }else if (Tdate.length < 100) {
       dtickval = 8 * 24 * 60 * 60 * 1000
-    else
-      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
+    }else {
+      tickformat = "%b %Y";
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000;
+    }
 
     this.feeGraphData = {
       data: [
@@ -1656,7 +1676,7 @@ export class GraphListComponent implements OnInit {
         xaxis: {
           showgrid: true,
           zeroline: false,
-          tickformat: '%m-%d',
+          tickformat: tickformat,
           rangemode: 'nonnegative',
           fixedrange: true,
           tickangle: -45,
@@ -1754,14 +1774,16 @@ export class GraphListComponent implements OnInit {
   totaldifficultyChartFunc(DifficultychartDate, data, type, range1, range2, range3, tickformat) {
 
     let dtickval;
-    if (tickformat == "%H-%M")
+    if (tickformat == "%H-%M") {
       dtickval = ''
-    else if (DifficultychartDate.length < 22712)
+    }else if (DifficultychartDate.length < 22712){
       dtickval = 2 * 24 * 60 * 60 * 1000
-    else if (DifficultychartDate.length < 100000)
+    }else if (DifficultychartDate.length < 100000){
       dtickval = 6 * 24 * 60 * 60 * 1000
-    else
-      dtickval = 3 * 30 * 24 * 60 * 60 * 1000
+    }else {
+      tickformat = "%b %Y";
+      dtickval = 4 * 30 * 24 * 60 * 60 * 1000
+    }
 
     let window_width = window.screen.width;
     let position = 0.00;
@@ -1771,7 +1793,7 @@ export class GraphListComponent implements OnInit {
     let tick_size = 11;
     let right_margin = 10;
     if (window_width > 700) {
-      position = 0.10;
+      position = 0.11;
       angle = 0;
       domain_start = 0.18;
       left_margin = 5;
