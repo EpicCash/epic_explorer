@@ -1,27 +1,26 @@
-# Epic Explorer using angular8
+# Epic Explorer v3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.2.
 
-## Development server
+## Follow below guide lines to deploy explorerv3
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* Create new folder, pull project from git and switch to "explorerv3" branch
+* Copy below 3 files from old live to this project
+```
+.env
+src/environment.ts
+src/environment.prod.ts
+```
+* Run below command to install node modules
+```
+npm i -f --ignore-script
+```
+* Run below command to create build
+```
+npm run build:ssr
+```
+* Use below command to run build
+```
+node live/server.js
+```
+Note : if you are using pm2 or other process manager, use specific command to run build
