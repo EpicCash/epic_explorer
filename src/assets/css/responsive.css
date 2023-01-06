@@ -30,6 +30,7 @@
 p.block_value{ font-size: 40px;}
 p.block_value_v2 {font-size: 30px;height: 35px;}
 .bc_sixcls .col-md-3, .bc_sixcls .col-md-5, .bc_sixcls .col-md-4 {flex: 0 0 50%;max-width: 50%;}
+p.block_value_v2.epicprice {  font-size: 22px;  line-height: normal;  height: auto;}
 }
 @media (min-width: 992px) and (max-width: 1199px){
 .detail_div .count{font-size: 20px;}
