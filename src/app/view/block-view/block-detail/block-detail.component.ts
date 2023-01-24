@@ -56,6 +56,10 @@ export class BlockDetailComponent implements OnInit {
           if (res['status'] == 200) {
             this.hasdata = true;
             this.hashdata = res.response;
+            //console.log(res.response.BlockchainBlockOutputFetchQuery);
+            if(res.response.BlockchainBlockOutputFetchQuery){
+              res.response.BlockchainBlockOutputFetchQuery.sort((a,b)=> (a.OutputType > b.OutputType ? 1 : -1))
+            }
           }
         },
         error => {

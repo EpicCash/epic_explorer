@@ -39,6 +39,7 @@ export class BlockDetailListComponent implements OnInit {
   timeout_8;
   timeout_9;
   timeout_10;
+  halvingtext;
   @ViewChild("minhgt", { static: false }) elementView: ElementRef;
 
   minHeight: number;
@@ -106,6 +107,43 @@ export class BlockDetailListComponent implements OnInit {
         );
     });
   }
+  public parseDays (value) { 
+    let year, months, week, days;
+    let text = "";
+    year = value >= 365 ? Math.floor(value / 365) : 0;
+    value = year ? value - (year*365) : value;
+    months = value >= 30 ? Math.floor((value % 365) / 30) : 0;
+    value = months ? value - (months*30) : value;
+    week = value >= 7 ? Math.floor((value % 365) / 7) : 0;
+    value = week ? value - (week*7) : value;
+    days = value < 7 ? Math.floor((value % 365) % 7) : 0;
+    if(year == 1){
+      text = "1 year ";
+    }else if (year > 1){
+      text = year+" years ";
+    }
+    if(months == 1){
+      text = text + "1 month ";
+    }else if (months > 1){
+      text = text + months+" months ";
+    }
+    if(week == 1){
+      text = text + "1 week ";
+    }else if (week > 1){
+      text = text + week+" weeks ";
+    }
+    if(days == 1){
+      text = text + "1 day ";
+    }else if (days > 1){
+      text = text + days+" days ";
+    }
+    return text;
+    // console.log("years = ", year); 
+    // console.log("months = ",months); 
+    // console.log("weeks = ",week); 
+    // console.log("days = ", days);
+    // console.log(text);
+  }
 
   public gettingprevioushashList() {
     return new Promise<void>((resolve, reject) => {
@@ -114,6 +152,37 @@ export class BlockDetailListComponent implements OnInit {
         .subscribe(
           res => {
             if (res["status"] == 200) {
+              // halving calculation
+              let timestamp = Math.floor(new Date().getTime() / 1000);
+              let blockReward = 4;
+              let currentCoin = res.response.coin_existence;
+              let endSupply = 16571520;
+
+              if(timestamp < 1685816999){
+                blockReward = 4;
+                endSupply = 16571520;
+              }else if(timestamp >= 1685816999){
+                blockReward = 2;
+                endSupply = 18875520;
+              }else if(timestamp >= 1754850599){
+                blockReward = 1;
+                endSupply = 20342880;
+              }else if(timestamp >= 1842805799){
+                blockReward = 0.15625;
+                endSupply = 20671380;
+              }else if(timestamp >= 1968863399){
+                blockReward = 0.078125;
+                endSupply = 20835630;
+              }
+
+              let remainingBlock = endSupply - currentCoin;
+              let remainingBlockPerDay = (60*24) * blockReward;
+              let daysLeft = Math.floor(remainingBlock/remainingBlockPerDay);
+              console.log(endSupply,currentCoin);
+              console.log(daysLeft);
+              this.halvingtext = this.parseDays(daysLeft);
+              // console.log(this.halvingtext);
+
               // var hasharray = res.response;
               this.latestblockdetail = res.response;
               // setInterval(() => this.incrementseconds(), 1000);

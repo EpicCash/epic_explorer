@@ -27,9 +27,12 @@
 <div class="row">
 
 
-  <div class="col-sm-7  col-md-8 mb-4">
+  <div class="col-sm-7 col-md-8 mb-2">
     <div class="position-relative">
       <epic-explorer-search></epic-explorer-search>
+    </div>
+    <div *ngIf="halvingtext" class="text-center">
+      <p class="mb-0 mt-2">next halving {{this.halvingtext}}</p>
     </div>
   </div>
   <div class="col-sm-5  col-md-4">
@@ -117,9 +120,10 @@
               <p class="block_heading">{{ "home.CIRCULATING_SUPPLY" | translate }}</p>
               <p class="block_value_v2 medtxtwid" [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''">
                 <ng2-odometer [number]="Block_supply" [config]="{ }"></ng2-odometer>
+                <span class="smalltext pl-2 epicipadresize">Epic</span>
                 <!-- {{ latestblockdetail.coin_existence | number }} -->
               </p>
-              <span class="smalltext">Epic</span>
+              <span class="smalltext">Max Supply <span style="color:#bf9b32;"> 21,000,000</span></span>
             </div>
           </div>
         </div>

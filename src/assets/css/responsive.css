@@ -47,6 +47,9 @@ p.block_value_v2.epicprice {  font-size: 22px;  line-height: normal;  height: au
 
 }
 @media (min-width: 768px) and (max-width: 991px){
+span.epicipadresize {
+    font-size: 9px;
+}
 .lgtxtwid .odometer-digit .odometer-value {
     width: 20px;
 }

@@ -771,6 +771,8 @@ export class GraphListComponent implements OnInit {
       dtickval = 2 * 24 * 60 * 60 * 1000
     }else if (DifficultychartDate.length < 100571){
       dtickval = 6 * 24 * 60 * 60 * 1000
+    }else if (DifficultychartDate.length < 200571){
+      dtickval = 10 * 24 * 60 * 60 * 1000
     }else {
       tickformat = "%b %Y";
       dtickval = 5 * 30 * 24 * 60 * 60 * 1000
@@ -890,6 +892,8 @@ export class GraphListComponent implements OnInit {
 
     let dtickval;
     let tickformat = '%m-%d';
+    console.log('sDate.length');
+    console.log(sDate.length);
     if (sDate.length < 10){
       dtickval = 2 * 24 * 60 * 60 * 1000
     } else if (sDate.length < 20) {
@@ -898,6 +902,8 @@ export class GraphListComponent implements OnInit {
       dtickval = 6 * 24 * 60 * 60 * 1000
     } else if (sDate.length < 70) {
       dtickval = 8 * 24 * 60 * 60 * 1000
+    } else if (sDate.length < 90) {
+      dtickval = 12 * 24 * 60 * 60 * 1000
     } else { 
       tickformat = "%b %Y";
       dtickval = 4 * 30 * 24 * 60 * 60 * 1000;
@@ -917,22 +923,7 @@ export class GraphListComponent implements OnInit {
           marker: {
             color: '#bf9b30',
           },
-
         },
-
-        // {
-        //   x: sDate,
-        //   y: Cuckatoo,
-        //   name: '',
-        //   type: 'bar',
-        //   text: Cuckatoo,
-        //   hovertemplate: '%{x}<br> Cuckaroo : %{text:,}',
-        //   marker: {
-        //     color: '#54CFDC',
-        //   },
-
-        // },
-
         {
           x: sDate,
           y: ProgPow,
@@ -941,28 +932,22 @@ export class GraphListComponent implements OnInit {
           text: ProgPow,
           hovertemplate: '%{x}<br> ProgPoW : %{text:,}',
           hoverlabel: { namelength: 0 },
-
           marker: {
             color: '#C0C0C0',
           },
-
         },
-
         {
           x: sDate,
           y: RandomX,
-          name: 'Randomx',
+          name: 'RandomX',
           type: 'bar',
           text: RandomX,
           hovertemplate: '%{x}<br> RandomX : %{text:,}',
           hoverlabel: { namelength: 0 },
-
           marker: {
             color: '#B87333',
           },
-
         }
-
       ],
       layout: {
         hovermode: 'closest',
@@ -1127,6 +1112,8 @@ export class GraphListComponent implements OnInit {
       dtickval = 6 * 24 * 60 * 60 * 1000
     }else if (DifficultychartDate.length < 70) {
       dtickval = 8 * 24 * 60 * 60 * 1000
+    }else if (DifficultychartDate.length < 90) {
+      dtickval = 12 * 24 * 60 * 60 * 1000
     }else {
       tickformat = "%b %Y";
       dtickval = 4 * 30 * 24 * 60 * 60 * 1000;
@@ -1197,6 +1184,8 @@ export class GraphListComponent implements OnInit {
       dtickval = 6 * 24 * 60 * 60 * 1000;
     }else if (TfDate.length < 70) {
       dtickval = 8 * 24 * 60 * 60 * 1000;
+    }else if (TfDate.length < 90) {
+      dtickval = 12 * 24 * 60 * 60 * 1000;
     }else {
       tickformat = "%b %Y";
       dtickval = 5 * 30 * 24 * 60 * 60 * 1000;
@@ -1274,6 +1263,8 @@ export class GraphListComponent implements OnInit {
       dtickval = 6 * 24 * 60 * 60 * 1000
     }else if (gDate.length < 70) {
       dtickval = 8 * 24 * 60 * 60 * 1000
+    }else if (gDate.length < 90) {
+      dtickval = 12 * 24 * 60 * 60 * 1000
     }else {
       tickformat = "%b %Y";
       dtickval = 4 * 30 * 24 * 60 * 60 * 1000;
@@ -1351,6 +1342,8 @@ export class GraphListComponent implements OnInit {
       dtickval = 6 * 24 * 60 * 60 * 1000
     }else if (bDate.length < 70) {
       dtickval = 8 * 24 * 60 * 60 * 1000
+    }else if (bDate.length < 90) {
+      dtickval = 12 * 24 * 60 * 60 * 1000
     }else {
       tickformat = "%b %Y";
       dtickval = 4 * 30 * 24 * 60 * 60 * 1000;
@@ -1419,11 +1412,14 @@ export class GraphListComponent implements OnInit {
       dtickval = 6 * 24 * 60 * 60 * 1000
     }else if (mDate.length < 70) {
       dtickval = 8 * 24 * 60 * 60 * 1000
+    }else if (mDate.length < 90) {
+      dtickval = 12 * 24 * 60 * 60 * 1000
     }else {
       tickformat = "%b %Y";
       dtickval = 4 * 30 * 24 * 60 * 60 * 1000;
     }
 
+    //
     this.doubleareaGraphData = {
       data: [
         {
@@ -1432,62 +1428,36 @@ export class GraphListComponent implements OnInit {
           text: Cuckoo,
           hovertemplate: 'Cuckoo : %{y} % ( %{text:,} )',
           hoverlabel: { namelength: 0 },
-
           name: 'Cuckoo',
-          fill: 'tozeroy',
-          type: 'line',
-          line: {
+          type: 'bar',
+          marker: {
             color: '#bf9b30',
           },
-
         },
-
-        // {
-        //   x: mDate,
-        //   y: Cuckatooper,
-        //   text: Cuckatoo,
-        //   hovertemplate: 'Cuckatoo :%{y} % ( %{text:,} )',
-        //   name: '',
-        //   fill: 'tozeroy',
-        //   type: 'line',
-        //   line: {
-        //     color: '#f5c1a9',
-        //   },
-
-        // },
-
         {
           x: mDate,
           y: ProgPowper,
           text: ProgPow,
           hovertemplate: 'ProgPoW : %{y} % ( %{text:,} )',
           hoverlabel: { namelength: 0 },
-
-          fill: 'tozeroy',
-          type: 'line',
+          type: 'bar',
           name: 'ProgPoW',
-          line: {
+          marker: {
             color: '#C0C0C0',
           },
-
         },
-
         {
           x: mDate,
           y: RandomXper,
           text: RandomX,
           hovertemplate: 'RandomX : %{y} % ( %{text:,} )',
           hoverlabel: { namelength: 0 },
-
-          fill: 'tozeroy',
-          type: 'line',
+          type: 'bar',
           name: 'RandomX',
-          line: {
+          marker: {
             color: '#B87333',
           },
-
         },
-
       ],
       layout: {
         hovermode: 'closest',
@@ -1499,6 +1469,7 @@ export class GraphListComponent implements OnInit {
           x: 0.35, y: -0.5, font: { 'size': 10 }
         },
 
+        barmode: 'relative',
         xaxis: {
           tickformat: tickformat,
           tickangle: -45,
@@ -1780,6 +1751,8 @@ export class GraphListComponent implements OnInit {
       dtickval = 2 * 24 * 60 * 60 * 1000
     }else if (DifficultychartDate.length < 100000){
       dtickval = 6 * 24 * 60 * 60 * 1000
+    }else if (DifficultychartDate.length < 200000){
+      dtickval = 10 * 24 * 60 * 60 * 1000
     }else {
       tickformat = "%b %Y";
       dtickval = 4 * 30 * 24 * 60 * 60 * 1000
