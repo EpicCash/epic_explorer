@@ -100,6 +100,8 @@ export class BlockDetailListComponent implements OnInit {
             if (res["msg"] == 'ok') {
               console.log(res.data);
               this.epicData = res.data;
+              //console.log(parseFloat(this.epicData.lastPrice).toFixed(3));
+              this.epicData.lastPrice = parseFloat(this.epicData.lastPrice).toFixed(3);
               resolve();
             }
           },
