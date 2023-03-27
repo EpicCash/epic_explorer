@@ -40,6 +40,7 @@ export class BlockDetailListComponent implements OnInit {
   timeout_9;
   timeout_10;
   halvingtext;
+  havlingTimer;
   @ViewChild("minhgt", { static: false }) elementView: ElementRef;
 
   minHeight: number;
@@ -108,6 +109,52 @@ export class BlockDetailListComponent implements OnInit {
           error => {}
         );
     });
+  }
+  timercountdown(daysLeft: number): void {
+    // Calculate the target date based on the number of days left
+    let days = Math.floor(daysLeft);
+    let hoursDecimal = (daysLeft - days) * 24;
+    let hours = Math.floor(hoursDecimal);
+    let minutesDecimal = (hoursDecimal - hours) * 60;
+    let minutes = Math.floor(minutesDecimal);
+    let secondsDecimal = (minutesDecimal - minutes) * 60;
+    let seconds = Math.floor(secondsDecimal);
+    let targetDate = new Date();
+    // console.log(days ,hours , minutes, seconds );
+    targetDate.setDate(targetDate.getDate() + days);
+    targetDate.setHours(targetDate.getHours() + hours);
+    targetDate.setMinutes(targetDate.getMinutes() + minutes);
+    targetDate.setSeconds(targetDate.getSeconds() + seconds);
+    let countDownDate = targetDate.getTime();
+    // Update the countdown every 1 second
+    this.havlingTimer = setInterval(() => {
+      // Get today's date and time
+      let now = new Date().getTime();
+      // Find the distance between now and the count down date
+      let distance = countDownDate - now;
+      // Time calculations for days, hours, minutes and seconds
+      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      let text = "";
+      if(days == 1){
+        text = "1 day ";
+      }else if (days > 1){
+        text = days+" days ";
+      }
+      if(hours == 1){
+        text = text + "1 hour ";
+      }else if (hours > 1){
+        text = text + hours+" hours ";
+      }
+      if(minutes == 1){
+        text = text + "1 minute ";
+      }else if (minutes > 1){
+        text = text + minutes+" minutes ";
+      }
+      this.halvingtext = text;
+    }, 5 * 1000);
   }
   public parseDays (value) { 
     let year, months, week, days;
@@ -179,10 +226,10 @@ export class BlockDetailListComponent implements OnInit {
 
               let remainingBlock = endSupply - currentCoin;
               let remainingBlockPerDay = (60*24) * blockReward;
-              let daysLeft = Math.floor(remainingBlock/remainingBlockPerDay);
+              let daysLeft = remainingBlock/remainingBlockPerDay;
               console.log(endSupply,currentCoin);
               console.log(daysLeft);
-              this.halvingtext = this.parseDays(daysLeft);
+              this.halvingtext = this.timercountdown(daysLeft);
               // console.log(this.halvingtext);
 
               // var hasharray = res.response;
@@ -292,6 +339,7 @@ export class BlockDetailListComponent implements OnInit {
 
   ngOnDestroy() {
     clearInterval(this.apiInterval);
+    clearInterval(this.havlingTimer);
     clearTimeout(this.timeout_1);
     clearTimeout(this.timeout_2);
     clearTimeout(this.timeout_3);
