@@ -39,9 +39,11 @@ export class BlockDetailListComponent implements OnInit {
   timeout_8;
   timeout_9;
   timeout_10;
+  timeout_11;
   halvingtext;
   havlingTimer;
   @ViewChild("minhgt", { static: false }) elementView: ElementRef;
+  @ViewChild("odometer", { static: false }) odometerRef: ElementRef;
 
   minHeight: number;
   apiInterval;
@@ -138,6 +140,7 @@ export class BlockDetailListComponent implements OnInit {
       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
       let text = "";
+      let text2 = days +':'+ ('0' + hours).slice(-2) +':'+ ('0' + minutes).slice(-2);
       if(days == 1){
         text = "1 day ";
       }else if (days > 1){
@@ -153,7 +156,7 @@ export class BlockDetailListComponent implements OnInit {
       }else if (minutes > 1){
         text = text + minutes+" minutes ";
       }
-      this.halvingtext = text;
+      this.halvingtext = text2;
     }, 5 * 1000);
   }
   public parseDays (value) { 
@@ -298,6 +301,18 @@ export class BlockDetailListComponent implements OnInit {
                 }, 5*1000);
                 this.timeout_2 = setTimeout(() => {
                   this.Block_latest = res.response.letest_block_num;
+                  this.timeout_11 =setTimeout(() => {
+                    console.log('000');
+                    const odometerElement = this.odometerRef.nativeElement;
+                    const digitElement = odometerElement.querySelector('.latestblockarea .odometer-inside span.odometer-digit:first-child span.odometer-digit-inner span.odometer-value');
+                    const digitElementToHide = odometerElement.querySelector('.latestblockarea .odometer-inside span.odometer-digit:first-child');
+                    console.log(digitElement);
+                    console.log('111-'+digitElement.innerText);
+                    if (digitElement.innerText == '0') {
+                      digitElementToHide.style.display = 'none';
+                      console.log('222');
+                    }
+                  }, 4000);
                 }, 10*1000);
                 this.timeout_3 = setTimeout(() => {
                   this.Block_supply = res.response.coin_existence;
@@ -349,6 +364,8 @@ export class BlockDetailListComponent implements OnInit {
     clearTimeout(this.timeout_7);
     clearTimeout(this.timeout_8);
     clearTimeout(this.timeout_9);
+    clearTimeout(this.timeout_10);
+    clearTimeout(this.timeout_11);
 
     this.latestblockdetailObservable
       ? this.latestblockdetailObservable.unsubscribe()

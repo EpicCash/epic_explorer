@@ -32,7 +32,7 @@
       <epic-explorer-search></epic-explorer-search>
     </div>
     <div *ngIf="halvingtext" class="text-center">
-      <p class="mb-0 mt-2">Next halving in {{this.halvingtext}}</p>
+      <p class="mb-0 mt-3 mb-2 havlingtext">Next <span class="big-epic">EPIC</span> halving in <span><span class="big-epic">{{this.halvingtext}}</span><br><span class="havlingtime">&nbsp;&nbsp; DAYS &nbsp;&nbsp; HOURS &nbsp;MINUTES</span></span></p>
     </div>
   </div>
   <div class="col-sm-5  col-md-4">
@@ -108,9 +108,9 @@
         </div>
         <div class="col-md-6">
           <div class="row">
-            <div class="col-6 drawline">
+            <div class="col-6 drawline" #odometer>
               <p class="block_heading">{{ "home.LATEST_BLOCK_AGE" | translate }}</p>
-              <p class="block_value_v2 medtxtwid" [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''">
+              <p class="block_value_v2 medtxtwid latestblockarea" [ngClass]="latestblockdetail.blink == true ? 'item-highlight' : ''">
                 <ng2-odometer [number]="Block_latest" [config]="{ }"></ng2-odometer>
                 <!-- {{ latestblockdetail.letest_block_num  | number }}  -->
               </p>

@@ -20,6 +20,25 @@ body {
   max-width: 75%;
   margin: 0 auto;
 }
+.big-epic {
+  font-size: 36px;
+  display: inline-flex;
+  align-items: center;
+  color: #bf9b32;
+  padding: 0px 5px;
+  height: 30px;
+}
+.havlingtext {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.havlingtime {
+  color: #bf9b32;
+  font-size: 10px;
+  height: 6px;
+  display: block;
+}
 .text_underline{text-decoration: underline;color: #BF9B30}
 a, .privacy_txt a { color: #BF9B30}
 a:hover,
@@ -913,6 +932,12 @@ p.block_heading {
 }
 
 @media(max-width:767px){
+  .big-epic {
+    font-size: 32px;
+  }
+  .havlingtime {
+    font-size: 9px;
+  }
 .countdownbox span{ display: block;}
 .countdownbox .count{white-space: normal;   text-overflow: inherit; overflow: visible; font-size: 25px;}
 }
