@@ -290,7 +290,7 @@ export class GraphListComponent implements OnInit {
               let Ttotalkernal = res.response.totalkernal;
               let Ttotaloutput = res.response.totaloutput;
               let today_date_index = Tdate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
-              this.tg_last = parseInt(Ttotalinput[today_date_index]) + parseInt(Ttotalkernal[today_date_index]) + parseInt(Ttotaloutput[today_date_index]);
+              this.tg_last = parseInt(Ttotalkernal[today_date_index]);
               this.transactionlinechartFunc(
                 Tdate,
                 Ttotalinput,
