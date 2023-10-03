@@ -7,10 +7,11 @@
       <div class="row" *ngIf="pool51_currentHeight">
         <div class="col-12 drawline">
           <p class="block_heading mb-1">Mining Pool 
-            <select class="langbut py-2 pr-4 pl-2 miningpoolborder">
-              <option value="Testnet" selected> 51pool </option>
+            <select class="langbut py-2 pr-4 pl-2 miningpoolborder" (change)="onMineChange($event)">
+              <option value="51pool" selected> 51pool </option>
+              <option value="epicmine"> epicmine </option>
             </select>
-          <a href="https://51pool.online/" class="text-white pl-3" target="_blank">
+          <a [href]="poolUrl" class="text-white pl-3" target="_blank">
             <i class="fa fa-link goldcolortxt"></i>
           </a> 
         </p>

@@ -265,6 +265,12 @@ export class BlockchainBlockController {
       this.get51poolapi,
     );
 
+    this.router.get(
+      `${this.path}/getepicmineapi`,
+      redisMiddleware(process.env.REDIS_EXPIRY),
+      this.getepicmineapi,
+    );
+
        /**
      * @swagger
      * /epic_explorer/v1/blockchain_block/blockcount:
@@ -715,6 +721,30 @@ export class BlockchainBlockController {
       axios(config).then(function (response) {
         console.log('response.body----------');
         console.log(JSON.stringify(response.data));
+        res.status(200).json({
+          status: 200,
+          response: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log('axios-error');
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // get epicmine 
+  private getepicmineapi = ( request: Request,res: Response) => {
+    var axios = require('axios');
+    try {
+      var config = {
+        method: 'get',
+        url: 'https://api.epicmine.io/pool/getstats',
+        headers: { }
+      };
+      axios(config).then(function (response) {
         res.status(200).json({
           status: 200,
           response: response.data
