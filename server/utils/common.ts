@@ -92,7 +92,8 @@ const getTotalRewardByHeight= async(height) => {
       currentReward = 4;
     } else if (height <= BLOCK_ERA_4) {
       remaining_height = height - BLOCK_ERA_3;
-      coin_existence =  (16 * BLOCK_ERA_1) + (8 * (BLOCK_ERA_2 - BLOCK_ERA_1)) + (4 * (BLOCK_ERA_3 - BLOCK_ERA_2)) + 2 * remaining_height;
+      // coin_existence =  (16 * BLOCK_ERA_1) + (8 * (BLOCK_ERA_2 - BLOCK_ERA_1)) + (4 * (BLOCK_ERA_3 - BLOCK_ERA_2)) + 2 * remaining_height;
+      coin_existence = (16* (DAY_HEIGHT * 334)) + (8 * (DAY_HEIGHT * 470)) + (4 *  (DAY_HEIGHT * 601)) + 2*remaining_height;
       currentReward = 2;
     } else if (height <= BLOCK_ERA_5) {
       remaining_height = height - BLOCK_ERA_4;
@@ -300,7 +301,8 @@ const latestBlockDetails = async()=> {
       currentReward = 4;
     } else if (height <= BLOCK_ERA_4) {
       remaining_height = height - BLOCK_ERA_3;
-      coin_existence =  (16 * BLOCK_ERA_1) + (8 * (BLOCK_ERA_2 - BLOCK_ERA_1)) + (4 * (BLOCK_ERA_3 - BLOCK_ERA_2)) + 2 * remaining_height;
+      // coin_existence =  (16 * BLOCK_ERA_1) + (8 * (BLOCK_ERA_2 - BLOCK_ERA_1)) + (4 * (BLOCK_ERA_3 - BLOCK_ERA_2)) + 2 * remaining_height;
+      coin_existence = (16* (DAY_HEIGHT * 334)) + (8 * (DAY_HEIGHT * 470)) + (4 *  (DAY_HEIGHT * 601)) + 2*remaining_height;
       currentReward = 2;
     } else if (height <= BLOCK_ERA_5) {
       remaining_height = height - BLOCK_ERA_4;
@@ -516,7 +518,8 @@ const previousBlockDetails = async() => {
       currentReward = 4;
     } else if (height <= BLOCK_ERA_4) {
       remaining_height = height - BLOCK_ERA_3;
-      coin_existence =  (16 * BLOCK_ERA_1) + (8 * (BLOCK_ERA_2 - BLOCK_ERA_1)) + (4 * (BLOCK_ERA_3 - BLOCK_ERA_2)) + 2 * remaining_height;
+      // coin_existence =  (16 * BLOCK_ERA_1) + (8 * (BLOCK_ERA_2 - BLOCK_ERA_1)) + (4 * (BLOCK_ERA_3 - BLOCK_ERA_2)) + 2 * remaining_height;
+      coin_existence = (16* (DAY_HEIGHT * 334)) + (8 * (DAY_HEIGHT * 470)) + (4 *  (DAY_HEIGHT * 601)) + 2*remaining_height;
       currentReward = 2;
     } else if (height <= BLOCK_ERA_5) {
       remaining_height = height - BLOCK_ERA_4;
