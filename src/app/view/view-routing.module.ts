@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeLayoutComponent } from '../shared/components/layouts/home-layout/home-layout.component';
 import { SiteLayoutComponent } from '../shared/components/layouts/site-layout/site-layout.component';
 import {  ApiViewComponent } from '../view/api-view/api-view.component';
+import {  LocationComponent } from '../view/location/location.component';
 const viewRoutes: Routes = [
   {
     path: '',
@@ -38,6 +39,10 @@ const siteRoutes: Routes = [
   {
     path: 'api-index',
     component: ApiViewComponent
+  },
+  {
+    path: 'nodes-distribution',
+    component: LocationComponent
   }
 ];
 
