@@ -62,7 +62,7 @@ export class LocationComponent implements AfterViewInit {
   }
 
   private fetchLocationData(): void {
-    this.http.get('https://explorer3.epic.tech/epic_explorer/v1/blockchain_block/v1/peers/all').subscribe((data: any) => {
+    this.http.get('https://explorer.epic.tech/epic_explorer/v1/blockchain_block/v1/peers/all').subscribe((data: any) => {
       this.locations = data.response;
       this.addMarkers();
     });
