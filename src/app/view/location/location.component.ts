@@ -21,8 +21,9 @@ export class LocationComponent implements AfterViewInit {
   }
 
   private initMap(): void {
+    const isMobile = window.innerWidth < 768;
     this.map = L.map('map', {
-      center: [30, -20],
+      center: [isMobile ? 50 : 30, isMobile ? 20 : -20],
       zoom: 3,
       maxBounds:  L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180)) , // Disable horizontal scrolling
       bounceAtZoomLimits:true,
