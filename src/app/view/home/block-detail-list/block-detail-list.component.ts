@@ -210,19 +210,19 @@ export class BlockDetailListComponent implements OnInit {
               let currentCoin = res.response.coin_existence;
               let endSupply = 16571520;
 
-              if(timestamp < 1685816999){
+              if(currentCoin >= 13109760 && currentCoin < 16571520 ){
                 blockReward = 4;
                 endSupply = 16571520;
-              }else if(timestamp >= 1685816999){
+              }else if(currentCoin >= 16571520 && currentCoin < 18875520){
                 blockReward = 2;
                 endSupply = 18875520;
-              }else if(timestamp >= 1754850599){
+              }else if(currentCoin >= 18875520 && currentCoin < 20342880){
                 blockReward = 1;
                 endSupply = 20342880;
-              }else if(timestamp >= 1842805799){
+              }else if(currentCoin >= 20342880 && currentCoin < 20671380){
                 blockReward = 0.15625;
                 endSupply = 20671380;
-              }else if(timestamp >= 1968863399){
+              }else if(currentCoin >= 20671380){
                 blockReward = 0.078125;
                 endSupply = 20835630;
               }

@@ -49,14 +49,14 @@ export class GraphListComponent implements OnInit {
 
   public selectedItem: Number = 6;
   public selectedItem3: Number = 1;
-  public selectedItem2: Number = 3;
-  public selectedItem4: Number = 3;
-  public selectedItem5: Number = 3;
-  public selectedItem7: Number = 3;
-  public selectedItem8: Number = 3;
+  public selectedItem2: Number = 1;
+  public selectedItem4: Number = 1;
+  public selectedItem5: Number = 1;
+  public selectedItem7: Number = 1;
+  public selectedItem8: Number = 1;
   public selectedItem81: Number = 1;
   public selectedItem9: Number = 3;
-  public selectedItem10: Number = 3;
+  public selectedItem10: Number = 1;
   public selectedItem11: Number = 3;
   public selectedItem12: Number = 4;
   public selectedTarget: Number = 6;
@@ -88,33 +88,33 @@ export class GraphListComponent implements OnInit {
     /* Total Difficulty and blocks chart fetching */
     this.Difficultyreq('target');
     this.Difficultyreq('total');
-    this.blockreq();
+    this.blockreq('', '', '1 week');
 
     this.Blockintervalreq();
 
     /* Transcation fee chart fetching */
-    this.Transcationreq();
+    this.Transcationreq('', '', '1 week');
 
     /* Growth chart fetching */
-    this.Growthreq();
+    this.Growthreq('', '', '1 week');
 
     /* Blockspersec chart fetching */
-    this.Blockspersecreq();
+    this.Blockspersecreq('', '', '1 week');
 
     /* Blockmined chart fetching */
-    this.Blockminedreq();
+    this.Blockminedreq('', '', '1 week');
 
     /* Transactionheatmap chart fetching */
     this.Transactionheatmapreq();
 
     /* Transactionline chart fetching */
-    this.Transactionlinechartreq();
+    this.Transactionlinechartreq('','','1 week');
 
     /* Transaction2line chart fetching */
     // this.Transactiondoublelinechartreq();
 
     /* Stack chart fetching */
-    this.stackchartreq();
+    this.stackchartreq('','','1 week');
 
     /* Pie chart fetching */
     // this.piechartreq();
@@ -290,7 +290,7 @@ export class GraphListComponent implements OnInit {
               let Ttotalkernal = res.response.totalkernal;
               let Ttotaloutput = res.response.totaloutput;
               let today_date_index = Tdate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
-              this.tg_last = parseInt(Ttotalinput[today_date_index]) + parseInt(Ttotalkernal[today_date_index]) + parseInt(Ttotaloutput[today_date_index]);
+              this.tg_last = parseInt(Ttotalkernal[today_date_index]);
               this.transactionlinechartFunc(
                 Tdate,
                 Ttotalinput,
@@ -468,7 +468,7 @@ export class GraphListComponent implements OnInit {
               let today_date_index = gDate.indexOf(moment(Date.now()).format('YYYY-MM-DD'));
               //let today_date_index = gDate.indexOf('2019-08-06');
               //this.gg_last = gReward[today_date_index];
-              this.gg_last = "4";
+              this.gg_last = "2";
               let range = [];
               if (gaddedreward.length == 1 && gaddedreward[0] != 0) {
                 range = [(gaddedreward[0] - (gaddedreward[0] * 0.3)), (gaddedreward[0] + (gaddedreward[0] * 0.3))];

@@ -10,10 +10,10 @@ import { TransServiceService } from '../shared/services/trans-service.service';
 import { ChartService} from '../shared/services/chart.service';
 import { CustomLoader } from '../app.module';
 import { ApiViewComponent } from './api-view/api-view.component';
-
+import { LocationComponent } from './location/location.component';
 
 @NgModule({
-  declarations: [ApiViewComponent],
+  declarations: [ApiViewComponent, LocationComponent],
   imports: [CommonModule, ViewRoutingModule, SharedModule,
     TranslateModule.forChild({
       loader: {provide: TranslateLoader, useClass: CustomLoader, deps : [HttpClient]},         

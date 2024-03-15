@@ -26,6 +26,7 @@ import {
   latestBlockDetails,
   previousBlockDetails
 } from '../utils/common';
+const geoip = require('geoip-lite'); 
 var moment = require('moment');
 moment.updateLocale('en', {
   relativeTime: {
@@ -263,6 +264,17 @@ export class BlockchainBlockController {
       `${this.path}/get51poolapi`,
       redisMiddleware(process.env.REDIS_EXPIRY),
       this.get51poolapi,
+    );
+
+    this.router.get(
+      `${this.path}/getepicmineapi`,
+      redisMiddleware(process.env.REDIS_EXPIRY),
+      this.getepicmineapi,
+    );
+    this.router.get(
+      `${this.path}/v1/peers/all`,
+      redisMiddleware(process.env.REDIS_EXPIRY),
+      this.getpeersallapi,
     );
 
        /**
@@ -718,6 +730,63 @@ export class BlockchainBlockController {
         res.status(200).json({
           status: 200,
           response: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log('axios-error');
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // get epicmine 
+  private getepicmineapi = ( request: Request,res: Response) => {
+    var axios = require('axios');
+    try {
+      var config = {
+        method: 'get',
+        url: 'https://api.epicmine.io/pool/getstats',
+        headers: { }
+      };
+      axios(config).then(function (response) {
+        res.status(200).json({
+          status: 200,
+          response: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log('axios-error');
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // get /v1/peers/all 
+  private getpeersallapi = async( request: Request,res: Response) => {
+    var axios = require('axios');
+    try {
+      var config = {
+        method: 'get',
+        url: 'http://5.75.242.4:3413/v1/peers/all',
+        headers: { }
+      };
+     await axios(config).then( (response) => {
+        const data = response.data;
+
+        // Perform IP geolocation for each item in the 'data' array
+        data.forEach(peer => {
+          const ip = peer.addr.split(':')[0];
+          const geo = geoip.lookup(ip);
+    
+          // Add the 'geo' data to the 'peer' object
+          peer.geo = geo;
+        });
+        res.status(200).json({
+          status: 200,
+          response: data
         });
       })
       .catch(function (error) {

@@ -22,6 +22,10 @@ export class LatestblocksComponent implements OnInit {
   public CurrentpageNumber: Number;
   public FirstPageListData: any = [];
   public DifferentList: any = [];
+  public pool_epicmine: any = {};
+  public pool_51pool: any = {};
+  public poolUrl: string = 'https://51pool.online';
+  public selectedpool = "51pool";
   public blockAppend: any;
   public blockdetails: any;
   public zibra_color = "zibra_white";
@@ -58,12 +62,17 @@ export class LatestblocksComponent implements OnInit {
     this.gettinghashList(1, 10, this.first);
     // this.getLastCeatedBlock();
     this.get51poolAPI();
+    this.getepicmineAPI();
   }
 
   ngAfterViewInit() {
     this.apiBlockInterval = setInterval(() => {
-      console.log('getLastCeatedBlock called');
-      this.get51poolAPI();
+      // console.log('getLastCeatedBlock called');
+      if(this.selectedpool == 'epicmine'){
+        this.getepicmineAPI();
+      }else{
+        this.get51poolAPI();
+      }
       // let current_page = localStorage.getItem('CurrentPage');
       // let page_size = localStorage.getItem('PageSize');
       let current_page = this.CurrentPage;
@@ -80,16 +89,43 @@ export class LatestblocksComponent implements OnInit {
     clearInterval(this.apiBlockInterval);
   }
 
+  onMineChange(event: Event): void {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    // console.log('Selected Value:', selectedValue);
+    if(selectedValue == 'epicmine'){
+      this.pool51_hashrateCuckoo = this.pool_epicmine.poolStats.hashrateCuckoo;
+      this.pool51_hashrateProgPow = this.pool_epicmine.poolStats.hashrateProgPow;
+      this.pool51_hashrateRandomX = this.pool_epicmine.poolStats.hashrateRandomX;
+      this.pool51_onlineCuckoo = this.pool_epicmine.poolStats.onlineCuckoo;
+      this.pool51_onlineProgPow = this.pool_epicmine.poolStats.onlineProgPow;
+      this.pool51_onlineRandomX = this.pool_epicmine.poolStats.onlineRandomX;
+      this.pool51_currentHeight = this.pool_epicmine.poolStats.currentHeight;
+      this.poolUrl = 'https://epicmine.io/';
+      this.selectedpool = 'epicmine';
+    }else if(selectedValue == '51pool'){
+      this.pool51_hashrateCuckoo = this.pool_51pool.hashrateCuckoo;
+      this.pool51_hashrateProgPow = this.pool_51pool.hashrateProgPow;
+      this.pool51_hashrateRandomX = this.pool_51pool.hashrateRandomX;
+      this.pool51_onlineCuckoo = this.pool_51pool.onlineCuckoo;
+      this.pool51_onlineProgPow = this.pool_51pool.onlineProgPow;
+      this.pool51_onlineRandomX = this.pool_51pool.onlineRandomX;
+      this.pool51_currentHeight = this.pool_51pool.currentHeight;
+      this.poolUrl = 'https://51pool.online';
+      this.selectedpool = '51pool';
+    }
+  }
+
   public get51poolAPI() {
     return new Promise<void>((resolve, reject) => {
       this.chartService.apiGetRequest('','/blockchain_block/get51poolapi').subscribe(
         res => {
           // console.log('get51poolAPI');
-          console.log(res);
+          // console.log(res);
           if (res['status'] == 200) {
             let json = res.response;
             // console.log(json.data);
             let poolStats = json.data.poolStats;
+            this.pool_51pool = poolStats;
             this.pool51_hashrateCuckoo = poolStats.hashrateCuckoo;
             this.pool51_hashrateProgPow = poolStats.hashrateProgPow;
             this.pool51_hashrateRandomX = poolStats.hashrateRandomX;
@@ -97,6 +133,29 @@ export class LatestblocksComponent implements OnInit {
             this.pool51_onlineProgPow = poolStats.onlineProgPow;
             this.pool51_onlineRandomX = poolStats.onlineRandomX;
             this.pool51_currentHeight = poolStats.currentHeight;
+          }
+        },
+        error => {},
+      );
+    });
+  }
+
+  public getepicmineAPI() {
+    return new Promise<void>((resolve, reject) => {
+      this.chartService.apiGetRequest('','/blockchain_block/getepicmineapi').subscribe(
+        res => {
+          if (res['status'] == 200) {
+            let json = res.response;
+            this.pool_epicmine = json;
+            if(this.selectedpool == 'epicmine'){
+              this.pool51_hashrateCuckoo = this.pool_epicmine.poolStats.hashrateCuckoo;
+              this.pool51_hashrateProgPow = this.pool_epicmine.poolStats.hashrateProgPow;
+              this.pool51_hashrateRandomX = this.pool_epicmine.poolStats.hashrateRandomX;
+              this.pool51_onlineCuckoo = this.pool_epicmine.poolStats.onlineCuckoo;
+              this.pool51_onlineProgPow = this.pool_epicmine.poolStats.onlineProgPow;
+              this.pool51_onlineRandomX = this.pool_epicmine.poolStats.onlineRandomX;
+              this.pool51_currentHeight = this.pool_epicmine.poolStats.currentHeight;        
+            }
           }
         },
         error => {},
@@ -113,7 +172,7 @@ export class LatestblocksComponent implements OnInit {
   }
 
   public gettinghashList(CurrentPage, PageSize, first = false) {
-    console.log(CurrentPage, PageSize,this.first);
+    // console.log(CurrentPage, PageSize,this.first);
     this.CurrentPage = CurrentPage;
     this.PageSize = PageSize;
     // localStorage.setItem('CurrentPage',CurrentPage);
@@ -127,7 +186,7 @@ export class LatestblocksComponent implements OnInit {
         if (res['status'] == 200) {
           this.pagedata = res.response;
           if(this.first){
-            console.log('init gettinghashList');
+            // console.log('init gettinghashList');
             res.response.BlockchainBlockResult.shift();
             this.currentBlockHeight = res.response.BlockchainBlockResult[0].blockchain_block_height;
             this.first = false;
