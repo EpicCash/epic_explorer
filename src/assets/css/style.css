@@ -14,7 +14,7 @@ body {
   font-family: 'Bahnschrift';
   color: #333;
   letter-spacing: 0.5px;
-  background: url(/assets/img/light-bg.png) no-repeat fixed center;  
+  background: url(/assets/img/dark_bg2.jpg) no-repeat fixed center;  
 }
 .search {
   max-width: 75%;
@@ -562,7 +562,7 @@ margin-right: 10px;
 .ftr_links { margin-top: 10px;}
 /**********************************************Dark Theme CSS********************************/
 body.dark_theme {
-  background: url(/assets/img/dark_bg1.png) fixed center;
+  background: url(/assets/img/dark_bg2.jpg) fixed center;
   background-color: #222223;
   color: #fff;
 }
@@ -573,13 +573,13 @@ body.dark_theme {
   display: block; 
 }
 .dark_theme .headerbg {
-  /* background: url(/assets/img/dark_bg1.png); */
+  /* background: url(/assets/img/dark_bg2.jpg); */
 }
 .navbar-light .navbar-nav .nav-link{transition: all ease 0.75s; padding: .5rem 1rem; font-size: 15px;  color: rgb(0, 0, 0);}
 .dark_theme .navbar-light .navbar-nav .nav-link{ color: #fff; }
 .dark_theme .navbar-light .navbar-nav .nav-link:hover{ color: #ecc551;}
 .dark_theme .body_bg {
-  /* background: url(/assets/img/dark_bg1.png); */
+  /* background: url(/assets/img/dark_bg2.jpg); */
   /* background-position-y: -22%; */
 }
 .dark_theme .logo_txt,

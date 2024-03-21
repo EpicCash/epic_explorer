@@ -14,7 +14,7 @@ body {
   font-family: 'Bahnschrift';
   color: #686868;
   letter-spacing: 0.5px;
-  background: url(/assets/img/light-bg.png) no-repeat fixed center;
+  background: url(/assets/img/dark_bg2.jpg) no-repeat fixed center;
 }
 .search {
   max-width: 75%;
@@ -589,7 +589,7 @@ margin-right: 10px;
 .bg{fill: rgb(243, 244, 242) !important;}
 /**********************************************Dark Theme CSS********************************/
 body.dark_theme {
-  background: url(/assets/img/dark_bg1.png);
+  background: url(/assets/img/dark_bg2.jpg);
   background-color: #222223;
   color: #f3f4f2;
 }
