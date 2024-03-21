@@ -195,12 +195,12 @@ select.langbut{ background-image: url('../img/down-arrow.png'); background-repea
   /* margin-right: 5px; */
 }
 .headerbg {
-  /* background: url(/assets/img/body_bg.png); */
+  /* background: url(/assets/img/dark_bg2.jpg); */
   overflow: hidden;
   /* background-position-y: -22%; */
 }
 .body_bg, .view_content{
-  /* background: url(/assets/img/body_bg.png); */
+  /* background: url(/assets/img/dark_bg2.jpg); */
   /* background-position-y: -22%; */
   padding-top: 100px;
 }

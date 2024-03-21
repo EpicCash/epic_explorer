@@ -254,17 +254,17 @@ try {
           },
           "BlockHeight": blockDetails.block_height,
           "Blockchain": "MimbleWimble",
-          "Homepage": "https://epic.tech",
-          "Explorer": "https://explorer.epic.tech",
-          "API": "https://explorer.epic.tech/api",
-          "Logo": "https://explorer.epic.tech/assets/img/logo.png",
+          "Homepage": "https://epiccash.com",
+          "Explorer": "https://explorer.epiccash.com",
+          "API": "https://explorer.epiccash.com/api",
+          "Logo": "https://explorer.epiccash.com/assets/img/logo.png",
           "ICO": "NO",
           "Premine": "NO",
           "Mainnet": "YES",
           "Genesis": "09-03-2019, 02:09:00 UTC",
           "BlockInterval": 60,
           "GIT": "https://gitlab.com/epiccash",
-          "Whitepaper":"https://epic.tech/whitepaper",
+          "Whitepaper":"https://epiccash.com/whitepaper",
           "Colors": { "off-white": "#f3f4f2", "off-black": "#222223", "gold" :"#bf9b30" }
           };
         }

@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  domain: 'https://explorer3.epic.tech/',
-  apiUrl: 'https://explorer3.epic.tech/epic_explorer/v1',
-  EMAIL : 'contact@epic.tech',
+  domain: 'https://explorer.epiccash.com:8080/',
+  apiUrl: 'https://explorer.epiccash.com:8080/epic_explorer/v1',
+  EMAIL : 'contact@epiccash.com',
   TARGETBLOCK: 480960
 };
 

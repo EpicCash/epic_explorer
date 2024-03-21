@@ -1,6 +1,6 @@
 var request = require('request');
 const fs = require("fs"); 
-request('https://explorer.epic.tech/epic_explorer/v1/blockchain_kernel/getpeers', function(error, response, body){
+request('https://explorer.epiccash.com/epic_explorer/v1/blockchain_kernel/getpeers', function(error, response, body){
     const resps = JSON.parse(body);
     const dataJson = resps.response.dataJson;
     console.log(dataJson.length);
