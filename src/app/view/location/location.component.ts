@@ -26,8 +26,7 @@ export class LocationComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.isBrowser) {
-      this.L = require('leaflet');
-      this.markerClusterGroup = this.L.MarkerClusterGroup;
+      this.L = require('leaflet'); require('leaflet.markercluster');
       this.initMap();
       this.fetchLocationData();
     }
@@ -49,7 +48,7 @@ export class LocationComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
-    this.markerClusterGroup = this.L.markerClusterGroup(); // Initialize the marker cluster group
+    this.markerClusterGroup = this.L.markerClusterGroup({}); // Initialize the marker cluster group
     this.markerClusterGroup.addTo(this.map); // Add it to the map
   }
 
