@@ -250,20 +250,20 @@ const latestBlockDetails = async()=> {
     });
 
   /*
-  // const space = await exec('du -sh /root/.epic/main/chain_data/ --exclude=*.zip');
+  // const space = await exec('du -sh /explorer/.epic/main/chain_data/ --exclude=*.zip');
   const space = "1.7G    /var/www/html/"
   // let disk_space = space.stdout.split('\t')[0];
     const disk_space  = "1.7"
 
-  // const space_new = await exec('du -sk /root/.epic/main/chain_data/ --exclude=*.zip');
+  // const space_new = await exec('du -sk /explorer/.epic/main/chain_data/ --exclude=*.zip');
   const space_new  = "1.7G    /var/www/html/"
   //let disk_space_kb = space_new.stdout.split('\t')[0];
   // let disk_space_kb = (space_new.stdout.split('\t')[0] / 1000000).toFixed(2)+"G";
   let disk_space_kb = "1.7G"
   */
-  const space = await exec('du -sh /root/.epic/main/chain_data/ --exclude=*.zip');
+  const space = await exec('du -sh /explorer/.epic/main/chain_data/ --exclude=*.zip');
   let disk_space = space.stdout.split('\t')[0];
-  const space_new = await exec('du -sk /root/.epic/main/chain_data/ --exclude=*.zip');
+  const space_new = await exec('du -sk /explorer/.epic/main/chain_data/ --exclude=*.zip');
   //let disk_space_kb = space_new.stdout.split('\t')[0];
   let disk_space_kb = (space_new.stdout.split('\t')[0] / 1000000).toFixed(2)+"G";
 
@@ -467,20 +467,20 @@ const previousBlockDetails = async() => {
     });
 
   /*
-  // const space = await exec('du -sh /root/.epic/main/chain_data/ --exclude=*.zip');
+  // const space = await exec('du -sh /explorer/.epic/main/chain_data/ --exclude=*.zip');
   const space = "1.7G    /var/www/html/"
   // let disk_space = space.stdout.split('\t')[0];
     const disk_space  = "1.7"
 
-  // const space_new = await exec('du -sk /root/.epic/main/chain_data/ --exclude=*.zip');
+  // const space_new = await exec('du -sk /explorer/.epic/main/chain_data/ --exclude=*.zip');
   const space_new  = "1.7G    /var/www/html/"
   //let disk_space_kb = space_new.stdout.split('\t')[0];
   // let disk_space_kb = (space_new.stdout.split('\t')[0] / 1000000).toFixed(2)+"G";
   let disk_space_kb = "1.7G"
   */
-  const space = await exec('du -sh /root/.epic/main/chain_data/ --exclude=*.zip');
+  const space = await exec('du -sh /explorer/.epic/main/chain_data/ --exclude=*.zip');
   let disk_space = space.stdout.split('\t')[0];
-  const space_new = await exec('du -sk /root/.epic/main/chain_data/ --exclude=*.zip');
+  const space_new = await exec('du -sk /explorer/.epic/main/chain_data/ --exclude=*.zip');
   //let disk_space_kb = space_new.stdout.split('\t')[0];
   let disk_space_kb = (space_new.stdout.split('\t')[0] / 1000000).toFixed(2)+"G";
 
