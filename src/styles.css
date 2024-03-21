@@ -12,9 +12,10 @@
 html, body{height: 100%;}
 body {
   font-family: 'Bahnschrift';
-  color: #686868;
+/*  color: #686868; */
+    color: #e1a023;
   letter-spacing: 0.5px;
-  background: url(/assets/img/dark_bg2.jpg) no-repeat fixed center;
+  background: url(/assets/img/light-bg.png) no-repeat fixed center;
 }
 .search {
   max-width: 75%;

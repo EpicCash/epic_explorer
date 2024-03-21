@@ -14,7 +14,7 @@ body {
   font-family: 'Bahnschrift';
   color: #333;
   letter-spacing: 0.5px;
-  background: url(/assets/img/dark_bg2.jpg) no-repeat fixed center;  
+  background: url(/assets/img/light-bg.png) no-repeat fixed center;  
 }
 .search {
   max-width: 75%;
@@ -141,7 +141,8 @@ select.langbut{ background-image: url('../img/down-arrow.png'); background-repea
 .nav-item.dropdown.bg-white{background-color: #dadada !important;}
 /************************************************texts*****************************************/
 .txt_primary {
-  color: #BF9B30;
+/*  color: #BF9B30;*/
+  color: #e1a023;
 }
 .txt_secondary {
   color: #a6a6a6;
@@ -195,12 +196,12 @@ select.langbut{ background-image: url('../img/down-arrow.png'); background-repea
   /* margin-right: 5px; */
 }
 .headerbg {
-  /* background: url(/assets/img/dark_bg2.jpg); */
+  /* background: url(/assets/img/body_bg.png); */
   overflow: hidden;
   /* background-position-y: -22%; */
 }
 .body_bg, .view_content{
-  /* background: url(/assets/img/dark_bg2.jpg); */
+  /* background: url(/assets/img/body_bg.png); */
   /* background-position-y: -22%; */
   padding-top: 100px;
 }
@@ -573,13 +574,13 @@ body.dark_theme {
   display: block; 
 }
 .dark_theme .headerbg {
-  /* background: url(/assets/img/dark_bg2.jpg); */
+  /* background: url(/assets/img/dark_bg1.png); */
 }
 .navbar-light .navbar-nav .nav-link{transition: all ease 0.75s; padding: .5rem 1rem; font-size: 15px;  color: rgb(0, 0, 0);}
 .dark_theme .navbar-light .navbar-nav .nav-link{ color: #fff; }
 .dark_theme .navbar-light .navbar-nav .nav-link:hover{ color: #ecc551;}
 .dark_theme .body_bg {
-  /* background: url(/assets/img/dark_bg2.jpg); */
+  /* background: url(/assets/img/dark_bg1.png); */
   /* background-position-y: -22%; */
 }
 .dark_theme .logo_txt,

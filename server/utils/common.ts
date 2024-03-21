@@ -92,8 +92,7 @@ const getTotalRewardByHeight= async(height) => {
       currentReward = 4;
     } else if (height <= BLOCK_ERA_4) {
       remaining_height = height - BLOCK_ERA_3;
-      // coin_existence =  (16 * BLOCK_ERA_1) + (8 * (BLOCK_ERA_2 - BLOCK_ERA_1)) + (4 * (BLOCK_ERA_3 - BLOCK_ERA_2)) + 2 * remaining_height;
-      coin_existence = (16* (DAY_HEIGHT * 334)) + (8 * (DAY_HEIGHT * 470)) + (4 *  (DAY_HEIGHT * 601)) + 2*remaining_height;
+      coin_existence =  (16 * BLOCK_ERA_1) + (8 * BLOCK_ERA_2) + (4 * BLOCK_ERA_3) + 2 * remaining_height;
       currentReward = 2;
     } else if (height <= BLOCK_ERA_5) {
       remaining_height = height - BLOCK_ERA_4;
@@ -250,20 +249,20 @@ const latestBlockDetails = async()=> {
     });
 
   /*
-  // const space = await exec('du -sh /explorer/.epic/main/chain_data/ --exclude=*.zip');
+  // const space = await exec('du -sh /home/explorer/.epic/main/chain_data/ --exclude=*.zip');
   const space = "1.7G    /var/www/html/"
   // let disk_space = space.stdout.split('\t')[0];
     const disk_space  = "1.7"
 
-  // const space_new = await exec('du -sk /explorer/.epic/main/chain_data/ --exclude=*.zip');
+  // const space_new = await exec('du -sk /home/explorer/.epic/main/chain_data/ --exclude=*.zip');
   const space_new  = "1.7G    /var/www/html/"
   //let disk_space_kb = space_new.stdout.split('\t')[0];
   // let disk_space_kb = (space_new.stdout.split('\t')[0] / 1000000).toFixed(2)+"G";
   let disk_space_kb = "1.7G"
   */
-  const space = await exec('du -sh /explorer/.epic/main/chain_data/ --exclude=*.zip');
+  const space = await exec('du -sh /home/explorer/.epic/main/chain_data/ --exclude=*.zip');
   let disk_space = space.stdout.split('\t')[0];
-  const space_new = await exec('du -sk /explorer/.epic/main/chain_data/ --exclude=*.zip');
+  const space_new = await exec('du -sk /home/explorer/.epic/main/chain_data/ --exclude=*.zip');
   //let disk_space_kb = space_new.stdout.split('\t')[0];
   let disk_space_kb = (space_new.stdout.split('\t')[0] / 1000000).toFixed(2)+"G";
 
@@ -301,8 +300,7 @@ const latestBlockDetails = async()=> {
       currentReward = 4;
     } else if (height <= BLOCK_ERA_4) {
       remaining_height = height - BLOCK_ERA_3;
-      // coin_existence =  (16 * BLOCK_ERA_1) + (8 * (BLOCK_ERA_2 - BLOCK_ERA_1)) + (4 * (BLOCK_ERA_3 - BLOCK_ERA_2)) + 2 * remaining_height;
-      coin_existence = (16* (DAY_HEIGHT * 334)) + (8 * (DAY_HEIGHT * 470)) + (4 *  (DAY_HEIGHT * 601)) + 2*remaining_height;
+      coin_existence =  (16 * BLOCK_ERA_1) + (8 * BLOCK_ERA_2) + (4 * BLOCK_ERA_3) + 2 * remaining_height;
       currentReward = 2;
     } else if (height <= BLOCK_ERA_5) {
       remaining_height = height - BLOCK_ERA_4;
@@ -467,20 +465,20 @@ const previousBlockDetails = async() => {
     });
 
   /*
-  // const space = await exec('du -sh /explorer/.epic/main/chain_data/ --exclude=*.zip');
+  // const space = await exec('du -sh /home/explorer/.epic/main/chain_data/ --exclude=*.zip');
   const space = "1.7G    /var/www/html/"
   // let disk_space = space.stdout.split('\t')[0];
     const disk_space  = "1.7"
 
-  // const space_new = await exec('du -sk /explorer/.epic/main/chain_data/ --exclude=*.zip');
+  // const space_new = await exec('du -sk /home/explorer/.epic/main/chain_data/ --exclude=*.zip');
   const space_new  = "1.7G    /var/www/html/"
   //let disk_space_kb = space_new.stdout.split('\t')[0];
   // let disk_space_kb = (space_new.stdout.split('\t')[0] / 1000000).toFixed(2)+"G";
   let disk_space_kb = "1.7G"
   */
-  const space = await exec('du -sh /explorer/.epic/main/chain_data/ --exclude=*.zip');
+  const space = await exec('du -sh /home/explorer/.epic/main/chain_data/ --exclude=*.zip');
   let disk_space = space.stdout.split('\t')[0];
-  const space_new = await exec('du -sk /explorer/.epic/main/chain_data/ --exclude=*.zip');
+  const space_new = await exec('du -sk /home/explorer/.epic/main/chain_data/ --exclude=*.zip');
   //let disk_space_kb = space_new.stdout.split('\t')[0];
   let disk_space_kb = (space_new.stdout.split('\t')[0] / 1000000).toFixed(2)+"G";
 
@@ -518,8 +516,7 @@ const previousBlockDetails = async() => {
       currentReward = 4;
     } else if (height <= BLOCK_ERA_4) {
       remaining_height = height - BLOCK_ERA_3;
-      // coin_existence =  (16 * BLOCK_ERA_1) + (8 * (BLOCK_ERA_2 - BLOCK_ERA_1)) + (4 * (BLOCK_ERA_3 - BLOCK_ERA_2)) + 2 * remaining_height;
-      coin_existence = (16* (DAY_HEIGHT * 334)) + (8 * (DAY_HEIGHT * 470)) + (4 *  (DAY_HEIGHT * 601)) + 2*remaining_height;
+      coin_existence =  (16 * BLOCK_ERA_1) + (8 * BLOCK_ERA_2) + (4 * BLOCK_ERA_3) + 2 * remaining_height;
       currentReward = 2;
     } else if (height <= BLOCK_ERA_5) {
       remaining_height = height - BLOCK_ERA_4;
