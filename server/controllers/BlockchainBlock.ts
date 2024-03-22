@@ -770,7 +770,7 @@ export class BlockchainBlockController {
     try {
       var config = {
         method: 'get',
-        url: 'http://95.217.197.180:3517/v1/peers/all',
+        url: 'https://epicnode.btlabs.tech/v1/peers/all',
         headers: { }
       };
      await axios(config).then( (response) => {
