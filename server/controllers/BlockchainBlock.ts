@@ -770,7 +770,7 @@ export class BlockchainBlockController {
     try {
       var config = {
         method: 'get',
-        url: 'http://5.75.242.4:3413/v1/peers/all',
+        url: 'http://95.217.197.180:3517/v1/peers/all',
         headers: { }
       };
      await axios(config).then( (response) => {
