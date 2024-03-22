@@ -48,7 +48,7 @@ export class LocationComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
-    this.markerClusterGroup = this.L.markerClusterGroup({}); // Initialize the marker cluster group
+    this.markerClusterGroup = this.L.markerClusterGroup(); // Initialize the marker cluster group
     this.markerClusterGroup.addTo(this.map); // Add it to the map
   }
 
