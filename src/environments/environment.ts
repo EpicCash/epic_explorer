@@ -3,12 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  domain: 'https://explorer.epiccash.com:8080/',
-  apiUrl: 'https://explorer.epiccash.com:8080/epic_explorer/v1',
+  production: true,
+  domain: '/',
+  apiUrl: '/epic_explorer/v1',
   EMAIL : 'contact@epiccash.com',
   TARGETBLOCK: 480960
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
