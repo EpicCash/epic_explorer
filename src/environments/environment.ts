@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
   domain: '/',
   apiUrl: '/epic_explorer/v1',
   EMAIL : 'contact@epiccash.com',
