@@ -96,7 +96,7 @@ const getTotalRewardByHeight= async(height) => {
       currentReward = 2;
     } else if (height <= BLOCK_ERA_5) {
       remaining_height = height - BLOCK_ERA_4;
-      coin_existence =  (16 * BLOCK_ERA_1) + (8 * BLOCK_ERA_2) + (4 * BLOCK_ERA_3) + (2 * BLOCK_ERA_4) +1 * remaining_height; 
+      coin_existence = (16 * BLOCK_ERA_1) + (8 * (BLOCK_ERA_2 - BLOCK_ERA_1)) + (4 * (BLOCK_ERA_3 - BLOCK_ERA_2)) + (2 * (BLOCK_ERA_4 - BLOCK_ERA_3)) + 1 * remaining_height;
       currentReward = 1;
     } else {
       // After the era 6, we reduce the block rewards by half each 1460 days.
@@ -370,7 +370,7 @@ let currentReward = 16;
     currentReward = 2;
   } else if (height <= BLOCK_ERA_5) {
     remaining_height = height - BLOCK_ERA_4;
-    coin_existence =  (16 * BLOCK_ERA_1) + (8 * BLOCK_ERA_2) + (4 * BLOCK_ERA_3) + (2 * BLOCK_ERA_4) +1 * remaining_height; 
+    coin_existence = (16 * BLOCK_ERA_1) + (8 * (BLOCK_ERA_2 - BLOCK_ERA_1)) + (4 * (BLOCK_ERA_3 - BLOCK_ERA_2)) + (2 * (BLOCK_ERA_4 - BLOCK_ERA_3)) + 1 * remaining_height;
     currentReward = 1;
   } else {
     // After the era 6, we reduce the block rewards by half each 1460 days.
