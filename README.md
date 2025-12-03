@@ -86,3 +86,5 @@ This is necessary to run the python3 scripts in the next step
 
 These scripts are named `import.sh`, `full_import.sh`, and `migrate.sh`.  You need python3 symlinked to run them.
 
+explorer is using node at node.epiccash.com for current blockchain status
+
